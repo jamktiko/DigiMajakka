@@ -41,10 +41,10 @@ Projektin organisaatio
 ## Projektiryhmä
 Nimi 	Rooli(t) 	Yhteystiedot
 * Siru Gull 	Product Owner, Business 	AA4317@student.jamk.fi
-* Jenni Hapuli Scrum Master Päärooli:UI/UX @student.jamk.fi
-* Kalle Kaitamäki Päärooli: Backend-developer, sivurooli: Testaus @student.jamk.fi
-* Joona Pöppönen  Päärooli: Frontend-developer @student.jamk.fi
-* Tommi Tuikka Päärooli: Frontend-developer @student.jamk.fi
+* Jenni Hapuli Scrum Master Päärooli:UI/UX AA3215@student.jamk.fi
+* Kalle Kaitamäki Päärooli: Backend-developer, sivurooli: Testaus AA3470@student.jamk.fi
+* Joona Pöppönen  Päärooli: Frontend-developer AA3731@student.jamk.fi
+* Tommi Tuikka Päärooli: Frontend-developer N5008@student.jamk.fi
 ## Ohjausryhmä
 Nimi 	Rooli(t) 	Yhteystiedot
 * Teemu Pölkki 	Labramestari 	A1234@jamk.fi
