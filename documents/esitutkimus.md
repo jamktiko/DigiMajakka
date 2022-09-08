@@ -1,6 +1,6 @@
 
 # Esitutkimus
 
-* Teknologien vertailu
+* Teknologioiden vertailu
 * Kilpailija-analyysi
 * Konseptitaide
