@@ -2,5 +2,5 @@
 # Esitutkimus
 
 * Teknologioiden vertailu
-* Kilpailija-analyysi
+* Markkinatutkmus & kilpailija-analyysi
 * Konseptitaide
