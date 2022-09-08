@@ -32,6 +32,7 @@ Kirjoita tähän lukuun minkä toimintojen jälkeen projekti on hyväksyttäviss
 Toimintasuunnitelma
 
 Tässä luvussa kuvataan tapa, jolla projekti viedään läpi. Esim. Scrum, OMT++, Protoilu jne. Ota huomioon myös kestävä kehitys!
+Projektissa käytetään Scrumia projektin hallinnassa.  Projekti alkaa esituotanto vaiheen hyväksymisen jälkeen. Projektin aloitamme product backlogin luomisella. 
 Projektin aloittamisesta
 Projektin toteuttamisesta
 Projektin testaamisesta
