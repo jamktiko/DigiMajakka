@@ -24,6 +24,7 @@ Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
     Sprint backlog
     Testaussuunnitelma
     Markkinointisuunnitelma
+    Tietosuojaseloste
 
 Projektin hyväskyminen
 
@@ -99,4 +100,6 @@ Työntekijät eivät ole motivoituneita ja eivät saavu paikalle 	Pieni 	 Suuri 
 Avoimet asiat
 
 Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna. Mihin asiakkaan tulisi ottaa kantaa
+
+Tietokannat: Kalle&Siru , MariaDB
 
