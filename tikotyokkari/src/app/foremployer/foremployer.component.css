@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+button {
+  margin-left: 2.5em;
+}
+
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.listitem {
+  margin: 2em;
+  border: 1px solid black;
+  padding: 2em;
+}

@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+}
+
+.login {
+  position: absolute;
+  right: 10em;
+}
+
+.loginfo {
+  position: absolute;
+  left: 10em;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 2em;
+}
+
+.listitem {
+  margin: 2em;
+  border: 1px solid black;
+  padding: 2em;
+}
