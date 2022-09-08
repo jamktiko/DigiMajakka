@@ -4,9 +4,9 @@
 
 ## Tikotyökkäri
 
-Projektityöntekijät: Siru Gull, Jenni Hapuli, Kalle Kaitamäki, Joona Pöppönen & Tommi Tuikka
+**Projektityöntekijät:** Siru Gull, Jenni Hapuli, Kalle Kaitamäki, Joona Pöppönen & Tommi Tuikka
 
-Projektin sisältö
+**Projektin sisältö**
 Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä konseptia varten: Tikotyökkäri
 
 Lyhyt kuvaus projektista ja dokumentista
@@ -14,6 +14,7 @@ Halusimme luoda alustan jonka avulla tietojenkäsittelyn opiskelijat ja työnant
 
 Mitä tehdään ja kelle? Mitkä ovat projektin tavoitteet?
 Teemme PWA verkkopalvelun. 
+
 Tuotokset
 
 Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
@@ -26,9 +27,10 @@ Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
     Markkinointisuunnitelma
     Tietosuojaseloste
 
-Projektin hyväskyminen
+Projektin hyväksyminen
 
 Kirjoita tähän lukuun minkä toimintojen jälkeen projekti on hyväksyttävissä. Yleensä hyväksyminen voidaan todeta kun projektin tavoitteet ovat toteutuneet.
+
 Toimintasuunnitelma
 
 Tässä luvussa kuvataan tapa, jolla projekti viedään läpi. Esim. Scrum, OMT++, Protoilu jne. Ota huomioon myös kestävä kehitys!
@@ -82,6 +84,7 @@ Projektin viikkopalaveri pidetään xxx paikassa xxx. Palaverin aikana selvitet�
 Kommunikointitavat
 
 Kuvaa mitä eri tapoja projektilla ja asiakkaalla on käytössään kommunikointiin projektin aikana. Mikäli yrityksellä tai asiakkaalla on jokin järjestelmä esim. konferenssipuhelujen käyttämiseen, se tulee mainita tässä (mielellään myös käyttöohjeet)
+
 Dokumentointi
 
 Kirjaa tähän miten projekti on ajatellut työnsä dokumentoida. Vai dokumentoiko lainkaan?
