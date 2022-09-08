@@ -9,13 +9,13 @@
 **Projektin sisältö**
 Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä konseptia varten: Tikotyökkäri
 
-Lyhyt kuvaus projektista ja dokumentista
+**Lyhyt kuvaus projektista ja dokumentista**
 Halusimme luoda alustan jonka avulla tietojenkäsittelyn opiskelijat ja työnantajat voisivat löytää toisensa mahdollisimman helposti.
 
-Mitä tehdään ja kelle? Mitkä ovat projektin tavoitteet?
+**Mitä tehdään ja kelle? Mitkä ovat projektin tavoitteet?**
 Teemme PWA verkkopalvelun. 
 
-Tuotokset
+### Tuotokset
 
 Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
 
@@ -27,11 +27,11 @@ Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
     Markkinointisuunnitelma
     Tietosuojaseloste
 
-Projektin hyväksyminen
+**Projektin hyväksyminen**
 
 Kirjoita tähän lukuun minkä toimintojen jälkeen projekti on hyväksyttävissä. Yleensä hyväksyminen voidaan todeta kun projektin tavoitteet ovat toteutuneet.
 
-Toimintasuunnitelma
+**Toimintasuunnitelma**
 
 Tässä luvussa kuvataan tapa, jolla projekti viedään läpi. Esim. Scrum, OMT++, Protoilu jne. Ota huomioon myös kestävä kehitys!
 Projektissa käytetään Scrumia projektin hallinnassa.  Projekti alkaa esituotanto vaiheen hyväksymisen jälkeen. Projektin aloitamme product backlogin luomisella. 
@@ -71,21 +71,26 @@ Listaa tähän kaikki työkalut joita projekti tarvitsee projektin onnistumiseks
     Työasemat?
     Jne
 
-Raportointi ja kommunikointi
+**Raportointi ja kommunikointi**
 Meidän viestintäkanavana on teams. Scrum Master vastaa raportoinnista
 
-Kuvaa kuinka projekti raportoi omalle organisaatiolleen ja kuka vastaa mistäkin raportoinnista
+**Kuvaa kuinka projekti raportoi omalle organisaatiolleen ja kuka vastaa mistäkin raportoinnista**
 Asiakasraportointi
 
-Kuvaa kuinka projekti raportoi asiakkaalle ja millä aikataululla. Kenelle tehdyt raportit lähetetään.
+**Kuvaa kuinka projekti raportoi asiakkaalle ja millä aikataululla. Kenelle tehdyt raportit lähetetään.**
 Palaverikäytänteet (Daily Scrum, Sprint Backlog, jne)
 
-Projektin viikkopalaveri pidetään xxx paikassa xxx. Palaverin aikana selvitetään tehdyt työt ja suunnitellaan tulevat. Palavereista tehdään pöytäkirja joita säilytetään projektihakemistossa
-Kommunikointitavat
+### Projektin palaverit
+Projektin viikkopalaveri pidetään xxx paikassa xxx. 
+Palaverin aikana selvitetään tehdyt työt ja suunnitellaan tulevat. Palavereista tehdään pöytäkirja, jota säilytetään projektihakemistossa
 
-Kuvaa mitä eri tapoja projektilla ja asiakkaalla on käytössään kommunikointiin projektin aikana. Mikäli yrityksellä tai asiakkaalla on jokin järjestelmä esim. konferenssipuhelujen käyttämiseen, se tulee mainita tässä (mielellään myös käyttöohjeet)
+### Kommunikointitavat
 
-Dokumentointi
+Kuvaa mitä eri tapoja projektilla ja asiakkaalla on käytössään kommunikointiin projektin aikana. Mikäli yrityksellä tai asiakkaalla on jokin järjestelmä esim. konferenssipuhelujen käyttämiseen, se tulee mainita tässä (mielellään myös käyttöohjeet).
+
+Tiimi kommunikoi keskenään Teamsin välityksellä.
+
+### Dokumentointi
 
 Kirjaa tähän miten projekti on ajatellut työnsä dokumentoida. Vai dokumentoiko lainkaan?
 Dokumenttipohjat
@@ -94,6 +99,7 @@ Kuvaa mitä pohjia dokumentoinnissa käytetään. Onko kyseessä projektin omat 
 Dokumenttien hallinta
 
 Kuvaa dokumenttien säilytys, kenellä on oikeudet dokumenttien hallintaan, miten backupit on hoidettu, kuinka dokumentteja versioidaan (esim. 1.0 on vasta kun asiakas on hyväksynyt dokumentin) ja nimetään (onko esim. dokumentin nimessä versionumero)
+
 Riskien hallinta
 
 Kuvaa tässä kuinka projekti aikoo hallinnoida ja seurata projektiriskejä
@@ -103,7 +109,7 @@ Riskit 	Todennäköisyys 	 Impakti 	Minimointi
 Työntekijät eivät ole motivoituneita ja eivät saavu paikalle 	Pieni 	 Suuri 	Pidetään työpaikalla kahvia ja pullaa.
 Avoimet asiat
 
-Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna. Mihin asiakkaan tulisi ottaa kantaa
+### Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna. Mihin asiakkaan tulisi ottaa kantaa
 
 Tietokannat: Kalle&Siru , MariaDB
 
