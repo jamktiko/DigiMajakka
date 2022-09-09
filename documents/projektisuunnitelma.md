@@ -13,7 +13,7 @@ Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä kons
 Halusimme luoda alustan jonka avulla tietojenkäsittelyn opiskelijat ja työnantajat voisivat löytää toisensa mahdollisimman helposti.
 
 **Mitä tehdään ja kelle? Mitkä ovat projektin tavoitteet?:**
-Teemme PWA verkkopalvelun. 
+Teemme PWA verkkopalvelun Tikolaisille ja heidän mahdollisille työnantajilleen. 
 
 ### Tuotokset
 
