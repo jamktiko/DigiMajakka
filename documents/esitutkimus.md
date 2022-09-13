@@ -52,7 +52,7 @@ _Luvussa 2. listataan vaatimukset, luvussa 3. käyttötapaukset..._
 
 _Tässä aliluvussa kuvataan tuotteen visio ja mahdollinen slogan_
 
-Helppokäyttöinen ja saavutettava alusta, josta opiskelijat voivat etsiä itselleen työtehtäviä ja työkavereita. ​
+Helppokäyttöinen ja saavutettava alusta, josta opiskelijat voivat etsiä itselleen työtehtäviä ja työkavereita.
 
 Alusta yhdistää opiskelijat ja työnantajat jo opintojen aikana. Yksityishenkilöt ja yrittäjät voivat lisätä helposti ilmoituksia pienistä töistä, joihin opiskelijat vastaavat.
 
