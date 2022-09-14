@@ -198,7 +198,8 @@ Kuvaa tässä kuinka projekti aikoo hallinnoida ja seurata projektiriskejä
 Työntekijät eivät ole motivoituneita ja eivät saavu paikalle | Pieni | Suuri | Pidetään työpaikalla kahvia ja pullaa. Pidetään huoli toisistamme.
 Dokumentit katoavat virheen seurauksena | Keskisuuri | Suuri | Pidetään dokumenteista asianmukaiset varmuuskopiot.
 Lähdekoodi katoaa tai hajoaa | Suuri | Valtava | Järjestetään kunnollinen versionhallinta gitin ja githubin avulla.
-Projektin kasvaa liian suureksi | Mahdollinen | Keskisuuri | Rajataan projektin aihealue huolellisesti.
+Projektin koko kasvaa liian suureksi | Mahdollinen | Keskisuuri | Rajataan projektin aihealue huolellisesti.
+Ryhmän jäsenien väliset konfliktit | Pieni | Keskisuuri | Keskustellaan asioista. Ollaan ihmisiksi.
 
 ### Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna.
 
