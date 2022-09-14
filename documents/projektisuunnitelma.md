@@ -6,27 +6,62 @@
 
 **Projektityöntekijät:** Siru Gull, Jenni Hapuli, Kalle Kaitamäki, Joona Pöppönen & Tommi Tuikka
 
+### Termit ja lyhenteet
+
+| Termi | Kuvaus |
+|---|---|
+Git | Versionhallintajärjestelmä
+GitHub | Palvelu joka on rakennettu GIT versionhallinnan ympärille
+Markdown | Merkkauskieli
+NodeJS | Javascript moottori
+
+### Viitteet
+
+| Viittaus | Materiaali |
+|---|---|
+HLTP | \<linkki hltp dokumenttiin>
+GDD | \<linkki gamedesign dokumenttiin>
+
 **Projektin sisältö:**
 Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä konseptia varten: Tikotyökkäri
 
 **Lyhyt kuvaus projektista ja dokumentista:**
-Halusimme luoda alustan jonka avulla tietojenkäsittelyn opiskelijat ja työnantajat voisivat löytää toisensa mahdollisimman helposti.
+Haluamme luoda lyhytkestoisentyön välitysalustan jossa on kaksi asiakasryhmää tietojenkäsittelyopiskelijat (mahdollisuus laajentaa koskemaan myös muiden alojen opiskelijoita) ja yksityishenkilöt sekä yrittäjät. Projekti toteutetaan scrum prosessia käyttäen. Projektin toteuttamiseen tarvitaan backend, frontend, UI/UX ja liiketoiminnan osaamista. 
 
 **Mitä tehdään ja kelle? Mitkä ovat projektin tavoitteet?:**
-Teemme PWA verkkopalvelun Tikolaisille ja heidän mahdollisille työnantajilleen. 
+Teemme PWA verkkopalvelun tietojenkäsittelyn opiskelijoille sekä yrittäjille ja yksityishenkilöille. Tavoitteena on tarjota alusta jonka avulla opiskelijalla on mahdollisuus löytää pienimuotoisia työtehtäviä opintojen ohella. Projektin tavoitteena on myös tukea kevytyrittäjäksi ryhtymistä.
 
 ### Tuotokset
 * Projektisuunnitelma
 * Esitutkimus
 * Product backlog
 * Sprint backlog
+* Viikkoraportit
+* Loppuraportti
 * Testaussuunnitelma
+* Testausraportti
 * Markkinointisuunnitelma
 * Tietosuojaseloste
+* Liiketoimintasuunnitelma
+* Sovellusraportti
+* pwa-frontend sovellus
+* NodeJS Backend sovellus
+* Tietokannan erd-malli
+* Tietokannan Er-kaavio
+* Lähdekoodi
+* Projektin viikkoraportit
+* Projektin loppuraportit
+* UX suunnitelma
+* UI suunnitelma
+* Prototyypit
+* Readme dokumentit
+* kaikki raportit mitä ikinä keksitään
 
 Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
 
 **Projektin hyväksyminen:**
+
+Projekti on hyväksyttävissä kuun product-backlogin pakolliset kohdat on tehty.
 
 Täytetään design sprintin aikana.
 
@@ -35,25 +70,36 @@ Kirjoita tähän lukuun minkä toimintojen jälkeen projekti on hyväksyttäviss
 **Toimintasuunnitelma:**
 
 Tässä luvussa kuvataan tapa, jolla projekti viedään läpi. Esim. Scrum, OMT++, Protoilu jne. Ota huomioon myös kestävä kehitys!
-Projektissa käytetään Scrumia projektin hallinnassa.  Projekti alkaa esituotanto vaiheen hyväksymisen jälkeen. Projektin aloitamme product backlogin luomisella. 
+
+Projektissa käytetään Scrumia projektin hallinnassa. Projekti alkaa esituotantovaiheen hyväksymisen jälkeen. Projektin aloitamme product backlogin luomisella. 
+
 ### Projektin aloittamisesta
-Projektin alussa toteutamme googlen design sprintin. Sprintin aikana tehdään käyttäjätutkimusta ja luodaan prototyyppi. Kirkastamme visiota tuotteesta.
+Projektin alussa toteutamme googlen design sprintin. Sprintin aikana tehdään käyttäjätutkimusta ja luodaan prototyyppi. Kirkastamme visiota tuotteesta. 
+Projektin aloitamme product backlogin ja ensimmäisen sprint backlogin luomisella.
 
 ### Projektin toteuttamisesta
-Projekti toteutetaan DGC:llä hyödyntäen scrum metodia.
+Projekti toteutetaan DGC:llä hyödyntäen Scrum kehitysmetodia. 
 
 ### Projektin testaamisesta
 Projektia testataan eri tavoilla. Käyttäjätestausta tehdään kahdella eri käyttäjäryhmällä. Kehityksen aikana tehdään yksikkötestejä backendille ja black box testausta frontendille. Lisäksi tehdään integraatiotesten kun järjestelmän eri komponentteja yhdistetään. Koska tietoturva on isossa roolissa projektissamme täytyy suorittaa myös tietoturvatestaus.
 
 ### Projektin lopettamisesta
-Sovellus julkaistaan valitsemallemme alustalle ja esitellään julkistamistilaisuudessa.
+Sovellus julkaistaan valitsemallemme alustalle ja esitellään julkistamistilaisuudessa. 
 
 ### Projektin resurssit
 
-### Projektin organisaatio
-Projekti organisoidaan käyttämällä scrum kehitysmetodia. Organisaation keskeiset roolit ovat product owner ja scrum master.
+* DGC:n toimistotila & studio
+* Sidosryhmät
+* Laitteet, omat ja lainatut
+* AWS
+* Oppimateriaalit
+* Ohjaajat
+* Ryhmän jäsenet
 
-## Projektiryhmä
+## Projektin organisaatio
+Projekti organisoidaan käyttämällä scrum kehitysmetodia. Organisaation keskeiset roolit ovat product owner ja scrum master. Organisaation jäsenet lueteltu alla
+
+### Projektiryhmä
 Nimi 	Rooli(t) 	Yhteystiedot
 * Siru Gull, 	Product Owner, Business, 	AA4317@student.jamk.fi
 * Jenni Hapuli, Scrum Master, Päärooli:UI/UX, AA3215@student.jamk.fi
@@ -61,11 +107,12 @@ Nimi 	Rooli(t) 	Yhteystiedot
 * Joona Pöppönen,  Päärooli: Frontend-developer, AA3731@student.jamk.fi
 * Tommi Tuikka, Päärooli: Frontend-developer, N5008@student.jamk.fi
 
-## Ohjausryhmä
+### Ohjausryhmä
 Nimi 	Rooli(t) 	Yhteystiedot
 * Teemu Pölkki 	Labramestari 	teemu.polkki@jamk.fi
 * Jukka Riikonen 	SM&PO ohjaaja 	 jukka.riikonen@jamk.fi
 * Antony Smal Master of the coins    antony.smal@jamk.fi
+* Jere Lamberg Testaus master jere.lamberg@jamk.fi
 
 ## Työkalut
 
@@ -94,12 +141,7 @@ Listaa tähän kaikki työkalut joita projekti tarvitsee projektin onnistumiseks
 * Cypress
 * Cors
 * Mocha & chai
-* 
 
-    
-    Pilvipalvelut?
-    Työasemat?
-    Jne
 
 **Raportointi ja kommunikointi:**
 Meidän viestintäkanavana on teams. Scrum Master vastaa raportoinnista. 
@@ -117,45 +159,39 @@ Daily scrum pidetään klo 10 paikassa DGC oma toimisto.
 
 ### Kommunikointitavat
 
-Kuvaa mitä eri tapoja projektilla ja asiakkaalla on käytössään kommunikointiin projektin aikana. Mikäli yrityksellä tai asiakkaalla on jokin järjestelmä esim. konferenssipuhelujen käyttämiseen, se tulee mainita tässä (mielellään myös käyttöohjeet).
-
-Tiimi kommunikoi keskenään Teamsin välityksellä. 
-Tieto välittyy myös suullisesti tiimin sisällä. 
+Tieto välittyy ensisijaisesti suullisesti tiimin sisällä. 
+Tiimi jakaa dokumentaation teamsin ja githubin välityksellä.
 
 ### Dokumentointi
 
-  Projektisuunnitelma
-  Esitutkimus
-  Product backlog
-  Sprint backlog
-  Testaussuunnitelma
-  Markkinointisuunnitelma
-  Tietosuojaseloste
-  readme dokumentit
+* Projektisuunnitelma
+* Esitutkimus
+* Product backlog
+* Sprint backlog
+* Testaussuunnitelma
+* Markkinointisuunnitelma
+* Tietosuojaseloste
+* readme dokumentit
  
 Product- ja sprint backlogit tehdään zenhubilla. Projektisuunnitelma ja esitutkimus sekä luultavasti readme dokumentit tullaan tekemään markdown muodossa valitulla työkalulla. Dokumentointiin käytetään myös canva ja microsoft word työkaluja.
 
-Kirjaa tähän miten projekti on ajatellut työnsä dokumentoida. Vai dokumentoiko lainkaan?
-Dokumenttipohjat
-
-Kuvaa mitä pohjia dokumentoinnissa käytetään. Onko kyseessä projektin omat vai JAMKin pohjat vai jotain muuta
-Dokumenttien hallinta
+Dokumentoinnissa käytetään Jamkin määrittelemiä pohjia (jos on) ja myös itse määrittelemiämme pohjia.
 
 Ryhmän kaikilla jäsenillä on oikeudet dokumenttien hallintaan. Dokumentit jotka tarvitsee versioida versioidaan käyttäen versio numeroita muodossa 1.0.
 Tarvittavat dokumentit varmuuskopioidaan valitsemaamme pilvipalveluun. 
-
-Kuvaa dokumenttien säilytys, kenellä on oikeudet dokumenttien hallintaan, miten backupit on hoidettu, kuinka dokumentteja versioidaan (esim. 1.0 on vasta kun asiakas on hyväksynyt dokumentin) ja nimetään (onko esim. dokumentin nimessä versionumero)
 
 ## Riskien hallinta
 
 Kuvaa tässä kuinka projekti aikoo hallinnoida ja seurata projektiriskejä
 
-Esimerkiksi näin.
-Riskit 	Todennäköisyys 	 Impakti 	Minimointi
-Työntekijät eivät ole motivoituneita ja eivät saavu paikalle 	Pieni 	 Suuri 	Pidetään työpaikalla kahvia ja pullaa.
-Avoimet asiat
+| Riskit | Todennäköisyys | Impakti | Minimointi
+|---|---|---|---|
+Työntekijät eivät ole motivoituneita ja eivät saavu paikalle | Pieni | Suuri | Pidetään työpaikalla kahvia ja pullaa. Pidetään huoli toisistamme.
+Dokumentit katoavat virheen seurauksena | Keskisuuri | Suuri | Pidetään dokumenteista asianmukaiset varmuuskopiot.
+Lähdekoodi katoaa tai hajoaa | Suuri | Valtava | Järjestetään kunnollinen versionhallinta gitin ja githubin avulla.
+Projektin kasvaa liian suureksi | Mahdollinen | Keskisuuri | Rajataan projektin aihealue huolellisesti.
 
-### Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna. Mihin asiakkaan tulisi ottaa kantaa
+### Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna.
 
 Tietokannat: Kalle&Siru, tietoturva asiat, hostaus/aws, rahoitus, tulonlähde
 
