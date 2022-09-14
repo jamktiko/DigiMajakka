@@ -13,14 +13,23 @@
 Git | Versionhallintajärjestelmä
 GitHub | Palvelu joka on rakennettu GIT versionhallinnan ympärille
 Markdown | Merkkauskieli
-NodeJS | Javascript moottori
+NodeJS | Javascript ajoympäristö
+PWA | Progressiivinen web sovellus
+UX | Käyttäjäkokemus
+UI | Käyttölittymä
+AWS | Amazonin pilvipalvelut
+MariaDB | Relaatiotietokanta
+Express | Javascript sovelluskehys backend kehitykseen
+Angular | Javascript sovelluskehys frontend kehitykseen
+Cors | Javascript kirjasto
+Cypress | Työkalu frontendin testaamiseen
+Docker | Tarjoaa käyttöjärjestelmä pohjaisia kontteja sovellusten ajamiseen
 
 ### Viitteet
 
 | Viittaus | Materiaali |
 |---|---|
-HLTP | \<linkki hltp dokumenttiin>
-GDD | \<linkki gamedesign dokumenttiin>
+HLTP | TBD
 
 **Projektin sisältö:**
 Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä konseptia varten: Tikotyökkäri
