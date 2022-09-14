@@ -65,8 +65,7 @@ Alusta yhdistää opiskelijat ja työnantajat jo opintojen aikana. Yksityishenki
 
 ## Käyttäjäkertomukset
 
-_Listaa käyttäjäkertomukset ja niiden hyväksymiskriteeristö_
-[User journey maps](#https://www.figma.com/file/MmvS1n5CDsOgFQ0H0htaYF/Palvelupolut%2Ftikoty%C3%B6kk%C3%A4ri?node-id=0%3A1)
+-[User journey maps](#https://www.figma.com/file/MmvS1n5CDsOgFQ0H0htaYF/Palvelupolut%2Ftikoty%C3%B6kk%C3%A4ri?node-id=0%3A1)
 
 ## Tekniset vaatimukset
 
