@@ -22,6 +22,13 @@ _Projektin nimi ja lyhyt versio visiosta_
 
 Tekijät:
 
+Nimi 	Rooli(t) 	Yhteystiedot
+* Siru Gull, 	Product Owner, Business, 	AA4317@student.jamk.fi
+* Jenni Hapuli, Scrum Master, Päärooli:UI/UX, AA3215@student.jamk.fi
+* Kalle Kaitamäki, Päärooli: Backend-developer, sivurooli: Testaus, AA3470@student.jamk.fi
+* Joona Pöppönen,  Päärooli: Frontend-developer, AA3731@student.jamk.fi
+* Tommi Tuikka, Päärooli: Frontend-developer, N5008@student.jamk.fi
+
 ### Termit ja lyhenteet
 
 _Esimerkiksi:_
@@ -59,6 +66,7 @@ Alusta yhdistää opiskelijat ja työnantajat jo opintojen aikana. Yksityishenki
 ## Käyttäjäkertomukset
 
 _Listaa käyttäjäkertomukset ja niiden hyväksymiskriteeristö_
+[User journey maps](#https://www.figma.com/file/MmvS1n5CDsOgFQ0H0htaYF/Palvelupolut%2Ftikoty%C3%B6kk%C3%A4ri?node-id=0%3A1)
 
 ## Tekniset vaatimukset
 
