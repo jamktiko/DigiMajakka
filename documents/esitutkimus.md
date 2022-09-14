@@ -73,8 +73,15 @@ _Lista projektin teknisistä vaatimuksista_
 
 Esimerkiksi:
 
-1. Applikaation/sivuston tulee käyttää TLS/SLS salausta
-2. Pelin tulee toimi sulavasti (>60fps) Samsung Galaxy S2 puhelimella
+1. Sivuston tulee käyttää https yhteyttä tiedon siirtoon.
+2. Sivuston pitää olla responsiivinen usealla eri selaimella ja laitteella.
+3. Sivuston tulee täyttää gdpr:n asettamat vaatimukset
+4. Sivuston tulee täyttää pwa standardin vaatimukset
+5. Frontend-sovelluksen tulee pystyä yhdistämään backend-sovellukseen
+6. Backend-sovelluksen pitää pystyä yhdistämään tietokantaan
+7. Tietokannan tulee olla vähintään kolmannessa normaalimuodossa
+8. 
+
 
 ## Ratkaisuvaihtoehdot
 
@@ -83,6 +90,12 @@ _Listaa niin monta ratkaisuvaihtoehtoa kuin niitä tulee ilmi_
 ### Ratkaisuvaihtoehto 1
 
 #### Toteutusympäristö
+
+Koko järjestelmä tullaan hostaamaan AWS:n palveluissa.
+
+Backend sovellus pystytetään aws elastic beanstalk palvelun päälle. Backendin taustalla toimiva tietokanta pystytetään aws rds palvelun päälle.
+
+Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle. Lähdekoodi tallennetaan s3 buckettiin.
 
 _Tässä aliluvussa kerrotaan ympäristön jossa tietojärjestelmä tulee toimimaan. Tähän kannattaa liittää myös yksinkertainen arkkitehtuurikuva, josta pystytään havainnoimaan järjestelmän oleelliset osat ja osien välinen kommunikointi_
 
