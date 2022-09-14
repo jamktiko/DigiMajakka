@@ -193,5 +193,5 @@ Projektin kasvaa liian suureksi | Mahdollinen | Keskisuuri | Rajataan projektin 
 
 ### Kuvaa tässä luvussa mitä asioita projektista on vielä avoinna.
 
-Tietokannat: Kalle&Siru, tietoturva asiat, hostaus/aws, rahoitus, tulonlähde
+Tietoturva asiat, hostaus/aws, rahoitus, tulonlähde
 
