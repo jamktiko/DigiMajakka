@@ -46,7 +46,6 @@ _Esimerkiksi:_
 
 | Viittaus | Materiaali |
 |---|---|
-Projektisuunnitelma | _https://github.com/jamktiko/tikotinder/blob/main/documents/projektisuunnitelma.md_
 HLTP | _https://github.com/jamktiko/tikotinder/blob/main/documents/hltp.md_
 
 
@@ -94,8 +93,12 @@ Koko järjestelmä tullaan hostaamaan AWS:n palveluissa.
 
 Backend sovellus pystytetään aws elastic beanstalk palvelun päälle. Backendin taustalla toimiva tietokanta pystytetään aws rds palvelun päälle.
 
-Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle. Lähdekoodi tallennetaan s3 buckettiin.
+Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle.
 
+![ratkaisu1](https://user-images.githubusercontent.com/79013696/190395206-3c8e9bee-d2bc-45c3-a481-d61da3ed00aa.png)
+
+
+Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle. Lähdekoodi tallennetaan s3 buckettiin.
 _Tässä aliluvussa kerrotaan ympäristön jossa tietojärjestelmä tulee toimimaan. Tähän kannattaa liittää myös yksinkertainen arkkitehtuurikuva, josta pystytään havainnoimaan järjestelmän oleelliset osat ja osien välinen kommunikointi_
 
 #### Toteutettavat kertomukset
