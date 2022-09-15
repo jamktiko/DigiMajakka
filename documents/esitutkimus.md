@@ -51,17 +51,15 @@ GDD | _linkki gamedesign dokumenttiin_
 
 ## Johdanto
 
-_Tämän dokumentin tarkoituksena on tuottaa esitutkimus tietojärjestelmästä X. Tietojärjestelmä X on..._
+Tämän dokumentin tarkoituksena on tuottaa esitutkimus tikotyökkäri palvelusta. Tikotyökkäri on työnvälitysalusta jolla tietojenkäsittelynopiskelijat ja työnantajat kohtaavat.
 
-_Luvussa 2. listataan vaatimukset, luvussa 3. käyttötapaukset..._
 
 ## Visio
 
-_Tässä aliluvussa kuvataan tuotteen visio ja mahdollinen slogan_
 
 Helppokäyttöinen ja saavutettava alusta, josta opiskelijat voivat etsiä itselleen työtehtäviä ja työkavereita.
 
-Alusta yhdistää opiskelijat ja työnantajat jo opintojen aikana. Yksityishenkilöt ja yrittäjät voivat lisätä helposti ilmoituksia pienistä töistä, joihin opiskelijat vastaavat.
+Alusta yhdistää opiskelijat ja työnantajat jo opintojen aikana. Yksityishenkilöt ja yrittäjät voivat lisätä helposti ja nopeasti ilmoituksia pienistä töistä, joita opiskelijat voivat ottaa vastaan.
 
 ## Käyttäjäkertomukset
 
@@ -80,7 +78,7 @@ Esimerkiksi:
 5. Frontend-sovelluksen tulee pystyä yhdistämään backend-sovellukseen
 6. Backend-sovelluksen pitää pystyä yhdistämään tietokantaan
 7. Tietokannan tulee olla vähintään kolmannessa normaalimuodossa
-8. 
+8. Sivuston tulee olla mahdollisimman saavutettava
 
 
 ## Ratkaisuvaihtoehdot
@@ -110,9 +108,21 @@ _Tähän arvioidaan hyvin karkealla tasolla työhön kuluva aika. Tehkää arvio
 _Esimerkiksi_>
 | Vaihe | Tunnit | Muuta?
 |---|---|---|
-Käynnistys | 10 | Jee
-Suunnittelu | 10 | Jee
-**Yht** | 20 | Paljon tunteja
+Käynnistys | 30 | Projektin kehitysympäristöjen pystytys
+Opiskelu ja muu tutoriaali | 500 | 
+UI/UX suunnittelu | 300 | 
+Sisällöntuotanto |50|
+Saavutettavuus |30|
+Frontti | 250 |
+Backend | 250 |
+Palaverit&suunnittelu | 150 | Scrum-prosessin palaverit + muut palaverit
+Testaus | 50 | Yksikkötestaus, AB-testaus, blackbox, automaatiotestaus? 
+Liiketoiminta | 200 | TikoBiz
+Muu tekniikka | 150 | AWS, tietokannat yms.
+Työhyvinvointi | 50 | Kahvittelut yms
+Kirjalliset tuotokset/ohjevideot | 90 | Kevytyrittäjyyteen ohjeet,  UKK-materiaali, sivuston käyttöohjeet yms.
+
+**Yht** | 1950 | laskettiin 5 henkilölle 13 viikkoa tunteja
 
 #### Pros and Cons
 
