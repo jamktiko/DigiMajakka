@@ -21,13 +21,8 @@
 _Projektin nimi ja lyhyt versio visiosta_
 
 Tekijät:
+Siru Gull, Jenni Hapuli, Kalle Kaitamäki, Joona Pöppönen & Tommi Tuikka
 
-Nimi 	Rooli(t) 	Yhteystiedot
-* Siru Gull, 	Product Owner, Business, 	AA4317@student.jamk.fi
-* Jenni Hapuli, Scrum Master, Päärooli:UI/UX, AA3215@student.jamk.fi
-* Kalle Kaitamäki, Päärooli: Backend-developer, sivurooli: Testaus, AA3470@student.jamk.fi
-* Joona Pöppönen,  Päärooli: Frontend-developer, AA3731@student.jamk.fi
-* Tommi Tuikka, Päärooli: Frontend-developer, N5008@student.jamk.fi
 
 ### Termit ja lyhenteet
 
