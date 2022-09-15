@@ -16,7 +16,7 @@ Markdown | Merkkauskieli
 NodeJS | Javascript ajoympäristö
 PWA | Progressiivinen web sovellus
 UX | Käyttäjäkokemus
-UI | Käyttölittymä
+UI | Käyttöliittymä
 AWS | Amazonin pilvipalvelut
 MariaDB | Relaatiotietokanta
 Express | Javascript sovelluskehys backend kehitykseen
@@ -53,7 +53,7 @@ Teemme PWA verkkopalvelun tietojenkäsittelyn opiskelijoille sekä yrittäjille 
 * Tietosuojaseloste
 * Liiketoimintasuunnitelma
 * Sovellusraportti
-* pwa-frontend sovellus
+* Pwa-frontend sovellus
 * NodeJS Backend sovellus
 * Tietokannan erd-malli
 * Tietokannan Er-kaavio
@@ -66,13 +66,11 @@ Teemme PWA verkkopalvelun tietojenkäsittelyn opiskelijoille sekä yrittäjille 
 * Readme dokumentit
 * kaikki raportit mitä ikinä keksitään
 
-Kirjoita tähän mitä projekti tuottaa elinkaarensa aikana. Esim.
 
 **Projektin hyväksyminen:**
 
-Projekti on hyväksyttävissä kuun product-backlogin pakolliset kohdat on tehty.
+Projekti on hyväksyttävissä kun product-backlogin pakolliset kohdat on tehty.
 
-Täytetään design sprintin aikana.
 
 
 **Toimintasuunnitelma:**
@@ -89,7 +87,7 @@ Projektin aloitamme product backlogin ja ensimmäisen sprint backlogin luomisell
 Projekti toteutetaan DGC:llä hyödyntäen Scrum kehitysmetodia. 
 
 ### Projektin testaamisesta
-Projektia testataan eri tavoilla. Käyttäjätestausta tehdään kahdella eri käyttäjäryhmällä. Kehityksen aikana tehdään yksikkötestejä backendille ja black box testausta frontendille. Lisäksi tehdään integraatiotesten kun järjestelmän eri komponentteja yhdistetään. Koska tietoturva on isossa roolissa projektissamme täytyy suorittaa myös tietoturvatestaus.
+Projektia testataan eri tavoilla. Käyttäjätestausta tehdään kahdella eri käyttäjäryhmällä. Kehityksen aikana tehdään yksikkötestejä backendille ja black box testausta frontendille. Lisäksi tehdään integraatiotestejä kun järjestelmän eri komponentteja yhdistetään. Koska tietoturva on isossa roolissa projektissamme täytyy suorittaa myös tietoturvatestaus. AB testaus
 
 ### Projektin lopettamisesta
 Sovellus julkaistaan valitsemallemme alustalle ja esitellään julkistamistilaisuudessa. 
@@ -109,11 +107,11 @@ Projekti organisoidaan käyttämällä scrum kehitysmetodia. Organisaation keske
 
 ### Projektiryhmä
 Nimi 	Rooli(t) 	Yhteystiedot
-* Siru Gull, 	Product Owner, Business, 	AA4317@student.jamk.fi
+* Siru Gull, 	Product Owner, Päärooli:Business, 	AA4317@student.jamk.fi
 * Jenni Hapuli, Scrum Master, Päärooli:UI/UX, AA3215@student.jamk.fi
 * Kalle Kaitamäki, Päärooli: Backend-developer, sivurooli: Testaus, AA3470@student.jamk.fi
-* Joona Pöppönen,  Päärooli: Frontend-developer, AA3731@student.jamk.fi
-* Tommi Tuikka, Päärooli: Frontend-developer, N5008@student.jamk.fi
+* Joona Pöppönen,  Päärooli: Frontend-developer, sivurooli: Testaus AA3731@student.jamk.fi
+* Tommi Tuikka, Päärooli: Frontend-developer, Sivurooli: Backend-developer N5008@student.jamk.fi
 
 ### Ohjausryhmä
 Nimi 	Rooli(t) 	Yhteystiedot
@@ -123,8 +121,6 @@ Nimi 	Rooli(t) 	Yhteystiedot
 * Jere Lamberg Testaus master jere.lamberg@jamk.fi
 
 ## Työkalut
-
-Listaa tähän kaikki työkalut joita projekti tarvitsee projektin onnistumiseksi. Niin ohjelmistot kuin raudatkin. Mikäli asiakas tarjoaa jotain siitä tulee mainita tässä kappaleessa
 
 * AWS
 * Angular
@@ -152,17 +148,14 @@ Listaa tähän kaikki työkalut joita projekti tarvitsee projektin onnistumiseks
 
 
 **Raportointi ja kommunikointi:**
-Meidän viestintäkanavana on teams. Scrum Master vastaa raportoinnista. 
-
-**Kuvaa kuinka projekti raportoi omalle organisaatiolleen ja kuka vastaa mistäkin raportoinnista:**
-Scrum master vastaa palaverien raportoinnista. Scrum master vastaa myös projektin edistymisen raportoinnista ohjaajille.
+Meidän viestintäkanavana on teams. Scrum master vastaa palaverien raportoinnista. Scrum master vastaa myös projektin edistymisen raportoinnista ohjaajille.
 
 ### Projektin palaverit
-Projektin viikkopalaveri pidetään klo 13 paikassa DGC oma toimisto.
+Projektin viikkopalaveri pidetään perjantaisin iltapäivällä paikassa DGC oma toimisto.
 
 Palaverin aikana selvitetään tehdyt työt ja suunnitellaan tulevat. Palavereista tehdään pöytäkirja, jota säilytetään projektihakemistossa.
 
-Daily scrum pidetään klo 10 paikassa DGC oma toimisto.
+Daily scrum pidetään päivittäin klo 10 paikassa DGC oma toimisto.
 
 
 ### Kommunikointitavat
