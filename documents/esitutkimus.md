@@ -109,12 +109,12 @@ _Esimerkiksi_>
 | Vaihe | Tunnit | Muuta?
 |---|---|---|
 Käynnistys | 30 | Projektin kehitysympäristöjen pystytys
-Opiskelu ja muu tutoriaali | 500 | 
-UI/UX suunnittelu | 300 | 
-Sisällöntuotanto |50|
-Saavutettavuus |30|
-Frontti | 250 |
-Backend | 250 |
+Opiskelu ja muu tutoriaali | 500 | Ongelmakohtien ratkaisuehdotusten etsimistä/opiskelua
+UI/UX suunnittelu | 300 | Koko käyttöliittymä ja käyttäjäkokemus
+Sisällöntuotanto |50| Kuvat, videot + muu asiaan kuuluva
+Saavutettavuus |30| Ohjeet miten verkkopalvelusta tulee saavutettava
+Frontti | 250 | Angularkoodi
+Backend | 250 | NodeJS yms
 Palaverit&suunnittelu | 150 | Scrum-prosessin palaverit + muut palaverit
 Testaus | 50 | Yksikkötestaus, AB-testaus, blackbox, automaatiotestaus? 
 Liiketoiminta | 200 | TikoBiz
