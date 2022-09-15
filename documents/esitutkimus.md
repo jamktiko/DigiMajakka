@@ -46,6 +46,7 @@ _Esimerkiksi:_
 
 | Viittaus | Materiaali |
 |---|---|
+Projektisuunnitelma |_https://github.com/jamktiko/tikotinder/blob/main/documents/projektisuunnitelma.md_
 HLTP | _https://github.com/jamktiko/tikotinder/blob/main/documents/hltp.md_
 
 
