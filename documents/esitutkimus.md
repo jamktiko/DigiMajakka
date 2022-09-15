@@ -46,8 +46,8 @@ _Esimerkiksi:_
 
 | Viittaus | Materiaali |
 |---|---|
-HLTP | _linkki hltp dokumenttiin_
-GDD | _linkki gamedesign dokumenttiin_
+HLTP | _https://github.com/jamktiko/tikotinder/blob/main/documents/hltp.md_
+
 
 ## Johdanto
 
