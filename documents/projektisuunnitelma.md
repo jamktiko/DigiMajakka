@@ -74,13 +74,12 @@ Projekti on hyväksyttävissä kuun product-backlogin pakolliset kohdat on tehty
 
 Täytetään design sprintin aikana.
 
-Kirjoita tähän lukuun minkä toimintojen jälkeen projekti on hyväksyttävissä. Yleensä hyväksyminen voidaan todeta kun projektin tavoitteet ovat toteutuneet.
 
 **Toimintasuunnitelma:**
 
-Tässä luvussa kuvataan tapa, jolla projekti viedään läpi. Esim. Scrum, OMT++, Protoilu jne. Ota huomioon myös kestävä kehitys!
 
-Projektissa käytetään Scrumia projektin hallinnassa. Projekti alkaa esituotantovaiheen hyväksymisen jälkeen. Projektin aloitamme product backlogin luomisella. 
+
+Projektissa käytetään Scrumia projektin hallinnassa. Projekti alkaa esituotantovaiheen hyväksymisen jälkeen. Projektin aloitamme product backlogin luomisella. Kestävän kehityksen näkökulmasta nostamme esiin kohdan 8 Ihmisarvoista työtä ja talouskasvua.  Toimintamme tavoitteena on lisätä nuorten uransa alussa olevien työllistymismahdollisuuksia. Palvelun avulla nuorten on mahdollista saada itselleen työkokemusta,lisää osaamista samalla kannustaen myös kevytyrittäjyyteen. Valitsemme palvelun pyörittämiseen pilvialustan joka on ekologisempi verrattuna fyysiseen konesaliin. Palvelustamme tulee myös mahdollisemman saavutettava tällä edistämme yhdenvertaisuutta ja tasa-arvoa
 
 ### Projektin aloittamisesta
 Projektin alussa toteutamme googlen design sprintin. Sprintin aikana tehdään käyttäjätutkimusta ja luodaan prototyyppi. Kirkastamme visiota tuotteesta. 
