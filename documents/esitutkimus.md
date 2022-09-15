@@ -98,6 +98,26 @@ Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle.
 ![ratkaisu1](https://user-images.githubusercontent.com/79013696/190395206-3c8e9bee-d2bc-45c3-a481-d61da3ed00aa.png)
 
 
+### Ratkaisuvaihtoehto 2
+
+#### Toteutusympäristö
+![ratkaisu2](https://user-images.githubusercontent.com/79013696/190395405-26be9f26-151a-4d30-9e41-308898f0d416.png)
+
+### Ratkaisuvaihtoehto 3
+
+#### Toteutusympäristö
+![ratkaisu3](https://user-images.githubusercontent.com/79013696/190395455-2e177d99-aaf2-44fd-9a97-d52f26b1131f.png)
+
+### Ratkaisuvaihtoehto 4
+
+#### Toteutusympäristö
+![ratkaisu4](https://user-images.githubusercontent.com/79013696/190395517-41a5a175-7f08-40c5-9d11-a3b66330a2cd.png)
+
+### Ratkaisuvaihtoehto 5
+
+#### Toteutusympäristö
+![ratkaisu5](https://user-images.githubusercontent.com/79013696/190395555-e7972092-9069-4d03-99b2-fb97a141009e.png)
+
 Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle. Lähdekoodi tallennetaan s3 buckettiin.
 _Tässä aliluvussa kerrotaan ympäristön jossa tietojärjestelmä tulee toimimaan. Tähän kannattaa liittää myös yksinkertainen arkkitehtuurikuva, josta pystytään havainnoimaan järjestelmän oleelliset osat ja osien välinen kommunikointi_
 
