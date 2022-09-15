@@ -92,13 +92,17 @@ _Listaa niin monta ratkaisuvaihtoehtoa kuin niitä tulee ilmi_
 
 Koko järjestelmä hostataan AWS:n palveluissa.
 
-Aws:n pystytetään EC2 instanssi joka samanaikaisesti ajaa NodeJS express rest API:a ja Angular frontendiä.
-Lähdekoodi tallennetaan S3 buckettiin josta ec2 tarjoilee sen.
+Aws:n pystytetään EC2 instanssi joka samanaikaisesti ajaa NodeJS express rest API:a ja Angular frontendiä. Ec2 on käytännössä aws:n pilvessä toimiva virtuaalikone.
+Lähdekoodi tallennetaan S3 buckettiin josta ec2 saa sen käyttöönsä. S3 on aws:n objektipohjainen palvelu tietojen tallentamiseen.
 
-MariaDB tietokanta pystytetään aws:n rds (relational database service) palveluun. Ec2 instanssissa toimivalla rest api:lla hallitaan tätä tietokantaa.
+Tietokanta pystytetään aws:n rds (relational database service) palveluun. Ec2 instanssissa toimivalla rest api:lla hallitaan tätä tietokantaa.
+Tietokantana toimii MariaDB.
 
-Sovellus tarjoillaan internettiin aws route 53 dns palvelun avulla.
+Sovellus julkaistaan aws route 53 dns palvelun avulla. Palvelulla saadaan luotua sovellukselle oma domain.
 
+Backend-sovellus toteutetaan nodejs ympäristössä käyttäen rest arkkitehtuuria. Sovelluksen rakentamiseen käytetään express frameworkkia.
+
+Frontend sovellus toteutaan nodejs ympäristössä Angular frameworkilla.
 
 <img width="565" alt="Näyttökuva 2022-9-15 kello 17 20 37" src="https://user-images.githubusercontent.com/79013696/190428457-7f8deef1-a9a8-4839-8727-70c8eb73365a.png">
 
@@ -109,33 +113,34 @@ Sovellus tarjoillaan internettiin aws route 53 dns palvelun avulla.
 
 Koko järjestelmä hostataan AWS:n palveluissa.
 
-Backend- ja Frontend sovellukset laitetaan omiin elastic container service clustereihinsa.
+Frontend- ja backend sovelluksia ajetaan aws elastic beanstalk palvelussa. Elastic beanstalk on helppokäyttöinen palvelu joka hoitaa automaattisesti suuren osan julkaisuun ja ylläpitoon liityvistä toimista.
+Lähdekoodi tallennetaan S3 buckettiin josta beanstalk saa sen käyttöönsä. S3 on aws:n objektipohjainen palvelu tietojen tallentamiseen.
 
-Tietokanta pystytetään amazon rds palvelun päälle.
+Tietokanta pystytetään aws:n rds (relational database service) palveluun. Elastic beanstalkissa toimivalla rest api:lla hallitaan tätä tietokantaa.
+Tietokantana toimii MariaDB.
 
-![ratkaisu3](https://user-images.githubusercontent.com/79013696/190395455-2e177d99-aaf2-44fd-9a97-d52f26b1131f.png)
+Sovellus julkaistaan aws route 53 dns palvelun avulla. Palvelulla saadaan luotua sovellukselle oma domain.
+
+Backend-sovellus toteutetaan nodejs ympäristössä käyttäen rest arkkitehtuuria. Sovelluksen rakentamiseen käytetään express frameworkkia.
+
+Frontend sovellus toteutaan nodejs ympäristössä Angular frameworkilla.
+
+
+<img width="764" alt="Näyttökuva 2022-9-15 kello 20 54 30" src="https://user-images.githubusercontent.com/79013696/190475844-09831ba3-6e0f-4056-8d95-3ef8e209f523.png">
 
 ### Ratkaisuvaihtoehto 3
 
 #### Toteutusympäristö
 
-Koko järjestelmä hostataan AWS:n palveluissa.
+Backend-sovellus pystytetään heroku palveluun. Heroku on konttipohjainen alusta aplikaatioiden hostaukseen.
 
-Backend- ja frontend-sovellus laitetaan omiin ec2 instansseihinsa.
+Frontend-sovellus pystytetään Firebase palveluun. Firebase on googlen palvelu web-aplikaatioiden hostaamiseen.
 
-Tietokanta pystytetään aws rds palvelun päälle
+Tietokanta pystytetään MongoAtlas palveluun. MongoAtlas on palvelu mongoDB tietokannan hostaamiseen eri alustoilla.
 
-![ratkaisu4](https://user-images.githubusercontent.com/79013696/190395517-41a5a175-7f08-40c5-9d11-a3b66330a2cd.png)
+Backend-sovellus toteutetaan nodejs ympäristössä käyttäen rest arkkitehtuuria. Sovelluksen rakentamiseen käytetään express frameworkkia.
 
-### Ratkaisuvaihtoehto 4
-
-#### Toteutusympäristö
-
-Backend-sovellus pystytetään heroku palveluun.
-
-Frontend-sovellus pystytetään Firebase palveluun.
-
-Tietokantana toimii mongoDB joka pyörii mongoatlas palvelussa.
+Frontend sovellus toteutaan nodejs ympäristössä Angular frameworkilla.
 
 ![ratkaisu5](https://user-images.githubusercontent.com/79013696/190395555-e7972092-9069-4d03-99b2-fb97a141009e.png)
 
