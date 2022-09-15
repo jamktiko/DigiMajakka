@@ -32,7 +32,7 @@ Docker | Tarjoaa käyttöjärjestelmä pohjaisia kontteja sovellusten ajamiseen
 HLTP | TBD
 
 **Projektin sisältö:**
-Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä konseptia varten: Tikotyökkäri
+Tämä projektisuunnitelma on tehty ticorporaten opintojaksolla syntynyttä konseptia varten: Tikotyökkäri(tämän hetkinen työnimi)
 
 **Lyhyt kuvaus projektista ja dokumentista:**
 Haluamme luoda lyhytkestoisentyön välitysalustan jossa on kaksi asiakasryhmää tietojenkäsittelyopiskelijat (mahdollisuus laajentaa koskemaan myös muiden alojen opiskelijoita) ja yksityishenkilöt sekä yrittäjät. Projekti toteutetaan scrum prosessia käyttäen. Projektin toteuttamiseen tarvitaan backend, frontend, UI/UX ja liiketoiminnan osaamista. 
