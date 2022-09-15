@@ -21,8 +21,13 @@
 _Projektin nimi ja lyhyt versio visiosta_
 
 Tekijät:
-Siru Gull, Jenni Hapuli, Kalle Kaitamäki, Joona Pöppönen & Tommi Tuikka
 
+Nimi 	Rooli(t) 	Yhteystiedot
+* Siru Gull, 	Product Owner, Business, 	AA4317@student.jamk.fi
+* Jenni Hapuli, Scrum Master, Päärooli:UI/UX, AA3215@student.jamk.fi
+* Kalle Kaitamäki, Päärooli: Backend-developer, sivurooli: Testaus, AA3470@student.jamk.fi
+* Joona Pöppönen,  Päärooli: Frontend-developer, AA3731@student.jamk.fi
+* Tommi Tuikka, Päärooli: Frontend-developer, N5008@student.jamk.fi
 
 ### Termit ja lyhenteet
 
@@ -41,7 +46,6 @@ _Esimerkiksi:_
 
 | Viittaus | Materiaali |
 |---|---|
-Projektisuunnitelma |_https://github.com/jamktiko/tikotinder/blob/main/documents/projektisuunnitelma.md_
 HLTP | _https://github.com/jamktiko/tikotinder/blob/main/documents/hltp.md_
 
 
@@ -93,28 +97,42 @@ Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle.
 
 ![ratkaisu1](https://user-images.githubusercontent.com/79013696/190395206-3c8e9bee-d2bc-45c3-a481-d61da3ed00aa.png)
 
-
 ### Ratkaisuvaihtoehto 2
 
 #### Toteutusympäristö
-![ratkaisu2](https://user-images.githubusercontent.com/79013696/190395405-26be9f26-151a-4d30-9e41-308898f0d416.png)
+
+Koko järjestelmä hostataan AWS:n palveluissa.
+
+Backend- ja Frontend sovellukset laitetaan omiin elastic container service clustereihinsa.
+
+Tietokanta pystytetään amazon rds palvelun päälle.
+
+![ratkaisu3](https://user-images.githubusercontent.com/79013696/190395455-2e177d99-aaf2-44fd-9a97-d52f26b1131f.png)
 
 ### Ratkaisuvaihtoehto 3
 
 #### Toteutusympäristö
-![ratkaisu3](https://user-images.githubusercontent.com/79013696/190395455-2e177d99-aaf2-44fd-9a97-d52f26b1131f.png)
+
+Koko järjestelmä hostataan AWS:n palveluissa.
+
+Backend- ja frontend-sovellus laitetaan omiin ec2 instansseihinsa.
+
+Tietokanta pystytetään aws rds palvelun päälle
+
+![ratkaisu4](https://user-images.githubusercontent.com/79013696/190395517-41a5a175-7f08-40c5-9d11-a3b66330a2cd.png)
 
 ### Ratkaisuvaihtoehto 4
 
 #### Toteutusympäristö
-![ratkaisu4](https://user-images.githubusercontent.com/79013696/190395517-41a5a175-7f08-40c5-9d11-a3b66330a2cd.png)
 
-### Ratkaisuvaihtoehto 5
+Backend-sovellus pystytetään heroku palveluun.
 
-#### Toteutusympäristö
+Frontend-sovellus pystytetään Firebase palveluun.
+
+Tietokantana toimii mongoDB joka pyörii mongoatlas palvelussa.
+
 ![ratkaisu5](https://user-images.githubusercontent.com/79013696/190395555-e7972092-9069-4d03-99b2-fb97a141009e.png)
 
-Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle. Lähdekoodi tallennetaan s3 buckettiin.
 _Tässä aliluvussa kerrotaan ympäristön jossa tietojärjestelmä tulee toimimaan. Tähän kannattaa liittää myös yksinkertainen arkkitehtuurikuva, josta pystytään havainnoimaan järjestelmän oleelliset osat ja osien välinen kommunikointi_
 
 #### Toteutettavat kertomukset
