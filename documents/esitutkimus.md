@@ -90,13 +90,18 @@ _Listaa niin monta ratkaisuvaihtoehtoa kuin niitä tulee ilmi_
 
 #### Toteutusympäristö
 
-Koko järjestelmä tullaan hostaamaan AWS:n palveluissa.
+Koko järjestelmä hostataan AWS:n palveluissa.
 
-Backend sovellus pystytetään aws elastic beanstalk palvelun päälle. Backendin taustalla toimiva tietokanta pystytetään aws rds palvelun päälle.
+Aws:n pystytetään EC2 instanssi joka samanaikaisesti ajaa NodeJS express rest API:a ja Angular frontendiä.
+Lähdekoodi tallennetaan S3 buckettiin josta ec2 tarjoilee sen.
 
-Frontend sovellus pystytetään aws elastic beanstalk palvelun päälle.
+MariaDB tietokanta pystytetään aws:n rds (relational database service) palveluun. Ec2 instanssissa toimivalla rest api:lla hallitaan tätä tietokantaa.
 
-![ratkaisu1](https://user-images.githubusercontent.com/79013696/190395206-3c8e9bee-d2bc-45c3-a481-d61da3ed00aa.png)
+Sovellus tarjoillaan internettiin aws route 53 dns palvelun avulla.
+
+
+<img width="565" alt="Näyttökuva 2022-9-15 kello 17 20 37" src="https://user-images.githubusercontent.com/79013696/190428457-7f8deef1-a9a8-4839-8727-70c8eb73365a.png">
+
 
 ### Ratkaisuvaihtoehto 2
 
