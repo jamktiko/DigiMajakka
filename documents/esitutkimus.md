@@ -18,7 +18,7 @@
 
 ## Projektin tiedot
 
-_Projektin nimi ja lyhyt versio visiosta_
+
 
 Tekijät:
 
@@ -31,7 +31,6 @@ Nimi 	Rooli(t) 	Yhteystiedot
 
 ### Termit ja lyhenteet
 
-_Esimerkiksi:_
 
 | Termi | Kuvaus |
 |---|---|
@@ -42,7 +41,6 @@ JS/JavaScript | Ohjelmointikieli
 NodeJS | Javascript moottori
 ### Viitteet
 
-_Esimerkiksi:_
 
 | Viittaus | Materiaali |
 |---|---|
@@ -68,9 +66,7 @@ Alusta yhdistää opiskelijat ja työnantajat jo opintojen aikana. Yksityishenki
 
 ## Tekniset vaatimukset
 
-_Lista projektin teknisistä vaatimuksista_
 
-Esimerkiksi:
 
 1. Sivuston tulee käyttää https yhteyttä tiedon siirtoon.
 2. Sivuston pitää olla responsiivinen usealla eri selaimella ja laitteella.
@@ -144,19 +140,14 @@ Frontend sovellus toteutaan nodejs ympäristössä Angular frameworkilla.
 
 ![ratkaisu5](https://user-images.githubusercontent.com/79013696/190395555-e7972092-9069-4d03-99b2-fb97a141009e.png)
 
-_Tässä aliluvussa kerrotaan ympäristön jossa tietojärjestelmä tulee toimimaan. Tähän kannattaa liittää myös yksinkertainen arkkitehtuurikuva, josta pystytään havainnoimaan järjestelmän oleelliset osat ja osien välinen kommunikointi_
 
 #### Toteutettavat kertomukset
 
-_Tässä aliluvussa kerrotaan mitä kertomuksia kyseisellä tekniikalla pystytään toteuttamaan ja mitä ei_
+Ratkaisuvaihtoehdot 1 ja 2 = niissä on mahdollista toteuttaa kaikki käyttäkertomukset. Ratkaisuvaihtoehto 3 on todettu huonoksi yhteisessä keskustelussa verrattuna muihin ratkaisuihin. AWS on meille tutumpi teknologia käyttää.
 
 #### Työmääräarviot
 
-_Tähän arvioidaan hyvin karkealla tasolla työhön kuluva aika. Tehkää arviot käyttäen hyväksi seurantaraportin Työmäärien arviointi -välilehteä (SeurantaRaportti_Projektin_nimi.xls). Työmäärien arvioinnissa jokainen projektin jäsen tekee omat arvionsa ja sen jälkeen keskustellaan arviot läpi, jolloin päätetään vaiheeseen arvioitavat tunnit._
 
-_Esimerkiksi_>
-| Vaihe | Tunnit | Muuta?
-|---|---|---|
 Käynnistys | 30 | Projektin kehitysympäristöjen pystytys
 Opiskelu ja muu tutoriaali | 500 | Ongelmakohtien ratkaisuehdotusten etsimistä/opiskelua
 UI/UX suunnittelu | 300 | Koko käyttöliittymä ja käyttäjäkokemus
@@ -175,8 +166,16 @@ Kirjalliset tuotokset/ohjevideot | 90 | Kevytyrittäjyyteen ohjeet,  UKK-materia
 
 #### Pros and Cons
 
-_Tässä aliluvussa kerrotaan ratkaisuvaihtoehdon hyvät ja huonot puolet objektiivisesti_
+Hyvät:
+
+* Koko palvelu samassa infrastruktuurissa
+* Hinta
+*
+Huonot:
+
+* Ratkaisuvaihtoehto 1 ei ole korkean käytättevyyden palvelu -> vaatii enemmän työtä
+* Ratkaisuvaihto 3 ei ole hyvä.
 
 ## Yhteenveto
 
-_Tässä luvussa tehdään ehdotus järjestelmän toteutustavasta (siis jokin edellä esitellyistä vaihtoehdoista) ja perustellaan ko. valinta._
+Todennäköisesti päädymme käyttämään ratkaisuvaihtoehto 1:stä, koska se on halvempi. Konsultoimme vielä pilvipalveluexperttiä Mr. Tenoa
