@@ -31,17 +31,25 @@ Nimi 	Rooli(t) 	Yhteystiedot
 
 ### Termit ja lyhenteet
 
-
 | Termi | Kuvaus |
 |---|---|
-GIT | Versionhallintajärjestelmä
+Git | Versionhallintajärjestelmä
 GitHub | Palvelu joka on rakennettu GIT versionhallinnan ympärille
 Markdown | Merkkauskieli
-JS/JavaScript | Ohjelmointikieli
-NodeJS | Javascript moottori
+NodeJS | Javascript ajoympäristö
+PWA | Progressiivinen web sovellus
+UX | Käyttäjäkokemus
+UI | Käyttöliittymä
+AWS | Amazonin pilvipalvelut
+MariaDB | Relaatiotietokanta
+Express | Javascript sovelluskehys backend kehitykseen
+Angular | Javascript sovelluskehys frontend kehitykseen
+Cors | Javascript kirjasto
+Cypress | Työkalu frontendin testaamiseen
+Docker | Tarjoaa käyttöjärjestelmä pohjaisia kontteja sovellusten ajamiseen
+
 ### Viitteet
-
-
+ 
 | Viittaus | Materiaali |
 |---|---|
 Projektisuunnitelma |_https://github.com/jamktiko/tikotinder/blob/main/documents/projektisuunnitelma.md_
@@ -100,7 +108,7 @@ Backend-sovellus toteutetaan nodejs ympäristössä käyttäen rest arkkitehtuur
 
 Frontend sovellus toteutaan nodejs ympäristössä Angular frameworkilla.
 
-<img width="565" alt="Näyttökuva 2022-9-15 kello 17 20 37" src="https://user-images.githubusercontent.com/79013696/190428457-7f8deef1-a9a8-4839-8727-70c8eb73365a.png">
+![Näyttökuva 2022-9-16 kello 9 36 01](https://user-images.githubusercontent.com/79013696/190572509-c41b0476-fa54-4b01-afd1-8dcf4f425568.png)
 
 
 ### Ratkaisuvaihtoehto 2
@@ -121,8 +129,9 @@ Backend-sovellus toteutetaan nodejs ympäristössä käyttäen rest arkkitehtuur
 
 Frontend sovellus toteutaan nodejs ympäristössä Angular frameworkilla.
 
+![Näyttökuva 2022-9-16 kello 9 36 25](https://user-images.githubusercontent.com/79013696/190572574-ce1e4c99-532b-4a94-972f-a97ba6b7253e.png)
 
-<img width="764" alt="Näyttökuva 2022-9-15 kello 20 54 30" src="https://user-images.githubusercontent.com/79013696/190475844-09831ba3-6e0f-4056-8d95-3ef8e209f523.png">
+
 
 ### Ratkaisuvaihtoehto 3
 
@@ -171,7 +180,7 @@ Hyvät:
 
 * Koko palvelu samassa infrastruktuurissa
 * Hinta
-*
+
 Huonot:
 
 * Ratkaisuvaihtoehto 1 ei ole korkean käytättevyyden palvelu -> vaatii enemmän työtä
