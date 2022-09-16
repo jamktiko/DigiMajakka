@@ -147,7 +147,8 @@ Ratkaisuvaihtoehdot 1 ja 2 = niissä on mahdollista toteuttaa kaikki käyttäker
 
 #### Työmääräarviot
 
-
+| Vaihe | Tunnit | Muuta?
+|---|---|---|
 Käynnistys | 30 | Projektin kehitysympäristöjen pystytys
 Opiskelu ja muu tutoriaali | 500 | Ongelmakohtien ratkaisuehdotusten etsimistä/opiskelua
 UI/UX suunnittelu | 300 | Koko käyttöliittymä ja käyttäjäkokemus
