@@ -1,0 +1,2 @@
+# DigiMajakka
+Ticorporaten projektityö DigiMajakka
