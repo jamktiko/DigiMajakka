@@ -1,0 +1,28 @@
+# Muuta tiedostoon oma haluamasi salasana ja käyttäjätunnus
+
+version: '3.9'
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: digimajakka_mariadb
+    hostname: digimajakka
+    restart: always
+    environment:
+      # käyttäjätunnnus
+      MARIADB_ROOT_PASSWORD: your_password
+      # salasana
+      MARIADB_USER: your_username
+      MARIADB_DATABASE: digimajakka_db
+    volumes:
+      - digimajakka_db:/var/lib/mariadb
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+  digimajakka_db: {}
