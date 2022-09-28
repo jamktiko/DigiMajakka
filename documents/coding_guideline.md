@@ -1,6 +1,12 @@
+# Ohjelmointikieli
+
+Projektissa käytetään typescript kieltä ja ecmascript 2020 versiota ohjelmointiin
+
+## tsconfig.json
+
 {
-  "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
+"compilerOptions": {
+/_ Visit https://aka.ms/tsconfig to read more about this file _/
 
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
@@ -99,5 +105,63 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+
 }
+}
+
+# Eslint
+
+Lintterinä toimii eslint johon on valittu xojs-typescript config.
+XOjs on suosittu eslint wrapper joka sisältää paljon sääntöjä jotka tekevät koodista hyvää ja luettavaa.
+https://github.com/xojs/xo
+
+## .eslintrc.json
+
+{
+"env": {
+"browser": true,
+"es2020": true
+},
+"extends": "xo",
+
+    "overrides": [
+        {
+            "extends": [
+                "xo-typescript"
+            ],
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ]
+        }
+    ],
+    "parserOptions": {
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "rules": {
+
+    }
+
+}
+
+## xo.config.js
+
+module.exports = {
+prettier: true,
+};
+
+# Formatointi
+
+Projektin koodin formatoijana käytetään prettier lisäosaa.
+
+# Kieli
+
+Muuttujien nimet ja kommentit kirjoitetaan englanniksi
+
+# Yhteiset npm paketit
+
+- typescript
+- eslint
+- xo
+- dotenv
