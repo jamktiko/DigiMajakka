@@ -4,6 +4,7 @@ Projektissa käytetään typescript kieltä ja ecmascript 2020 versiota ohjelmoi
 
 ## tsconfig.json
 
+```
 {
 "compilerOptions": {
 /_ Visit https://aka.ms/tsconfig to read more about this file _/
@@ -109,6 +110,8 @@ Projektissa käytetään typescript kieltä ja ecmascript 2020 versiota ohjelmoi
 }
 }
 
+```
+
 # Eslint
 
 Lintterinä toimii eslint johon on valittu xojs-typescript config.
@@ -117,6 +120,7 @@ https://github.com/xojs/xo
 
 ## .eslintrc.json
 
+```
 {
 "env": {
 "browser": true,
@@ -145,11 +149,16 @@ https://github.com/xojs/xo
 
 }
 
+```
+
 ## xo.config.js
 
+```
 module.exports = {
 prettier: true,
 };
+
+```
 
 # Formatointi
 
