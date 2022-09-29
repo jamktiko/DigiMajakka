@@ -1,18 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "a60e34f1-1e86-4117-8187-44ed8a72cb45"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "angular-pwa": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -104,6 +97,5 @@
         }
       }
     }
-  },
-  "defaultProject": "angular-pwa"
+  }
 }
