@@ -6,7 +6,8 @@ const longString =
 const trailing = 'Semicolon';
 
 const why = 'am I tabbed?';
-
+var how = 'nice';
+var hello = 'hello';
 export function doSomeStuff(
   withThis: string,
   andThat: string,
