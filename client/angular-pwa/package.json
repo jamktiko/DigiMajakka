@@ -18,10 +18,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "@angular/service-worker": "^14.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "xo": "^0.52.3",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -34,12 +32,15 @@
     "eslint": "^8.24.0",
     "eslint-config-xo": "^0.42.0",
     "eslint-config-xo-typescript": "^0.53.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1",
     "typescript": "^4.8.4"
   }
 }
