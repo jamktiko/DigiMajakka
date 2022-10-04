@@ -4,12 +4,16 @@
 	"description": "",
 	"main": "app.js",
 	"scripts": {
-		"test": "xo"
+		"test": "xo",
+		"devStart": "nodemon ./dist/bin/server.js",
+		"build": "tsc --build"
 	},
 	"author": "Digimajakka",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/cookie-parser": "^1.4.3",
 		"@types/express": "^4.17.14",
+		"@types/http-errors": "^1.8.2",
 		"@types/node": "^14.11.2",
 		"@typescript-eslint/eslint-plugin": "^5.38.1",
 		"@typescript-eslint/parser": "^5.38.1",
@@ -23,6 +27,8 @@
 		"xo": "^0.52.3"
 	},
 	"dependencies": {
-		"express": "^4.18.1"
+		"cookie-parser": "^1.4.6",
+		"express": "^4.18.1",
+		"http-errors": "^2.0.0"
 	}
 }
