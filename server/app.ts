@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 // import createError from 'http-errors';
 // import type {ErrorRequestHandler} from 'express';
 
+import indexRouter from './routes/index.js';
+
 const app = express();
 
 // Necessary middlewares
@@ -11,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+app.use('/', indexRouter);
 // Error handling code created by express generator
 // TBD if we use it or our own error handler
 // app.use((request, response, next) => {

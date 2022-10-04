@@ -10,9 +10,9 @@ services:
     restart: always
     environment:
       # käyttäjätunnnus
-      MARIADB_ROOT_PASSWORD: your_password
+      MARIADB_ROOT_PASSWORD: your password
       # salasana
-      MARIADB_USER: your_username
+      MARIADB_USER: höpömpöppöö
       MARIADB_DATABASE: digimajakka_db
     volumes:
       - digimajakka_db:/var/lib/mariadb
