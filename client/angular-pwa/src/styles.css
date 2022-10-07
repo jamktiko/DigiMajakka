@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+
+::ng-deep :root {
+  --lightblue: #E0FCFE;
+  --mediumblue: #396472;
+  --darkblue: #053848;
+  --darkgray: #384043;
+  --green: #A8A02D;
+}
+
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'Mukta Mahee';
+  font-style: normal;
+  font-weight: 400;
+  src: url(src\assets\fonts\MuktaMahee-Light.ttf);
+
+}
+
+* {
+  font-family: 'Mukta Mahee';
+}
+
+.greenbutton {
+  position: relative;
+  padding: 12px 27px;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
+  background: var(--green);
+  border: 0;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125em;
+  color: var(--lightblue);
+}
+
+.graybutton {
+  position: relative;
+  padding: 12px 27px;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
+  background: var(--darkgray);
+  border: 0;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125em;
+  color: var(--lightblue);
+}
+
+.bluebutton {
+  position: relative;
+  padding: 12px 27px;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
+  background: var(--mediumblue);
+  border: 0;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.125em;
+  color: var(--lightblue);
+}
+
+.glassbox {
+  /* lasilaatikko */
+  box-sizing: border-box;
+  position: relative;
+  max-width: fit-content;
+  max-height: fit-content;
+  background: linear-gradient(180deg, #DBF6FF 0%, rgba(155, 210, 227, 0.1) 100%);
+  box-shadow: 0px 45px 50px -25px rgba(75, 113, 125, 0.91), inset 0px 4px 18px 1px rgba(141, 228, 255, 0.7);
+  backdrop-filter: blur(22.5px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 20px;
+}

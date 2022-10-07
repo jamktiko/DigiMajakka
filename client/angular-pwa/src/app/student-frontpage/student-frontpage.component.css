@@ -1,0 +1,66 @@
+* {
+  font-family: 'Mukta Mahee';
+  color: var(--lightblue);
+
+}
+
+pre {
+  font-size: 1.4em;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.container {
+  background-color: var(--mediumblue);
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  gap: 3em;
+}
+
+
+
+.welcome {
+  margin-top: 1em;
+}
+
+.buttonrow {
+  display: flex;
+  gap: 1em;
+}
+
+.label {
+  margin-bottom: 0.5em;
+  font-size: smaller;
+}
+
+.glassbox {
+  position: absolute;
+  top: 55vh;
+  left: 10vw;
+  max-width: 40em;
+  padding: 2em;
+}
+
+.glassbox>h2,
+.glassbox>p {
+  color: var(--darkblue);
+  font-weight: 400;
+}
+
+.glassbox>p {
+  font-size: 1.25em;
+}
+
+.loginfloat {
+  position: absolute;
+  top: 100px;
+  right: 80px;
+  font-size: 0.875em;
+}
