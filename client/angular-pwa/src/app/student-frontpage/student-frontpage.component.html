@@ -17,7 +17,7 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
 
       <div>
         <p class="label">Onko sinulla jo tili?</p>
-        <button class="greenbutton">Kirjaudu sisään</button>
+        <button class="greenbutton" (click)="login()">Kirjaudu sisään</button>
 
       </div>
 
@@ -36,4 +36,9 @@ kevytyrittäjyydestä ja vastauksia usein kysyittyihin kysymyksiin.
   <button class="bluebutton">Ohjeita</button>
 </div>
 
-<button class="greenbutton loginfloat">Kirjaudu sisään</button>
+<button *ngIf="!logged" class="greenbutton loginfloat px14" (click)="login()">Kirjaudu sisään</button>
+
+<div class="loginfloat" *ngIf="logged">
+  <p>Hei {{loggedUser}}!</p>
+  <button class="greenbutton px14" (click)="logout()">Kirjaudu ulos</button>
+</div>

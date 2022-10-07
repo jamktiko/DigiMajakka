@@ -75,3 +75,7 @@ body {
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 20px;
 }
+
+.px14 {
+  font-size: 0.875em;
+}
