@@ -4,10 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const dotenv_1 = __importDefault(require("dotenv"));
 // Imports for error handlers
 // import createError from 'http-errors';
 // import type {ErrorRequestHandler} from 'express';
 const index_js_1 = __importDefault(require("./routes/index.js"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 // Necessary middlewares
 app.use(express_1.default.json());
