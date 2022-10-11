@@ -1,6 +1,5 @@
 * {
   font-family: 'Mukta Mahee';
-  color: var(--lightblue);
 
 }
 
@@ -29,6 +28,7 @@ h3 {
   font-size: 1.25em;
 }
 
+
 .container {
   margin: 0;
   display: flex;
@@ -40,6 +40,20 @@ h3 {
   margin: 0;
   display: flex;
   gap: 3em;
+}
+
+.contentgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.lcontent {
+  margin-left: 5em;
+  margin-top: 3em;
+}
+
+.rcontent {
+  margin-right: 5em;
 }
 
 .profilebutton {
@@ -62,8 +76,7 @@ h3 {
 }
 
 .glassbox {
-  position: relative;
-  margin-top: 5em;
+  margin-top: 3em;
   margin-left: 5em;
   max-width: 40em;
   padding: 2em;
