@@ -9,6 +9,8 @@ export class JoblistsmallComponent implements OnInit {
 
   constructor() { }
 
+  jobs = ['asd', 'qwerty'];
+
   ngOnInit(): void {
   }
 
