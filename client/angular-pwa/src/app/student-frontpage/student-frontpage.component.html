@@ -1,13 +1,14 @@
-<div class="container">
+<body>
+<div *ngIf="!logged" class="container">
   <div class="imgcontainer">
     <img src="https://via.placeholder.com/576x403.png" alt="placeholderkuva">
   </div>
 
   <div class="welcome">
     <h1>Opiskelija</h1>
-    <pre>Kirjaudu sisään ja löydä itsellesi töitä!
+    <p class="px20">Kirjaudu sisään ja löydä itsellesi töitä!
 Luo itsellesi profiili ja anna työnantajien löytää sinut!      
-    </pre>
+    </p>
 
     <div class="buttonrow">
       <div>
@@ -18,22 +19,54 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
       <div>
         <p class="label">Onko sinulla jo tili?</p>
         <button class="greenbutton" (click)="login()">Kirjaudu sisään</button>
-
       </div>
-
     </div>
-
   </div>
 </div>
 
-<div class="glassbox">
+<div *ngIf="logged" class="containerlogged">
+  <div class="imgcontainer">
+    <img src="https://via.placeholder.com/550x391.png" alt="placeholderkuva">
+  </div>
+
+  <div class="welcome">
+    <h1>Opiskelija</h1>
+    <h3>Luo profiili</h3>
+    <p>Kerro osaamisestasi, lisää portfoliosi ja kaikki muu oleellinen tieto,
+      jotta työnantajat voivat löytää juuri sinut!    
+    </p>
+
+    <button class="greenbutton profilebutton">Oma profiili</button>
+  </div>
+</div>
+
+<div *ngIf="!logged" class="glassbox">
   <h2>Katso ohjeet ja aloita työnhaku</h2>
-  <p>
-Täältä löydät ohjeita mm. työnhakupalvelun toiminnasta,
-kevytyrittäjyydestä ja vastauksia usein kysyittyihin kysymyksiin.
+  <p>Täältä löydät ohjeita mm. työnhakupalvelun toiminnasta,
+    kevytyrittäjyydestä ja vastauksia usein kysyittyihin kysymyksiin.
   </p>
 
   <button class="bluebutton">Ohjeita</button>
+</div>
+
+<div *ngIf="logged" class="glassbox">
+  <h2>Mitäpä jos ryhtyisit kevytyrittäjäksi!</h2>
+  <p>
+Tämän helpompaa yrittäjyys ei voi enää olla.
+Katso ohjeet ja aloita tienaaminen!
+  </p>
+
+  <button class="bluebutton">Ohjeita</button>
+</div>
+
+<div *ngIf="logged" class="glassbox">
+  <h2>Askarruttaako jokin asia?</h2>
+  <p>
+  Katso löytyisikö vastaus usein kysyttyjen kysymysten joukusta!
+  Voit ottaa yhteyttä myös suoraan asiakaspalveluumme.
+  </p>
+
+  <button class="graybutton">UKK</button>
 </div>
 
 <button *ngIf="!logged" class="greenbutton loginfloat px14" (click)="login()">Kirjaudu sisään</button>
@@ -42,3 +75,5 @@ kevytyrittäjyydestä ja vastauksia usein kysyittyihin kysymyksiin.
   <p>Hei {{loggedUser}}!</p>
   <button class="greenbutton px14" (click)="logout()">Kirjaudu ulos</button>
 </div>
+
+</body>

@@ -2,6 +2,12 @@ h1 {
   margin-top: 0.2em;
 }
 
+.backbutton {
+  font-size: 0.95em;
+  max-height: 47px;
+  margin-top: 0.4em;
+}
+
 .topbar {
   display: flex;
   flex-direction: row;

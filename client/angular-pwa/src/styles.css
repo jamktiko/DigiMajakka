@@ -29,6 +29,7 @@ body {
   padding: 12px 27px;
   filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
   background: var(--green);
+  height: fit-content;
   border: 0;
   border-radius: 8px;
   font-style: normal;
@@ -40,6 +41,7 @@ body {
 .graybutton {
   position: relative;
   padding: 12px 27px;
+  height: fit-content;
   filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
   background: var(--darkgray);
   border: 0;
@@ -53,6 +55,7 @@ body {
 .bluebutton {
   position: relative;
   padding: 12px 27px;
+  height: fit-content;
   filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
   background: var(--mediumblue);
   border: 0;
