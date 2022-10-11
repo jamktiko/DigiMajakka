@@ -1,10 +1,15 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+
 // Imports for error handlers
 // import createError from 'http-errors';
 // import type {ErrorRequestHandler} from 'express';
 
 import indexRouter from './routes/index.js';
+
+// Usage of environment varaibles
+dotenv.config();
 
 const app = express();
 
@@ -13,6 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+// Take routes in use
 app.use('/', indexRouter);
 // Error handling code created by express generator
 // TBD if we use it or our own error handler
