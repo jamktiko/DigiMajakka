@@ -8,12 +8,6 @@ body {
   padding-bottom: 20em;
 }
 
-pre {
-  font-size: 1.4em;
-  margin-bottom: 0;
-  font-weight: 400;
-}
-
 h1 {
   font-size: 3em;
   font-weight: 400;
@@ -28,6 +22,10 @@ h3 {
   font-size: 1.25em;
 }
 
+.imgcontainerlogged {
+  max-height: 391px;
+}
+
 
 .container {
   margin: 0;
@@ -36,10 +34,11 @@ h3 {
 }
 
 .containerlogged {
-  background-color: var(--gray);
+  background-color: var(--darkgray);
   margin: 0;
   display: flex;
   gap: 3em;
+  padding: 0;
 }
 
 .contentgrid {
@@ -50,6 +49,16 @@ h3 {
 .lcontent {
   margin-left: 5em;
   margin-top: 3em;
+}
+
+.lcontent>h2,
+.lcontent>button {
+  margin-top: 2em;
+}
+
+.lcontent:first-child {
+  margin-top: 0;
+  margin-bottom: 2em;
 }
 
 .rcontent {

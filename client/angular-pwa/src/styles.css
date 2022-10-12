@@ -23,6 +23,7 @@ body {
 * {
   font-family: 'Mukta Mahee';
   color: var(--lightblue);
+  font-weight: 400;
 }
 
 .greenbutton {

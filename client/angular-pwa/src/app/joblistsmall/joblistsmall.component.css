@@ -3,6 +3,13 @@ li {
   border-bottom: 1px solid var(--lightblue);
   border-left: 8px solid var(--green);
   padding: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+h2 {
+  font-size: 1.125em;
+  margin: 0.6em 2em 1em 1em;
 }
 
 h3 {
