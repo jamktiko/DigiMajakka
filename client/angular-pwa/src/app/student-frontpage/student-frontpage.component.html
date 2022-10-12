@@ -1,18 +1,25 @@
 <body>
+
+<!-- Content for the top part of the page, when the user is not logged in -->
 <div *ngIf="!logged" class="container">
+  
   <div class="imgcontainer">
+    <!-- Placeholder image, replace later -->
     <img src="https://via.placeholder.com/576x403.png" alt="placeholderkuva">
   </div>
 
-  <div class="welcome">
+  <!-- Actual text-content of the top-section of the page -->
+  <div class="topcontent">
     <h1>Opiskelija</h1>
     <p class="px20">Kirjaudu sisään ja löydä itsellesi töitä!
 Luo itsellesi profiili ja anna työnantajien löytää sinut!      
     </p>
 
+    <!-- Buttons to register and log in -->
     <div class="buttonrow">
       <div>
         <p class="label">Uusi käyttäjä?</p>
+        <!-- ADD FUNCTIONALITY TO THIS BUTTON -->
         <button class="graybutton">Rekisteröidy</button>
       </div>
 
@@ -24,53 +31,88 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
   </div>
 </div>
 
+<!-- Content on the top part of the page that the user sees when logged in -->
 <div *ngIf="logged" class="containerlogged">
-  <div class="imgcontainer">
+  
+  <div class="imgcontainerlogged">
+    <!-- Placeholder image, replace later -->
     <img src="https://via.placeholder.com/550x391.png" alt="placeholderkuva">
   </div>
 
-  <div class="welcome">
+  <!-- Actual text-content in the top-part of the page -->
+  <div class="topcontent">
     <h1>Opiskelija</h1>
     <h3>Luo profiili</h3>
     <p>Kerro osaamisestasi, lisää portfoliosi ja kaikki muu oleellinen tieto,
       jotta työnantajat voivat löytää juuri sinut!    
     </p>
 
+    <!-- Button that routes to profile-view -->
     <button class="greenbutton profilebutton" routerLink="/profile">Oma profiili</button>
   </div>
 </div>
 
+<!-- Box with link to guides, shown for users that are not logged in -->
 <div *ngIf="!logged" class="glassbox">
   <h2>Katso ohjeet ja aloita työnhaku</h2>
   <p>Täältä löydät ohjeita mm. työnhakupalvelun toiminnasta,
     kevytyrittäjyydestä ja vastauksia usein kysyittyihin kysymyksiin.
   </p>
 
+  <!-- ADD FUNCTIONALITY TO THIS BUTTON -->
   <button class="bluebutton">Ohjeita</button>
 </div>
 
-<div *ngIf="logged" class="glassbox">
-  <h2>Mitäpä jos ryhtyisit kevytyrittäjäksi!</h2>
-  <p>
-Tämän helpompaa yrittäjyys ei voi enää olla.
-Katso ohjeet ja aloita tienaaminen!
-  </p>
+<!-- Content at the lower part of the page, shown for logged in users -->
+<div *ngIf="logged" class="contentgrid">
 
-  <button class="bluebutton">Ohjeita</button>
+  <!-- Content on the left side of the lower part of the page -->
+  <div class="lcontent">
+    <h2>Avoimet työilmoitukset</h2>
+
+    <!-- Small list of jobs, comes from joblistsmall-component -->
+    <app-joblistsmall></app-joblistsmall>
+
+    <!-- ADD LINK TO JOBLIST TO THIS BUTTON -->
+    <button class="graybutton">Katso kaikki ilmoitukset</button>
+    <h2>Löydä työkavereita projektiisi</h2>
+
+    <!-- Scrollable carousel of student profiles, coming from profilecarousel-component -->
+    <app-profilecarousel></app-profilecarousel>
+  </div>
+
+  <!-- Content that is displayed on the right side of the lower part of the page -->
+  <div class="rcontent">
+    <!-- Box with kevytyrittäjyys-stuff and link to guide -->
+    <div class="glassbox resbox">
+      <h2>Mitäpä jos ryhtyisit kevytyrittäjäksi!</h2>
+      <p>Tämän helpompaa yrittäjyys ei voi enää olla.
+    Katso ohjeet ja aloita tienaaminen!
+      </p>
+
+      <!-- ADD LINK TO THIS BUTTON -->
+      <button class="bluebutton">Ohjeita</button>
+    </div>
+
+    <!-- Box with FAQ-info and link to FAQ -->
+    <div class="glassbox resbox">
+      <h2>Askarruttaako jokin asia?</h2>
+      <p>Katso löytyisikö vastaus usein kysyttyjen kysymysten joukusta!
+      Voit ottaa yhteyttä myös suoraan asiakaspalveluumme.
+      </p>
+
+      <!-- ADD LINK TO THIS BUTTON -->
+      <button class="bluebutton">UKK</button>
+    </div>
+  </div>
+
+  
 </div>
 
-<div *ngIf="logged" class="glassbox">
-  <h2>Askarruttaako jokin asia?</h2>
-  <p>
-  Katso löytyisikö vastaus usein kysyttyjen kysymysten joukusta!
-  Voit ottaa yhteyttä myös suoraan asiakaspalveluumme.
-  </p>
-
-  <button class="graybutton">UKK</button>
-</div>
-
+<!-- If user is not logged in, display the login-button -->
 <button *ngIf="!logged" class="greenbutton loginfloat px14" (click)="login()">Kirjaudu sisään</button>
 
+<!-- If user is logged in, display logout-button and the logged users name -->
 <div class="loginfloat" *ngIf="logged">
   <p>Hei {{loggedUser}}!</p>
   <button class="greenbutton px14" (click)="logout()">Kirjaudu ulos</button>

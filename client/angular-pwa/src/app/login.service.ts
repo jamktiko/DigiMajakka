@@ -4,21 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoginService {
+  // Service for managing logins
+  // WILL BE IMPLEMENTED LATER
 
+  // Declarations for placeholder functionality
   logged!: boolean;
   loggedUser = '';
 
   constructor() { }
 
-  // Metodi, joka saa parametrikseen LoginComponentista tulevan käyttäjätunnuksen
-  // ja asettaa sen tällä hetkellä kirjautuneeksi käyttäjäksi. Asettaa myös this.loggedin
-  // trueksi, eli kertoo sovellukselle että sivulle on kirjauduttu sisään.
+  // Placeholder method that takes username as an argument and sets it as currently logged in user.
+  // Also set logged-status as true.
   login(username: string) {
     this.logged = true;
     this.loggedUser = username;
   }
 
-  // Metodi, joka kirjaa käyttäjän ulos palauttamalla kirjautumistilanteen, ja tyhjentää käyttäjätunnuksen
+  // Placeholder method that sets currently logged in user as empty and sets logged-status to false. 
   logout() {
     this.logged = false;
     this.loggedUser = '';

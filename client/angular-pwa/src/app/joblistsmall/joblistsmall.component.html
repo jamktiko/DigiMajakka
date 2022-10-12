@@ -1,0 +1,19 @@
+<!-- List of job-listings, will later come from database -->
+<ul class="jobs">
+
+  <!-- li-element will be created for each listing in the jobs-array with *ngFor -->
+  <li *ngFor="let job of jobs.slice(0,3)">
+
+    <!-- This is still placeholder -->
+    <div class="headercontainer">
+      <h2>{{job.company}}</h2>
+    </div>
+    <div class="info">
+      <h3>{{job.title}}</h3>
+
+      <!-- If description is over 90 characters long, the element will get class "desc"
+      that limits the description to maximum 2 rows of text. -->
+      <p [ngClass]="{'desc': job.desc.length > 90}">{{job.desc}}</p>
+    </div>
+  </li>
+</ul>

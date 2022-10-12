@@ -10,9 +10,9 @@ export class TopbarComponent implements OnInit {
 
   constructor(private location: Location) { }
 
-  // goBack():void {
-  //   this.location.back();
-  // }
+  back():void {
+    // NOT IMPLEMENTED YET
+  }
 
   ngOnInit(): void {
   }

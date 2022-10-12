@@ -5,7 +5,7 @@
   --mediumblue: #396472;
   --darkblue: #053848;
   --darkgray: #384043;
-  --green: #A8A02D;
+  --green: #C1BA48;
 }
 
 body {
@@ -22,6 +22,8 @@ body {
 
 * {
   font-family: 'Mukta Mahee';
+  color: var(--lightblue);
+  font-weight: 400;
 }
 
 .greenbutton {
@@ -33,9 +35,8 @@ body {
   border: 0;
   border-radius: 8px;
   font-style: normal;
-  font-weight: 400;
   font-size: 1.125em;
-  color: var(--lightblue);
+  color: var(--darkgray);
 }
 
 .graybutton {
@@ -47,7 +48,6 @@ body {
   border: 0;
   border-radius: 8px;
   font-style: normal;
-  font-weight: 400;
   font-size: 1.125em;
   color: var(--lightblue);
 }
@@ -61,7 +61,6 @@ body {
   border: 0;
   border-radius: 8px;
   font-style: normal;
-  font-weight: 400;
   font-size: 1.125em;
   color: var(--lightblue);
 }
