@@ -113,3 +113,13 @@ h3 {
   flex-direction: row;
   gap: 1em;
 }
+
+@media (max-width: 1463px) {
+  .rcontent {
+    margin-right: 2em;
+  }
+
+  .resbox {
+    margin-right: 0;
+  }
+}

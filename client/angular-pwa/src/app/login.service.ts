@@ -13,7 +13,7 @@ export class LoginService {
 
   constructor() { }
 
-  // Placeholder ethod that takes username as an argument and sets it as currently logged in user.
+  // Placeholder method that takes username as an argument and sets it as currently logged in user.
   // Also set logged-status as true.
   login(username: string) {
     this.logged = true;
