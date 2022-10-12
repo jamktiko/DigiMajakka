@@ -56,6 +56,9 @@ h3 {
   margin-top: 2em;
 }
 
+/* 
+  Margins defined for lcontent, so the content is at correct height
+*/
 .lcontent:first-child {
   margin-top: 0;
   margin-bottom: 2em;
@@ -69,7 +72,7 @@ h3 {
   margin-top: 2em;
 }
 
-.welcome {
+.topcontent {
   margin-top: 1em;
   max-width: 30vw;
 }

@@ -9,6 +9,7 @@ export class JoblistsmallComponent implements OnInit {
 
   constructor() { }
 
+  // jobs-array will contain all job-listing fetched from the database
   jobs = ['asd', 'qwerty'];
 
   ngOnInit(): void {
