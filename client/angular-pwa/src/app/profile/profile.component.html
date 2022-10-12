@@ -1,14 +1,23 @@
-<!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu upperbox first/second/third sisälle-->
+<!--Edit nappuloille tarkoitettu viiva. Napit tiputettu viivalta 
+	upperContent rivin boksien kulmiin.-->
+<div class="editRow">
+	<div class="editButton corner"></div>
+	<div class="editButton corner"></div>
+	<div class="editButton corner"></div>
+</div>
+<!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu 
+	upperbox first/second/third sisälle-->
 <div class="upperContent">
 	<div class="upperBox first">
-		<img src="../../assets/img/digiJoonaS.jpg" />
+		<img src="../../assets/img/digiJoonaS.jpg" class="profile" />
 	</div>
 	<div class="upperBox second">
 		<h2>Joona Pöppönen</h2>
 		<p>
 			Tietojenkäsittely <br />
 			Jyväskylän ammattikorkeakoulu <br />
-			3. opiskeluvuosi
+			3. opiskeluvuosi <br />
+			Jyväskylä
 		</p>
 	</div>
 	<div class="upperBox third">
@@ -21,10 +30,16 @@
 		<div class="socials"></div>
 	</div>
 </div>
+<!--Alemman puoliskon edit nappulat-->
+<div class="editRowLower">
+	<div class="editButton lowercorner"></div>
+	<div class="editButton lowercornerright"></div>
+</div>
 <!--Alempi osio jaettu gridillä kahteen 1fr osioon, sekä keskiviiva lisätty väliin-->
 <div class="lowerContent">
+	<!--Alemman tason viivan vasen puoli-->
 	<div class="lowerBox">
-		<h3>What is Lorem Ipsum?</h3>
+		<h3>Tietoja minusta</h3>
 		<p>
 			Lorem Ipsum is simply dummy text of the printing and typesetting
 			industry. Lorem Ipsum has been the industry's standard dummy text
@@ -36,22 +51,71 @@
 			and more recently with desktop publishing software like Aldus
 			PageMaker including versions of Lorem Ipsum.
 		</p>
-		<h3>What is Lorem Ipsum?</h3>
+		<h3>Millaista työtä etsin</h3>
 		<p>
 			Lorem Ipsum is simply dummy text of the printing and typesetting
 			industry. Lorem Ipsum has been the industry's standard dummy text
 			ever since the 1500s, when an unknown printer took a galley of type
 			and scrambled it to make a type specimen book. It has survived not
 			only five centuries, but also the leap into electronic typesetting,
-			remaining essentially unchanged.
+			remaining essentially unchanged. Lorem Ipsum is simply dummy text of
+			the printing and typesetting industry. Lorem Ipsum has been the
+			industry's standard dummy text ever since the 1500s, when an unknown
+			printer took a galley of type and scrambled it to make a type
+			specimen book. It has survived not only five centuries, but also the
+			leap into electronic typesetting, remaining essentially unchanged.
 		</p>
 	</div>
 	<div class="lowerMid">
-		<div class="editButton"></div>
 		<div class="splitStick"></div>
 	</div>
+	<!--Alemman tason valkoisen viivan oikea puoli-->
 	<div class="lowerBox">
-		<div class="mirrorPlate"></div>
-		<div class="checkboxRow"></div>
+		<!--Läpinäkyvälaatikko joka sisältää tagit-->
+		<div class="glassbox">
+			<h4>Osaaminen</h4>
+			<div class="tags">
+				<div class="tag"><p>Angular</p></div>
+				<div class="tag"><p>Frontend</p></div>
+				<div class="tag"><p>Valokuvaus</p></div>
+				<div class="tag"><p>Svelte</p></div>
+				<div class="tag"><p>Valokuvaus</p></div>
+				<div class="tag"><p>AWS</p></div>
+				<div class="tag"><p>Video</p></div>
+				<div class="tag"><p>Graafinen suunnittelu</p></div>
+				<div class="tag"><p>O365</p></div>
+				<div class="tag"><p>Angular</p></div>
+				<div class="tag"><p>Frontend</p></div>
+				<div class="tag"><p>Valokuvaus</p></div>
+				<div class="tag"><p>Svelte</p></div>
+				<div class="tag"><p>Valokuvaus</p></div>
+				<div class="tag"><p>AWS</p></div>
+				<div class="tag"><p>Video</p></div>
+				<div class="tag"><p>Graafinen suunnittelu</p></div>
+				<div class="tag"><p>O365</p></div>
+			</div>
+			<div class="graybutton">Näytä kaikki</div>
+		</div>
+		<!--Lasilaatikon alla olevat nappulat-->
+		<div class="checkboxRow first">
+			<div class="bluebutton">Lataa CV</div>
+			<div class="bluebutton">Portfolio</div>
+			<div class="bluebutton">Github</div>
+		</div>
+		<!--Placeholder OK kuvat nappuloiden alle-->
+		<div class="checkboxRow second">
+			<h3>OK</h3>
+			<h3>OK</h3>
+		</div>
+		<!--Alimmat jutut-->
+		<div class="contentfooter">
+			<div class="leftflex">
+				<h5>Aseta profiili julkiseksi</h5>
+				<div class="enableDisable">
+					<div class="enableDisableBall"></div>
+				</div>
+			</div>
+			<div class="greenbutton">Tallenna</div>
+		</div>
 	</div>
 </div>
