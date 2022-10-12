@@ -4,15 +4,15 @@ version: '3.9'
 
 services:
   mariadb:
-    image: mariadb
+    image: mariadb:10.8.2
     container_name: digimajakka_mariadb
     hostname: digimajakka
     restart: always
     environment:
+      # salasana  
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       # käyttäjätunnnus
-      MARIADB_ROOT_PASSWORD: your password
-      # salasana
-      MARIADB_USER: höpömpöppöö
+      MARIADB_USER: ${MARIADB_USER}
       MARIADB_DATABASE: digimajakka_db
     volumes:
       - digimajakka_db:/var/lib/mariadb
