@@ -22,21 +22,31 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable @typescript-eslint/comma-dangle */
 const node_process_1 = __importDefault(require("node:process"));
 // Import mysql library
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-let pool;
 // Function invokes as soon as file is imported
-(function () {
+const pool = (function () {
     try {
         // Create connection pool to database server
         // pooling allows multithreaded connections to database
-        pool = mysql_1.default.createPool({
+        return mysql_1.default.createPool({
             connectionLimit: 1,
             host: node_process_1.default.env.HOST,
             user: node_process_1.default.env.DB_USER,
@@ -50,4 +60,34 @@ let pool;
         throw new Error('Error occured when initializing pool');
     }
 })();
-module.exports = pool;
+// Function which handles queries to database
+/**
+ *
+ * @param query sql query for database
+ * @param parameters optional parameters for sql query. For example id.
+ * @returns Returns resolved promise which contains data from sql query.
+ */
+const queryDb = (query, parameters) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        if (!pool) {
+            throw new Error('Cannot find pool');
+        }
+        else if (pool) {
+            return yield new Promise((resolve, reject) => {
+                pool.query(query, parameters, (error, result) => {
+                    if (error) {
+                        reject(error);
+                    }
+                    else {
+                        resolve(result);
+                    }
+                });
+            });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        throw new Error('Failed to execute query');
+    }
+});
+exports.default = queryDb;

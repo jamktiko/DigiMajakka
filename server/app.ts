@@ -6,8 +6,7 @@ import dotenv from 'dotenv';
 // import createError from 'http-errors';
 // import type {ErrorRequestHandler} from 'express';
 
-import indexRouter from './routes/index.js';
-
+import profileRouter from './routes/profile.js';
 // Usage of environment varaibles
 dotenv.config();
 
@@ -19,7 +18,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // Take routes in use
-app.use('/', indexRouter);
+
+app.use('/profiles', profileRouter);
 // Error handling code created by express generator
 // TBD if we use it or our own error handler
 // app.use((request, response, next) => {
