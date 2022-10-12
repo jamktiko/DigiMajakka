@@ -10,15 +10,14 @@ export class LoginService {
 
   constructor() { }
 
-  // Metodi, joka saa parametrikseen LoginComponentista tulevan käyttäjätunnuksen
-  // ja asettaa sen tällä hetkellä kirjautuneeksi käyttäjäksi. Asettaa myös this.loggedin
-  // trueksi, eli kertoo sovellukselle että sivulle on kirjauduttu sisään.
+  // Method that takes username as an argument and sets it as currently logged in user.
+  // Also set logged-status as true.
   login(username: string) {
     this.logged = true;
     this.loggedUser = username;
   }
 
-  // Metodi, joka kirjaa käyttäjän ulos palauttamalla kirjautumistilanteen, ja tyhjentää käyttäjätunnuksen
+  // Method that sets currently logged in user as empty and sets logged-status to false. 
   logout() {
     this.logged = false;
     this.loggedUser = '';

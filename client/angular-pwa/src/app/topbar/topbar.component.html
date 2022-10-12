@@ -1,7 +1,10 @@
 <div class="topbar">
-  <button class="bluebutton backbutton">Takaisin</button>
+  <!-- Button that returns the user to the previous view -->
+  <button class="bluebutton backbutton" (click)="back()">Takaisin</button>
+  <!-- Heading/logo -->
   <h1>DigiMajakka</h1>
 
+  <!-- Actual links -->
   <a routerLink="frontpage">Etusivu</a>
   <a routerLink="student">Opiskelijalle</a>
   <a routerLink="employer">Työnantajalle</a>

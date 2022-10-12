@@ -25,7 +25,7 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
 </div>
 
 <div *ngIf="logged" class="containerlogged">
-  <div class="imgcontainer">
+  <div class="imgcontainerlogged">
     <img src="https://via.placeholder.com/550x391.png" alt="placeholderkuva">
   </div>
 
@@ -49,24 +49,37 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
   <button class="bluebutton">Ohjeita</button>
 </div>
 
-<div *ngIf="logged" class="glassbox">
-  <h2>Mitäpä jos ryhtyisit kevytyrittäjäksi!</h2>
-  <p>
-Tämän helpompaa yrittäjyys ei voi enää olla.
-Katso ohjeet ja aloita tienaaminen!
-  </p>
+<div *ngIf="logged" class="contentgrid">
 
-  <button class="bluebutton">Ohjeita</button>
-</div>
+  <div class="lcontent">
+    <h2>Avoimet työilmoitukset</h2>
+    <app-joblistsmall></app-joblistsmall>
+    <button class="graybutton">Katso kaikki ilmoitukset</button>
+    <h2>Löydä työkavereita projektiisi</h2>
+    <app-profilecarousel></app-profilecarousel>
+  </div>
 
-<div *ngIf="logged" class="glassbox">
-  <h2>Askarruttaako jokin asia?</h2>
-  <p>
-  Katso löytyisikö vastaus usein kysyttyjen kysymysten joukusta!
-  Voit ottaa yhteyttä myös suoraan asiakaspalveluumme.
-  </p>
+  <div class="rcontent">
+    <div class="glassbox">
+      <h2>Mitäpä jos ryhtyisit kevytyrittäjäksi!</h2>
+      <p>Tämän helpompaa yrittäjyys ei voi enää olla.
+    Katso ohjeet ja aloita tienaaminen!
+      </p>
 
-  <button class="graybutton">UKK</button>
+      <button class="bluebutton">Ohjeita</button>
+    </div>
+
+    <div class="glassbox">
+      <h2>Askarruttaako jokin asia?</h2>
+      <p>Katso löytyisikö vastaus usein kysyttyjen kysymysten joukusta!
+      Voit ottaa yhteyttä myös suoraan asiakaspalveluumme.
+      </p>
+
+      <button class="graybutton">UKK</button>
+    </div>
+  </div>
+
+  
 </div>
 
 <button *ngIf="!logged" class="greenbutton loginfloat px14" (click)="login()">Kirjaudu sisään</button>

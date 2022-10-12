@@ -1,18 +1,11 @@
 * {
   font-family: 'Mukta Mahee';
-  color: var(--lightblue);
 
 }
 
 body {
   background-color: var(--mediumblue);
   padding-bottom: 20em;
-}
-
-pre {
-  font-size: 1.4em;
-  margin-bottom: 0;
-  font-weight: 400;
 }
 
 h1 {
@@ -29,6 +22,11 @@ h3 {
   font-size: 1.25em;
 }
 
+.imgcontainerlogged {
+  max-height: 391px;
+}
+
+
 .container {
   margin: 0;
   display: flex;
@@ -36,10 +34,35 @@ h3 {
 }
 
 .containerlogged {
-  background-color: var(--gray);
+  background-color: var(--darkgray);
   margin: 0;
   display: flex;
   gap: 3em;
+  padding: 0;
+}
+
+.contentgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.lcontent {
+  margin-left: 5em;
+  margin-top: 3em;
+}
+
+.lcontent>h2,
+.lcontent>button {
+  margin-top: 2em;
+}
+
+.lcontent:first-child {
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
+.rcontent {
+  margin-right: 5em;
 }
 
 .profilebutton {
@@ -62,8 +85,7 @@ h3 {
 }
 
 .glassbox {
-  position: relative;
-  margin-top: 5em;
+  margin-top: 3em;
   margin-left: 5em;
   max-width: 40em;
   padding: 2em;

@@ -5,9 +5,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import { StudentFrontpageComponent } from './student-frontpage/student-frontpage.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import { JoblistsmallComponent } from './joblistsmall/joblistsmall.component';
+import { ProfilecarouselComponent } from './profilecarousel/profilecarousel.component';
 
 @NgModule({
-	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent],
+	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent],
 	imports: [BrowserModule, AppRoutingModule],
 	providers: [],
 	bootstrap: [AppComponent],
