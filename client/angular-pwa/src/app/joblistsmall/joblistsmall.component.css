@@ -9,13 +9,30 @@ li {
   padding: 1em;
   display: flex;
   flex-direction: row;
+  gap: 2em;
 }
 
 h2 {
   font-size: 1.125em;
-  margin: 0.6em 2em 1em 1em;
+  margin: 0.6em 0 1em 1em;
 }
 
 h3 {
   font-size: 0.9em;
+}
+
+.desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  max-width: 90%;
+}
+
+.headercontainer {
+  min-width: 8em;
+  max-width: 8em;
+  overflow-wrap: break-word;
 }
