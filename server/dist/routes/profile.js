@@ -6,6 +6,10 @@ const express_1 = __importDefault(require("express"));
 const profile_controller_js_1 = require("../controllers/profile-controller.js");
 // eslint-disable-next-line new-cap
 const profileRouter = express_1.default.Router();
+// Route to get all profiles
 profileRouter.get('/findAll', profile_controller_js_1.findAll);
+// Route to get profile with specific id
 profileRouter.get('/findById/:id', profile_controller_js_1.findById);
+// Route to post profile
+profileRouter.post('/create', profile_controller_js_1.createProfile);
 module.exports = profileRouter;

@@ -1,4 +1,4 @@
-<body>
+<body [ngClass]="{'bg-change': logged}">
 
 <!-- Content for the top part of the page, when the user is not logged in -->
 <div *ngIf="!logged" class="container">
@@ -97,7 +97,7 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
     <!-- Box with FAQ-info and link to FAQ -->
     <div class="glassbox resbox">
       <h2>Askarruttaako jokin asia?</h2>
-      <p>Katso löytyisikö vastaus usein kysyttyjen kysymysten joukusta!
+      <p>Katso löytyisikö vastaus usein kysyttyjen kysymysten joukosta!
       Voit ottaa yhteyttä myös suoraan asiakaspalveluumme.
       </p>
 
