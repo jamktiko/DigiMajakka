@@ -26,7 +26,3 @@
   width: 150px;
   object-fit: contain;
 }
-
-.slides::-webkit-scrollbar {
-  display: none;
-}
