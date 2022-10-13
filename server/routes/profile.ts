@@ -1,19 +1,25 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 import express from 'express';
-import {
-	findAll,
-	findById,
-	createProfile,
-} from '../controllers/profile-controller.js';
+import * as profileC from '../controllers/profile-controller.js';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 
 // Route to get all profiles
-profileRouter.get('/findAll', findAll);
+profileRouter.get('/findAll', profileC.findAll);
 
 // Route to get profile with specific id
-profileRouter.get('/findById/:id', findById);
+profileRouter.get('/findById/:id', profileC.findById);
 
 // Route to post profile
-profileRouter.post('/create', createProfile);
+profileRouter.post('/create', profileC.createProfile);
+
+// Route to update profile
+profileRouter.put('/update', profileC.updateProfile);
+
+// Update one column of profile
+profileRouter.put(
+	'/updateOne/:id/:column/:value',
+	profileC.updateProfileColumn
+);
 
 export = profileRouter;

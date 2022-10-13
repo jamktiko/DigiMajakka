@@ -2,7 +2,6 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
-
 // Imports for error handlers
 // import createError from 'http-errors';
 // import type {ErrorRequestHandler} from 'express';

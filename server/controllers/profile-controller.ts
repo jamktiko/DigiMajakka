@@ -3,14 +3,22 @@
 import type express from 'express';
 import queryDb from '../db-connection.js';
 import profileValidator from '../models/profile-model.js';
+import errorHandler from '../error-handler.js';
 
 // Return all profiles from database
 export const findAll = async (
 	_request: express.Request,
 	response: express.Response
 ) => {
-	const data = await queryDb('SELECT * FROM Profiili;', []);
-	response.json(data);
+	try {
+		const data = await queryDb('SELECT * FROM Profiili;', []);
+		response.status(200).json(data);
+	} catch (error: unknown) {
+		console.log(error);
+		response.status(400).json({
+			message: error,
+		});
+	}
 };
 
 // Return one profile by specific id
@@ -18,10 +26,15 @@ export const findById = async (
 	_request: express.Request,
 	response: express.Response
 ) => {
-	const data = await queryDb('SELECT * FROM Profiili WHERE idprofiili = ?', [
-		_request.params.id,
-	]);
-	response.send(data);
+	try {
+		const data = await queryDb(
+			'SELECT * FROM Profiili WHERE idprofiili = ?',
+			[_request.params.id]
+		);
+		response.status(200).json(data);
+	} catch (error: unknown) {
+		errorHandler(error);
+	}
 };
 
 // Insert profile into database
@@ -30,13 +43,15 @@ export const createProfile = async (
 	response: express.Response
 ) => {
 	try {
+		// Profile needs to be validated before inserting it into databse
+		// Function profileValidator return opbject which has validated profile and information if validation passed
 		const profile = profileValidator(_request.body);
 		if (!profile.valid) {
 			throw new Error('Profile not valid');
 		} else if (profile.valid) {
 			const insertedProfile = await queryDb(
 				'INSERT INTO Profiili (idprofiili, etunimi, sukunimi, puhelinnumero, kuvaus, mitaetsii, koulutusala, opintovuosi, julkisuus, Kayttaja_sahkoposti, Koulu_idKoulu, Paikkakunta_idPaikkakunta, kuva) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-				Object.values(profile)
+				Object.values(profile.profile)
 			);
 			response.status(201).json({
 				message: 'Profile created succesfully',
@@ -44,9 +59,45 @@ export const createProfile = async (
 			});
 		}
 	} catch (error: unknown) {
-		console.log(error);
-		response
-			.status(400)
-			.json('Error when creating profile: ' + String(error));
+		errorHandler(error);
+	}
+};
+
+// Updates all fields of profile. Values taken from request body.
+export const updateProfile = async (
+	_request: express.Request,
+	response: express.Response
+) => {
+	try {
+		const update = await queryDb(
+			'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja = ?_sahkoposti = ?, Koulu = ?_idKoulu = ?, Paikkakunta = ?_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
+			_request.body
+		);
+
+		response.status(200).json({
+			message: 'Updated profile succesfully',
+			update,
+		});
+	} catch (error: unknown) {
+		console.error(error);
+		errorHandler(error);
+	}
+};
+
+export const updateProfileColumn = async (
+	_request: express.Request,
+	response: express.Response
+) => {
+	try {
+		const update = await queryDb(
+			'UPDATE Profiili SET ? = ? WHERE idprofiili = ?',
+			[_request.params.column, _request.params.value, _request.params.id]
+		);
+		response.status(200).json({
+			message: 'Updated profile succesfully',
+			update,
+		});
+	} catch (error: unknown) {
+		errorHandler(error);
 	}
 };
