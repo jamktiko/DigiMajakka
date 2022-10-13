@@ -5,14 +5,14 @@
 
 body {
   background-image: url(src\assets\images\studentFrontpage.png);
-  background-size: 1920px 1080px;
+  background-size: 100% 100%;
   padding-bottom: 20em;
 }
 
 .bg-change {
   background-image: url(src\assets\images\studentFrontpage_LoggedIn.png);
-  background-size: 1920px 1920px;
-  background-position: 100%;
+  background-size: cover;
+
 }
 
 h1 {
@@ -28,6 +28,7 @@ h3 {
 .px20 {
   font-size: 1.25em;
 }
+
 
 .imgcontainerlogged {
   max-height: 391px;
@@ -128,5 +129,37 @@ h3 {
 
   .resbox {
     margin-right: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .loginfloat {
+    display: none;
+  }
+
+  .container {
+    justify-content: space-between;
+  }
+
+  .containerlogged {
+    justify-content: space-between;
+  }
+
+  .topcontent {
+    margin-right: 10%;
+  }
+}
+
+
+
+@media (max-width: 965px) {
+
+  body {
+    width: 120vw;
+  }
+
+  .container {
+    /* flex-direction: column;
+    align-items: center; */
   }
 }

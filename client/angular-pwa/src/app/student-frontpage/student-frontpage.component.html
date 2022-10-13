@@ -49,6 +49,17 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
 
     <!-- Button that routes to profile-view -->
     <button class="greenbutton profilebutton" routerLink="/profile">Oma profiili</button>
+    <div class="buttonrow">
+      <div>
+        <!-- ADD FUNCTIONALITY TO THIS BUTTON -->
+        <button class="graybutton" routerLink="/profile">Oma profiili</button>
+      </div>
+
+      <div>
+        <p class="label">Onko sinulla jo tili?</p>
+        <button class="greenbutton" (click)="login()">Kirjaudu sisään</button>
+      </div>
+    </div>
   </div>
 </div>
 
