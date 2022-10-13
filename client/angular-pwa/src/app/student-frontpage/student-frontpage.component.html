@@ -40,7 +40,7 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
   </div>
 
   <!-- Actual text-content in the top-part of the page -->
-  <div class="topcontent">
+  <div class="topcontent loggedtop">
     <h1>Opiskelija</h1>
     <h3>Luo profiili</h3>
     <p>Kerro osaamisestasi, lisää portfoliosi ja kaikki muu oleellinen tieto,
@@ -55,9 +55,9 @@ Luo itsellesi profiili ja anna työnantajien löytää sinut!
         <button class="greenbutton" routerLink="/profile">Oma profiili</button>
       </div>
 
-      <div>
+      <div class="logoutthin">
         <p class="label">Hei {{loggedUser}}!</p>
-        <button class="greenbutton" (click)="logout()">Kirjaudu ulos</button>
+        <button class="greenbutton " (click)="logout()">Kirjaudu ulos</button>
       </div>
     </div>
   </div>
