@@ -29,7 +29,7 @@ h3 {
 .glassbox {
   display: grid;
   grid-template-columns: 100px 1fr 1fr 100px;
-  grid-template-rows: 50px 50px 50px 50px;
+  grid-template-rows: 10px 10px 20px 50px;
   grid-template-areas: 
     ". . . ."
     ". name . ."
@@ -49,27 +49,27 @@ h3 {
 
 .item.first {
   grid-column:2;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 .item.second {
   grid-column:2;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .item.third{
   grid-column:2;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .item.fourth {
   grid-column:3;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .item.fifth {
   grid-column:3;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .bluebutton {
