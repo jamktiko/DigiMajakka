@@ -7,9 +7,10 @@ import { StudentFrontpageComponent } from './student-frontpage/student-frontpage
 import { TopbarComponent } from './topbar/topbar.component';
 import { JoblistsmallComponent } from './joblistsmall/joblistsmall.component';
 import { ProfilecarouselComponent } from './profilecarousel/profilecarousel.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
-	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent],
+	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ModalComponent],
 	imports: [BrowserModule, AppRoutingModule],
 	providers: [],
 	bootstrap: [AppComponent],

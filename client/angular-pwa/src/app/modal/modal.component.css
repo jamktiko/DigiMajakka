@@ -1,0 +1,77 @@
+.modalwindow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left:-494px;
+  margin-top: -265px;
+  border-radius: 20px;
+}
+
+img {
+  width: 988px;
+  height: 530px;
+  border-radius: 20px;
+}
+
+h2, h3, h4, p {
+  color: var(--darkblue)
+}
+
+h2 {
+  margin: 0px;
+}
+
+h3 {
+  font-weight: bold;
+  margin: 0px;
+}
+
+.glassbox {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 100px;
+  grid-template-rows: 50px 50px 50px 50px;
+  grid-template-areas: 
+    ". . . ."
+    ". name . ."
+    " . email phone ."
+    ". send close .";
+  min-width: 826px;
+  min-height: 400px;
+  max-width: 826px;
+  max-height: 400px;
+  gap: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left:-413px;
+  margin-top: -200px;
+}
+
+.item.first {
+  grid-column:2;
+  grid-row: 1;
+}
+
+.item.second {
+  grid-column:2;
+  grid-row: 2;
+}
+
+.item.third{
+  grid-column:2;
+  grid-row: 3;
+}
+
+.item.fourth {
+  grid-column:3;
+  grid-row: 2;
+}
+
+.item.fifth {
+  grid-column:3;
+  grid-row: 3;
+}
+
+.bluebutton {
+  font-size: 18px;
+}
