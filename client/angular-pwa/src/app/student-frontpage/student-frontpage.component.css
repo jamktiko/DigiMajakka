@@ -4,8 +4,15 @@
 }
 
 body {
-  background-color: var(--mediumblue);
+  background-image: url(src\assets\images\studentFrontpage.png);
+  background-size: 1920px 1080px;
   padding-bottom: 20em;
+}
+
+.bg-change {
+  background-image: url(src\assets\images\studentFrontpage_LoggedIn.png);
+  background-size: 1920px 1920px;
+  background-position: 100%;
 }
 
 h1 {
@@ -57,7 +64,7 @@ h3 {
 }
 
 /* 
-  Margins defined for lcontent, so the content is at correct height
+  Margins defined for lcontents first element, so the content is at correct height
 */
 .lcontent:first-child {
   margin-top: 0;
