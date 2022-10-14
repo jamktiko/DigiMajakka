@@ -4,12 +4,12 @@ import type express from 'express';
 import queryDb from '../db-connection';
 import errorHandler from '../error-handler';
 
-export const findAll = (
+export const findAll = async (
 	_request: express.Request,
 	response: express.Response
 ) => {
 	try {
-		const data = queryDb('SELECT * FROM Tyoilmoitus;', []);
+		const data = await queryDb('SELECT * FROM Tyoilmoitus;', []);
 
 		response.status(200).json(data);
 	} catch (error: unknown) {
