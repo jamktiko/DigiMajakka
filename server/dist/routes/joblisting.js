@@ -25,20 +25,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable import/extensions */
-/* eslint-disable @typescript-eslint/comma-dangle */
 const express_1 = __importDefault(require("express"));
-const profileC = __importStar(require("../controllers/profile-controller"));
+const joblistingC = __importStar(require("../controllers/joblisting-controller"));
 // eslint-disable-next-line new-cap
-const profileRouter = express_1.default.Router();
-// Route to get all profiles
-profileRouter.get('/findAll', profileC.findAll);
-// Route to get profile with specific id
-profileRouter.get('/findById/:id', profileC.findById);
-// Route to post profile
-profileRouter.post('/create', profileC.createProfile);
-// Route to update profile
-profileRouter.put('/update', profileC.updateProfile);
-// Update one column of profile
-profileRouter.put('/updateOne/:id/:column/:value', profileC.updateProfileColumn);
-module.exports = profileRouter;
+const joblistingRouter = express_1.default.Router();
+joblistingRouter.get('/findAll', joblistingC.findAll);
+exports.default = joblistingRouter;
