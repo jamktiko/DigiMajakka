@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/comma-dangle */
 import express from 'express';
-import * as profileC from '../controllers/profile-controller.js';
+import * as profileC from '../controllers/profile-controller';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 

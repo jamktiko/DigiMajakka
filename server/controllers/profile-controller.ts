@@ -1,9 +1,10 @@
+/* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/comma-dangle */
 
 import type express from 'express';
-import queryDb from '../db-connection.js';
-import profileValidator from '../models/profile-model.js';
-import errorHandler from '../error-handler.js';
+import queryDb from '../db-connection';
+import profileValidator from '../models/profile-model';
+import errorHandler from '../error-handler';
 
 // Return all profiles from database
 export const findAll = async (
@@ -96,6 +97,23 @@ export const updateProfileColumn = async (
 		response.status(200).json({
 			message: 'Updated profile succesfully',
 			update,
+		});
+	} catch (error: unknown) {
+		errorHandler(error);
+	}
+};
+
+export const deleteProfile = async (
+	_request: express.Request,
+	response: express.Response
+) => {
+	try {
+		const del = queryDb('DELETE FROM Profiili WHERE idprofiili = ?', [
+			_request.params.id,
+		]);
+		response.status(200).json({
+			message: 'Deleted profile succesfully',
+			del,
 		});
 	} catch (error: unknown) {
 		errorHandler(error);

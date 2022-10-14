@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
 /* eslint-disable operator-linebreak */
-import {validateEmail, validatePhoneNumber} from '../validation.js';
+import {validateEmail, validatePhoneNumber} from '../validation';
 
 const profileFactor = ({
 	idprofile = '',

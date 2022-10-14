@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
@@ -6,7 +7,8 @@ import cors from 'cors';
 // import createError from 'http-errors';
 // import type {ErrorRequestHandler} from 'express';
 
-import profileRouter from './routes/profile.js';
+import profileRouter from './routes/profile';
+import joblistingRouter from './routes/joblisting';
 // Usage of environment varaibles
 dotenv.config();
 
@@ -21,6 +23,7 @@ app.use(cors());
 // Take routes in use
 
 app.use('/profiles', profileRouter);
+app.use('/joblistings', joblistingRouter);
 // Error handling code created by express generator
 // TBD if we use it or our own error handler
 // app.use((request, response, next) => {
