@@ -38,7 +38,7 @@ h3 {
 .container {
   margin: 0;
   display: flex;
-  gap: 3em;
+  gap: 3%;
 }
 
 .containerlogged {
@@ -73,7 +73,7 @@ h3 {
 }
 
 .rcontent {
-  margin-right: 5em;
+  margin-right: 8%;
 }
 
 .profilebutton {
@@ -101,7 +101,7 @@ h3 {
 
 .glassbox {
   margin-top: 3em;
-  margin-left: 5em;
+  margin-left: 5%;
   max-width: 40em;
   padding: 2em;
 }
@@ -120,7 +120,7 @@ h3 {
 .loginfloat {
   position: absolute;
   top: 100px;
-  right: 80px;
+  right: 5%;
   display: flex;
   flex-direction: row;
   gap: 1em;
@@ -132,7 +132,7 @@ h3 {
 
 @media (max-width: 1463px) {
   .rcontent {
-    margin-right: 2em;
+    margin-right: 5%;
   }
 
   .resbox {
@@ -176,4 +176,10 @@ h3 {
     align-items: center; 
   }
   */
+}
+
+@media (min-width: 1530px) {
+  .container {
+    gap: 5%;
+  }
 }
