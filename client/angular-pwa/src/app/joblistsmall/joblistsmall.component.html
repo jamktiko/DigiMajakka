@@ -6,14 +6,14 @@
 
     <!-- This is still placeholder -->
     <div class="headercontainer">
-      <h2>{{job.company}}</h2>
+      <h2>{{job.yritys}}</h2>
     </div>
     <div class="info">
-      <h3>{{job.title}}</h3>
+      <h3>{{job.tyonimike}}</h3>
 
       <!-- If description is over 90 characters long, the element will get class "desc"
       that limits the description to maximum 2 rows of text. -->
-      <p [ngClass]="{'desc': job.desc.length > 90}">{{job.desc}}</p>
+      <p [ngClass]="{'desc': job.kuvaus.length > 90}">{{job.kuvaus}}</p>
     </div>
   </li>
 </ul>
