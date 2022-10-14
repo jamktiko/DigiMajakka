@@ -2,6 +2,7 @@
 
 // import {expect} from 'chai';
 import {describe} from 'mocha';
+import {expect} from 'chai';
 import request from 'supertest';
 import app from '../app';
 
@@ -29,10 +30,10 @@ describe('Profile controller test', () => {
 				idprofile: 2,
 				firstname: 'Anneli',
 				surname: 'Auvikainen',
-				phone: '050-2342343',
+				phone: '050-234-2343',
 				description: 'Olen anneli',
 				whatlookingfor: 'Jotain töitä emt.',
-				fieldOfStudy: 'En oo ihan varma',
+				fieldOfStudy: 'joku',
 				studyYear: 2,
 				publicity: true,
 				email: 'anneli@gmail.com',
@@ -43,6 +44,29 @@ describe('Profile controller test', () => {
 			.set('Accept', 'application/json')
 			.expect('Content-Type', /json/)
 			.expect(201)
-			.end(done);
+			.end((err, res) => {
+				if (err) {
+					return done;
+				}
+
+				expect(JSON.parse(res.text).profile.affectedRows).to.be.equal(
+					1
+				);
+				expect(JSON.parse(res.text).profile.insertId).to.be.equal(2);
+				return done();
+			});
+	});
+	it('Delete one profile', (done) => {
+		request(app)
+			.delete('/profiles/deleteOne/2')
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done;
+				}
+
+				expect(JSON.parse(res.text).del.affectedRows).to.be.equal(1);
+				return done();
+			});
 	});
 });

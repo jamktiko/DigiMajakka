@@ -23,4 +23,6 @@ profileRouter.put(
 	profileC.updateProfileColumn
 );
 
+profileRouter.delete('/deleteOne/:id', profileC.deleteProfile);
+
 export = profileRouter;
