@@ -52,8 +52,13 @@ const queryDb = async (query: string, parameters: any[]) => {
 			});
 		}
 	} catch (error: unknown) {
-		console.error(error);
-		throw new Error('Failed to execute query');
+		if (error instanceof Error) {
+			console.error(error);
+			throw new Error('Failed to execute query');
+		} else {
+			console.error(error);
+			throw new Error('Failed to execute query');
+		}
 	}
 };
 

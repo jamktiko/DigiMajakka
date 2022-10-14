@@ -2,7 +2,9 @@
 
 ### under dev_DB directory:
 
-Choose username and password and put they in docker-compose.yml file
+create .env file
+
+Choose username and password and put they in .env file
 
 docker-compose up -d
 
@@ -44,3 +46,7 @@ all routes running at localhost:3000 when in development environment
     idcity: number,
     picture: string,
     };
+
+## joblisting
+
+-   /joblistings/findAll - returns all joblistings
