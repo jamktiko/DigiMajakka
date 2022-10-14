@@ -6,7 +6,8 @@
 
     <!-- This is still placeholder -->
     <div class="headercontainer">
-      <h2>{{job.yritys}}</h2>
+      <h2 *ngIf="job.yritys">{{job.yritys}}</h2>
+      <h2 *ngIf="!job.yritys">{{job.etunimi}} {{job.sukunimi}}</h2>
     </div>
     <div class="info">
       <h3>{{job.tyonimike}}</h3>
