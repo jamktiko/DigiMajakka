@@ -1,13 +1,19 @@
+<div class="container">
 
-<img src="src\assets\icons\arrowleft.png" alt="vasennuoli">
-<div class="gallery-container">
-  
-  <div class="slides">
-    <div *ngFor="let profile of profiles" class="gallery-item">
-      <img src="https://via.placeholder.com/100x100.png" alt="placeholderkuva">
-      <h3>{{profile.etunimi}} {{profile.sukunimi}}</h3>
+  <!-- Placeholder icon for the left arrow. ADD FUNCTIONALITY -->
+  <img src="assets\icons\arrowleft.png" alt="vasennuoli">
+
+
+  <div class="gallery-container">
+    <div class="slides">
+      <!-- Each profile creates its own gallery-item -->
+      <div *ngFor="let profile of profiles" class="gallery-item">
+        <img src="https://via.placeholder.com/100x100.png" alt="placeholderkuva">
+        <h3>{{profile.etunimi}} {{profile.sukunimi}}</h3>
+      </div>
     </div>
   </div>
-</div>
 
-<img src="src\assets\icons\arrowright.png" alt="oikeanuoli">
+  <!-- Placeholder icon for the right arrow. ADD FUNCTIONALITY -->
+  <img src="assets\icons\arrowright.png" alt="oikeanuoli">
+</div>
