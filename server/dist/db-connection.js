@@ -86,8 +86,14 @@ const queryDb = (query, parameters) => __awaiter(void 0, void 0, void 0, functio
         }
     }
     catch (error) {
-        console.error(error);
-        throw new Error('Failed to execute query');
+        if (error instanceof Error) {
+            console.error(error);
+            throw new Error('Failed to execute query');
+        }
+        else {
+            console.error(error);
+            throw new Error('Failed to execute query');
+        }
     }
 });
 exports.default = queryDb;
