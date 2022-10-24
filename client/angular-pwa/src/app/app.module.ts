@@ -10,9 +10,10 @@ import { JoblistsmallComponent } from './joblistsmall/joblistsmall.component';
 import { ProfilecarouselComponent } from './profilecarousel/profilecarousel.component';
 import { EditContactInfoComponent } from './edit-contact-info/edit-contact-info.component';
 import {ModalComponent} from './modal/modal.component';
+import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
 
 @NgModule({
-	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ModalComponent, EditContactInfoComponent],
+	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ModalComponent, EditContactInfoComponent, EditPersonalInfoComponent],
 	imports: [BrowserModule, AppRoutingModule, HttpClientModule],
 	providers: [],
 	bootstrap: [AppComponent],
