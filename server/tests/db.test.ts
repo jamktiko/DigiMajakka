@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {describe} from 'mocha';
-import querydb from '../db-connection'; // This will be your custom import
+import querydb from '../src/db-connection'; // This will be your custom import
 
 describe('Database connection test', () => {
 	it('Testing connection', async () => {

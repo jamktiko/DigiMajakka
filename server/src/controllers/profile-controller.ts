@@ -48,12 +48,13 @@ export const createProfile = async (
 		// Function profileValidator return opbject which has validated profile and information if validation passed
 		const profile = profileValidator(_request.body);
 		if (!profile.valid) {
-			throw new Error('Profile not valid');
+			throw new Error(JSON.stringify(profile));
 		} else if (profile.valid) {
 			const insertedProfile = await queryDb(
 				'INSERT INTO Profiili (idprofiili, etunimi, sukunimi, puhelinnumero, kuvaus, mitaetsii, koulutusala, opintovuosi, julkisuus, Kayttaja_sahkoposti, Koulu_idKoulu, Paikkakunta_idPaikkakunta, kuva) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				Object.values(profile.profile)
 			);
+
 			response.status(201).json({
 				message: 'Profile created succesfully',
 				profile: insertedProfile,
@@ -108,7 +109,7 @@ export const deleteProfile = async (
 	response: express.Response
 ) => {
 	try {
-		const del = queryDb('DELETE FROM Profiili WHERE idprofiili = ?', [
+		const del = await queryDb('DELETE FROM Profiili WHERE idprofiili = ?', [
 			_request.params.id,
 		]);
 		response.status(200).json({
