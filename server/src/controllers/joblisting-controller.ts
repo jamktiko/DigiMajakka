@@ -4,6 +4,7 @@ import type express from 'express';
 import queryDb from '../db-connection';
 import errorHandler from '../error-handler';
 
+// Return all jobs from Tyoilmoitus board
 export const findAll = async (
 	_request: express.Request,
 	response: express.Response

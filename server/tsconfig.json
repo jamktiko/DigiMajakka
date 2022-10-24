@@ -105,4 +105,5 @@
     "./node_modules/",
     "./dist/"
   ],
+  "include": ["./src", "src"]
 }

@@ -4,7 +4,7 @@
 import {describe} from 'mocha';
 import {expect} from 'chai';
 import request from 'supertest';
-import app from '../app';
+import app from '../src/app';
 
 describe('Profile controller test', () => {
 	it('Return all profiles', (done) => {
