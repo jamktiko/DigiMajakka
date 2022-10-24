@@ -1,38 +1,50 @@
 <div class="backdrop">
-  <div class="formcontainer">
+  <form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
     <h2>Henkilötiedot</h2>
     <label>
       Etunimi *
-      <input type="text" class="textinput">
+      <input type="text" class="textinput" required minlength="2" maxlength="45"  name="firstname" #firstname="ngModel" ngModel>
     </label>
+
+    <p class="error" *ngIf="(firstname.errors?.['required']) && (firstname.touched)">Etunimi on pakollinen tieto</p>
+    <p class="error" *ngIf="(firstname.errors?.['minlength']) && (firstname.touched)">Etunimi ei voi olla alle kaksi merkkiä pitkä</p>
 
     <label>
       Sukunimi *
-      <input type="text" class="textinput">
+      <input type="text" class="textinput" required minlength="2" maxlength="45" name="lastname" #lastname="ngModel" ngModel>
     </label>
+
+    <p class="error" *ngIf="(lastname.errors?.['required']) && (lastname.touched)">Sukunimi on pakollinen tieto</p>
+    <p class="error" *ngIf="(lastname.errors?.['minlength']) && (lastname.touched)">Etunimi ei voi olla alle kaksi merkkiä pitkä</p>
 
     <label>
       Koulutusala *
-      <input type="text" class="textinput">
+      <input type="text" class="textinput" required name="field" #field="ngModel" ngModel>
     </label>
+
+    <p class="error" *ngIf="(field.errors?.['required']) && (field.touched)">Koulutusala on pakollinen tieto</p>
 
     <label>
       Koulun nimi *
-      <select>
+      <select required name="school" #school="ngModel" ngModel>
         <option disabled selected>Valitse</option>
         <option>JAMK</option>
         <option>XAMK</option>
       </select>
     </label>
 
+    <p class="error" *ngIf="(school.errors?.['required']) && (school.touched)">Koulu on pakollinen tieto</p>
+
     <label>
       Kaupunki *
-      <select>
+      <select required name="city" #city="ngModel" ngModel>
         <option disabled selected>Valitse</option>
         <option>Jyväskylä</option>
         <option>Perse</option>
       </select>
     </label>
+
+    <p class="error" *ngIf="(city.errors?.['required']) && (city.touched)">Kaupunki on pakollinen tieto</p>
 
     <label>
       Opintovuosi *
@@ -64,6 +76,6 @@
       <button class="greenbutton">Tallenna</button>
     </div>
 
-  </div>
+  </form>
 </div>
 
