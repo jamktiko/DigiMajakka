@@ -11,10 +11,11 @@ import { ProfilecarouselComponent } from './profilecarousel/profilecarousel.comp
 import { EditContactInfoComponent } from './edit-contact-info/edit-contact-info.component';
 import {ModalComponent} from './modal/modal.component';
 import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ModalComponent, EditContactInfoComponent, EditPersonalInfoComponent],
-	imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+	imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
