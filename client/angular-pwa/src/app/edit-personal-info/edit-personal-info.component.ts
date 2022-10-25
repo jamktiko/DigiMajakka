@@ -8,20 +8,27 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class EditPersonalInfoComponent implements OnInit {
 
+  // Declaration for form values
   firstname: string = '';
   lastname: string = '';
   field: string = '';
   school: string = '';
   city: string = '';
 
+  // declaration for FormGroup
   detailForm!: FormGroup;
+
+
+
 
 
   constructor() { }
 
+  // Valiadations for the form are inside ngOnInit()
   ngOnInit(): void {
     this.detailForm = new FormGroup({
       firstname: new FormControl(this.firstname, [
+        // Firstname is a required field, must be atleast 2 characters long and cannot be longer than 45 characters
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(45),
@@ -46,8 +53,9 @@ export class EditPersonalInfoComponent implements OnInit {
     })
   }
 
+  // Method that has the functionality for submitting the form
   onSubmit(formdata: any) {
-
+    // ADD FUNCTIONALITY
   }
 
 }
