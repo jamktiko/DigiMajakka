@@ -1,16 +1,30 @@
+<!-- Backdrop-styles come from global styles -->
 <div class="backdrop">
+  <!--Container for the form-->
   <div class="formcontainer">
     <h2>Yhteystiedot</h2>
+    
+    <!-- Text-input for email -->
     <label>
-      Sähköposti*
-      <input type="email">
+      Sähköposti *
+      <input type="email" required minlength="4" maxlength="45" name="email" #email="ngModel" ngModel>
     </label>
 
+    <!-- Error-messages for email-validation -->
+    <p class="error" *ngIf="(email.errors?.['required']) && (email.touched)">Sähköposti on pakollinen tieto</p>
+    <p class="error" *ngIf="(email.errors?.['minlength']) && (email.touched)">Sähköposti ei voi olla alle neljä merkkiä pitkä</p>
+
+    <!-- Input for phonenumber -->
     <label>
-      Puhelinnumero*
-      <input type="tel">
+      Puhelinnumero *
+      <input type="tel" required minlength="4" maxlength="15" name="phone" #phone="ngModel" ngModel>
     </label>
 
+    <!-- Error messages for phone-validation -->
+    <p class="error" *ngIf="(phone.errors?.['required']) && (phone.touched)">Puhelinnumero on pakollinen tieto</p>
+    <p class="error" *ngIf="(phone.errors?.['minlength']) && (phone.touched)">Puhelinnumero ei voi olla alle neljä merkkiä pitkä</p>
+
+    <!-- Inputs for sosial media URL:s. ADD VALIDATION? -->
     <h2>Sosiaalisen median linkit</h2>
     <label>
       LinkedIn
@@ -32,6 +46,7 @@
       <input type="text">
     </label>
 
+    <!-- Submit-button inside a div to position it correctly -->
     <div class="buttoncontainer">
       <button class="greenbutton">Tallenna</button>
     </div>
