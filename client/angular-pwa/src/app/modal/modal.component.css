@@ -52,6 +52,29 @@ h4 {
   margin-top: -200px;
 }
 
+/*Sisältö on laitettu display:none. Vaihda asetus tekstin näyttämiseksi
+samaan nappulaan mistä modal tulee näkyviin. Näkyvässä tilassa display:grid;*/
+.contactinfo {
+    display: none;
+    grid-template-columns: 100px 1fr 1fr 100px;
+    grid-template-rows: 10px 5px 40px 50px;
+    grid-template-areas: 
+      ". . . ."
+      ". name . ."
+      " . email phone ."
+      ". send close .";
+    min-width: 826px;
+    min-height: 400px;
+    max-width: 826px;
+    max-height: 400px;
+    gap: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left:-413px;
+    margin-top: -200px;
+}
+
 .item.first {
   grid-column:2;
   grid-row: 2;
@@ -79,4 +102,29 @@ h4 {
 
 .bluebutton {
   font-size: 18px;
+}
+
+.tophalf {
+  width: 826px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:40px;
+}
+
+.lowhalf {
+  width:826px;
+  margin-top: -30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  
+}
+/*Sisältö on laitettu display:none. Vaihda asetus tekstin näyttämiseksi
+samaan nappulaan mistä modal tulee näkyviin. Näkyvässä tilassa display:grid;*/
+.profileSaved {
+  display:grid;
 }
