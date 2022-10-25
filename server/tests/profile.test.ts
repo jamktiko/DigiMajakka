@@ -69,4 +69,19 @@ describe('Profile controller test', () => {
 				return done();
 			});
 	});
+
+	it('Insert new skill', (done) => {
+		request(app)
+			.post('/profiles/insertSkill/1/aws')
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done;
+				}
+
+				console.log(res.text);
+
+				return done();
+			});
+	});
 });
