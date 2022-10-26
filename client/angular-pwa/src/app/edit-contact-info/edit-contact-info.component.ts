@@ -12,6 +12,7 @@ export class EditContactInfoComponent implements OnInit {
   email: string = '';
   phone: number = 0;
   linkedin: string = '';
+  instagram: string = '';
   facebook: string = '';
   twitter: string = '';
 
@@ -33,7 +34,23 @@ export class EditContactInfoComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(15)
-      ])
+      ]),
+      linkedin: new FormControl(this.linkedin, [
+        Validators.minLength(4),
+        Validators.maxLength(200),
+      ]),
+      instagram: new FormControl(this.instagram, [
+        Validators.minLength(4),
+        Validators.maxLength(200),
+      ]),
+      facebook: new FormControl(this.facebook, [
+        Validators.minLength(4),
+        Validators.maxLength(200),
+      ]),
+      twitter: new FormControl(this.twitter, [
+        Validators.minLength(4),
+        Validators.maxLength(200),
+      ]),
     })
   }
 

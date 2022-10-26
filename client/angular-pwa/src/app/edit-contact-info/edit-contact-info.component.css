@@ -18,23 +18,42 @@ input {
   height: 33px;
   width: 365px;
   border-radius: 5px;
+  padding-left: 0.75em;
   border: 0;
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
   background-color: var(--lightblue);
 }
 
+.close-button {
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  background-color: var(--darkgray);
+  color: var(--lightblue);
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  border-radius: 6px;
+}
+
+.close-icon {
+  color: var(--lightblue);
+  height: 35px;
+  width: 35px;
+}
+
 .formcontainer {
   background-color: var(--lightblue);
-  margin: 10% auto;
+  margin: 2% auto;
   max-width: fit-content;
   padding: 35px;
   border-radius: 20px;
+  transform: translateZ(0);
 }
 
 .error {
   font-size: 0.9em;
   color: var(--error);
   margin-top: 0.2em;
+  margin-bottom: 0em;
 }
 
 .buttoncontainer {
@@ -45,4 +64,22 @@ input {
 
 .greenbutton {
   margin: 1.5em auto 0;
+}
+
+@media (max-height: 1000px) {
+  .formcontainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+  }
+
+  .buttoncontainer {
+    grid-column: 1 / span 2;
+    width: 786px;
+  }
+
+  .close-button {
+    top: 1em;
+  }
+
 }
