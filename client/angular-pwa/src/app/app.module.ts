@@ -12,17 +12,13 @@ import { EditContactInfoComponent } from './edit-contact-info/edit-contact-info.
 import {ModalComponent} from './modal/modal.component';
 import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { AddPhotoComponent } from './add-photo/add-photo.component';
-
-@NgModule({
-	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ModalComponent, EditContactInfoComponent, EditPersonalInfoComponent, AddPhotoComponent],
-=======
 import { ProfileComponent } from './profile/profile.component';
 
+
+
 @NgModule({
-	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ProfileComponent, ModalComponent, EditContactInfoComponent, EditPersonalInfoComponent],
->>>>>>> 6fb8667dc52cf383c950bbc3e31d0e080879268c
+	declarations: [AppComponent, StudentFrontpageComponent, TopbarComponent, JoblistsmallComponent, ProfilecarouselComponent, ProfileComponent, ModalComponent, EditContactInfoComponent, EditPersonalInfoComponent, AddPhotoComponent],
 	imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
 	providers: [],
 	bootstrap: [AppComponent],
