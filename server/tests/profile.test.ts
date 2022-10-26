@@ -70,6 +70,15 @@ describe('Profile controller test', () => {
 			});
 	});
 
+	it('Find profiles skills', (done) => {
+		request(app)
+			.get('/profiles/skills/1')
+			.set('Accept', 'application/json')
+			.expect('Content-Type', /json/)
+			.expect(200)
+			.end(done);
+	});
+
 	it('Insert new skill', (done) => {
 		request(app)
 			.post('/profiles/insertSkill/1/aws')
@@ -78,9 +87,7 @@ describe('Profile controller test', () => {
 				if (err) {
 					return done;
 				}
-
-				console.log(res.text);
-
+				res;
 				return done();
 			});
 	});
