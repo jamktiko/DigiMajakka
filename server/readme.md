@@ -6,6 +6,9 @@ create .env file
 
 Choose username and password and put they in .env file
 
+MARIADB_ROOT_PASSWORD=''
+MARIADB_USER=''
+
 docker-compose up -d
 
 ### Under server directory

@@ -13,6 +13,7 @@ export const findAll = async (
 ) => {
 	try {
 		const data = await queryDb('SELECT * FROM Profiili;', []);
+
 		response.status(200).json(data);
 	} catch (error: unknown) {
 		console.log(error);
@@ -48,14 +49,16 @@ export const createProfile = async (
 		// Function profileValidator return opbject which has validated profile and information if validation passed
 		const profile = profileValidator(_request.body);
 		if (!profile.valid) {
-			throw new Error('Profile not valid');
+			throw new Error(JSON.stringify(profile));
 		} else if (profile.valid) {
 			const insertedProfile = await queryDb(
 				'INSERT INTO Profiili (idprofiili, etunimi, sukunimi, puhelinnumero, kuvaus, mitaetsii, koulutusala, opintovuosi, julkisuus, Kayttaja_sahkoposti, Koulu_idKoulu, Paikkakunta_idPaikkakunta, kuva) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				Object.values(profile.profile)
 			);
+
 			response.status(201).json({
 				message: 'Profile created succesfully',
+				success: true,
 				profile: insertedProfile,
 			});
 		}
@@ -77,6 +80,7 @@ export const updateProfile = async (
 
 		response.status(200).json({
 			message: 'Updated profile succesfully',
+			success: true,
 			update,
 		});
 	} catch (error: unknown) {
@@ -96,6 +100,7 @@ export const updateProfileColumn = async (
 		);
 		response.status(200).json({
 			message: 'Updated profile succesfully',
+			success: true,
 			update,
 		});
 	} catch (error: unknown) {
@@ -108,13 +113,61 @@ export const deleteProfile = async (
 	response: express.Response
 ) => {
 	try {
-		const del = queryDb('DELETE FROM Profiili WHERE idprofiili = ?', [
+		const del = await queryDb('DELETE FROM Profiili WHERE idprofiili = ?', [
 			_request.params.id,
 		]);
 		response.status(200).json({
 			message: 'Deleted profile succesfully',
+			success: true,
 			del,
 		});
+	} catch (error: unknown) {
+		errorHandler(error);
+	}
+};
+
+export const findProfileSkills = async (
+	_request: express.Request,
+	response: express.Response
+) => {
+	try {
+		const data = queryDb(
+			'SELECT * FROM ProfiiliOsaaminen INNER JOIN Osaaminen ON taitoid=Taito_taitoid WHERE Profiili_idprofiili = ? ;',
+			[_request.params.id]
+		);
+
+		response.status(200).json(data);
+	} catch (error: unknown) {
+		errorHandler(error);
+	}
+};
+
+export const addSkill = async (
+	_request: express.Request,
+	response: express.Response
+) => {
+	try {
+		// Check if profile already have skill provided in request
+		const skillExists = await queryDb(
+			'SELECT * FROM ProfiiliOsaaminen WHERE Profiili_idprofiili = ?',
+			[_request.params.profileid]
+		);
+
+		if (Array.isArray(skillExists) && skillExists.length <= 0) {
+			// If profile doesn't have skill insert to ProfiiliOsaaminen table
+			const profileSkillInsert = await queryDb(
+				'INSERT INTO ProfiiliOsaaminen VALUES (?, (SELECT taitoid FROM Osaaminen WHERE nimi = ?))',
+				[_request.params.profileid, _request.params.skillname]
+			);
+
+			response.status(200).json({
+				profileSkillInsert,
+			});
+		} else if (skillExists) {
+			throw new Error(
+				'Profile already has skill ' + String(_request.params.skillname)
+			);
+		}
 	} catch (error: unknown) {
 		errorHandler(error);
 	}

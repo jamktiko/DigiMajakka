@@ -23,4 +23,8 @@ profileRouter.put(
 	profileC.updateProfileColumn
 );
 
+profileRouter.delete('/deleteOne/:id', profileC.deleteProfile);
+
+profileRouter.post('/insertSkill/:profileid/:skillname', profileC.addSkill);
+
 export = profileRouter;

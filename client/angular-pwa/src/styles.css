@@ -6,10 +6,21 @@
   --darkblue: #053848;
   --darkgray: #384043;
   --green: #C1BA48;
+  --error: #C30808;
 }
 
 body {
   margin: 0;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0px;
+  padding-bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 @font-face {
