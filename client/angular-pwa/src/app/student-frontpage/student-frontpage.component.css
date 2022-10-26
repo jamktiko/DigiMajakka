@@ -4,13 +4,13 @@
 }
 
 body {
-  background-image: url(src\assets\images\studentFrontpage.png);
+  background-image: url(src\assets\img\studentFrontpage.png);
   background-size: 100% 100%;
   padding-bottom: 20em;
 }
 
 .bg-change {
-  background-image: url(src\assets\images\studentFrontpage_LoggedIn.png);
+  background-image: url(src\assets\img\studentFrontpage_LoggedIn.png);
   background-size: cover;
 
 }

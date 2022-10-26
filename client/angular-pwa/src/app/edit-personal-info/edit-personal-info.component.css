@@ -14,7 +14,11 @@ label {
   font-size: 1.25em;
 }
 
-
+.error {
+  font-size: 0.9em;
+  color: var(--error);
+  margin-top: 0.2em;
+}
 
 .textinput,
 select {
