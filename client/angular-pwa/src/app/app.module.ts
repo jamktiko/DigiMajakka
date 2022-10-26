@@ -35,7 +35,7 @@ import {ProfileComponent} from './profile/profile.component';
 		FormsModule,
 		ReactiveFormsModule,
 	],
-	providers: [],
+	providers: [ProfileComponent],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

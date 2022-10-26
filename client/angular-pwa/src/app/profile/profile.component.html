@@ -18,7 +18,7 @@
 		
 	</div>
 	<div class="upperBox third">
-		<div class="editButton upright"></div>
+		<div class="editButton upright" (click)="changeVisibility()"></div>
 		<h2>Yhteystiedot</h2>
 		<p>Sähköposti <br />matti@meikäläinen.com</p>
 		<p>
@@ -93,4 +93,5 @@
 	</div>
 </div>
 
+<app-edit-contact-info *ngIf="isEditVisible"></app-edit-contact-info>
 

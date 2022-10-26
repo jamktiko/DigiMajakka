@@ -55,7 +55,7 @@ select {
 input[type="radio"] {
   width: 2em;
   height: 2em;
-  -webkit-appearance: none;
+  appearance: none;
   background-color: var(--lightblue);
   box-shadow: inset 0px 2px 4px 1px #396472;
   border-radius: 50%;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProfileEditService } from '../profile-edit.service';
 
 @Component({
   selector: 'app-edit-contact-info',
@@ -16,10 +17,28 @@ export class EditContactInfoComponent implements OnInit {
   facebook: string = '';
   twitter: string = '';
 
+  visible: boolean;
+  
+
   // Declaration for FormGroup
   detailForm!: FormGroup;
 
-  constructor() { }
+  /*
+  changeVisibility(form: string) {
+    this.editservice.editVisibility(form);
+  }
+  */
+
+  constructor(private editservice: ProfileEditService) {
+    this.visible = editservice.contactEdit;
+   }
+
+   changeVisibility() {
+    this.editservice.toggleVisibility();
+    
+  }
+
+
 
   ngOnInit(): void {
     // Validators placed inside ngOnInit()

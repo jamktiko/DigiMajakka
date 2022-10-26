@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileEditService } from '../profile-edit.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,8 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
 
+  constructor(private editservice: ProfileEditService ) { }
+
+  get isEditVisible(): boolean {
+    return this.editservice.contactEdit;
+  }
+
+  changeVisibility() {
+    this.editservice.toggleVisibility();
+  }
+  
   ngOnInit(): void {
   }
 
