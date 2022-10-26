@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProfileEditService } from '../profile-edit.service';
 
 @Component({
   selector: 'app-edit-personal-info',
@@ -15,6 +16,8 @@ export class EditPersonalInfoComponent implements OnInit {
   school: string = '';
   city: string = '';
 
+  visible: boolean;
+
   // declaration for FormGroup
   detailForm!: FormGroup;
 
@@ -22,7 +25,14 @@ export class EditPersonalInfoComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private editservice: ProfileEditService) {
+    this.visible = editservice.personalEdit;
+   }
+
+   changeVisibility() {
+    this.editservice.toggleVisibility();
+    
+  }
 
   // Valiadations for the form are inside ngOnInit()
   ngOnInit(): void {

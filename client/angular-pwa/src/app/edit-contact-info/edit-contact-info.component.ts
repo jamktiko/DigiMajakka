@@ -23,11 +23,6 @@ export class EditContactInfoComponent implements OnInit {
   // Declaration for FormGroup
   detailForm!: FormGroup;
 
-  /*
-  changeVisibility(form: string) {
-    this.editservice.editVisibility(form);
-  }
-  */
 
   constructor(private editservice: ProfileEditService) {
     this.visible = editservice.contactEdit;

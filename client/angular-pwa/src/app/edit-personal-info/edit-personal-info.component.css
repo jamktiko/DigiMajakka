@@ -14,6 +14,22 @@ label {
   font-size: 1.25em;
 }
 
+.close-button {
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  background-color: var(--darkgray);
+  color: var(--lightblue);
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  border-radius: 6px;
+}
+
+.close-icon {
+  color: var(--lightblue);
+  height: 35px;
+  width: 35px;
+}
+
 .error {
   font-size: 0.9em;
   color: var(--error);
@@ -38,6 +54,7 @@ select {
   max-width: fit-content;
   padding: 35px;
   border-radius: 20px;
+  transform: translateZ(0);
 }
 
 .buttoncontainer {
