@@ -30,7 +30,7 @@ export class EditPersonalInfoComponent implements OnInit {
    }
 
    changeVisibility() {
-    this.editservice.toggleVisibility();
+    this.editservice.togglePersonalVisibility();
     
   }
 

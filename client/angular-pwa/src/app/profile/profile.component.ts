@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   }
 
   changeVisibility() {
-    this.editservice.toggleVisibility();
+    this.editservice.toggleContactVisibility();
   }
   
   ngOnInit(): void {

@@ -15,11 +15,16 @@ export class ProfileEditService {
   constructor() { 
     this.visibilityChange.subscribe((value) => {
       this.contactEdit = value;
+      this.personalEdit = value;
     })
   }
 
-  toggleVisibility() {
+  toggleContactVisibility() {
     this.visibilityChange.next(!this.contactEdit)
+  }
+
+  togglePersonalVisibility() {
+    this.visibilityChange.next(!this.personalEdit)
   }
 
 /*
