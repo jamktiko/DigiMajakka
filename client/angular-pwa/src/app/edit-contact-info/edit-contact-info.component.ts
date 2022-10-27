@@ -33,6 +33,9 @@ export class EditContactInfoComponent implements OnInit {
     
   }
 
+  onSubmit(formdata: any) {
+
+  }
 
 
   ngOnInit(): void {

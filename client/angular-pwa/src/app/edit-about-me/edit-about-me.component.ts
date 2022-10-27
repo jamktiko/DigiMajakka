@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditAboutMeComponent implements OnInit {
 
+  maxChars = 600;
+  aboutme = '';
+  lookingfor = '';
+  chars = 0;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onSubmit(formdata: any) {
+
+  }
+
+  changeVisibility() {
+
+  }
+
+  
 }

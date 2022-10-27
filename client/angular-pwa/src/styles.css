@@ -7,6 +7,8 @@
   --darkgray: #384043;
   --green: #C1BA48;
   --error: #C30808;
+  --disabled: #BEBEBE;
+
 }
 
 body {
@@ -38,6 +40,7 @@ body {
 }
 
 .greenbutton {
+  cursor: pointer;
   position: relative;
   padding: 12px 27px;
   filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
@@ -52,6 +55,7 @@ body {
 }
 
 .graybutton {
+  cursor: pointer;
   position: relative;
   padding: 12px 27px;
   height: fit-content;
@@ -66,6 +70,7 @@ body {
 }
 
 .bluebutton {
+  cursor: pointer;
   position: relative;
   padding: 12px 27px;
   height: fit-content;
@@ -77,6 +82,14 @@ body {
   font-style: normal;
   font-size: 1.125em;
   color: var(--lightblue);
+}
+
+.greenbutton:disabled,
+.bluebutton:disabled,
+.graybutton:disabled {
+  background: var(--disabled);
+  color: var(--darkgray);
+  cursor: default;
 }
 
 .glassbox {

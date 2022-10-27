@@ -96,7 +96,7 @@
 
     <!-- Submit-button inside a div to position it correctly -->
     <div class="buttoncontainer">
-      <button type="submit" class="greenbutton">Tallenna</button>
+      <button [disabled]="!f.valid" type="submit" class="greenbutton">Tallenna</button>
     </div>
 
   </form>

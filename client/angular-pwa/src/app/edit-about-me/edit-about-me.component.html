@@ -1,1 +1,34 @@
-<p>edit-about-me works!</p>
+<!-- Backdrop-styles come from global styles -->
+<div class="backdrop">
+  <!--Container for the form-->
+  <form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+
+    <!-- Button to close the edit-window -->
+    <div class="close-button" (click)="changeVisibility()">
+      <img class="close-icon" src="assets\icons\close.svg" alt="close-button">
+    </div>
+
+
+    <h2>Tietoja minusta</h2>
+    <!-- Textarea-input for about me -->
+    <textarea placeholder="Tietoa minusta" [(ngModel)]="aboutme" [maxlength]="maxChars"></textarea>
+
+    <!-- Counter that shows the remaining amount of characters. If less than 5 chars left, styles are changed -->
+    <p [ngClass]="maxChars-aboutme.length > 5 ? 'counter' : 'counterfull'">{{maxChars - aboutme.length}} merkkiä jäljellä</p>
+    
+  
+    <h2>Millaista työtä etsin</h2>
+    <!-- Textarea-input for job description -->
+    <textarea placeholder="Millaista työtä etsin" [(ngModel)]="lookingfor" [maxlength]="maxChars"></textarea>
+
+    <!-- Counter that shows the remaining amount of characters. If less than 5 chars left, styles are changed -->
+    <p [ngClass]="maxChars-lookingfor.length > 5 ? 'counter' : 'counterfull'">{{maxChars - lookingfor.length}} merkkiä jäljellä</p>
+    
+  
+    <!-- Submit-button inside a div to position it correctly -->
+    <div class="buttoncontainer">
+      <button [disabled]="!f.valid" type="submit" class="greenbutton">Tallenna</button>
+    </div>
+
+  </form>
+</div>
