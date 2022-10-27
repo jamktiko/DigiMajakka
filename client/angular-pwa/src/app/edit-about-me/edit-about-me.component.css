@@ -14,11 +14,11 @@ label {
   font-size: 1.25em;
 }
 
-input {
-  height: 33px;
-  width: 365px;
+textarea {
   border-radius: 5px;
-  padding-left: 0.75em;
+  width: 768px;
+  height: 205px;
+  padding: 0.75em;
   border: 0;
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
   background-color: var(--lightblue);
@@ -58,30 +58,30 @@ input {
   margin-bottom: 0em;
 }
 
+.counter {
+  position: absolute;
+  margin-top: 0;
+  right: 2em;
+}
+
+.counterfull {
+  position: absolute;
+  margin-top: 0;
+  right: 2em;
+  color: var(--error);
+}
+
 .buttoncontainer {
-  width: 365px;
   display: flex;
   justify-content: center;
 }
 
 .greenbutton {
-  margin: 1.5em auto 0;
+  margin-top: 1.5em;
 }
 
-@media (max-height: 1000px) {
-  .formcontainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2em;
+@media (max-height: 830px) {
+  textarea {
+    height: 150px;
   }
-
-  .buttoncontainer {
-    grid-column: 1 / span 2;
-    width: 786px;
-  }
-
-  .close-button {
-    top: 1em;
-  }
-
 }

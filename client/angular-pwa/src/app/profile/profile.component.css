@@ -1,52 +1,52 @@
-.editRow {
-  height:0px;
-  width: 100%;
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  min-width: 1024px;
-}
-
-.editRowLower {
-  height:0px;
-  width: 100%;
-  display:grid;
-  grid-template-columns: 1fr 50px 1fr;
-  min-width: 1024px;
-}
-
-.editButton.corner {
-  justify-self: end;
-  position: relative;
-  bottom: -40px;
-  right: 65px;
-  z-index: 10;
-}
-
-.editButton.lowercorner {
-  justify-self: center;
-  position: relative;
-  z-index: 10;
-  top:20px;
-  grid-column: 2;
-}
-
 .editButton.lowercornerright {
   justify-self: end;
-  position: relative;
+  position: fixed;
   z-index: 10;
-  right: 30px;
-  top:20px;
+  top: -26px;
+  right: -26px;
+}
+
+.editButton.lowercenter {
+  justify-self: end;
+  position: absolute;
+  top: 20px;
+  right: -50px;
+  z-index: 11;
+}
+
+.editButton.upleft {
+  justify-self: end;
+  position: absolute;
+  z-index: 11;
+  top: 30px;
+  right: 65px;
+}
+
+.editButton.upcenter {
+  justify-self: end;
+  position: absolute;
+  z-index: 11;
+  top: 30px;
+  left: 315px;
+}
+
+.editButton.upright {
+  justify-self: end;
+  position: absolute;
+  z-index: 11;
+  top: 30px;
+  left: 315px;
 }
 
 
 .upperContent {
   background-color: var(--mediumblue);
   width: 100%;
-  height: 50vh;
+  height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  min-height: 350px;
   min-width: 1024px;
+  padding-left: 80px;
 }
 
 .lowerContent {
@@ -61,6 +61,7 @@
 .lowerBox {
   padding: 20px;
   min-width: 400px;
+  position:relative;
 }
 
 .lowerBox.left {
@@ -77,7 +78,8 @@
 }
 
 .profile {
-  height: 300px;
+  height: 368px;
+  width: 368px;
   border-radius: 20px;
   box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
   position: relative;
@@ -87,9 +89,12 @@
 
 }
 
+.upperBox {
+  position: relative;
+}
+
 .upperBox.first {
   display: flex;
-  
   justify-content: end;
 }
 
@@ -98,6 +103,7 @@
   padding-right: 30px;
   display:flex;
   flex-direction: column;
+  min-width:315px;
 }
 
 .upperBox.third {
@@ -137,6 +143,7 @@ h2 {
 
 h3 {
   color: var(--lightblue);
+  margin-top: 50px;
 }
 
 h5 {
