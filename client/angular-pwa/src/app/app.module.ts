@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AddPhotoComponent} from './add-photo/add-photo.component';
 import {ProfileComponent} from './profile/profile.component';
 import { EditAboutMeComponent } from './edit-about-me/edit-about-me.component';
+import { EditAttachmentsComponent } from './edit-attachments/edit-attachments.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { EditAboutMeComponent } from './edit-about-me/edit-about-me.component';
 		EditPersonalInfoComponent,
 		AddPhotoComponent,
   EditAboutMeComponent,
+  EditAttachmentsComponent,
 	],
 	imports: [
 		BrowserModule,
