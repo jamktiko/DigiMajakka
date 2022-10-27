@@ -75,9 +75,14 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
+			const values = Object.keys(_request.body);
+			if (values.length < 13) {
+				throw new Error('Update does not have all required fields');
+			}
+
 			const update = await queryDb(
-				'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja = ?_sahkoposti = ?, Koulu = ?_idKoulu = ?, Paikkakunta = ?_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
-				_request.body
+				'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja_sahkoposti = ?, Koulu_idKoulu = ?, Paikkakunta_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
+				[...values, values[0]]
 			);
 
 			response.status(200).json({
