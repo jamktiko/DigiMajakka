@@ -13,4 +13,8 @@ describe('JobService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+ // it('should get data from database', () => {
+   // expect(service.getJobs()).toContain('orja');
+ // })
 });
