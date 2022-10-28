@@ -1,33 +1,41 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ProfileEditService {
+	contactEdit: boolean = false;
+	personalEdit: boolean = false;
 
+	visibilityChange: Subject<boolean> = new Subject<boolean>();
 
-  contactEdit: boolean = false;
-  personalEdit: boolean = false;
+	constructor() {
+		this.visibilityChange.subscribe((value) => {
+			this.contactEdit = value;
+		});
+		this.visibilityChangePhoto.subscribe((value) => {
+			this.addPhotoEdit = value;
+		});
+	}
 
-  visibilityChange: Subject<boolean> = new Subject<boolean>();
+	toggleContactVisibility() {
+		this.visibilityChange.next(!this.contactEdit);
+	}
 
-  constructor() { 
-    this.visibilityChange.subscribe((value) => {
-      this.contactEdit = value;
-      this.personalEdit = value;
-    })
-  }
+	togglePersonalVisibility() {
+		this.visibilityChange.next(!this.personalEdit);
+	}
 
-  toggleContactVisibility() {
-    this.visibilityChange.next(!this.contactEdit)
-  }
+	addPhotoEdit: boolean = false;
 
-  togglePersonalVisibility() {
-    this.visibilityChange.next(!this.personalEdit)
-  }
+	visibilityChangePhoto: Subject<boolean> = new Subject<boolean>();
 
-/*
+	toggleContactVisibilityPhoto() {
+		this.visibilityChangePhoto.next(!this.addPhotoEdit);
+	}
+
+	/*
   editVisibility(form: string) {
     switch(form) {
       case 'contacts':
