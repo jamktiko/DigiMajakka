@@ -1,72 +1,165 @@
 <!-- Backdrop-styles come from global styles -->
 <div class="backdrop">
-  <!--Container for the form-->
-  <form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+	<!--Container for the form-->
+	<form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+		<!-- Button to close the edit-window -->
+		<div class="close-button" (click)="changeVisibility()">
+			<img
+				class="close-icon"
+				src="assets\icons\close.svg"
+				alt="close-button"
+			/>
+		</div>
 
-    <!-- Button to close the edit-window -->
-    <div class="close-button" (click)="changeVisibility()">
-      <img class="close-icon" src="assets\icons\close.svg" alt="close-button">
-    </div>
+		<div class="grid-item1">
+			<h2>Yhteystiedot</h2>
 
+			<!-- Text-input for email -->
+			<label>
+				Sähköposti *
+				<input
+					type="email"
+					[ngClass]="{errorinput: email.errors && email.touched}"
+					required
+					minlength="4"
+					maxlength="45"
+					name="email"
+					#email="ngModel"
+					[(ngModel)]="info.email"
+				/>
+			</label>
 
-  <div class="grid-item1">
-    <h2>Yhteystiedot</h2>
-    
-    <!-- Text-input for email -->
-    <label>
-      Sähköposti *
-      <input type="email" [ngClass]="{'errorinput': email.errors && email.touched}" required minlength="4" maxlength="45" name="email" #email="ngModel" ngModel>
-    </label>
+			<!-- Error-messages for email-validation -->
+			<p
+				class="error"
+				*ngIf="(email.errors?.['required']) && (email.touched)"
+			>
+				Sähköposti on pakollinen tieto
+			</p>
+			<p
+				class="error"
+				*ngIf="(email.errors?.['minlength']) && (email.touched)"
+			>
+				Sähköposti ei voi olla alle neljä merkkiä pitkä
+			</p>
 
-    <!-- Error-messages for email-validation -->
-    <p class="error" *ngIf="(email.errors?.['required']) && (email.touched)">Sähköposti on pakollinen tieto</p>
-    <p class="error" *ngIf="(email.errors?.['minlength']) && (email.touched)">Sähköposti ei voi olla alle neljä merkkiä pitkä</p>
+			<!-- Input for phonenumber -->
+			<label>
+				Puhelinnumero *
+				<input
+					type="tel"
+					[ngClass]="{errorinput: phone.errors && phone.touched}"
+					required
+					minlength="4"
+					maxlength="15"
+					name="phone"
+					#phone="ngModel"
+					[(ngModel)]="info.phone"
+				/>
+			</label>
 
-    <!-- Input for phonenumber -->
-    <label>
-      Puhelinnumero *
-      <input type="tel" [ngClass]="{'errorinput': phone.errors && phone.touched}" required minlength="4" maxlength="15" name="phone" #phone="ngModel" ngModel>
-    </label>
+			<!-- Error messages for phone-validation -->
+			<p
+				class="error"
+				*ngIf="(phone.errors?.['required']) && (phone.touched)"
+			>
+				Puhelinnumero on pakollinen tieto
+			</p>
+			<p
+				class="error"
+				*ngIf="(phone.errors?.['minlength']) && (phone.touched)"
+			>
+				Puhelinnumero ei voi olla alle neljä merkkiä pitkä
+			</p>
+		</div>
+		<div class="grid-item2">
+			<!-- Inputs for sosial media URL:s. ADD VALIDATION? -->
+			<h2>Sosiaalisen median linkit</h2>
+			<label>
+				LinkedIn
+				<input
+					type="text"
+					[ngClass]="{errorinput: linkedin.errors}"
+					minlength="4"
+					maxlength="200"
+					name="linkedin"
+					#linkedin="ngModel"
+					[(ngModel)]="info.linkedin"
+				/>
+			</label>
 
-    <!-- Error messages for phone-validation -->
-    <p class="error" *ngIf="(phone.errors?.['required']) && (phone.touched)">Puhelinnumero on pakollinen tieto</p>
-    <p class="error" *ngIf="(phone.errors?.['minlength']) && (phone.touched)">Puhelinnumero ei voi olla alle neljä merkkiä pitkä</p>
-  </div>
-  <div class="grid-item2">
-    <!-- Inputs for sosial media URL:s. ADD VALIDATION? -->
-    <h2>Sosiaalisen median linkit</h2>
-    <label>
-      LinkedIn
-      <input type="text" [ngClass]="{'errorinput': linkedin.errors}" minlength="4" maxlength="200" name="linkedin" #linkedin="ngModel" ngModel>
-    </label>
+			<p
+				class="error"
+				*ngIf="(linkedin.errors?.['minlength']) && (linkedin.touched)"
+			>
+				URL-osoite ei voi olla alle neljä merkkiä pitkä
+			</p>
 
-    <p class="error" *ngIf="(linkedin.errors?.['minlength']) && (linkedin.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
+			<label>
+				Instagram
+				<input
+					type="text"
+					[ngClass]="{errorinput: instagram.errors}"
+					minlength="4"
+					maxlength="200"
+					name="instagram"
+					#instagram="ngModel"
+					[(ngModel)]="info.instagram"
+				/>
+			</label>
 
-    <label>
-      Instagram
-      <input type="text" [ngClass]="{'errorinput': instagram.errors}" minlength="4" maxlength="200" name="instagram" #instagram="ngModel" ngModel>
-    </label>
+			<p
+				class="error"
+				*ngIf="(instagram.errors?.['minlength']) && (instagram.touched)"
+			>
+				URL-osoite ei voi olla alle neljä merkkiä pitkä
+			</p>
 
-    <p class="error" *ngIf="(instagram.errors?.['minlength']) && (instagram.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
+			<label>
+				Facebook
+				<input
+					type="text"
+					[ngClass]="{errorinput: facebook.errors}"
+					minlength="4"
+					maxlength="200"
+					name="facebook"
+					#facebook="ngModel"
+					[(ngModel)]="info.facebook"
+				/>
+			</label>
 
-    <label>
-      Facebook
-      <input type="text" [ngClass]="{'errorinput': facebook.errors}" minlength="4" maxlength="200" name="facebook" #facebook="ngModel" ngModel>
-    </label>
+			<p
+				class="error"
+				*ngIf="(facebook.errors?.['minlength']) && (facebook.touched)"
+			>
+				URL-osoite ei voi olla alle neljä merkkiä pitkä
+			</p>
 
-    <p class="error" *ngIf="(facebook.errors?.['minlength']) && (facebook.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
+			<label>
+				Twitter
+				<input
+					type="text"
+					[ngClass]="{errorinput: twitter.errors}"
+					minlength="4"
+					maxlength="200"
+					name="twitter"
+					#twitter="ngModel"
+					[(ngModel)]="info.twitter"
+				/>
+			</label>
 
-    <label>
-      Twitter
-      <input type="text" [ngClass]="{'errorinput': twitter.errors}" minlength="4" maxlength="200" name="twitter" #twitter="ngModel" ngModel>
-    </label>
-
-    <p class="error" *ngIf="(twitter.errors?.['minlength']) && (twitter.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
-  </div>
-    <!-- Submit-button inside a div to position it correctly -->
-    <div class="buttoncontainer">
-      <button [disabled]="!f.valid" type="submit" class="greenbutton">Tallenna</button>
-    </div>
-
-  </form>
+			<p
+				class="error"
+				*ngIf="(twitter.errors?.['minlength']) && (twitter.touched)"
+			>
+				URL-osoite ei voi olla alle neljä merkkiä pitkä
+			</p>
+		</div>
+		<!-- Submit-button inside a div to position it correctly -->
+		<div class="buttoncontainer">
+			<button [disabled]="!f.valid" type="submit" class="greenbutton">
+				Tallenna
+			</button>
+		</div>
+	</form>
 </div>

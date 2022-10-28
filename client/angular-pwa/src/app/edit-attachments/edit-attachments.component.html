@@ -1,49 +1,89 @@
 <!-- Backdrop-styles come from global styles -->
 <div class="backdrop">
-  <!--Container for the form-->
-  <form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+	<!--Container for the form-->
+	<form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+		<!-- Button to close the edit-window -->
+		<div class="close-button" (click)="changeVisibility()">
+			<img
+				class="close-icon"
+				src="assets\icons\close.svg"
+				alt="close-button"
+			/>
+		</div>
 
-    <!-- Button to close the edit-window -->
-    <div class="close-button" (click)="changeVisibility()">
-      <img class="close-icon" src="assets\icons\close.svg" alt="close-button">
-    </div>
+		<h2>Liitteet</h2>
 
+		<!-- Inputs for attachment URL:s -->
+		<label>
+			CV
+			<input
+				type="text"
+				[ngClass]="{errorinput: cv.errors}"
+				minlength="4"
+				maxlength="200"
+				name="cv"
+				#cv="ngModel"
+				[(ngModel)]="info.cv"
+			/>
+		</label>
 
-  
-    <h2>Liitteet</h2>
-    
-    <!-- Inputs for attachment URL:s -->
-    <label>
-      CV
-      <input type="text" [ngClass]="{'errorinput': cv.errors}" minlength="4" maxlength="200" name="cv" #cv="ngModel" ngModel>
-    </label>
+		<!-- Error message for cv-validation -->
+		<p class="error" *ngIf="(cv.errors?.['minlength']) && (cv.touched)">
+			URL-osoite ei voi olla alle neljä merkkiä pitkä
+		</p>
 
-    <!-- Error message for cv-validation -->
-    <p class="error" *ngIf="(cv.errors?.['minlength']) && (cv.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
+		<label>
+			Portfolio
+			<input
+				type="text"
+				[ngClass]="{errorinput: portfolio.errors}"
+				minlength="4"
+				maxlength="200"
+				name="portfolio"
+				#portfolio="ngModel"
+				[(ngModel)]="info.portfolio"
+			/>
+		</label>
 
-    <label>
-      Portfolio
-      <input type="text" [ngClass]="{'errorinput': portfolio.errors}" minlength="4" maxlength="200" name="portfolio" #portfolio="ngModel" ngModel>
-    </label>
+		<!-- Error message for portfolio-validation -->
+		<p
+			class="error"
+			*ngIf="(portfolio.errors?.['minlength']) && (portfolio.touched)"
+		>
+			URL-osoite ei voi olla alle neljä merkkiä pitkä
+		</p>
 
-    <!-- Error message for portfolio-validation -->
-    <p class="error" *ngIf="(portfolio.errors?.['minlength']) && (portfolio.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
+		<label>
+			GitHub
+			<input
+				type="text"
+				[ngClass]="{errorinput: github.errors}"
+				minlength="4"
+				maxlength="200"
+				name="github"
+				#github="ngModel"
+				[(ngModel)]="info.github"
+			/>
+		</label>
 
-    <label>
-      GitHub
-      <input type="text" [ngClass]="{'errorinput': github.errors}" minlength="4" maxlength="200" name="github" #github="ngModel" ngModel>
-    </label>
+		<!-- Error message for github-validation -->
+		<p
+			class="error"
+			*ngIf="(github.errors?.['minlength']) && (github.touched)"
+		>
+			URL-osoite ei voi olla alle neljä merkkiä pitkä
+		</p>
 
-    <!-- Error message for github-validation -->
-    <p class="error" *ngIf="(github.errors?.['minlength']) && (github.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
-
-    
-    <!-- Submit-button inside a div to position it correctly -->
-    <div class="buttoncontainer">
-      <!-- Submit-button is disabled if the validators give errors, or any form value hasn't been changed -->
-      <button [disabled]="!f.valid || f.pristine" type="submit" class="greenbutton">Tallenna</button>
-    </div>
-
-  </form>
+		<!-- Submit-button inside a div to position it correctly -->
+		<div class="buttoncontainer">
+			<!-- Submit-button is disabled if the validators give errors, or any form value hasn't been changed -->
+			<button
+				[disabled]="!f.valid || f.pristine"
+				type="submit"
+				class="greenbutton"
+			>
+				Tallenna
+			</button>
+		</div>
+	</form>
 </div>
-
