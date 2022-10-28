@@ -15,7 +15,7 @@
     <!-- Text-input for email -->
     <label>
       Sähköposti *
-      <input type="email" required minlength="4" maxlength="45" name="email" #email="ngModel" ngModel>
+      <input type="email" [ngClass]="{'errorinput': email.errors && email.touched}" required minlength="4" maxlength="45" name="email" #email="ngModel" ngModel>
     </label>
 
     <!-- Error-messages for email-validation -->
@@ -25,7 +25,7 @@
     <!-- Input for phonenumber -->
     <label>
       Puhelinnumero *
-      <input type="tel" required minlength="4" maxlength="15" name="phone" #phone="ngModel" ngModel>
+      <input type="tel" [ngClass]="{'errorinput': phone.errors && phone.touched}" required minlength="4" maxlength="15" name="phone" #phone="ngModel" ngModel>
     </label>
 
     <!-- Error messages for phone-validation -->
@@ -37,28 +37,28 @@
     <h2>Sosiaalisen median linkit</h2>
     <label>
       LinkedIn
-      <input type="text" minlength="4" maxlength="200" name="linkedin" #linkedin="ngModel" ngModel>
+      <input type="text" [ngClass]="{'errorinput': linkedin.errors}" minlength="4" maxlength="200" name="linkedin" #linkedin="ngModel" ngModel>
     </label>
 
     <p class="error" *ngIf="(linkedin.errors?.['minlength']) && (linkedin.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
 
     <label>
       Instagram
-      <input type="text" minlength="4" maxlength="200" name="instagram" #instagram="ngModel" ngModel>
+      <input type="text" [ngClass]="{'errorinput': instagram.errors}" minlength="4" maxlength="200" name="instagram" #instagram="ngModel" ngModel>
     </label>
 
     <p class="error" *ngIf="(instagram.errors?.['minlength']) && (instagram.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
 
     <label>
       Facebook
-      <input type="text" minlength="4" maxlength="200" name="facebook" #facebook="ngModel" ngModel>
+      <input type="text" [ngClass]="{'errorinput': facebook.errors}" minlength="4" maxlength="200" name="facebook" #facebook="ngModel" ngModel>
     </label>
 
     <p class="error" *ngIf="(facebook.errors?.['minlength']) && (facebook.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>
 
     <label>
       Twitter
-      <input type="text" minlength="4" maxlength="200" name="twitter" #twitter="ngModel" ngModel>
+      <input type="text" [ngClass]="{'errorinput': twitter.errors}" minlength="4" maxlength="200" name="twitter" #twitter="ngModel" ngModel>
     </label>
 
     <p class="error" *ngIf="(twitter.errors?.['minlength']) && (twitter.touched)">URL-osoite ei voi olla alle neljä merkkiä pitkä</p>

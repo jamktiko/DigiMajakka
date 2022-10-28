@@ -37,7 +37,11 @@ label {
   margin-top: 0.2em;
 }
 
-.textinput,
+.errorinput {
+  border: 2px solid var(--error);
+}
+
+input,
 select {
   box-sizing: border-box;
   padding-left: 0.75em;
@@ -47,6 +51,15 @@ select {
   border: 0;
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
   background-color: var(--lightblue);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4), inset 0 0 0 30px var(--lightblue) !important;
+  background-color: var(--lightblue);
+  color: var(--lightblue);
 }
 
 .formcontainer {
@@ -80,6 +93,7 @@ input[type="radio"] {
   transform: translateY(0.25em);
   display: grid;
   place-content: center;
+  padding-left: 0;
 }
 
 input[type="radio"]::before {

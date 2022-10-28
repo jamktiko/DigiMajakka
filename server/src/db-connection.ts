@@ -34,9 +34,11 @@ const pool: mysql.Pool = (function () {
  */
 const queryDb = async (query: string, parameters: any[]) => {
 	try {
+		// If pool haven't been created throw error
 		if (!pool) {
 			throw new Error('Cannot find pool');
 		} else if (pool) {
+			// Return promise (resolved or rejected) which has executed teh query provided in its parameters
 			return await new Promise((resolve, reject) => {
 				pool.query(
 					query,

@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable @typescript-eslint/comma-dangle */
 import express from 'express';
-import * as profileC from '../controllers/profile-controller';
+import profileC from '../controllers/profile-controller';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 
@@ -22,9 +22,13 @@ profileRouter.put(
 	'/updateOne/:id/:column/:value',
 	profileC.updateProfileColumn
 );
-
+// Deletes profile by id
 profileRouter.delete('/deleteOne/:id', profileC.deleteProfile);
 
+// Gets all skills of a profile
+profileRouter.get('/skills/:id', profileC.findProfileSkills);
+
+// Insert skill to a profile
 profileRouter.post('/insertSkill/:profileid/:skillname', profileC.addSkill);
 
 export = profileRouter;

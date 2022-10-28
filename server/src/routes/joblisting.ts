@@ -1,10 +1,11 @@
 /* eslint-disable import/extensions */
 import express from 'express';
-import * as joblistingC from '../controllers/joblisting-controller';
+import joblistingC from '../controllers/joblisting-controller';
 
 // eslint-disable-next-line new-cap
 const joblistingRouter = express.Router();
 
+// Gets all joblistings
 joblistingRouter.get('/findAll', joblistingC.findAll);
 
 export default joblistingRouter;
