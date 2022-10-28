@@ -75,7 +75,7 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
-			const values = Object.keys(_request.body);
+			const values = Object.values(_request.body);
 			if (values.length < 13) {
 				throw new Error('Update does not have all required fields');
 			}
