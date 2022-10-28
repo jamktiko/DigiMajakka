@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NgForm} from '@angular/forms';
 
-import { EditAboutMeComponent } from './edit-about-me.component';
+import {EditAboutMeComponent} from './edit-about-me.component';
 
 describe('EditAboutMeComponent', () => {
-  let component: EditAboutMeComponent;
-  let fixture: ComponentFixture<EditAboutMeComponent>;
+	let component: EditAboutMeComponent;
+	let fixture: ComponentFixture<EditAboutMeComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ EditAboutMeComponent ]
-    })
-    .compileComponents();
-  });
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			declarations: [EditAboutMeComponent],
+		}).compileComponents();
+	});
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditAboutMeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(EditAboutMeComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create', () => {
+		expect(component).toBeTruthy();
+	});
 });

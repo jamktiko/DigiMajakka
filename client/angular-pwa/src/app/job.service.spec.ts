@@ -1,20 +1,19 @@
-import { TestBed } from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {TestBed} from '@angular/core/testing';
 
-import { JobService } from './job.service';
+import {JobService} from './job.service';
 
 describe('JobService', () => {
-  let service: JobService;
+	let service: JobService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(JobService);
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			imports: [HttpClientModule],
+		});
+		service = TestBed.inject(JobService);
+	});
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
- // it('should get data from database', () => {
-   // expect(service.getJobs()).toContain('orja');
- // })
+	it('should be created', () => {
+		expect(service).toBeTruthy();
+	});
 });
