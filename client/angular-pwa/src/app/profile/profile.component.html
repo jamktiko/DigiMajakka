@@ -1,9 +1,9 @@
 <!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu 
 	upperbox first/second/third sisälle-->
-	
+
 <div class="upperContent">
 	<div class="upperBox first">
-		<div class="editButton upleft"></div>
+		<div class="editButton upleft" (click)="changePhotoVisibility()"></div>
 		<img src="https://via.placeholder.com/576x403.png" class="profile" />
 	</div>
 	<div class="upperBox second">
@@ -15,7 +15,6 @@
 			Opiskeluvuosi <br />
 			Paikkakunta
 		</p>
-		
 	</div>
 	<div class="upperBox third">
 		<div class="editButton upright" (click)="changeVisibility()"></div>
@@ -94,4 +93,4 @@
 </div>
 
 <app-edit-contact-info *ngIf="isEditVisible"></app-edit-contact-info>
-
+<app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
