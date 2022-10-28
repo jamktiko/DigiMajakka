@@ -124,7 +124,15 @@ describe('Profile controller test', () => {
 			.set('Accept', 'application/json')
 			.expect('Content-Type', /json/)
 			.expect(200)
-			.end(done);
+			.end((err, res) => {
+				if (err) {
+					return done;
+				}
+
+				expect(JSON.parse(res.text)).to.be.an('array').to.be.not.empty;
+
+				return done();
+			});
 	});
 
 	it('Insert new skill', (done) => {
