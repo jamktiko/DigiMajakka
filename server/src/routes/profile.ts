@@ -15,7 +15,7 @@ profileRouter.get('/findById/:id', profileC.findById);
 profileRouter.post('/create', profileC.createProfile);
 
 // Route to update profile
-profileRouter.put('/update', profileC.updateProfile);
+profileRouter.put('/update/:id', profileC.updateProfile);
 
 // Update one column of profile
 profileRouter.put(

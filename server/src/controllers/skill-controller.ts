@@ -10,7 +10,7 @@ export const findAll = async (
 	next: express.NextFunction
 ) => {
 	try {
-		const data = await queryDb('SELECT * FROM Osaaminen;', []);
+		const data = await queryDb('SELECT * FROM Skills;', []);
 
 		response.status(200).json(data);
 	} catch (error: unknown) {
@@ -24,10 +24,9 @@ export const findOne = async (
 	next: express.NextFunction
 ) => {
 	try {
-		const data = await queryDb(
-			'SELECT * FROM Osaaminen WHERE taitoid = ?;',
-			[_request.params.id]
-		);
+		const data = await queryDb('SELECT * FROM Skills WHERE skillid = ?;', [
+			_request.params.id,
+		]);
 
 		response.status(200).json(data);
 	} catch (error: unknown) {

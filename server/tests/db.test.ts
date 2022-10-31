@@ -16,7 +16,7 @@ describe('Database connection test', () => {
 describe('Database crud operations', () => {
 	it('SELECT query', async () => {
 		const data = await querydb(
-			'SELECT etunimi FROM Profiili WHERE idprofiili=1;',
+			'SELECT firstname FROM UserProfile WHERE userprofileid=1;',
 
 			[]
 		);
@@ -27,11 +27,11 @@ describe('Database crud operations', () => {
 		)[0];
 
 		expect(dataObject).to.not.be.empty;
-		expect(dataObject).to.have.property('etunimi').to.equal('Pekka');
+		expect(dataObject).to.have.property('firstname').to.equal('Pekka');
 	});
 	it('INSERT query', async () => {
 		const result = await querydb(
-			'INSERT INTO Kayttaja VALUES ("testi@gmail.com", true, 1);',
+			'INSERT INTO UserAccount VALUES ("testi@gmail.com", true, 1);',
 			[]
 		);
 		const resultParsed = JSON.parse(JSON.stringify(result));
@@ -41,7 +41,7 @@ describe('Database crud operations', () => {
 	});
 	it('DELETE query', async () => {
 		const result = await querydb(
-			'DELETE FROM Kayttaja WHERE sahkoposti = "testi@gmail.com";',
+			'DELETE FROM UserAccount WHERE email = "testi@gmail.com";',
 			[]
 		);
 		const resultParsed = JSON.parse(JSON.stringify(result));

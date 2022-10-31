@@ -10,7 +10,7 @@ export const findAll = async (
 	next: express.NextFunction
 ) => {
 	try {
-		const data = await queryDb('SELECT * FROM Erikoisosaaminen;', []);
+		const data = await queryDb('SELECT * FROM SpecialSkills;', []);
 
 		response.status(200).json(data);
 	} catch (error: unknown) {
@@ -26,7 +26,7 @@ export const findByCategory = async (
 ) => {
 	try {
 		const data = await queryDb(
-			'SELECT * FROM Osaaminen INNER JOIN Erikoisosaaminen ON taitoid=Osaaminen_taitoid WHERE taitoid=?;',
+			'SELECT * FROM Skills INNER JOIN SpecialSkills ON skillid=Skills_skillid WHERE skillid=?;',
 			[_request.params.id]
 		);
 		response.status(200).json(data);

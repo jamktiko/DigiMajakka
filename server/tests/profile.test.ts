@@ -74,21 +74,10 @@ describe('Profile controller test', () => {
 	});
 	it('Update profile', (done) => {
 		request(app)
-			.put('/profiles/update')
+			.put('/profiles/update/2')
 			.send({
-				idprofile: 2,
-				firstname: 'Anneli',
-				surname: 'Auvikainen',
-				phone: '050-234-2343',
-				description: 'Olen anneli',
-				whatlookingfor: 'Jotain töitä emt.',
-				fieldOfStudy: 'en tiiä vieläkään',
-				studyYear: 3,
-				publicity: true,
-				email: 'anneli@gmail.com',
-				idschool: 1,
-				idcity: 1,
-				picture: 'anneli.photo',
+				studyfield: 'en tiiä vieläkään',
+				yearofstudy: 3,
 			})
 			.set('Accept', 'application/json')
 			.expect('Content-Type', /json/)
