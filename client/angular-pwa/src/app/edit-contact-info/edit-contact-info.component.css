@@ -80,7 +80,7 @@ input:-webkit-autofill:active {
   color: var(--lightblue);
 }
 
-@media (max-height: 1000px) {
+@media (max-height: 1005px) {
   .formcontainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
