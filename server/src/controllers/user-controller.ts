@@ -16,14 +16,11 @@ const userController = {
 				_request.body.email,
 				_request.body.password
 			);
-			const dbresult = await queryDb(
-				'INSERT INTO Kayttaja VALUES (?,?,?);',
-				[
-					_request.body.email,
-					_request.body.admin,
-					_request.body.schoolid,
-				]
-			);
+			const dbresult = await queryDb('INSERT INTO User VALUES (?,?,?);', [
+				_request.body.email,
+				_request.body.admin,
+				_request.body.schoolid,
+			]);
 			if (result && dbresult) {
 				response.status(200).json({
 					message: 'Created user ' + String(result),
@@ -32,12 +29,11 @@ const userController = {
 				throw new Error('Error when creating user');
 			}
 		} catch (error: unknown) {
-			const user = await queryDb(
-				'SELECT * FROM Kayttaja WHERE sahkoposti=?',
-				[_request.body.email]
-			);
+			const user = await queryDb('SELECT * FROM User WHERE email=?', [
+				_request.body.email,
+			]);
 			if (Array.isArray(user) && user.length > 0) {
-				await queryDb('DELETE FROM Kayttaja WHERE sahkoposti=?', [
+				await queryDb('DELETE FROM User WHERE email=?', [
 					_request.body.email,
 				]);
 			}

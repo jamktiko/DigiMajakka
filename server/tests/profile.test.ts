@@ -56,6 +56,27 @@ describe('Profile controller test', () => {
 				return done();
 			});
 	});
+	it('Update profile', (done) => {
+		request(app)
+			.put('/profiles/update/2')
+			.send({
+				studyfield: 'en tiiä vieläkään',
+				yearofstudy: 3,
+			})
+			.set('Accept', 'application/json')
+			.expect('Content-Type', /json/)
+			.expect(200)
+			.end((err, res) => {
+				if (err) {
+					return done;
+				}
+
+				expect(JSON.parse(res.text).update.affectedRows).to.be.equal(1);
+
+				return done();
+			});
+	});
+
 	it('Delete one profile', (done) => {
 		request(app)
 			.delete('/profiles/deleteOne/2')

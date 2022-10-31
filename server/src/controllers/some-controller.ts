@@ -12,7 +12,7 @@ export const findByProfileId = async (
 ) => {
 	try {
 		const data = await queryDb(
-			'SELECT * FROM Somelinkit WHERE Profiili_idprofiili=?',
+			'SELECT * FROM SomeLinks WHERE UserProfile_userprofileid=?',
 			[_request.params.id]
 		);
 
