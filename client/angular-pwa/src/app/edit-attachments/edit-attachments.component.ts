@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {ProfileEditService} from '../profile-edit.service';
 
 @Component({
 	selector: 'app-edit-attachments',
@@ -7,7 +8,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 	styleUrls: ['./edit-attachments.component.css'],
 })
 export class EditAttachmentsComponent implements OnInit {
-	info = {
+	attachments = {
 		cv: '',
 		portfolio: '',
 		github: '',
@@ -15,11 +16,13 @@ export class EditAttachmentsComponent implements OnInit {
 
 	detailForm!: FormGroup;
 
-	constructor() {}
+	constructor(private editservice: ProfileEditService) {}
 
 	onSubmit(formdata: any) {}
 
-	changeVisibility() {}
+	changeVisibility() {
+		this.editservice.toggleAttachmentVisibility();
+	}
 
 	ngOnInit(): void {}
 }

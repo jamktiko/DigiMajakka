@@ -29,5 +29,29 @@ export class ProfileComponent implements OnInit {
 		this.editservice.toggleContactVisibilityPhoto();
 	}
 
+	get isPersonalEditVisible(): boolean {
+		return this.editservice.personalEdit;
+	}
+
+	changePersonalEditVisibility() {
+		this.editservice.togglePersonalVisibility();
+	}
+
+	get isAboutMeEditVisible(): boolean {
+		return this.editservice.aboutMeEdit;
+	}
+
+	changeAboutMeEditVisibility() {
+		this.editservice.toggleAboutMeVisibility();
+	}
+
+	get isAttachmentEditVisible(): boolean {
+		return this.editservice.attachmentEdit;
+	}
+
+	changeAttachmentEditVisibility() {
+		this.editservice.toggleAttachmentVisibility();
+	}
+
 	ngOnInit(): void {}
 }
