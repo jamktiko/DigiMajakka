@@ -1,3 +1,13 @@
+.editButton {
+  box-sizing: border-box;
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  width: 52px;
+  height: 52px;
+  background-color: var(--green);
+  border-radius: 6px;
+  z-index: 7;
+}
+
 .editButton.lowercornerright {
   justify-self: end;
   position: fixed;
@@ -38,6 +48,10 @@
   left: 315px;
 }
 
+.edit-icon {
+  height: 35px;
+  width: 35px;
+}
 
 .upperContent {
   background-color: var(--mediumblue);
@@ -120,13 +134,7 @@
   border-radius: 20px;
 }
 
-.editButton {
-  width: 52px;
-  height: 52px;
-  background-color: var(--green);
-  border-radius: 6px;
-  z-index: 7;
-}
+
 
 .splitStick {
   height: 90%;
