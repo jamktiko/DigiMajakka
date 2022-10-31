@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable operator-linebreak */
 
@@ -130,7 +131,7 @@ const cognitoHelper = {
 		});
 	},
 	async signOut(email: string) {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			const cognitoUser = new CognitoUser({
 				Username: email,
 				Pool: userPool,
