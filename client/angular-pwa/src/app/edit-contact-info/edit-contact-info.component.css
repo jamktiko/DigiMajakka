@@ -30,13 +30,11 @@ input {
   right: 1em;
   top: 1em;
   background-color: var(--darkgray);
-  color: var(--lightblue);
   padding: 0.53125em 0.53125em 0 0.53125em;
   border-radius: 6px;
 }
 
 .close-icon {
-  color: var(--lightblue);
   height: 35px;
   width: 35px;
 }
@@ -58,6 +56,10 @@ input {
   margin-bottom: 0em;
 }
 
+.errorinput {
+  border: 2px solid var(--error);
+}
+
 .buttoncontainer {
   width: 365px;
   display: flex;
@@ -66,6 +68,16 @@ input {
 
 .greenbutton {
   margin: 1.5em auto 0;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4), inset 0 0 0 30px var(--lightblue) !important;
+  background-color: var(--lightblue);
+  color: var(--lightblue);
 }
 
 @media (max-height: 1000px) {

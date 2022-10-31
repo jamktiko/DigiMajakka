@@ -1,13 +1,28 @@
 <!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu 
 	upperbox first/second/third sisälle-->
-	
+
 <div class="upperContent">
 	<div class="upperBox first">
-		<div class="editButton upleft"></div>
+		<div class="editButton upleft" (click)="changePhotoVisibility()">
+			<img
+				class="edit-icon"
+				src="assets\icons\edit.svg"
+				alt="edit-icon"
+			/>
+		</div>
 		<img src="https://via.placeholder.com/576x403.png" class="profile" />
 	</div>
 	<div class="upperBox second">
-		<div class="editButton upcenter"></div>
+		<div
+			class="editButton upcenter"
+			(click)="changePersonalEditVisibility()"
+		>
+			<img
+				class="edit-icon"
+				src="assets\icons\edit.svg"
+				alt="edit-icon"
+			/>
+		</div>
 		<h2>Etunimi Sukunimi</h2>
 		<p>
 			Koulutusohjelma <br />
@@ -15,10 +30,15 @@
 			Opiskeluvuosi <br />
 			Paikkakunta
 		</p>
-		
 	</div>
 	<div class="upperBox third">
-		<div class="editButton upright" (click)="changeVisibility()"></div>
+		<div class="editButton upright" (click)="changeVisibility()">
+			<img
+				class="edit-icon"
+				src="assets\icons\edit.svg"
+				alt="edit-icon"
+			/>
+		</div>
 		<h2>Yhteystiedot</h2>
 		<p>Sähköposti <br />matti@meikäläinen.com</p>
 		<p>
@@ -32,7 +52,16 @@
 <div class="lowerContent">
 	<!--Alemman tason viivan vasen puoli-->
 	<div class="lowerBox left">
-		<div class="editButton lowercenter"></div>
+		<div
+			class="editButton lowercenter"
+			(click)="changeAboutMeEditVisibility()"
+		>
+			<img
+				class="edit-icon"
+				src="assets\icons\edit.svg"
+				alt="edit-icon"
+			/>
+		</div>
 		<h3>Tietoja minusta</h3>
 		<p>Kerro jotain itsestäsi.</p>
 		<h3>Millaista työtä etsin</h3>
@@ -46,7 +75,13 @@
 		<!--Läpinäkyvälaatikko joka sisältää tagit-->
 		<div class="glassbox">
 			<h4>Osaaminen</h4>
-			<div class="editButton lowercornerright"></div>
+			<div class="editButton lowercornerright">
+				<img
+					class="edit-icon"
+					src="assets\icons\edit.svg"
+					alt="edit-icon"
+				/>
+			</div>
 			<div class="tags">
 				<div class="tag"><p>Angular</p></div>
 				<div class="tag"><p>Frontend</p></div>
@@ -71,9 +106,15 @@
 		</div>
 		<!--Lasilaatikon alla olevat nappulat-->
 		<div class="checkboxRow first">
-			<div class="bluebutton">Lataa CV</div>
-			<div class="bluebutton">Portfolio</div>
-			<div class="bluebutton">Github</div>
+			<div class="bluebutton" (click)="changeAttachmentEditVisibility()">
+				Lataa CV
+			</div>
+			<div class="bluebutton" (click)="changeAttachmentEditVisibility()">
+				Portfolio
+			</div>
+			<div class="bluebutton" (click)="changeAttachmentEditVisibility()">
+				Github
+			</div>
 		</div>
 		<!--Placeholder OK kuvat nappuloiden alle-->
 		<div class="checkboxRow second">
@@ -93,5 +134,8 @@
 	</div>
 </div>
 
+<app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
+<app-edit-personal-info *ngIf="isPersonalEditVisible"></app-edit-personal-info>
 <app-edit-contact-info *ngIf="isEditVisible"></app-edit-contact-info>
-
+<app-edit-about-me *ngIf="isAboutMeEditVisible"></app-edit-about-me>
+<app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>

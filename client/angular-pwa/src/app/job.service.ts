@@ -1,17 +1,17 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class JobService {
-  // SERVICE TO MANAGE JOB-LISTINGS FROM THE DATABASE.
+	// SERVICE TO MANAGE JOB-LISTINGS FROM THE DATABASE.
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
-  private jobsUrl = 'http://localhost:3000/joblistings/findAll';
+	private jobsUrl = 'http://localhost:3000/joblistings/findAll';
 
-  getJobs() {
-    return this.http.get(this.jobsUrl);
-  }
+	getJobs() {
+		return this.http.get(this.jobsUrl);
+	}
 }

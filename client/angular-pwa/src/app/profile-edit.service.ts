@@ -1,41 +1,57 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class ProfileEditService {
+	contactEdit: boolean = false;
+	personalEdit: boolean = false;
+	aboutMeEdit: boolean = false;
+	addPhotoEdit: boolean = false;
+	attachmentEdit: boolean = false;
 
+	visibilityChange: Subject<boolean> = new Subject<boolean>();
+	visibilityChangePersonal: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeAboutMe: Subject<boolean> = new Subject<boolean>();
+	visibilityChangePhoto: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeAttachments: Subject<boolean> = new Subject<boolean>();
 
-  contactEdit: boolean = false;
-  personalEdit: boolean = false;
+	constructor() {
+		this.visibilityChange.subscribe((value) => {
+			this.contactEdit = value;
+		});
+		this.visibilityChangePhoto.subscribe((value) => {
+			this.addPhotoEdit = value;
+		});
+		this.visibilityChangePersonal.subscribe((value) => {
+			this.personalEdit = value;
+		});
+		this.visibilityChangeAboutMe.subscribe((value) => {
+			this.aboutMeEdit = value;
+		});
+		this.visibilityChangeAttachments.subscribe((value) => {
+			this.attachmentEdit = value;
+		});
+	}
 
-  visibilityChange: Subject<boolean> = new Subject<boolean>();
+	toggleContactVisibility() {
+		this.visibilityChange.next(!this.contactEdit);
+	}
 
-  constructor() { 
-    this.visibilityChange.subscribe((value) => {
-      this.contactEdit = value;
-      this.personalEdit = value;
-    })
-  }
+	togglePersonalVisibility() {
+		this.visibilityChangePersonal.next(!this.personalEdit);
+	}
 
-  toggleContactVisibility() {
-    this.visibilityChange.next(!this.contactEdit)
-  }
+	toggleAboutMeVisibility() {
+		this.visibilityChangeAboutMe.next(!this.aboutMeEdit);
+	}
 
-  togglePersonalVisibility() {
-    this.visibilityChange.next(!this.personalEdit)
-  }
+	toggleContactVisibilityPhoto() {
+		this.visibilityChangePhoto.next(!this.addPhotoEdit);
+	}
 
-/*
-  editVisibility(form: string) {
-    switch(form) {
-      case 'contacts':
-        this.contactEdit = !this.contactEdit;
-        break;
-      case 'personal':
-        this.personalEdit = !this.personalEdit;
-    }
-  }
-  */
+	toggleAttachmentVisibility() {
+		this.visibilityChangeAttachments.next(!this.attachmentEdit);
+	}
 }

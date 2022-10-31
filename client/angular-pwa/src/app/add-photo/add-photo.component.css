@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 11;
 }
 
 .photoAddedBox {
@@ -28,6 +29,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 12;
 }
 
 .photoArea {
@@ -73,4 +75,13 @@ h2 {
 
 .greenbutton {
   margin-top:50px;
+}
+
+.backdrop {
+  position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,0.6);
 }

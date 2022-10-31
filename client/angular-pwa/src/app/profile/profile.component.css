@@ -1,3 +1,13 @@
+.editButton {
+  box-sizing: border-box;
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  width: 52px;
+  height: 52px;
+  background-color: var(--green);
+  border-radius: 6px;
+  z-index: 7;
+}
+
 .editButton.lowercornerright {
   justify-self: end;
   position: fixed;
@@ -38,10 +48,14 @@
   left: 315px;
 }
 
+.edit-icon {
+  height: 35px;
+  width: 35px;
+}
 
 .upperContent {
   background-color: var(--mediumblue);
-  width: 100%;
+  max-width: 100%;
   height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -120,12 +134,7 @@
   border-radius: 20px;
 }
 
-.editButton {
-  width: 52px;
-  height: 52px;
-  background-color: var(--green);
-  border-radius: 6px;
-}
+
 
 .splitStick {
   height: 90%;
