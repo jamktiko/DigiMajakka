@@ -1,31 +1,93 @@
-<div class="modalwindow">
-	<img class="modalbackground" src="../../assets/img/modal_taustakuva.png" />
-	<div class="glassbox">
-		<div class="contactinfo">
-			<div class="item first"><H2>Etunimi Sukunimi</H2></div>
-			<div class="item second">
-				<h3>Sähköposti</h3>
-				<p>AA1234@student.jamk.fi</p>
-			</div>
-			<div class="item third">
-				<div class="bluebutton">Lähetä sähköposti</div>
-			</div>
-			<div class="item fourth">
-				<h3>Puhelinnumero</h3>
-				<p>+358 04 123 4567</p>
-			</div>
-			<div class="item fifth">
-				<div class="greenbutton">Sulje</div>
+<div *ngIf="isNumber === 1">
+	<div class="modalwindow">
+		<img
+			class="modalbackground"
+			src="../../assets/img/modal_taustakuva.png"
+		/>
+		<div class="glassbox">
+			<div class="contactinfo">
+				<div class="item first"><H2>Etunimi Sukunimi</H2></div>
+				<div class="item second">
+					<h3>Sähköposti</h3>
+					<p>AA1234@student.jamk.fi</p>
+				</div>
+				<div class="item third">
+					<div class="bluebutton">Lähetä sähköposti</div>
+				</div>
+				<div class="item fourth">
+					<h3>Puhelinnumero</h3>
+					<p>+358 04 123 4567</p>
+				</div>
+				<div class="item fifth">
+					<div class="greenbutton">Sulje</div>
+				</div>
 			</div>
 		</div>
-		<div class="profileSaved">
-			<div class="tophalf">
-				<h2>Profiili tallennettu!</h2>
-				<h3>Onnea työnhakuun!</h3>
+	</div>
+</div>
+
+<div *ngIf="isNumber === 2">
+	<div class="modalwindow">
+		<img
+			class="modalbackground"
+			src="../../assets/img/modal_taustakuva.png"
+		/>
+		<div class="glassbox">
+			<div class="profileSaved">
+				<div class="tophalf">
+					<h2>Profiili tallennettu!</h2>
+					<h3>Onnea työnhakuun!</h3>
+				</div>
+				<div class="lowhalf">
+					<div class="bluebutton">Lähetä sähköposti</div>
+					<div class="greenbutton">Selaa työpaikkoja</div>
+				</div>
 			</div>
-			<div class="lowhalf">
-				<div class="bluebutton">Lähetä sähköposti</div>
-				<div class="greenbutton">Selaa työpaikkoja</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="isNumber === 3">
+	<div class="modalwindow">
+		<img
+			class="modalbackground"
+			src="../../assets/img/modal_taustakuva.png"
+		/>
+		<div class="glassbox">
+			<div class="oneRowContent first">
+				<h2>Muutokset tallennettu</h2>
+				<div class="greenbutton">Selvä!</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="isNumber === 4">
+	<div class="modalwindow">
+		<img
+			class="modalbackground"
+			src="../../assets/img/modal_taustakuva.png"
+		/>
+		<div class="glassbox">
+			<div class="oneRowContent second">
+				<h2>Profiilisi on poistettu!</h2>
+				<p>Voit halutessasi luoda itsellesi uuden profiilin</p>
+				<div class="greenbutton">Selvä!</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="isNumber === 5">
+	<div class="modalwindow">
+		<img
+			class="modalbackground"
+			src="../../assets/img/modal_taustakuva.png"
+		/>
+		<div class="glassbox">
+			<div class="oneRowContent third">
+				<h2>Käyttäjätilisi on poistettu!</h2>
+				<div class="greenbutton">Selvä!</div>
 			</div>
 		</div>
 	</div>
