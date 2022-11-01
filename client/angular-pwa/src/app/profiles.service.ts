@@ -9,16 +9,23 @@ import {catchError} from 'rxjs/operators';
 export class ProfilesService {
 	constructor(private http: HttpClient) {}
 
-	private profileUrl = 'http://localhost:3000/profiles/findAll';
+	private findAllUrl = 'http://localhost:3000/profiles/findAll';
+	private findByEmail = 'http://localhost:3000/profiles/findByEmail';
 
 	getProfiles() {
-		return this.http.get(this.profileUrl);
+		return this.http.get(this.findAllUrl);
 	}
 
+	getLoggedInProfile() {
+		return this.http.get(this.findByEmail);
+	}
+
+	/*
 	httpOptions = {
 		headers: new HttpHeaders({'Content-Type': 'application/json'}),
 	};
 
+	
 	// Error handler
 	private handleError<T>(operation = 'operation', result?: T) {
 		return (error: any): Observable<T> => {
@@ -31,7 +38,6 @@ export class ProfilesService {
 	}
 
 	// Method to update a profile using Http put-method.
-	/*
 	updateProfile(profile: any): Observable<any> {
 		return this.http
 			.put(
