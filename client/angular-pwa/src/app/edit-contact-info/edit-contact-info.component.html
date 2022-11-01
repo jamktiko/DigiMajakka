@@ -3,7 +3,7 @@
 	<!--Container for the form-->
 	<form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
 		<!-- Button to close the edit-window -->
-		<div class="close-button" (click)="changeVisibility()">
+		<div class="close-button" (click)="changeVisibility(info)">
 			<img
 				class="close-icon"
 				src="assets\icons\close.svg"
@@ -163,3 +163,5 @@
 		</div>
 	</form>
 </div>
+
+<app-un-saved-changes *ngIf="showUnsavedChanges"></app-un-saved-changes>
