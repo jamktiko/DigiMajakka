@@ -39,7 +39,12 @@ const createAttributeList = (email: string) => [
 	// })
 ];
 const cognitoHelper = {
-	// Function that sings new user up to cognito
+	/**
+	 * Function signs new user to cognito and database
+	 * @param email users email
+	 * @param password users password
+	 * @returns resolved promise
+	 */
 	async signUp(email: string, password: string) {
 		// Create attributelist for signup function
 		return new Promise((resolve, reject) => {
@@ -62,7 +67,12 @@ const cognitoHelper = {
 			);
 		});
 	},
-	// Function that confirms users signup with code sent to user
+	/**
+	 * Function that confirms user registration with code that cognito sent via email
+	 * @param email users email
+	 * @param code users confirmation code received via email
+	 * @returns resolved promise
+	 */
 	async confirmSignUp(email: string, code: string) {
 		// Create new instance of CognitoUser
 		return new Promise((resolve, reject) => {
@@ -81,7 +91,11 @@ const cognitoHelper = {
 			});
 		});
 	},
-	// Function to resend confiramtion code to user
+	/**
+	 * Function to resend confirmation code to user
+	 * @param email users email
+	 * @returns resolved promise
+	 */
 	async resendConfirmCode(email: string) {
 		// Create new instance of CognitoUser
 
@@ -101,6 +115,12 @@ const cognitoHelper = {
 			});
 		});
 	},
+	/**
+	 * Function to sign user in
+	 * @param email users registered email
+	 * @param password users password
+	 * @returns resolved promise
+	 */
 	async signIn(email: string, password: string) {
 		return new Promise((resolve, reject) => {
 			const cognitoUser = new CognitoUser({
@@ -114,10 +134,13 @@ const cognitoHelper = {
 			});
 
 			cognitoUser.authenticateUser(authenticationDetails, {
+				// If sign in was success check if user has confirmed their account with code
 				onSuccess(session, userConfirmationNecessary) {
 					if (userConfirmationNecessary) {
 						resolve({userConfirmationNecessary});
 					}
+
+					// In case of everything is ok send token of signed in user forward
 
 					resolve({
 						accessToken: session.getAccessToken().getJwtToken(),
@@ -130,6 +153,11 @@ const cognitoHelper = {
 			});
 		});
 	},
+	/**
+	 * Function that signs user out
+	 * @param email users email
+	 * @returns resolved promise
+	 */
 	async signOut(email: string) {
 		return new Promise((resolve) => {
 			const cognitoUser = new CognitoUser({
