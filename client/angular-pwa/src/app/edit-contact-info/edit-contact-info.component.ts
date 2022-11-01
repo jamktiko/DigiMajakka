@@ -18,20 +18,42 @@ export class EditContactInfoComponent implements OnInit {
 		twitter: '',
 	};
 
-	visible: boolean;
+	showUnsavedChanges: boolean = false;
 
 	// Declaration for FormGroup
 	detailForm!: FormGroup;
 
-	constructor(private editservice: ProfileEditService) {
-		this.visible = editservice.contactEdit;
+	reference: any;
+	hasChanges: boolean = false;
+
+	constructor(private editservice: ProfileEditService) {}
+
+	// Creates a reference of the initial form values
+	createReference(obj: any) {
+		this.reference = Object.assign({}, obj);
 	}
 
-	changeVisibility() {
-		this.editservice.toggleContactVisibility();
+	// Returns true if the user has changed the value in the form
+	isDifferent(obj: any, prop: string) {
+		return this.reference[prop] !== obj[prop];
+	}
+
+	changeVisibility(info: any) {
+		for (let prop in info) {
+			if (this.isDifferent(info, prop)) {
+				this.hasChanges = true;
+			}
+		}
+		if (!this.hasChanges) {
+			this.editservice.toggleContactVisibility();
+		} else {
+			this.showUnsavedChanges = true;
+		}
 	}
 
 	onSubmit(formdata: any) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.createReference(this.info);
+	}
 }
