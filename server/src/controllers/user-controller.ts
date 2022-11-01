@@ -5,7 +5,8 @@ import type express from 'express';
 import queryDb from '../db-connection';
 import cognitoHelper from '../cognito-helper';
 
-const userController = {
+const userC = {
+	// Funktion that signs user up to cognito and database
 	async singUp(
 		_request: express.Request,
 		response: express.Response,
@@ -16,11 +17,14 @@ const userController = {
 				_request.body.email,
 				_request.body.password
 			);
-			const dbresult = await queryDb('INSERT INTO User VALUES (?,?,?);', [
-				_request.body.email,
-				_request.body.admin,
-				_request.body.schoolid,
-			]);
+			const dbresult = await queryDb(
+				'INSERT INTO UserAccount VALUES (?,?,?);',
+				[
+					_request.body.email,
+					_request.body.admin,
+					_request.body.schoolid,
+				]
+			);
 			if (result && dbresult) {
 				response.status(200).json({
 					message: 'Created user ' + String(result),
@@ -29,11 +33,12 @@ const userController = {
 				throw new Error('Error when creating user');
 			}
 		} catch (error: unknown) {
-			const user = await queryDb('SELECT * FROM User WHERE email=?', [
-				_request.body.email,
-			]);
+			const user = await queryDb(
+				'SELECT * FROM UserAccount WHERE email=?',
+				[_request.body.email]
+			);
 			if (Array.isArray(user) && user.length > 0) {
-				await queryDb('DELETE FROM User WHERE email=?', [
+				await queryDb('DELETE FROM UserAccount WHERE email=?', [
 					_request.body.email,
 				]);
 			}
@@ -47,7 +52,7 @@ const userController = {
 		next: express.NextFunction
 	) {
 		try {
-			const result = cognitoHelper.signIn(
+			const result = await cognitoHelper.signIn(
 				_request.body.email,
 				_request.body.password
 			);
@@ -63,15 +68,46 @@ const userController = {
 		next: express.NextFunction
 	) {
 		try {
-			const result = cognitoHelper.confirmSignUp(
+			const result = await cognitoHelper.confirmSignUp(
 				_request.body.email,
-				_request.body.code
+				String(_request.body.code)
 			);
 			response.status(200).json(result);
 		} catch (error: unknown) {
 			next(error);
 		}
 	},
+	async resendConfirmCode(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			const result = await cognitoHelper.resendConfirmCode(
+				_request.body.email
+			);
+
+			response.status(200).json(result);
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
+	async signOut(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			const result = await cognitoHelper.signOut(_request.body.email);
+			console.log(result);
+
+			response.status(200).json({
+				message: 'Signed user out successfully',
+			});
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
 };
 
-export default userController;
+export default userC;

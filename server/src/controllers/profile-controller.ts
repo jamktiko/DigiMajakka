@@ -4,7 +4,7 @@
 
 import type express from 'express';
 import queryDb from '../db-connection';
-import profileValidator from '../models/profile-model';
+import {profileValidator} from '../models/profile-model';
 
 // Return all profiles from database
 const profileController = {
@@ -206,6 +206,22 @@ const profileController = {
 						String(_request.params.skillname),
 				});
 			}
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
+	// Find profile by user email
+	async findByEmail(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			const data = await queryDb(
+				'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
+				[_request.body.email]
+			);
+			response.status(200).json(data);
 		} catch (error: unknown) {
 			next(error);
 		}
