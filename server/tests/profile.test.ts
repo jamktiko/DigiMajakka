@@ -74,21 +74,10 @@ describe('Profile controller test', () => {
 	});
 	it('Update profile', (done) => {
 		request(app)
-			.put('/profiles/update')
+			.put('/profiles/update/2')
 			.send({
-				idprofile: 2,
-				firstname: 'Anneli',
-				surname: 'Auvikainen',
-				phone: '050-234-2343',
-				description: 'Olen anneli',
-				whatlookingfor: 'Jotain töitä emt.',
-				fieldOfStudy: 'en tiiä vieläkään',
-				studyYear: 3,
-				publicity: true,
-				email: 'anneli@gmail.com',
-				idschool: 1,
-				idcity: 1,
-				picture: 'anneli.photo',
+				studyfield: 'en tiiä vieläkään',
+				yearofstudy: 3,
 			})
 			.set('Accept', 'application/json')
 			.expect('Content-Type', /json/)
@@ -124,7 +113,15 @@ describe('Profile controller test', () => {
 			.set('Accept', 'application/json')
 			.expect('Content-Type', /json/)
 			.expect(200)
-			.end(done);
+			.end((err, res) => {
+				if (err) {
+					return done;
+				}
+
+				expect(JSON.parse(res.text)).to.be.an('array').to.be.not.empty;
+
+				return done();
+			});
 	});
 
 	it('Insert new skill', (done) => {

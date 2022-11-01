@@ -7,7 +7,7 @@ const joblistingC = {
 	// Return all jobs from Tyoilmoitus board
 	async findAll(_request: express.Request, response: express.Response) {
 		try {
-			const data = await queryDb('SELECT * FROM Tyoilmoitus;', []);
+			const data = await queryDb('SELECT * FROM JobAdvert;', []);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {

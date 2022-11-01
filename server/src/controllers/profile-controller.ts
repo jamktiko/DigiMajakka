@@ -4,7 +4,7 @@
 
 import type express from 'express';
 import queryDb from '../db-connection';
-import profileValidator from '../models/profile-model';
+import {profileValidator} from '../models/profile-model';
 
 // Return all profiles from database
 const profileController = {
@@ -14,7 +14,7 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
-			const data = await queryDb('SELECT * FROM Profiili;', []);
+			const data = await queryDb('SELECT * FROM UserProfile;', []);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {
@@ -30,7 +30,7 @@ const profileController = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT * FROM Profiili WHERE idprofiili = ?',
+				'SELECT * FROM UserProfile WHERE userprofileid = ?',
 				[_request.params.id]
 			);
 			response.status(200).json(data);
@@ -53,7 +53,7 @@ const profileController = {
 				throw new Error(JSON.stringify(profile));
 			} else if (profile.valid) {
 				const insertedProfile = await queryDb(
-					'INSERT INTO Profiili (idprofiili, etunimi, sukunimi, puhelinnumero, kuvaus, mitaetsii, koulutusala, opintovuosi, julkisuus, Kayttaja_sahkoposti, Koulu_idKoulu, Paikkakunta_idPaikkakunta, kuva) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+					'INSERT INTO UserProfile (userprofileid, firstname, familyname, phonenumber, description, lookingfor, studyfield, yearofstudy, public, UserAccount_email, School_schoolid, City_cityid, picturelink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 					Object.values(profile.profile)
 				);
 
@@ -76,14 +76,29 @@ const profileController = {
 	) {
 		try {
 			const values = Object.values(_request.body);
-			if (values.length < 13) {
-				throw new Error('Update does not have all required fields');
+			const keys = Object.keys(_request.body);
+			let updateString = 'UPDATE UserProfile SET ';
+
+			for (const x of keys) {
+				updateString += String(x) + ' = ?';
+
+				updateString +=
+					keys.indexOf(x) === keys.length - 1 ? ' ' : ', ';
 			}
 
-			const update = await queryDb(
-				'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja_sahkoposti = ?, Koulu_idKoulu = ?, Paikkakunta_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
-				[...values, values[0]]
-			);
+			updateString += 'WHERE userprofileid = ?;';
+			const update = await queryDb(updateString, [
+				...values,
+				Number(_request.params.id),
+			]);
+			// If (values.length < 13) {
+			// 	throw new Error('Update does not have all required fields');
+			// }
+
+			// const update = await queryDb(
+			// 	'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja_sahkoposti = ?, Koulu_idKoulu = ?, Paikkakunta_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
+			// 	[...values, values[0]]
+			// );
 
 			response.status(200).json({
 				message: 'Updated profile succesfully',
@@ -103,7 +118,7 @@ const profileController = {
 	) {
 		try {
 			const update = await queryDb(
-				'UPDATE Profiili SET ? = ? WHERE idprofiili = ?',
+				'UPDATE UserProfile SET ? = ? WHERE userprofileid = ?',
 				[
 					_request.params.column,
 					_request.params.value,
@@ -128,7 +143,7 @@ const profileController = {
 	) {
 		try {
 			const del = await queryDb(
-				'DELETE FROM Profiili WHERE idprofiili = ?',
+				'DELETE FROM UserProfile WHERE userprofileid = ?',
 				[_request.params.id]
 			);
 			response.status(200).json({
@@ -149,7 +164,7 @@ const profileController = {
 	) {
 		try {
 			const data = queryDb(
-				'SELECT * FROM ProfiiliOsaaminen INNER JOIN Erikoisosaaminen ON Erikoisosaaminen_iderikoisosaaminen=idErikoisosaaminen INNER JOIN Osaaminen ON Osaaminen_taitoid=taitoid WHERE Profiili_idprofiili = ? ;',
+				'SELECT * FROM UserProfileSkills INNER JOIN SpecialSkills ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ? ;',
 				[_request.params.id]
 			);
 
@@ -168,14 +183,14 @@ const profileController = {
 		try {
 			// Check if profile already have skill provided in request
 			const skillExists = await queryDb(
-				'SELECT * FROM ProfiiliOsaaminen WHERE Profiili_idprofiili = ?',
+				'SELECT * FROM UserProfileSkills WHERE UserProfile_userprofileid = ?',
 				[_request.params.profileid]
 			);
 
 			if (Array.isArray(skillExists) && skillExists.length <= 0) {
 				// If profile doesn't have skill insert to ProfiiliOsaaminen table
 				const profileSkillInsert = await queryDb(
-					'INSERT INTO ProfiiliOsaaminen VALUES (?, (SELECT idErikoisosaaminen FROM Erikoisosaaminen WHERE nimi = ?), (SELECT Osaaminen_taitoid FROM Erikoisosaaminen WHERE nimi = ?));',
+					'INSERT INTO UserProfileSkills VALUES (?, (SELECT specialskillid FROM SpecialSkills WHERE name = ?), (SELECT Skills_skillid FROM SpecialSkills WHERE name = ?));',
 					[
 						Number(_request.params.profileid),
 						_request.params.skillname,
@@ -185,11 +200,28 @@ const profileController = {
 
 				response.status(200).json(profileSkillInsert);
 			} else if (skillExists) {
-				throw new Error(
-					'Profile already has skill ' +
-						String(_request.params.skillname)
-				);
+				response.status(200).json({
+					message:
+						'Profile already has skill' +
+						String(_request.params.skillname),
+				});
 			}
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
+	// Find profile by user email
+	async findByEmail(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			const data = await queryDb(
+				'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
+				[_request.body.email]
+			);
+			response.status(200).json(data);
 		} catch (error: unknown) {
 			next(error);
 		}

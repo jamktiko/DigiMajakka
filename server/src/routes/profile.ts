@@ -15,7 +15,7 @@ profileRouter.get('/findById/:id', profileC.findById);
 profileRouter.post('/create', profileC.createProfile);
 
 // Route to update profile
-profileRouter.put('/update', profileC.updateProfile);
+profileRouter.put('/update/:id', profileC.updateProfile);
 
 // Update one column of profile
 profileRouter.put(
@@ -30,5 +30,7 @@ profileRouter.get('/skills/:id', profileC.findProfileSkills);
 
 // Insert skill to a profile
 profileRouter.post('/insertSkill/:profileid/:skillname', profileC.addSkill);
+
+profileRouter.get('/findByEmail', profileC.findByEmail);
 
 export = profileRouter;

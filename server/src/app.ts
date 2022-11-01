@@ -9,6 +9,7 @@ import cors from 'cors';
 
 import profileRouter from './routes/profile';
 import joblistingRouter from './routes/joblisting';
+import userRouter from './routes/users';
 // Usage of environment varaibles
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(cors());
 
 app.use('/profiles', profileRouter);
 app.use('/joblistings', joblistingRouter);
+app.use('/users', userRouter);
 // Error handling code created by express generator
 // TBD if we use it or our own error handler
 // app.use((request, response, next) => {
