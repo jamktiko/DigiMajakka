@@ -13,10 +13,7 @@ const userC = {
 		next: express.NextFunction
 	) {
 		try {
-			const result = await cognitoHelper.signUp(
-				_request.body.email,
-				_request.body.password
-			);
+			// Try to insert account information to database and save answer to dbresult
 			const dbresult = await queryDb(
 				'INSERT INTO UserAccount VALUES (?,?,?);',
 				[
@@ -25,7 +22,17 @@ const userC = {
 					_request.body.schoolid,
 				]
 			);
+			// Try to sign user to cognito and save ansewer to result
+			const result = await cognitoHelper.signUp(
+				_request.body.email,
+				_request.body.password
+			);
+
+			// Check if there are result from both cognito and database
 			if (result && dbresult) {
+				// If everything is ok send response to frontend
+				console.log('Created user ' + String(result));
+
 				response.status(200).json({
 					message: 'Created user ' + String(result),
 				});
@@ -33,6 +40,7 @@ const userC = {
 				throw new Error('Error when creating user');
 			}
 		} catch (error: unknown) {
+			// If there were error when creating user find if user was inserted to database and remove that user
 			const user = await queryDb(
 				'SELECT * FROM UserAccount WHERE email=?',
 				[_request.body.email]
@@ -46,6 +54,7 @@ const userC = {
 			next(error);
 		}
 	},
+	// Function to sign registered user in
 	async signIn(
 		_request: express.Request,
 		response: express.Response,
@@ -61,7 +70,7 @@ const userC = {
 			next(error);
 		}
 	},
-
+	// Function to confirm signup with code that cognito has send to user via email
 	async confirmSignup(
 		_request: express.Request,
 		response: express.Response,
@@ -77,6 +86,7 @@ const userC = {
 			next(error);
 		}
 	},
+	// Function to resend confirmation code
 	async resendConfirmCode(
 		_request: express.Request,
 		response: express.Response,
@@ -92,6 +102,7 @@ const userC = {
 			next(error);
 		}
 	},
+	// Function to sign user out
 	async signOut(
 		_request: express.Request,
 		response: express.Response,
