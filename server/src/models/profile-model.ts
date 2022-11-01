@@ -4,72 +4,72 @@
 import {validateEmail, validatePhoneNumber} from '../validation';
 
 const profileFactor = ({
-	idprofile = '',
+	userprofileid = '',
 	firstname = '',
-	surname = '',
-	phone = '',
+	familyname = '',
+	phonenumber = '',
 	description = '',
-	whatlookingfor = '',
-	fieldOfStudy = '',
-	studyYear = -1,
+	lookingfor = '',
+	studyfield = '',
+	yearofstudy = -1,
 	publicity = false,
 	email = '',
-	idschool = -1,
-	idcity = -1,
-	picture = '',
+	schoolid = -1,
+	cityid = -1,
+	picturelink = '',
 } = {}) => {
 	const profile = {
-		idprofile,
+		userprofileid,
 		firstname,
-		surname,
-		phone,
+		familyname,
+		phonenumber,
 		description,
-		whatlookingfor,
-		fieldOfStudy,
-		studyYear,
+		lookingfor,
+		studyfield,
+		yearofstudy,
 		publicity,
 		email,
-		idschool,
-		idcity,
-		picture,
+		schoolid,
+		cityid,
+		picturelink,
 	};
 	return profile;
 };
 
 const profileTypeChecker = (profile: Record<string, unknown>) => {
 	if (
-		typeof profile.idprofile !== 'number' ||
+		typeof profile.userprofileid !== 'number' ||
 		typeof profile.firstname !== 'string' ||
-		typeof profile.surname !== 'string' ||
-		typeof profile.phone !== 'string' ||
+		typeof profile.familyname !== 'string' ||
+		typeof profile.phonenumber !== 'string' ||
 		typeof profile.description !== 'string' ||
-		typeof profile.whatlookingfor !== 'string' ||
-		typeof profile.fieldOfStudy !== 'string' ||
-		typeof profile.studyYear !== 'number' ||
+		typeof profile.lookingfor !== 'string' ||
+		typeof profile.studyfield !== 'string' ||
+		typeof profile.yearofstudy !== 'number' ||
 		typeof profile.publicity !== 'boolean' ||
 		typeof profile.email !== 'string' ||
-		typeof profile.idschool !== 'number' ||
-		typeof profile.idcity !== 'number' ||
-		typeof profile.picture !== 'string'
+		typeof profile.schoolid !== 'number' ||
+		typeof profile.cityid !== 'number' ||
+		typeof profile.picturelink !== 'string'
 	) {
 		console.log(
 			'Object which tells if some value is not right type (shows true)'
 		);
 
 		console.log({
-			profile: typeof profile.idprofile !== 'number',
+			userprofileid: typeof profile.userprofileid !== 'number',
 			firstname: typeof profile.firstname !== 'string',
-			surname: typeof profile.surname !== 'string',
-			phone: typeof profile.phone !== 'string',
+			familyname: typeof profile.familyname !== 'string',
+			phonenumber: typeof profile.phonenumber !== 'string',
 			description: typeof profile.description !== 'string',
-			whatlookingfor: typeof profile.whatlookingfor !== 'string',
-			fieldOfstudy: typeof profile.fieldOfStudy !== 'string',
-			studyYear: typeof profile.studyYear !== 'number',
+			lookingfor: typeof profile.lookingfor !== 'string',
+			studyfield: typeof profile.studyfield !== 'string',
+			yearofstudy: typeof profile.yearofstudy !== 'number',
 			publicity: typeof profile.publicity !== 'boolean',
 			email: typeof profile.email !== 'string',
-			idschool: typeof profile.idschool !== 'number',
-			idcity: typeof profile.idcity !== 'number',
-			picture: typeof profile.picture !== 'string',
+			schoolid: typeof profile.schoolid !== 'number',
+			cityid: typeof profile.cityid !== 'number',
+			picturelink: typeof profile.picturelink !== 'string',
 		});
 
 		return false;
@@ -78,14 +78,14 @@ const profileTypeChecker = (profile: Record<string, unknown>) => {
 	return true;
 };
 
-const profileValidator = (profile: Record<string, unknown>) => {
+export const profileValidator = (profile: Record<string, unknown>) => {
 	const filteredProfile = profileFactor(profile);
 
 	const validatedProfile = profileTypeChecker(filteredProfile);
 
 	const emailValid = validateEmail(filteredProfile.email);
 
-	const phoneValid = validatePhoneNumber(filteredProfile.phone);
+	const phoneValid = validatePhoneNumber(filteredProfile.phonenumber);
 
 	if (!validatedProfile || !emailValid || !phoneValid) {
 		return {
@@ -103,4 +103,33 @@ const profileValidator = (profile: Record<string, unknown>) => {
 	};
 };
 
-export default profileValidator;
+export type Profile = {
+	userprofileid: number;
+	firstname: string;
+	familyname: string;
+	phonenumber: string;
+	description: string;
+	lookingfor: string;
+	studyfield: string;
+	publicity: boolean | number;
+	email: string;
+	schoolid: number;
+	cityid: number;
+	picturelink: string;
+};
+
+export const isProfile = (object: unknown) =>
+	typeof object === 'object' &&
+	object !== null &&
+	'userprofileid' in object &&
+	'firstname' in object &&
+	'familyname' in object &&
+	'phonenumber' in object &&
+	'description' in object &&
+	'lookingfor' in object &&
+	'studyfield' in object &&
+	'publicity' in object &&
+	'email' in object &&
+	'schoolid' in object &&
+	'cityid' in object &&
+	'picturelink' in object;
