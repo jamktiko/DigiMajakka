@@ -15,6 +15,7 @@ const profileController = {
 	) {
 		try {
 			const data = await queryDb('SELECT * FROM UserProfile;', []);
+			console.log(data);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {
@@ -33,6 +34,8 @@ const profileController = {
 				'SELECT * FROM UserProfile WHERE userprofileid = ?',
 				[_request.params.id]
 			);
+			console.log(data);
+
 			response.status(200).json(data);
 		} catch (error: unknown) {
 			next(error);
@@ -56,11 +59,11 @@ const profileController = {
 					'INSERT INTO UserProfile (userprofileid, firstname, familyname, phonenumber, description, lookingfor, studyfield, yearofstudy, public, UserAccount_email, School_schoolid, City_cityid, picturelink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 					Object.values(profile.profile)
 				);
+				console.log(insertedProfile);
 
 				response.status(201).json({
 					message: 'Profile created succesfully',
 					success: true,
-					profile: insertedProfile,
 				});
 			}
 		} catch (error: unknown) {
@@ -99,11 +102,11 @@ const profileController = {
 			// 	'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja_sahkoposti = ?, Koulu_idKoulu = ?, Paikkakunta_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
 			// 	[...values, values[0]]
 			// );
+			console.log(update);
 
 			response.status(200).json({
 				message: 'Updated profile succesfully',
 				success: true,
-				update,
 			});
 		} catch (error: unknown) {
 			next(error);
@@ -125,10 +128,11 @@ const profileController = {
 					_request.params.id,
 				]
 			);
+			console.log(update);
+
 			response.status(200).json({
 				message: 'Updated profile succesfully',
 				success: true,
-				update,
 			});
 		} catch (error: unknown) {
 			next(error);
@@ -146,10 +150,11 @@ const profileController = {
 				'DELETE FROM UserProfile WHERE userprofileid = ?',
 				[_request.params.id]
 			);
+			console.log(del);
+
 			response.status(200).json({
 				message: 'Deleted profile succesfully',
 				success: true,
-				del,
 			});
 		} catch (error: unknown) {
 			next(error);
@@ -167,6 +172,7 @@ const profileController = {
 				'SELECT * FROM UserProfileSkills INNER JOIN SpecialSkills ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ? ;',
 				[_request.params.id]
 			);
+			console.log(data);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {
@@ -197,6 +203,7 @@ const profileController = {
 						_request.params.skillname,
 					]
 				);
+				console.log(profileSkillInsert);
 
 				response.status(200).json(profileSkillInsert);
 			} else if (skillExists) {
@@ -221,6 +228,8 @@ const profileController = {
 				'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
 				[_request.body.email]
 			);
+			console.log(data);
+
 			response.status(200).json(data);
 		} catch (error: unknown) {
 			next(error);
