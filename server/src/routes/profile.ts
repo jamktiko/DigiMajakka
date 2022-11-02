@@ -50,6 +50,6 @@ profileRouter.post(
 	profileC.addSkill
 );
 
-profileRouter.get('/findByEmail', profileC.findByEmail);
+profileRouter.post('/findByEmail', profileC.findByEmail);
 
 export = profileRouter;
