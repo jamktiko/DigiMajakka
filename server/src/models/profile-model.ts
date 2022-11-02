@@ -3,8 +3,24 @@
 /* eslint-disable operator-linebreak */
 import {validateEmail, validatePhoneNumber} from '../validation';
 
+export type Profile = {
+	userprofileid: number;
+	firstname: string;
+	familyname: string;
+	phonenumber: string;
+	description: string;
+	lookingfor: string;
+	studyfield: string;
+	yearofstudy: number;
+	publicity: boolean | number;
+	email: string;
+	schoolid: number;
+	cityid: number;
+	picturelink: string;
+};
+
 const profileFactor = ({
-	userprofileid = '',
+	userprofileid = -1,
 	firstname = '',
 	familyname = '',
 	phonenumber = '',
@@ -36,7 +52,7 @@ const profileFactor = ({
 	return profile;
 };
 
-const profileTypeChecker = (profile: Record<string, unknown>) => {
+const profileTypeChecker = (profile: Profile) => {
 	if (
 		typeof profile.userprofileid !== 'number' ||
 		typeof profile.firstname !== 'string' ||
@@ -101,21 +117,6 @@ export const profileValidator = (profile: Record<string, unknown>) => {
 		profile: filteredProfile,
 		valid: true,
 	};
-};
-
-export type Profile = {
-	userprofileid: number;
-	firstname: string;
-	familyname: string;
-	phonenumber: string;
-	description: string;
-	lookingfor: string;
-	studyfield: string;
-	publicity: boolean | number;
-	email: string;
-	schoolid: number;
-	cityid: number;
-	picturelink: string;
 };
 
 export const isProfile = (object: unknown) =>

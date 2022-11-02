@@ -129,11 +129,15 @@ const userC = {
 				_request.body.email,
 				_request.body.password
 			);
+			const dbresult = queryDb('DELETE FROM UserAccount WHERE email=?', [
+				_request.body.email,
+			]);
 			console.log('User deleted from cognito successfully');
+			console.log(result);
+			console.log(dbresult);
 
 			response.status(200).json({
 				message: 'Deleted user successfully',
-				result,
 			});
 		} catch (error: unknown) {
 			next(error);
