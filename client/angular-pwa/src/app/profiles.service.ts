@@ -11,6 +11,7 @@ export class ProfilesService {
 	constructor(private http: HttpClient, private loginservice: LoginService) {}
 
 	loggedUser: any = 'orja@gmail.com';
+	profile: any = {};
 	private findAllUrl = 'http://localhost:3000/profiles/findAll';
 	private findByEmail = 'http://localhost:3000/profiles/findByEmail';
 
@@ -18,15 +19,17 @@ export class ProfilesService {
 		return this.http.get(this.findAllUrl);
 	}
 
-	getLoggedInProfile() {
-		const body = {email: this.loggedUser};
-		return this.http.post(this.findByEmail, body);
-	}
-
-	/*
 	httpOptions = {
 		headers: new HttpHeaders({'Content-Type': 'application/json'}),
 	};
+
+	getLoggedInProfile() {
+		const body = this.loggedUser;
+		return this.http.post(this.findByEmail, {email: 'orja@gmail.com'});
+	}
+
+	/*
+	
 
 	
 	// Error handler

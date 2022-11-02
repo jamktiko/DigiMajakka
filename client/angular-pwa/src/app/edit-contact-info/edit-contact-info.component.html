@@ -21,6 +21,7 @@
 					type="email"
 					[ngClass]="{errorinput: email.errors && email.touched}"
 					required
+					pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
 					minlength="4"
 					maxlength="45"
 					name="email"
@@ -30,6 +31,12 @@
 			</label>
 
 			<!-- Error-messages for email-validation -->
+			<p
+				class="error"
+				*ngIf="(email.errors?.['pattern']) && (email.touched)"
+			>
+				Sähköpostiosoite ei ole kelvollinen
+			</p>
 			<p
 				class="error"
 				*ngIf="(email.errors?.['required']) && (email.touched)"
@@ -47,11 +54,11 @@
 			<label>
 				Puhelinnumero *
 				<input
-					type="tel"
+					type="text"
 					[ngClass]="{errorinput: phone.errors && phone.touched}"
 					required
-					minlength="4"
-					maxlength="15"
+					pattern="^((04[0-9]{1})(\s?|-?)|050(\s?|-?)|0457(\s?|-?)|[+]?358(\s?|-?)50|0358(\s?|-?)50|00358(\s?|-?)50|[+]?358(\s?|-?)4[0-9]{1}|0358(\s?|-?)4[0-9]{1}|00358(\s?|-?)4[0-9]{1})(\s?|-?)(([0-9]{3,4})(\s|\-)?[0-9]{1,4})$"
+					maxlength="13"
 					name="phone"
 					#phone="ngModel"
 					[(ngModel)]="info.phone"
@@ -59,6 +66,12 @@
 			</label>
 
 			<!-- Error messages for phone-validation -->
+			<p
+				class="error"
+				*ngIf="(phone.errors?.['pattern']) && (phone.touched)"
+			>
+				Puhelinnumero ei ole kelvollinen
+			</p>
 			<p
 				class="error"
 				*ngIf="(phone.errors?.['required']) && (phone.touched)"

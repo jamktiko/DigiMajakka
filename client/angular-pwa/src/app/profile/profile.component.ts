@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
 	getLoggedInProfile(): void {
 		this.profileservice
 			.getLoggedInProfile()
-			.subscribe((loggedProfile) => (this.loggedProfile = loggedProfile));
+			.subscribe(
+				(loggedProfile: any) => (this.loggedProfile = loggedProfile)
+			);
 	}
 
 	get isEditVisible(): boolean {
