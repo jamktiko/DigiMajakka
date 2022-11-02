@@ -20,4 +20,7 @@ userRouter.post('/resend', userC.resendConfirmCode);
 // Route to sign out signed in user
 userRouter.post('/signout', userC.signOut);
 
+// Delete user
+userRouter.post('/delete', userC.deleteUser);
+
 export = userRouter;

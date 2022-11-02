@@ -119,6 +119,26 @@ const userC = {
 			next(error);
 		}
 	},
+	async deleteUser(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			const result = await cognitoHelper.deleteUser(
+				_request.body.email,
+				_request.body.password
+			);
+			console.log('User deleted from cognito successfully');
+
+			response.status(200).json({
+				message: 'Deleted user successfully',
+				result,
+			});
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
 };
 
 export default userC;
