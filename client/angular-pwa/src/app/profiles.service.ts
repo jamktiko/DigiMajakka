@@ -2,13 +2,15 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {LoginService} from './login.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ProfilesService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient, private loginservice: LoginService) {}
 
+	loggedUser: any = 'orja@gmail.com';
 	private findAllUrl = 'http://localhost:3000/profiles/findAll';
 	private findByEmail = 'http://localhost:3000/profiles/findByEmail';
 
@@ -17,7 +19,8 @@ export class ProfilesService {
 	}
 
 	getLoggedInProfile() {
-		return this.http.get(this.findByEmail);
+		const body = {email: this.loggedUser};
+		return this.http.post(this.findByEmail, body);
 	}
 
 	/*
