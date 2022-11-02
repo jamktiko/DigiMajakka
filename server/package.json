@@ -5,8 +5,9 @@
 	"main": "app.js",
 	"scripts": {
 		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
-		"devStart": "nodemon ./dist/bin/server.js",
-		"build": "tsc --build"
+		"dev": "tsc --build && nodemon ./dist/bin/server.js",
+		"build": "tsc --build",
+		"start": "node ./dist/bin/server.js"
 	},
 	"author": "Digimajakka",
 	"license": "MIT",
