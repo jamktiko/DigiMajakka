@@ -24,8 +24,12 @@ export class ProfilesService {
 	};
 
 	getLoggedInProfile() {
-		const body = this.loggedUser;
-		return this.http.post(this.findByEmail, {email: 'orja@gmail.com'});
+		const body = {email: 'orja@gmail.com'};
+		const headers = new HttpHeaders({
+			'Content-Type': 'application/json',
+		});
+		let options = {headers: headers};
+		return this.http.post(this.findByEmail, JSON.stringify(body), options);
 	}
 
 	/*
