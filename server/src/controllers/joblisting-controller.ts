@@ -8,6 +8,7 @@ const joblistingC = {
 	async findAll(_request: express.Request, response: express.Response) {
 		try {
 			const data = await queryDb('SELECT * FROM JobAdvert;', []);
+			console.log(data);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {

@@ -170,6 +170,41 @@ const cognitoHelper = {
 			});
 		});
 	},
+	async deleteUser(email: string, password: string) {
+		return new Promise((resolve, reject) => {
+			const cognitoUser = new CognitoUser({
+				Username: email,
+				Pool: userPool,
+			});
+
+			const authenticationDetails = new AuthenticationDetails({
+				Username: email,
+				Password: password,
+			});
+
+			cognitoUser.authenticateUser(authenticationDetails, {
+				// If sign in was success check if user has confirmed their account with code
+				onSuccess(_session, userConfirmationNecessary) {
+					if (userConfirmationNecessary) {
+						resolve({userConfirmationNecessary});
+					}
+
+					cognitoUser.deleteUser((error, result) => {
+						if (error) {
+							reject(error);
+						}
+
+						console.log(result);
+
+						resolve(result);
+					});
+				},
+				onFailure(error) {
+					reject(error);
+				},
+			});
+		});
+	},
 };
 
 export default cognitoHelper;
