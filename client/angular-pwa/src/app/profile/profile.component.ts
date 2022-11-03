@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {ProfileEditService} from '../profile-edit.service';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
+import {Profile} from '../profile';
 
 @Component({
 	selector: 'app-profile',
@@ -15,18 +16,41 @@ export class ProfileComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
-	loggedProfile: any = [{}];
+	loggedProfile!: Profile[];
+	skills: any = [];
 
 	ngOnInit(): void {
 		this.getLoggedInProfile();
+		this.getLoggedProfileSkills();
+	}
+
+	getLoggedProfileSkills(): void {
+		this.profileservice.getProfileSkills(3).subscribe((skills) => {
+			this.skills = skills;
+		});
 	}
 
 	getLoggedInProfile(): void {
-		this.profileservice.getLoggedInProfile();
-		this.loggedProfile = this.profileservice.loggedProfile;
-		console.log(this.loggedProfile);
-		// KOKEILE HAKEA TÄMÄN TULOKSEN PROFIILI-ID:N PERUSTEELLA OIKEA PROFIILI KÄYTTÄEN FINDBYID???
+		this.profileservice.getLoggedInProfile().subscribe((profile) => {
+			this.loggedProfile = profile;
+			console.log(this.loggedProfile);
+		});
 	}
+
+	// getLoggedInProfile(): void {
+	// 	this.profileservice.getLoggedInProfile();
+	// 	setTimeout(() => {
+	// 		this.loggedProfile = this.profileservice.loggedProfile;
+	// 		 this.loggedProfile.forEach(
+	// 		 	(item: {[s: string]: unknown} | ArrayLike<unknown>) => {
+	// 		 		for (const [key, value] of Object.entries(item)) {
+	// 		 			console.log(key, value);
+	// 		 		}
+	// 		 	}
+	// 		 );
+	// 		console.log(this.loggedProfile);
+	// 	}, 3000);
+	// }
 
 	get isEditVisible(): boolean {
 		return this.editservice.contactEdit;

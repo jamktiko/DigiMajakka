@@ -23,12 +23,30 @@
 				alt="edit-icon"
 			/>
 		</div>
-		<h2>{{ loggedProfile.firstname }} Sukunimi</h2>
-		<p>
-			Koulutusohjelma <br />
-			Koulun nimi <br />
-			Opiskeluvuosi <br />
-			Paikkakunta
+		<h2 *ngIf="loggedProfile">
+			{{ loggedProfile[0].firstname }} {{ loggedProfile[0].familyname }}
+		</h2>
+		<p class="listtext">{{ loggedProfile[0].studyfield }}</p>
+		<!--LISÄÄ KOULUHAKU-->
+		<p class="listtext">
+			{{ loggedProfile[0].School_schoolid }} LISÄÄ KOULUNHAKU
+			TIETOKANNASTA
+		</p>
+		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 1">
+			{{ loggedProfile[0].yearofstudy }}:sen vuoden opiskelija
+		</p>
+		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 2">
+			{{ loggedProfile[0].yearofstudy }}:sen vuoden opiskelija
+		</p>
+		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 3">
+			{{ loggedProfile[0].yearofstudy }}:nnen vuoden opiskelija
+		</p>
+		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy >= 4">
+			4:nnen (tai enemmän) vuoden opiskelija
+		</p>
+		<p class="listtext">
+			{{ loggedProfile[0].City_cityid }} LISÄÄ KAUPUNGIN HAKU
+			TIETOKANNASTA
 		</p>
 	</div>
 	<div class="upperBox third">
@@ -40,10 +58,10 @@
 			/>
 		</div>
 		<h2>Yhteystiedot</h2>
-		<p>Sähköposti <br />matti@meikäläinen.com</p>
+		<p>Sähköposti: <br />{{ loggedProfile[0].UserAccount_email }}</p>
 		<p>
-			Puhelinnumero <br />
-			+358 40 123 4567
+			Puhelinnumero: <br />
+			{{ loggedProfile[0].phonenumber }}
 		</p>
 		<div class="socials"></div>
 	</div>
@@ -63,9 +81,9 @@
 			/>
 		</div>
 		<h3>Tietoja minusta</h3>
-		<p>Kerro jotain itsestäsi.</p>
+		<p>{{ loggedProfile[0].aboutme }}</p>
 		<h3>Millaista työtä etsin</h3>
-		<p>Kerro, millaista työtä haluaisit tehdä.</p>
+		<p>{{ loggedProfile[0].lookingfor }}</p>
 	</div>
 	<div class="lowerMid">
 		<div class="splitStick"></div>
@@ -82,7 +100,10 @@
 					alt="edit-icon"
 				/>
 			</div>
-			<div class="tags">
+			<div class="tags" *ngFor="let skill of skills">
+				<div class="tag">
+					<p>{{ skills[0].name }}</p>
+				</div>
 				<div class="tag"><p>Angular</p></div>
 				<div class="tag"><p>Frontend</p></div>
 				<div class="tag"><p>Valokuvaus</p></div>
@@ -105,30 +126,49 @@
 			<div class="graybutton">Näytä kaikki</div>
 		</div>
 		<!--Lasilaatikon alla olevat nappulat-->
-		<div class="checkboxRow first">
-			<div class="bluebutton" (click)="changeAttachmentEditVisibility()">
-				Lataa CV
+		<div class="checkboxRow">
+			<!-- ADD *ngIf TO CHECKMARKS -->
+			<div class="btnwithcheckmark">
+				<div
+					class="bluebutton"
+					(click)="changeAttachmentEditVisibility()"
+				>
+					Lataa CV
+				</div>
+				<img
+					class="checkmark-icon"
+					src="assets\icons\checkmark.svg"
+					alt="checkmark-icon"
+				/>
 			</div>
-			<div class="bluebutton" (click)="changeAttachmentEditVisibility()">
-				Portfolio
+			<div class="btnwithcheckmark">
+				<div
+					class="bluebutton"
+					(click)="changeAttachmentEditVisibility()"
+				>
+					Portfolio
+				</div>
+				<img
+					class="checkmark-icon"
+					src="assets\icons\checkmark.svg"
+					alt="checkmark-icon"
+				/>
 			</div>
-			<div class="bluebutton" (click)="changeAttachmentEditVisibility()">
-				Github
+			<div class="btnwithcheckmark">
+				<div
+					class="bluebutton"
+					(click)="changeAttachmentEditVisibility()"
+				>
+					GitHub
+				</div>
+				<img
+					class="checkmark-icon"
+					src="assets\icons\checkmark.svg"
+					alt="checkmark-icon"
+				/>
 			</div>
 		</div>
-		<!--Placeholder OK kuvat nappuloiden alle-->
-		<div class="checkboxRow second">
-			<img
-				class="checkmark-icon"
-				src="assets\icons\checkmark.svg"
-				alt="checkmark-icon"
-			/>
-			<img
-				class="checkmark-icon"
-				src="assets\icons\checkmark.svg"
-				alt="checkmark-icon"
-			/>
-		</div>
+
 		<!--Alimmat jutut-->
 		<div class="contentfooter">
 			<div class="leftflex">
