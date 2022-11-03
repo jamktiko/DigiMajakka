@@ -168,7 +168,7 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
-			const data = queryDb(
+			const data = await queryDb(
 				'SELECT * FROM UserProfileSkills INNER JOIN SpecialSkills ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ? ;',
 				[_request.params.id]
 			);
