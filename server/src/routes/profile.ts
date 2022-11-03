@@ -14,7 +14,7 @@ profileRouter.get('/findAll', profileC.findAll);
 profileRouter.get('/findById/:id', profileC.findById);
 
 // Route to post profile
-profileRouter.post('/create', authHandler, userCheck, profileC.createProfile);
+// profileRouter.post('/create', authHandler, userCheck, profileC.createProfile);
 
 // Route to update profile
 profileRouter.put(
