@@ -17,21 +17,21 @@ export type Profile = {
 	schoolid: number;
 	cityid: number;
 	picturelink: string;
-};
+} & Record<string, unknown>;
 
 const profileFactor = ({
 	userprofileid = -1,
-	firstname = '',
-	familyname = '',
-	phonenumber = '',
-	description = '',
-	lookingfor = '',
-	studyfield = '',
-	yearofstudy = -1,
+	firstname = 'Etunimi',
+	familyname = 'Sukunimi',
+	phonenumber = 'Puhelinnumero',
+	description = 'Kuvaus',
+	lookingfor = 'Mitä etsit',
+	studyfield = 'Koulutusala',
+	yearofstudy = 0,
 	publicity = false,
 	email = '',
-	schoolid = -1,
-	cityid = -1,
+	schoolid = 0,
+	cityid = 0,
 	picturelink = '',
 } = {}) => {
 	const profile = {

@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable @typescript-eslint/indent */
+
 import process from 'node:process';
 // Import mysql library
 import mysql from 'mysql';
@@ -39,28 +40,24 @@ const queryDb = async (query: string, parameters: any[]) => {
 			throw new Error('Cannot find pool');
 		} else if (pool) {
 			// Return promise (resolved or rejected) which has executed teh query provided in its parameters
-			return await new Promise((resolve, reject) => {
-				pool.query(
-					query,
-					parameters,
-					(error: unknown, result: Record<string, unknown>) => {
-						if (error) {
-							reject(error);
-						} else {
-							resolve(result);
-						}
+			return await new Promise<
+				[Record<string, unknown>] | Record<string, unknown>
+			>((resolve, reject) => {
+				pool.query(query, parameters, (error: unknown, result) => {
+					if (error) {
+						reject(error);
+						throw new Error('Failed to execute query');
+					} else {
+						resolve(result);
 					}
-				);
+				});
 			});
 		}
+
+		throw new Error('error when trying to query database');
 	} catch (error: unknown) {
-		if (error instanceof Error) {
-			console.error(error);
-			throw new Error('Failed to execute query');
-		} else {
-			console.error(error);
-			throw new Error('Failed to execute query');
-		}
+		console.error(error);
+		throw error;
 	}
 };
 

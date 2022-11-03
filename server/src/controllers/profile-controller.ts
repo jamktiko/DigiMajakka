@@ -5,6 +5,7 @@
 import type express from 'express';
 import queryDb from '../db-connection';
 import {profileValidator} from '../models/profile-model';
+import * as validation from '../validation';
 
 // Return all profiles from database
 const profileController = {
@@ -78,6 +79,22 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
+			// Check if phone number is in valid format
+			if (
+				_request.body.phonenumber &&
+				!validation.validatePhoneNumber(_request.body.phonenumber)
+			) {
+				throw new Error('Phone number is not valid');
+			}
+
+			// Check if email is in valid format
+			if (
+				_request.body.email &&
+				!validation.validateEmail(_request.body.email)
+			) {
+				throw new Error('Email is not valid');
+			}
+
 			const values = Object.values(_request.body);
 			const keys = Object.keys(_request.body);
 			let updateString = 'UPDATE UserProfile SET ';
@@ -168,7 +185,7 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
-			const data = queryDb(
+			const data = await queryDb(
 				'SELECT * FROM UserProfileSkills INNER JOIN SpecialSkills ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ? ;',
 				[_request.params.id]
 			);
@@ -224,6 +241,8 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
+			console.log(_request.body);
+
 			const data = await queryDb(
 				'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
 				[_request.body.email]
