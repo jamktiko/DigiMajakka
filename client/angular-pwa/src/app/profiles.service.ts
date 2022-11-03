@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {LoginService} from './login.service';
 
 @Injectable({
@@ -10,8 +9,8 @@ import {LoginService} from './login.service';
 export class ProfilesService {
 	constructor(private http: HttpClient, private loginservice: LoginService) {}
 
+	loggedProfile = {};
 	loggedUser: any = 'orja@gmail.com';
-	profile: any = {};
 	private findAllUrl = 'http://localhost:3000/profiles/findAll';
 	private findByEmail = 'http://localhost:3000/profiles/findByEmail';
 
@@ -24,12 +23,14 @@ export class ProfilesService {
 	};
 
 	getLoggedInProfile() {
-		const body = {email: 'orja@gmail.com'};
-		const headers = new HttpHeaders({
-			'Content-Type': 'application/json',
-		});
-		let options = {headers: headers};
-		return this.http.post(this.findByEmail, JSON.stringify(body), options);
+		const body = {email: this.loggedUser};
+		return this.http
+			.post<any>(this.findByEmail, JSON.stringify(body), this.httpOptions)
+			.toPromise()
+			.then((data) => {
+				this.loggedProfile = data;
+				console.log(this.loggedProfile);
+			});
 	}
 
 	/*

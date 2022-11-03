@@ -15,14 +15,17 @@ export class ProfileComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
-	loggedProfile: any = {};
+	loggedProfile: any = [{}];
+
+	ngOnInit(): void {
+		this.getLoggedInProfile();
+	}
 
 	getLoggedInProfile(): void {
-		this.profileservice
-			.getLoggedInProfile()
-			.subscribe(
-				(loggedProfile: any) => (this.loggedProfile = loggedProfile)
-			);
+		this.profileservice.getLoggedInProfile();
+		this.loggedProfile = this.profileservice.loggedProfile;
+		console.log(this.loggedProfile);
+		// KOKEILE HAKEA TÄMÄN TULOKSEN PROFIILI-ID:N PERUSTEELLA OIKEA PROFIILI KÄYTTÄEN FINDBYID???
 	}
 
 	get isEditVisible(): boolean {
@@ -63,10 +66,5 @@ export class ProfileComponent implements OnInit {
 
 	changeAttachmentEditVisibility() {
 		this.editservice.toggleAttachmentVisibility();
-	}
-
-	ngOnInit(): void {
-		this.getLoggedInProfile();
-		console.log(this.loggedProfile);
 	}
 }

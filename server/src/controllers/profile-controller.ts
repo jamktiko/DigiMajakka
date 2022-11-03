@@ -224,6 +224,7 @@ const profileController = {
 		next: express.NextFunction
 	) {
 		try {
+			console.log(_request.body);
 			const data = await queryDb(
 				'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
 				[_request.body.email]
