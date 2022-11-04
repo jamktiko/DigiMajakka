@@ -44,33 +44,33 @@ const profileController = {
 	},
 
 	// Insert profile into database
-	async createProfile(
-		_request: express.Request,
-		response: express.Response,
-		next: express.NextFunction
-	) {
-		try {
-			// Profile needs to be validated before inserting it into databse
-			// Function profileValidator return opbject which has validated profile and information if validation passed
-			const profile = profileValidator(_request.body);
-			if (!profile.valid) {
-				throw new Error(JSON.stringify(profile));
-			} else if (profile.valid) {
-				const insertedProfile = await queryDb(
-					'INSERT INTO UserProfile (userprofileid, firstname, familyname, phonenumber, aboutme, lookingfor, studyfield, yearofstudy, public, UserAccount_email, School_schoolid, City_cityid, picturelink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-					Object.values(profile.profile)
-				);
-				console.log(insertedProfile);
+	// async createProfile(
+	// 	_request: express.Request,
+	// 	response: express.Response,
+	// 	next: express.NextFunction
+	// ) {
+	// 	try {
+	// 		// Profile needs to be validated before inserting it into databse
+	// 		// Function profileValidator return opbject which has validated profile and information if validation passed
+	// 		const profile = profileValidator(_request.body);
+	// 		if (!profile.valid) {
+	// 			throw new Error(JSON.stringify(profile));
+	// 		} else if (profile.valid) {
+	// 			const insertedProfile = await queryDb(
+	// 				'INSERT INTO UserProfile (userprofileid, firstname, familyname, phonenumber, aboutme, lookingfor, studyfield, yearofstudy, public, UserAccount_email, School_schoolid, City_cityid, picturelink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+	// 				Object.values(profile.profile)
+	// 			);
+	// 			console.log(insertedProfile);
 
-				response.status(201).json({
-					message: 'Profile created succesfully',
-					success: true,
-				});
-			}
-		} catch (error: unknown) {
-			next(error);
-		}
-	},
+	// 			response.status(201).json({
+	// 				message: 'Profile created succesfully',
+	// 				success: true,
+	// 			});
+	// 		}
+	// 	} catch (error: unknown) {
+	// 		next(error);
+	// 	}
+	// },
 
 	// Updates all fields of profile. Values taken from request body.
 	async updateProfile(
