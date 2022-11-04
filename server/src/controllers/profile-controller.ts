@@ -272,6 +272,7 @@ const profileController = {
 	) {
 		try {
 			console.log(_request.body);
+			console.log(_request.body);
 
 			const data = await queryDb(
 				'SELECT * FROM UserProfile WHERE UserAccount_email = ?',

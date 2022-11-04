@@ -1,29 +1,28 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class LoginService {
-  // Service for managing logins
-  // WILL BE IMPLEMENTED LATER
+	// Service for managing logins
+	// WILL BE IMPLEMENTED LATER
 
-  // Declarations for placeholder functionality
-  logged!: boolean;
-  loggedUser = '';
+	// Declarations for placeholder functionality
+	logged!: boolean;
+	loggedUser = '';
 
-  constructor() { }
+	constructor() {}
 
-  // Placeholder method that takes username as an argument and sets it as currently logged in user.
-  // Also set logged-status as true.
-  login(username: string) {
-    this.logged = true;
-    this.loggedUser = username;
-  }
+	// Placeholder method that takes username as an argument and sets it as currently logged in user.
+	// Also set logged-status as true.
+	login(username: string) {
+		this.logged = true;
+		this.loggedUser = username;
+	}
 
-  // Placeholder method that sets currently logged in user as empty and sets logged-status to false. 
-  logout() {
-    this.logged = false;
-    this.loggedUser = '';
-  }
-
+	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
+	logout() {
+		this.logged = false;
+		this.loggedUser = '';
+	}
 }
