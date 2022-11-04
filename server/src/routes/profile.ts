@@ -45,8 +45,7 @@ profileRouter.get('/skills/:id', profileC.findProfileSkills);
 // Insert skill to a profile
 profileRouter.post(
 	'/insertSkill/:profileid/:skillname',
-	authHandler,
-	userCheck,
+
 	profileC.addSkill
 );
 
