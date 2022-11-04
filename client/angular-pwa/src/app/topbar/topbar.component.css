@@ -26,3 +26,13 @@ h1 {
   font-weight: bold;
   color: var(--darkblue);
 }
+
+.topbar>a:hover {
+  color: var(--green)
+}
+
+.active-link {
+  border-bottom: 4px solid var(--green);
+  height: 1.5em;
+  padding: 0;
+}
