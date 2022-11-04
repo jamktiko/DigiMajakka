@@ -207,7 +207,7 @@ const profileController = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT * FROM UserProfileSkills INNER JOIN SpecialSkills ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ?;',
+				'SELECT SS.name AS SpecialSkill, S.name AS Skill FROM UserProfileSkills INNER JOIN SpecialSkills SS ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills S ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ?;',
 				[_request.params.id]
 			);
 			console.log(data);
