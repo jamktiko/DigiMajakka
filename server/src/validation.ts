@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable operator-linebreak */
 
-export const validateEmail = (email: string) => {
+export const validateEmail = (email: string, schoolemailend: string) => {
 	// Email regular expression taken from website: https://emailregex.com/
 	const expression =
 		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/;
 
-	const validation = expression.test(email);
+	const emailend = email.slice(email.indexOf('@'));
+
+	const validation = Boolean(
+		expression.test(email) && emailend === schoolemailend
+	);
 
 	if (validation) {
 		return true;

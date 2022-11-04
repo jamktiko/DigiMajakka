@@ -88,9 +88,18 @@ const profileController = {
 			}
 
 			// Check if email is in valid format
+			const emaildata = queryDb(
+				'SELECT School.emailend FROM UserAccount INNER JOIN School ON UserAccount.School_schoolid=School.schoolid WHERE UserAccount.email = ?;',
+				[_request.params.id]
+			);
+
 			if (
 				_request.body.email &&
-				!validation.validateEmail(_request.body.email)
+				Array.isArray(emaildata) &&
+				!validation.validateEmail(
+					_request.body.email,
+					emaildata[0].emailend
+				)
 			) {
 				throw new Error('Email is not valid');
 			}
