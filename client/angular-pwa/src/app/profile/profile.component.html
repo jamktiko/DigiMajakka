@@ -41,9 +41,7 @@
 		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 3">
 			{{ loggedProfile[0].yearofstudy }}:nnen vuoden opiskelija
 		</p>
-		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy >= 4">
-			4:nnen (tai enemmän) vuoden opiskelija
-		</p>
+		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy >= 4"></p>
 		<p class="listtext">
 			{{ loggedProfile[0].City_cityid }} LISÄÄ KAUPUNGIN HAKU
 			TIETOKANNASTA
@@ -100,28 +98,10 @@
 					alt="edit-icon"
 				/>
 			</div>
-			<div class="tags" *ngFor="let skill of skills">
-				<div class="tag">
-					<p>{{ skills[0].name }}</p>
+			<div class="tags">
+				<div class="tag" *ngFor="let skill of skills">
+					<p>{{ skill.name }}</p>
 				</div>
-				<div class="tag"><p>Angular</p></div>
-				<div class="tag"><p>Frontend</p></div>
-				<div class="tag"><p>Valokuvaus</p></div>
-				<div class="tag"><p>Svelte</p></div>
-				<div class="tag"><p>Valokuvaus</p></div>
-				<div class="tag"><p>AWS</p></div>
-				<div class="tag"><p>Video</p></div>
-				<div class="tag"><p>Graafinen suunnittelu</p></div>
-				<div class="tag"><p>O365</p></div>
-				<div class="tag"><p>Angular</p></div>
-				<div class="tag"><p>Frontend</p></div>
-				<div class="tag"><p>Valokuvaus</p></div>
-				<div class="tag"><p>Svelte</p></div>
-				<div class="tag"><p>Valokuvaus</p></div>
-				<div class="tag"><p>AWS</p></div>
-				<div class="tag"><p>Video</p></div>
-				<div class="tag"><p>Graafinen suunnittelu</p></div>
-				<div class="tag"><p>O365</p></div>
 			</div>
 			<div class="graybutton">Näytä kaikki</div>
 		</div>

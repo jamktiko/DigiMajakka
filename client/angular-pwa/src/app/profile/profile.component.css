@@ -139,8 +139,6 @@
   border-radius: 20px;
 }
 
-
-
 .splitStick {
   height: 90%;
   width: 1.1px;
@@ -167,7 +165,7 @@ h5 {
 .glassbox {
   display: grid;
   gap: 10px;
-  width: 600px;
+  max-width: 600px;
   padding: 20px;
   margin: 30px;
 }
@@ -177,6 +175,7 @@ h5 {
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .tag {
   display:flex;
   background-color: var(--mediumblue);
