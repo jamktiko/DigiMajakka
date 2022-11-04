@@ -94,12 +94,15 @@ const profileTypeChecker = (profile: Profile) => {
 	return true;
 };
 
-export const profileValidator = (profile: Record<string, unknown>) => {
+export const profileValidator = (
+	profile: Record<string, unknown>,
+	schoolemailend: string
+) => {
 	const filteredProfile = profileFactor(profile);
 
 	const validatedProfile = profileTypeChecker(filteredProfile);
 
-	const emailValid = validateEmail(filteredProfile.email);
+	const emailValid = validateEmail(filteredProfile.email, schoolemailend);
 
 	const phoneValid = validatePhoneNumber(filteredProfile.phonenumber);
 
