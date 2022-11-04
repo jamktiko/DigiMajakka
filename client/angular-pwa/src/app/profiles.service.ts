@@ -20,13 +20,6 @@ export class ProfilesService {
 		return this.http.get(this.findAllUrl);
 	}
 
-	getProfileSkills(id: number) {
-		return this.http.get(
-			'http://localhost:3000/profiles/skills/3',
-			this.httpOptions
-		);
-	}
-
 	httpOptions = {
 		headers: new HttpHeaders({'Content-Type': 'application/json'}),
 	};
@@ -37,6 +30,20 @@ export class ProfilesService {
 		return this.http
 			.post(this.findByEmail, JSON.stringify(body), this.httpOptions)
 			.pipe(map((response: any) => response));
+	}
+
+	getProfileSkills(id: number) {
+		return this.http.get(
+			`http://localhost:3000/profiles/skills/${id}`,
+			this.httpOptions
+		);
+	}
+
+	getProfileSomeLinks(id: number) {
+		return this.http.get(
+			`http://localhost:3000/somelinks/${id}`,
+			this.httpOptions
+		);
 	}
 
 	/*

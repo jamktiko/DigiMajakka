@@ -18,22 +18,35 @@ export class ProfileComponent implements OnInit {
 
 	loggedProfile!: Profile[];
 	skills: any = [];
+	someLinks: any = [];
 
 	ngOnInit(): void {
 		this.getLoggedInProfile();
-		this.getLoggedProfileSkills();
 	}
 
-	getLoggedProfileSkills(): void {
-		this.profileservice.getProfileSkills(3).subscribe((skills) => {
+	getLoggedProfileSkills(id: number): void {
+		this.profileservice.getProfileSkills(id).subscribe((skills) => {
 			this.skills = skills;
+			console.log(this.skills);
+		});
+	}
+
+	getLogggedProfileLinks(id: number): void {
+		this.profileservice.getProfileSomeLinks(id).subscribe((links) => {
+			this.someLinks = links;
+			console.log(this.someLinks);
 		});
 	}
 
 	getLoggedInProfile(): void {
 		this.profileservice.getLoggedInProfile().subscribe((profile) => {
 			this.loggedProfile = profile;
-			console.log(this.loggedProfile);
+
+			this.getLoggedProfileSkills(this.loggedProfile[0].userprofileid);
+
+			this.getLogggedProfileLinks(this.loggedProfile[0].userprofileid);
+
+			console.log(this.loggedProfile[0]);
 		});
 	}
 
