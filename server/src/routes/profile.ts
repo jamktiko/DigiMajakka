@@ -43,7 +43,11 @@ profileRouter.delete(
 profileRouter.get('/skills/:id', profileC.findProfileSkills);
 
 // Insert skill to a profile
-profileRouter.post('/insertSkill/:profileid/:skillname', profileC.addSkill);
+profileRouter.post(
+	'/insertSkill/:profileid/:skillname',
+
+	profileC.addSkill
+);
 
 profileRouter.post('/findByEmail', profileC.findByEmail);
 
