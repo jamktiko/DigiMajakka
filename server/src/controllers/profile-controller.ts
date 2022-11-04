@@ -4,7 +4,6 @@
 
 import type express from 'express';
 import queryDb from '../db-connection';
-import {profileValidator} from '../models/profile-model';
 import * as validation from '../validation';
 
 // Return all profiles from database

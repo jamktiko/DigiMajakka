@@ -16,6 +16,7 @@ import userRouter from './routes/users';
 import imageRouter from './routes/images';
 import cityRouter from './routes/cities';
 import schoolRouter from './routes/schools';
+import somelinkRouter from './routes/somelinks';
 // Usage of environment varaibles
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use('/users', userRouter);
 app.use('/images', imageRouter);
 app.use('/cities', cityRouter);
 app.use('/schools', schoolRouter);
+app.use('/somelinks', somelinkRouter);
 // Error handling code created by express generator
 // TBD if we use it or our own error handler
 // app.use((request, response, next) => {
