@@ -1,5 +1,4 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {ProfileEditService} from '../profile-edit.service';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 import {Profile} from '../profile';
@@ -11,8 +10,7 @@ import {Profile} from '../profile';
 })
 export class ProfileComponent implements OnInit {
 	constructor(
-		private editservice: ProfileEditService,
-		private stateservice: StateManagementService,
+		private editservice: StateManagementService,
 		private profileservice: ProfilesService
 	) {}
 

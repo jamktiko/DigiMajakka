@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ProfileEditService} from '../profile-edit.service';
+import {StateManagementService} from '../state-management.service';
 
 @Component({
 	selector: 'app-edit-contact-info',
@@ -26,7 +26,7 @@ export class EditContactInfoComponent implements OnInit {
 	reference: any;
 	hasChanges: boolean = false;
 
-	constructor(private editservice: ProfileEditService) {}
+	constructor(private editservice: StateManagementService) {}
 
 	// Creates a reference of the initial form values
 	createReference(obj: any) {

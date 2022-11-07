@@ -17,7 +17,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {EditAboutMeComponent} from './edit-about-me/edit-about-me.component';
 import {EditAttachmentsComponent} from './edit-attachments/edit-attachments.component';
 import {AppRoutingModule} from './app-routing.module';
-import { UnSavedChangesComponent } from './un-saved-changes/un-saved-changes.component';
+import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.component';
 
 @NgModule({
 	declarations: [
@@ -33,7 +33,7 @@ import { UnSavedChangesComponent } from './un-saved-changes/un-saved-changes.com
 		AddPhotoComponent,
 		EditAboutMeComponent,
 		EditAttachmentsComponent,
-  UnSavedChangesComponent,
+		UnSavedChangesComponent,
 	],
 	imports: [
 		BrowserModule,
