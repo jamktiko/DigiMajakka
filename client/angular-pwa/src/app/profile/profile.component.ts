@@ -14,10 +14,36 @@ export class ProfileComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
-	loggedProfile!: Profile[];
+	loggedProfile: Profile[] = [
+		{
+			City_cityid: 1,
+			School_schoolid: 1,
+			UserAccount_email: 'Sähköposti',
+			aboutme: 'Kerro jotain itsestäsi',
+			familyname: 'Sukunimi',
+			firstname: 'Etunimi',
+			lookingfor: 'Kerro, millaista työtä haluaisit tehdä.',
+			phonenumber: '0400111222',
+			picturelink: 'jokukuva',
+			public: 0,
+			studyfield: 'Koulutusohjelma',
+			userprofileid: 1,
+			yearofstudy: 1,
+		},
+	];
 	skills: any = [];
 	someLinks: any = [];
-	city: any = [];
+	city: any = [
+		{
+			cityid: 0,
+			name: 'Kaupunki',
+		},
+	];
+	school: any = [
+		{
+			name: 'Koulun nimi',
+		},
+	];
 
 	ngOnInit(): void {
 		this.getLoggedInProfile();
@@ -44,7 +70,14 @@ export class ProfileComponent implements OnInit {
 	getLoggedProfileCity(id: number): void {
 		this.profileservice.getProfileCity(id).subscribe((city) => {
 			this.city = city;
-			console.log(this.city);
+			console.log(this.city[0]);
+		});
+	}
+
+	getLoggedProfileSchool(id: number): void {
+		this.profileservice.getProfileSchool(id).subscribe((school) => {
+			this.school = school;
+			console.log(this.school[0]);
 		});
 	}
 
@@ -57,6 +90,8 @@ export class ProfileComponent implements OnInit {
 			this.getLogggedProfileLinks(this.loggedProfile[0].userprofileid);
 
 			this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
+
+			this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
 
 			console.log(this.loggedProfile[0]);
 		});

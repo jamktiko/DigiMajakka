@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StateManagementService} from '../state-management.service';
+import {ProfilesService} from '../profiles.service';
+import {Profile} from '../profile';
 
 @Component({
 	selector: 'app-edit-personal-info',
@@ -18,22 +20,37 @@ export class EditPersonalInfoComponent implements OnInit {
 		year: '',
 	};
 
-	visible: boolean;
+	@Input() loggedProfile: any;
+	@Input() school: any;
+	@Input() city: any;
 
-	constructor(private editservice: StateManagementService) {
-		this.visible = editservice.personalEdit;
-	}
+	@Output() updatedProfile = new EventEmitter();
+
+	constructor(
+		private editservice: StateManagementService,
+		private profileservice: ProfilesService
+	) {}
 
 	changeVisibility() {
 		this.editservice.togglePersonalVisibility();
 	}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.info.firstname = this.loggedProfile[0].firstname;
+		this.info.lastname = this.loggedProfile[0].familyname;
+		this.info.field = this.loggedProfile[0].studyfield;
+		this.info.school = this.school.name;
+		this.info.city = this.city.name;
+	}
 
 	// Method that has the functionality for submitting the form
 	onSubmit(formdata: any) {
-		// ADD FUNCTIONALITY
-		this.info.firstname = formdata.firstname;
-		console.log(this.info.firstname);
+		this.profileservice.updateProfile(
+			this.loggedProfile[0].userprofileid,
+			`{"aboutme": "${formdata.aboutme}", "lookingfor": "${formdata.lookingfor}"}`
+		);
+		console.log('Submitted');
+		this.changeVisibility();
+		this.updatedProfile.emit();
 	}
 }

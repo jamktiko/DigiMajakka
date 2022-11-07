@@ -35,6 +35,7 @@ export class EditAboutMeComponent implements OnInit {
 			this.aboutme = this.loggedProfile[0].aboutme;
 		});
 	}
+
 	onSubmit(formdata: any) {
 		this.profileservice.updateProfile(
 			this.loggedProfile[0].userprofileid,
