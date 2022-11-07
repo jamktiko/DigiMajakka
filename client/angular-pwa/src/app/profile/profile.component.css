@@ -209,9 +209,12 @@ h4 {
 .btnwithcheckmark {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-items: center;
+  justify-content: start;
   align-items: center;
+}
+
+.btnwithcheckmark>img {
+  margin: 0;
 }
 
 .checkmark-icon {
@@ -225,6 +228,8 @@ h4 {
 .contentfooter {
   display: flex;
   margin-left: 30px;
+  margin-top: 2em;
+  margin-bottom: 3em;
   align-items: center;
   gap: 10px;
   justify-content: space-between;

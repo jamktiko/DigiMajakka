@@ -46,30 +46,19 @@ export class ProfilesService {
 		);
 	}
 
-	/*
-	
-
-	
-	// Error handler
-	private handleError<T>(operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
-			// TODO: send the error to remote logging infrastructure
-			console.error(error); // log to console instead
-
-			// Let the app keep running by returning an empty result.
-			return of(result as T);
-		};
+	getProfileCity(id: number) {
+		return this.http.get(`http://localhost:3000/cities/findById/${id}`);
 	}
 
 	// Method to update a profile using Http put-method.
-	updateProfile(profile: any): Observable<any> {
+	updateProfile(id: number, profile: any) {
+		const body = profile;
 		return this.http
-			.put(
-				'http://localhost:3000/profiles/updateProfile',
-				profile,
+			.put<any>(
+				`http://localhost:3000/profiles/update/${id}`,
+				body,
 				this.httpOptions
 			)
-			.pipe(catchError(this.handleError<any>('updateProfile')));
+			.subscribe((response) => console.log(response));
 	}
-  */
 }
