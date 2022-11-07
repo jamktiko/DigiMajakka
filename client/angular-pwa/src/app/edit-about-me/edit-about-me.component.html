@@ -49,7 +49,11 @@
 
 		<!-- Submit-button inside a div to position it correctly -->
 		<div class="buttoncontainer">
-			<button [disabled]="!f.valid" type="submit" class="greenbutton">
+			<button
+				[disabled]="!f.valid || f.pristine"
+				type="submit"
+				class="greenbutton"
+			>
 				Tallenna
 			</button>
 		</div>

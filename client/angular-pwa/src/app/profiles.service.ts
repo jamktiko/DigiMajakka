@@ -50,6 +50,10 @@ export class ProfilesService {
 		return this.http.get(`http://localhost:3000/cities/findById/${id}`);
 	}
 
+	getProfileSchool(id: number) {
+		return this.http.get(`http://localhost:3000/schools/findById/${id}`);
+	}
+
 	// Method to update a profile using Http put-method.
 	updateProfile(id: number, profile: any) {
 		const body = profile;
