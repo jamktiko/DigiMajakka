@@ -119,6 +119,7 @@
 					Lataa CV
 				</div>
 				<img
+					*ngIf="someLinks.cv"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -132,6 +133,7 @@
 					Portfolio
 				</div>
 				<img
+					*ngIf="someLinks.portfolio"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -145,6 +147,7 @@
 					GitHub
 				</div>
 				<img
+					*ngIf="someLinks.github"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -168,5 +171,8 @@
 <app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
 <app-edit-personal-info *ngIf="isPersonalEditVisible"></app-edit-personal-info>
 <app-edit-contact-info *ngIf="isEditVisible"></app-edit-contact-info>
-<app-edit-about-me *ngIf="isAboutMeEditVisible"></app-edit-about-me>
+<app-edit-about-me
+	*ngIf="isAboutMeEditVisible"
+	(updatedProfile)="refresh()"
+></app-edit-about-me>
 <app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>

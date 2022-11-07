@@ -17,9 +17,14 @@ export class ProfileComponent implements OnInit {
 	loggedProfile!: Profile[];
 	skills: any = [];
 	someLinks: any = [];
+	city: any = [];
 
 	ngOnInit(): void {
 		this.getLoggedInProfile();
+	}
+
+	refresh(): void {
+		window.location.reload();
 	}
 
 	getLoggedProfileSkills(id: number): void {
@@ -36,6 +41,13 @@ export class ProfileComponent implements OnInit {
 		});
 	}
 
+	getLoggedProfileCity(id: number): void {
+		this.profileservice.getProfileCity(id).subscribe((city) => {
+			this.city = city;
+			console.log(this.city);
+		});
+	}
+
 	getLoggedInProfile(): void {
 		this.profileservice.getLoggedInProfile().subscribe((profile) => {
 			this.loggedProfile = profile;
@@ -43,6 +55,8 @@ export class ProfileComponent implements OnInit {
 			this.getLoggedProfileSkills(this.loggedProfile[0].userprofileid);
 
 			this.getLogggedProfileLinks(this.loggedProfile[0].userprofileid);
+
+			this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
 
 			console.log(this.loggedProfile[0]);
 		});
