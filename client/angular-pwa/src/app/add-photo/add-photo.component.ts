@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProfileEditService} from '../profile-edit.service';
+import {StateManagementService} from '../state-management.service';
 
 @Component({
 	selector: 'app-add-photo',
@@ -8,7 +8,7 @@ import {ProfileEditService} from '../profile-edit.service';
 })
 export class AddPhotoComponent implements OnInit {
 	visible: boolean;
-	constructor(private editservice: ProfileEditService) {
+	constructor(private editservice: StateManagementService) {
 		this.visible = editservice.addPhotoEdit;
 	}
 

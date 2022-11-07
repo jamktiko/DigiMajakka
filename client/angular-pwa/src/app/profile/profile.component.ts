@@ -1,5 +1,4 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {ProfileEditService} from '../profile-edit.service';
 import {StateManagementService} from '../state-management.service';
 
 @Component({
@@ -8,10 +7,7 @@ import {StateManagementService} from '../state-management.service';
 	styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-	constructor(
-		private editservice: ProfileEditService,
-		private stateservice: StateManagementService
-	) {}
+	constructor(private editservice: StateManagementService) {}
 
 	get isEditVisible(): boolean {
 		return this.editservice.contactEdit;

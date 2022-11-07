@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ProfileEditService} from '../profile-edit.service';
+import {StateManagementService} from '../state-management.service';
 
 @Component({
 	selector: 'app-edit-about-me',
@@ -12,7 +12,7 @@ export class EditAboutMeComponent implements OnInit {
 	lookingfor = '';
 	chars = 0;
 
-	constructor(private editservice: ProfileEditService) {}
+	constructor(private editservice: StateManagementService) {}
 
 	ngOnInit(): void {}
 
