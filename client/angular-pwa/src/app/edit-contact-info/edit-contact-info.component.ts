@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StateManagementService} from '../state-management.service';
 
@@ -18,6 +18,11 @@ export class EditContactInfoComponent implements OnInit {
 		twitter: '',
 	};
 
+	@Input() loggedProfile: any;
+	@Input() someLinks: any;
+
+	@Output() updatedProfile = new EventEmitter();
+
 	showUnsavedChanges: boolean = false;
 
 	// Declaration for FormGroup
@@ -27,6 +32,12 @@ export class EditContactInfoComponent implements OnInit {
 	hasChanges: boolean = false;
 
 	constructor(private editservice: StateManagementService) {}
+
+	ngOnInit(): void {
+		this.createReference(this.info);
+		this.info.email = this.loggedProfile[0].email;
+		this.info.phone = this.loggedProfile[0].phonenumber;
+	}
 
 	// Creates a reference of the initial form values
 	createReference(obj: any) {
@@ -52,8 +63,4 @@ export class EditContactInfoComponent implements OnInit {
 	}
 
 	onSubmit(formdata: any) {}
-
-	ngOnInit(): void {
-		this.createReference(this.info);
-	}
 }

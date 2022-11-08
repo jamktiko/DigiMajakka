@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 import {Profile} from '../profile';
@@ -15,8 +15,7 @@ export class EditAboutMeComponent implements OnInit {
 	lookingfor = '';
 	chars = 0;
 
-	loggedProfile!: Profile[];
-
+	@Input() loggedProfile: any;
 	@Output() updatedProfile = new EventEmitter();
 
 	constructor(
@@ -25,15 +24,8 @@ export class EditAboutMeComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.getLoggedInProfile();
-	}
-
-	getLoggedInProfile(): void {
-		this.profileservice.getLoggedInProfile().subscribe((profile) => {
-			this.loggedProfile = profile;
-			this.lookingfor = this.loggedProfile[0].lookingfor;
-			this.aboutme = this.loggedProfile[0].aboutme;
-		});
+		this.aboutme = this.loggedProfile[0].aboutme;
+		this.lookingfor = this.loggedProfile[0].lookingfor;
 	}
 
 	onSubmit(formdata: any) {

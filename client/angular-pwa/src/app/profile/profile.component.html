@@ -64,7 +64,7 @@
 			/>
 		</div>
 		<h2>Yhteystiedot</h2>
-		<p>Sähköposti: <br />{{ loggedProfile[0].UserAccount_email }}</p>
+		<p>Sähköposti: <br />{{ loggedProfile[0].email }}</p>
 		<p>
 			Puhelinnumero: <br />
 			{{ loggedProfile[0].phonenumber }}
@@ -187,9 +187,15 @@
 	[city]="city"
 	(updatedProfile)="refresh()"
 ></app-edit-personal-info>
-<app-edit-contact-info *ngIf="isEditVisible"></app-edit-contact-info>
+<app-edit-contact-info
+	*ngIf="isEditVisible"
+	[someLinks]="someLinks"
+	[loggedProfile]="loggedProfile"
+	(updatedProfile)="refresh()"
+></app-edit-contact-info>
 <app-edit-about-me
 	*ngIf="isAboutMeEditVisible"
+	[loggedProfile]="loggedProfile"
 	(updatedProfile)="refresh()"
 ></app-edit-about-me>
 <app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>

@@ -39,6 +39,7 @@ export class EditPersonalInfoComponent implements OnInit {
 		this.info.firstname = this.loggedProfile[0].firstname;
 		this.info.lastname = this.loggedProfile[0].familyname;
 		this.info.field = this.loggedProfile[0].studyfield;
+		// CONTINUE WHEN DATABASE FIXED
 		this.info.school = this.school.name;
 		this.info.city = this.city.name;
 	}
@@ -47,7 +48,8 @@ export class EditPersonalInfoComponent implements OnInit {
 	onSubmit(formdata: any) {
 		this.profileservice.updateProfile(
 			this.loggedProfile[0].userprofileid,
-			`{"aboutme": "${formdata.aboutme}", "lookingfor": "${formdata.lookingfor}"}`
+			// CONTINUE WHEN DATABASE FIXED
+			`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "school"}`
 		);
 		console.log('Submitted');
 		this.changeVisibility();

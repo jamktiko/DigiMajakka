@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
 			School_schoolid: 1,
 			UserAccount_email: 'Sähköposti',
 			aboutme: 'Kerro jotain itsestäsi',
+			email: 'Sähköposti',
 			familyname: 'Sukunimi',
 			firstname: 'Etunimi',
 			lookingfor: 'Kerro, millaista työtä haluaisit tehdä.',
