@@ -198,23 +198,29 @@
 	</div>
 </div>
 
+<!-- IMPLEMENT LATER
+<div class="confirmation" *ngIf="confirmation">
+	Tiedot päivitetty onnistuneesti.
+</div>
+-->
+
 <app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
 <app-edit-personal-info
 	*ngIf="isPersonalEditVisible"
 	[loggedProfile]="loggedProfile"
 	[school]="school"
 	[city]="city"
-	(updatedProfile)="refresh()"
+	(updatedProfile)="updated()"
 ></app-edit-personal-info>
 <app-edit-contact-info
 	*ngIf="isEditVisible"
 	[someLinks]="someLinks"
 	[loggedProfile]="loggedProfile"
-	(updatedProfile)="refresh()"
+	(updatedProfile)="updated()"
 ></app-edit-contact-info>
 <app-edit-about-me
 	*ngIf="isAboutMeEditVisible"
 	[loggedProfile]="loggedProfile"
-	(updatedProfile)="refresh()"
+	(updatedProfile)="updated()"
 ></app-edit-about-me>
 <app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>

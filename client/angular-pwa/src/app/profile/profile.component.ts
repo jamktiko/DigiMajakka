@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
+	confirmation: boolean = false;
+
 	loggedProfile: Profile[] = [
 		{
 			City_cityid: 1,
@@ -50,7 +52,7 @@ export class ProfileComponent implements OnInit {
 		this.getLoggedInProfile();
 	}
 
-	refresh(): void {
+	updated(): void {
 		window.location.reload();
 	}
 
