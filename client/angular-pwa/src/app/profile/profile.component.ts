@@ -100,20 +100,18 @@ export class ProfileComponent implements OnInit {
 		});
 	}
 
-	// getLoggedInProfile(): void {
-	// 	this.profileservice.getLoggedInProfile();
-	// 	setTimeout(() => {
-	// 		this.loggedProfile = this.profileservice.loggedProfile;
-	// 		 this.loggedProfile.forEach(
-	// 		 	(item: {[s: string]: unknown} | ArrayLike<unknown>) => {
-	// 		 		for (const [key, value] of Object.entries(item)) {
-	// 		 			console.log(key, value);
-	// 		 		}
-	// 		 	}
-	// 		 );
-	// 		console.log(this.loggedProfile);
-	// 	}, 3000);
-	// }
+	updatePublicity(): void {
+		let value;
+		if ((this.loggedProfile[0].public = 0)) {
+			value = 1;
+		} else {
+			value = 0;
+		}
+		this.profileservice.updateProfile(
+			this.loggedProfile[0].userprofileid,
+			`{"public": "${value}"}`
+		);
+	}
 
 	get isEditVisible(): boolean {
 		return this.editservice.contactEdit;

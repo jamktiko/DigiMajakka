@@ -198,6 +198,7 @@
 			<div class="leftflex">
 				<h5>Aseta profiili julkiseksi</h5>
 				<div
+					(click)="updatePublicity()"
 					[ngClass]="
 						loggedProfile[0].public == 0
 							? 'toggleBtnDisabled'
