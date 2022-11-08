@@ -135,18 +135,25 @@
 .socials {
   background-color: var(--lightblue);
   padding: 0.3em 0.6em;
+  gap: 0.6em;
   height: 55px;
-  width: 239px;
+  width: fit-content;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.socials>a {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
 
 .some-icon {
   width: 40px;
   height: 40px;
-  cursor: pointer;
 }
 
 .linkedin {

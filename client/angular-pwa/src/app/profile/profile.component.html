@@ -69,28 +69,36 @@
 			Puhelinnumero: <br />
 			{{ loggedProfile[0].phonenumber }}
 		</p>
-		<div class="socials">
+		<div *ngIf="someLinks.length > 0" class="socials">
 			<!-- ADD ICONS AND *NGIF BASED ON LINK.NAME TO GET CORRECT ICONS -->
-			<img
-				class="some-icon linkedin"
-				src="assets\icons\In-2C-101px-TM.png"
-				alt="linkedin-icon"
-			/>
-			<img
-				class="some-icon"
-				src="assets\icons\f_logo_RGB-Blue_100.png"
-				alt="facebook-icon"
-			/>
-			<img
-				class="some-icon"
-				src="assets\icons\Instagram_Glyph_Gradient.png"
-				alt="instagram-icon"
-			/>
-			<img
-				class="some-icon"
-				src="assets\icons\Twittersocialicons-roundedsquare-blue.png"
-				alt="twitter-icon"
-			/>
+			<a *ngIf="someLinks[0].linkedin" [href]="someLinks.linkedin">
+				<img
+					class="some-icon linkedin"
+					src="assets\icons\In-2C-101px-TM.png"
+					alt="linkedin-icon"
+				/>
+			</a>
+			<a *ngIf="someLinks[0].facebook" [href]="someLinks[0].facebook">
+				<img
+					class="some-icon"
+					src="assets\icons\f_logo_RGB-Blue_100.png"
+					alt="facebook-icon"
+				/>
+			</a>
+			<a *ngIf="someLinks[0].instagram" [href]="someLinks[0].instagram">
+				<img
+					class="some-icon"
+					src="assets\icons\Instagram_Glyph_Gradient.png"
+					alt="instagram-icon"
+				/>
+			</a>
+			<a *ngIf="someLinks[0].twitter" [href]="someLinks[0].twitter">
+				<img
+					class="some-icon"
+					src="assets\icons\Twittersocialicons-roundedsquare-blue.png"
+					alt="twitter-icon"
+				/>
+			</a>
 		</div>
 	</div>
 </div>
