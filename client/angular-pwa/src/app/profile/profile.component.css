@@ -134,9 +134,23 @@
 
 .socials {
   background-color: var(--lightblue);
+  padding: 0.3em 0.6em;
   height: 55px;
   width: 239px;
   border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.some-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.linkedin {
+  width: 44.75px
 }
 
 .splitStick {
@@ -149,13 +163,24 @@ p {
   color: var(--lightblue);
 }
 
+h2, h3, h4, h5 {
+  font-weight: 400;
+}
+
 h2 {
   color: var(--lightblue);
+  
 }
 
 h3 {
   color: var(--lightblue);
   margin-top: 50px;
+}
+
+h4 {
+  font-size: 1.6rem;
+  margin: 0px;
+  color: var(--darkblue);
 }
 
 h5 {
@@ -180,10 +205,8 @@ h5 {
 .tags>p {
   margin: 0;
   color: var(--darkblue);
-  font-weight: 600;
   font-size: 1.2em;
 }
-
 
 .tag {
   display:flex;
@@ -196,14 +219,8 @@ h5 {
 }
 
 .graybutton {
-  width: 90px;
+  
   margin: 10px;
-}
-
-h4 {
-  font-size: 1.6rem;
-  margin: 0px;
-  color: var(--darkblue)
 }
 
 .checkboxRow{
