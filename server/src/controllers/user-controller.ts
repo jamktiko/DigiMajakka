@@ -1,18 +1,33 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable import/extensions */
 
 import type express from 'express';
 import queryDb from '../db-connection';
-import cognitoHelper from '../cognito-helper';
+import CognitoHelper from '../cognito-helper';
+
+const cognitoHelper = new CognitoHelper();
 
 const userC = {
-	// Funktion that signs user up to cognito and database
+	// Function that signs user up to cognito and database
 	async singUp(
 		_request: express.Request,
 		response: express.Response,
 		next: express.NextFunction
 	) {
 		try {
+			// Check that are required fields are provided in the body
+			if (
+				!_request.body.email ||
+				!_request.body.admin ||
+				!_request.body.schoolname ||
+				!_request.body.password
+			) {
+				throw new Error(
+					'Did not receive all required fields in body (email, admin, schoolname, password)'
+				);
+			}
+
 			// Try to insert account information to database and save answer to dbresult
 			const dbresult = await queryDb(
 				'INSERT INTO UserAccount VALUES (?,?,?);',
@@ -45,6 +60,7 @@ const userC = {
 				'SELECT * FROM UserAccount WHERE email=?',
 				[_request.body.email]
 			);
+
 			if (Array.isArray(user) && user.length > 0) {
 				await queryDb('DELETE FROM UserAccount WHERE email=?', [
 					_request.body.email,

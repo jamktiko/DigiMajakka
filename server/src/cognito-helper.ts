@@ -1,6 +1,5 @@
 /* eslint-disable arrow-parens */
 /* eslint-disable @typescript-eslint/comma-dangle */
-/* eslint-disable operator-linebreak */
 
 /* eslint-disable @typescript-eslint/naming-convention */
 import process from 'node:process';
@@ -28,17 +27,22 @@ const userPool = new CognitoUserPool({
  * @param profileid users id in database
  * @returns attributelist that is needed for cognito signup
  */
-const createAttributeList = (email: string) => [
-	new CognitoUserAttribute({
-		Name: 'email',
-		Value: email,
-	}),
-	// New CognitoUserAttribute({
-	// 	Name: 'profileid',
-	// 	Value: String(profileid),
-	// })
-];
-const cognitoHelper = {
+
+// New CognitoUserAttribute({
+// 	Name: 'profileid',
+// 	Value: String(profileid),
+// })
+
+class CognitoHelper {
+	public userPool: CognitoUserPool;
+
+	constructor() {
+		this.userPool = new CognitoUserPool({
+			UserPoolId: process.env.USER_POOL_ID ?? '',
+			ClientId: process.env.CLIENT_ID ?? '',
+		});
+	}
+
 	/**
 	 * Function signs new user to cognito and database
 	 * @param email users email
@@ -46,12 +50,16 @@ const cognitoHelper = {
 	 * @returns resolved promise
 	 */
 	async signUp(email: string, password: string) {
-		// Create attributelist for signup function
 		return new Promise((resolve, reject) => {
-			const attributeList: CognitoUserAttribute[] =
-				createAttributeList(email);
+			const attributeList: CognitoUserAttribute[] = [
+				new CognitoUserAttribute({
+					Name: 'email',
+					Value: email,
+				}),
+			];
+
 			// Signup user to cognito
-			userPool.signUp(
+			this.userPool.signUp(
 				email,
 				password,
 				attributeList,
@@ -66,7 +74,8 @@ const cognitoHelper = {
 				}
 			);
 		});
-	},
+	}
+
 	/**
 	 * Function that confirms user registration with code that cognito sent via email
 	 * @param email users email
@@ -90,7 +99,8 @@ const cognitoHelper = {
 				resolve(JSON.stringify(result));
 			});
 		});
-	},
+	}
+
 	/**
 	 * Function to resend confirmation code to user
 	 * @param email users email
@@ -114,7 +124,8 @@ const cognitoHelper = {
 				resolve(JSON.stringify(result));
 			});
 		});
-	},
+	}
+
 	/**
 	 * Function to sign user in
 	 * @param email users registered email
@@ -152,7 +163,8 @@ const cognitoHelper = {
 				},
 			});
 		});
-	},
+	}
+
 	/**
 	 * Function that signs user out
 	 * @param email users email
@@ -169,7 +181,8 @@ const cognitoHelper = {
 				resolve('Signed out successfully');
 			});
 		});
-	},
+	}
+
 	/**
 	 * Deletes authenticated user from cognito and from database
 	 * @param email users email
@@ -213,7 +226,7 @@ const cognitoHelper = {
 				},
 			});
 		});
-	},
-};
+	}
+}
 
-export default cognitoHelper;
+export default CognitoHelper;
