@@ -149,3 +149,8 @@ samaan nappulaan mistä modal tulee näkyviin. Näkyvässä tilassa display:grid
 .oneRowContent.third {
   gap: 50px;
 }
+
+.oneRowContent.sixth {
+  gap: 30px;
+  text-align: center;
+}

@@ -1,1 +1,172 @@
-<p>employer works!</p>
+<div class="upperContent">
+	<div class="upperBox first">
+		<img src="https://via.placeholder.com/576x403.png" />
+	</div>
+	<div class="upperBox second">
+		<h1>Työnantaja</h1>
+		<h2>Tarvitsetko työntekijää?</h2>
+		<p>
+			DigiMajakasta löydät työntekijät niin pieniin kuin suuriinkin
+			projekteihin. Voit ilmoittaa avoimesta työtehtävästä helposti
+			jättämällä työilmoituksen tällä sivulla olevalla lomakkeella.
+			Halutessasi voit myös tutustua työntekijöiden profiileihin ja ottaa
+			kiinnostavaan henkilöön suoraan yhteyttä!
+		</p>
+	</div>
+</div>
+<div class="lowerContent">
+	<div class="lowerBox">
+		<img src="../../assets/img/employer_background.png" />
+		<div class="lowerBoxContent">
+			<div class="contentBox left">
+				<h1>VALOA NÄKYY</h1>
+				<form
+					#f="ngForm"
+					class="formcontainer"
+					(ngSubmit)="onSubmit(f.value)"
+				>
+					<label>
+						Etunimi *
+						<br />
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput:
+									firstname.errors && firstname.touched
+							}"
+							required
+							minlength="2"
+							maxlength="45"
+							name="firstname"
+							#firstname="ngModel"
+							[(ngModel)]="info.firstname"
+						/>
+					</label>
+
+					<p
+						class="error"
+						*ngIf="firstname.errors?.required && firstname.touched"
+					>
+						Etunimi on pakollinen tieto
+					</p>
+					<p
+						class="error"
+						*ngIf="firstname.errors?.minlength && firstname.touched"
+					>
+						Etunimi ei voi olla alle kaksi merkkiä pitkä
+					</p>
+					<label>
+						Sukunimi *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: lastname.errors && lastname.touched
+							}"
+							required
+							minlength="2"
+							maxlength="45"
+							name="lastname"
+							#lastname="ngModel"
+							[(ngModel)]="info.lastname"
+						/>
+					</label>
+
+					<!-- Errors for lastname-validation -->
+					<p
+						class="error"
+						*ngIf="lastname.errors?.required && lastname.touched"
+					>
+						Sukunimi on pakollinen tieto
+					</p>
+					<p
+						class="error"
+						*ngIf="lastname.errors?.minlength && lastname.touched"
+					>
+						Etunimi ei voi olla alle kaksi merkkiä pitkä
+					</p>
+
+					<label>
+						Sähköposti *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: email.errors && email.touched
+							}"
+							required
+							name="email"
+							#email="ngModel"
+							[(ngModel)]="info.email"
+						/>
+					</label>
+
+					<!-- Errors for field-validation -->
+					<p
+						class="error"
+						*ngIf="email.errors?.required && email.touched"
+					>
+						Sähköposti on pakollinen tieto
+					</p>
+
+					<label>
+						Puhelinnumero *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: phone.errors && phone.touched
+							}"
+							required
+							name="phone"
+							#phone="ngModel"
+							[(ngModel)]="info.phone"
+						/>
+					</label>
+
+					<!-- Errors for field-validation -->
+					<p
+						class="error"
+						*ngIf="phone.errors?.required && phone.touched"
+					>
+						Puhelinnumero on pakollinen tieto
+					</p>
+
+					<label>
+						Yrityksen nimi
+						<input
+							type="text"
+							required
+							name="companyname"
+							#companyname="ngModel"
+							[(ngModel)]="info.companyname"
+						/>
+					</label>
+
+					<label>
+						Tehtävänimike *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput:
+									assignment.errors && assignment.touched
+							}"
+							required
+							name="assignment"
+							#assignment="ngModel"
+							[(ngModel)]="info.assignment"
+						/>
+					</label>
+
+					<!-- Errors for field-validation -->
+					<p
+						class="error"
+						*ngIf="
+							assignment.errors?.required && assignment.touched
+						"
+					>
+						Tehtävänimike on pakollinen tieto
+					</p>
+				</form>
+			</div>
+			<div class="contentBox right"></div>
+		</div>
+	</div>
+</div>
