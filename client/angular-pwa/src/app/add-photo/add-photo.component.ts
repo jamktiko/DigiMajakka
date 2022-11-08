@@ -12,7 +12,7 @@ export class AddPhotoComponent implements OnInit {
 		this.visible = editservice.addPhotoEdit;
 	}
 
-	changeVisibilityPhoto() {
+	changeVisibility() {
 		this.editservice.toggleContactVisibilityPhoto();
 	}
 
