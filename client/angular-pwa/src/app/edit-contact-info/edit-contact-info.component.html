@@ -1,9 +1,14 @@
 <!-- Backdrop-styles come from global styles -->
-<div class="backdrop">
+<div class="backdrop" (click)="changeVisibility()">
 	<!--Container for the form-->
-	<form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+	<form
+		#f="ngForm"
+		class="formcontainer"
+		(click)="$event.stopPropagation()"
+		(ngSubmit)="onSubmit(f.value)"
+	>
 		<!-- Button to close the edit-window -->
-		<div class="close-button" (click)="changeVisibility(info)">
+		<div class="close-button" (click)="changeVisibility()">
 			<img
 				class="close-icon"
 				src="assets\icons\close.svg"

@@ -1,105 +1,198 @@
 <!-- Backdrop styles come from global styles. Backdrop causes the form to be displayed on top of other components -->
-<div class="backdrop">
-  <!-- Form is the container for the form, and provides the formdata for Angular -->
-  <form #f="ngForm" class="formcontainer" (ngSubmit)="onSubmit(f.value)">
+<div class="backdrop" (click)="changeVisibility()">
+	<!-- Form is the container for the form, and provides the formdata for Angular -->
+	<form
+		#f="ngForm"
+		class="formcontainer"
+		(click)="$event.stopPropagation()"
+		(ngSubmit)="onSubmit(f.value)"
+	>
+		<!-- Button to close the edit-window -->
+		<div class="close-button" (click)="changeVisibility()">
+			<img
+				class="close-icon"
+				src="assets\icons\close.svg"
+				alt="close-button"
+			/>
+		</div>
 
-    <!-- Button to close the edit-window -->
-    <div class="close-button" (click)="changeVisibility()">
-      <img class="close-icon" src="assets\icons\close.svg" alt="close-button">
-    </div>
+		<h2>Henkilötiedot</h2>
 
-    <h2>Henkilötiedot</h2>
+		<!-- Input for firstname -->
+		<label>
+			Etunimi *
+			<input
+				type="text"
+				[ngClass]="{errorinput: firstname.errors && firstname.touched}"
+				required
+				minlength="2"
+				maxlength="45"
+				name="firstname"
+				#firstname="ngModel"
+				[(ngModel)]="info.firstname"
+			/>
+		</label>
 
-    <!-- Input for firstname -->
-    <label>
-      Etunimi *
-      <input type="text" [ngClass]="{'errorinput': firstname.errors && firstname.touched}" required minlength="2" maxlength="45"  name="firstname" #firstname="ngModel" [(ngModel)]="info.firstname">
-    </label>
+		<!-- Errors for firstname-validation -->
+		<p
+			class="error"
+			*ngIf="firstname.errors?.required && firstname.touched"
+		>
+			Etunimi on pakollinen tieto
+		</p>
+		<p
+			class="error"
+			*ngIf="firstname.errors?.minlength && firstname.touched"
+		>
+			Etunimi ei voi olla alle kaksi merkkiä pitkä
+		</p>
 
-    <!-- Errors for firstname-validation -->
-    <p class="error" *ngIf="(firstname.errors?.required) && (firstname.touched)">Etunimi on pakollinen tieto</p>
-    <p class="error" *ngIf="(firstname.errors?.minlength) && (firstname.touched)">Etunimi ei voi olla alle kaksi merkkiä pitkä</p>
+		<!-- Input for lastname -->
+		<label>
+			Sukunimi *
+			<input
+				type="text"
+				[ngClass]="{errorinput: lastname.errors && lastname.touched}"
+				required
+				minlength="2"
+				maxlength="45"
+				name="lastname"
+				#lastname="ngModel"
+				[(ngModel)]="info.lastname"
+			/>
+		</label>
 
-    <!-- Input for lastname -->
-    <label>
-      Sukunimi *
-      <input type="text" [ngClass]="{'errorinput': lastname.errors && lastname.touched}" required minlength="2" maxlength="45" name="lastname" #lastname="ngModel"  [(ngModel)]="info.lastname">
-    </label>
+		<!-- Errors for lastname-validation -->
+		<p class="error" *ngIf="lastname.errors?.required && lastname.touched">
+			Sukunimi on pakollinen tieto
+		</p>
+		<p class="error" *ngIf="lastname.errors?.minlength && lastname.touched">
+			Etunimi ei voi olla alle kaksi merkkiä pitkä
+		</p>
 
-    <!-- Errors for lastname-validation -->
-    <p class="error" *ngIf="(lastname.errors?.required) && (lastname.touched)">Sukunimi on pakollinen tieto</p>
-    <p class="error" *ngIf="(lastname.errors?.minlength) && (lastname.touched)">Etunimi ei voi olla alle kaksi merkkiä pitkä</p>
+		<!-- Input for study-field -->
+		<label>
+			Koulutusala *
+			<input
+				type="text"
+				[ngClass]="{errorinput: field.errors && field.touched}"
+				required
+				name="field"
+				#field="ngModel"
+				[(ngModel)]="info.field"
+			/>
+		</label>
 
-    <!-- Input for study-field -->
-    <label>
-      Koulutusala *
-      <input type="text" [ngClass]="{'errorinput': field.errors && field.touched}" required name="field" #field="ngModel"  [(ngModel)]="info.field">
-    </label>
+		<!-- Errors for field-validation -->
+		<p class="error" *ngIf="field.errors?.required && field.touched">
+			Koulutusala on pakollinen tieto
+		</p>
 
-    <!-- Errors for field-validation -->
-    <p class="error" *ngIf="(field.errors?.required) && (field.touched)">Koulutusala on pakollinen tieto</p>
+		<!-- Dropdown-input fot school -->
+		<label>
+			Koulun nimi *
+			<select
+				[ngClass]="{errorinput: school.errors && school.touched}"
+				required
+				name="school"
+				#school="ngModel"
+				[(ngModel)]="info.school"
+			>
+				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
+				<option>JAMK</option>
+				<option>XAMK</option>
+			</select>
+		</label>
 
-    <!-- Dropdown-input fot school -->
-    <label>
-      Koulun nimi *
-      <select [ngClass]="{'errorinput': school.errors && school.touched}" required name="school" #school="ngModel"  [(ngModel)]="info.school">
-        <!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-        <option>JAMK</option>
-        <option>XAMK</option>
-      </select>
-    </label>
+		<!-- Errors for school-validation -->
+		<p class="error" *ngIf="school.errors?.required && school.touched">
+			Koulu on pakollinen tieto
+		</p>
 
-    <!-- Errors for school-validation -->
-    <p class="error" *ngIf="(school.errors?.required) && (school.touched)">Koulu on pakollinen tieto</p>
+		<!-- Dropdown for city-select -->
+		<label>
+			Kaupunki *
+			<select
+				[ngClass]="{errorinput: city.errors && city.touched}"
+				required
+				name="city"
+				#city="ngModel"
+				[(ngModel)]="info.city"
+			>
+				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
+				<option>Jyväskylä</option>
+				<option>Perse</option>
+			</select>
+		</label>
 
-    <!-- Dropdown for city-select -->
-    <label>
-      Kaupunki *
-      <select [ngClass]="{'errorinput': city.errors && city.touched}" required name="city" #city="ngModel"  [(ngModel)]="info.city">
-        <!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-        <option>Jyväskylä</option>
-        <option>Perse</option>
-      </select>
-    </label>
+		<!-- Error-message for city-validation -->
+		<p class="error" *ngIf="city.errors?.required && city.touched">
+			Kaupunki on pakollinen tieto
+		</p>
 
-    <!-- Error-message for city-validation -->
-    <p class="error" *ngIf="(city.errors?.required) && (city.touched)">Kaupunki on pakollinen tieto</p>
+		<!-- Radio inputs for study-year -->
+		<label>
+			Opintovuosi *
+			<div class="radiocontainer">
+				<label class="radiolabel">
+					<input
+						type="radio"
+						name="year"
+						value="1"
+						[(ngModel)]="info.year"
+						#year="ngModel"
+						required
+					/>
+					1
+				</label>
 
-    <!-- Radio inputs for study-year -->
-    <label>
-      Opintovuosi *
-      <div class="radiocontainer">
-        
-        <label class="radiolabel">
-          <input type="radio" name="year" value="1" [(ngModel)]="info.year" #year="ngModel" required>
-          1
-        </label>
+				<label class="radiolabel">
+					<input
+						type="radio"
+						name="year"
+						value="2"
+						[(ngModel)]="info.year"
+						#year="ngModel"
+						required
+					/>
+					2
+				</label>
 
-        <label class="radiolabel">
-          <input type="radio" name="year" value="2" [(ngModel)]="info.year" #year="ngModel" required>
-          2
-        </label>
+				<label class="radiolabel">
+					<input
+						type="radio"
+						name="year"
+						value="3"
+						[(ngModel)]="info.year"
+						#year="ngModel"
+						required
+					/>
+					3
+				</label>
 
-        <label class="radiolabel">
-          <input type="radio" name="year" value="3" [(ngModel)]="info.year" #year="ngModel" required>
-          3
-        </label>
+				<label class="radiolabel">
+					<input
+						type="radio"
+						name="year"
+						value="4"
+						[(ngModel)]="info.year"
+						#year="ngModel"
+						required
+					/>
+					4 tai enemmän
+				</label>
+			</div>
+		</label>
 
-        <label class="radiolabel">
-          <input type="radio" name="year" value="4" [(ngModel)]="info.year" #year="ngModel" required>
-          4 tai enemmän
-        </label>
-      </div>
-    </label>
+		<p class="error" *ngIf="year.errors?.required && f.submitted">
+			Opintovuosi on pakollinen tieto
+		</p>
 
-    <p class="error" *ngIf="year.errors?.required && f.submitted">Opintovuosi on pakollinen tieto</p>
-    
-
-    <!-- Submit-button inside a div to position it correctly -->
-    <div class="buttoncontainer">
-      <button [disabled]="!f.valid" type="submit" class="greenbutton">Tallenna</button>
-    </div>
-
-  </form>
+		<!-- Submit-button inside a div to position it correctly -->
+		<div class="buttoncontainer">
+			<button [disabled]="!f.valid" type="submit" class="greenbutton">
+				Tallenna
+			</button>
+		</div>
+	</form>
 </div>
-

@@ -69,9 +69,36 @@
 			Puhelinnumero: <br />
 			{{ loggedProfile[0].phonenumber }}
 		</p>
-		<div class="socials">
+		<div *ngIf="someLinks.length > 0" class="socials">
 			<!-- ADD ICONS AND *NGIF BASED ON LINK.NAME TO GET CORRECT ICONS -->
-			<p *ngFor="let link of someLinks">{{ link.name }}</p>
+			<a *ngIf="someLinks[0].linkedin" [href]="someLinks.linkedin">
+				<img
+					class="some-icon linkedin"
+					src="assets\icons\In-2C-101px-TM.png"
+					alt="linkedin-icon"
+				/>
+			</a>
+			<a *ngIf="someLinks[0].facebook" [href]="someLinks[0].facebook">
+				<img
+					class="some-icon"
+					src="assets\icons\f_logo_RGB-Blue_100.png"
+					alt="facebook-icon"
+				/>
+			</a>
+			<a *ngIf="someLinks[0].instagram" [href]="someLinks[0].instagram">
+				<img
+					class="some-icon"
+					src="assets\icons\Instagram_Glyph_Gradient.png"
+					alt="instagram-icon"
+				/>
+			</a>
+			<a *ngIf="someLinks[0].twitter" [href]="someLinks[0].twitter">
+				<img
+					class="some-icon"
+					src="assets\icons\Twittersocialicons-roundedsquare-blue.png"
+					alt="twitter-icon"
+				/>
+			</a>
 		</div>
 	</div>
 </div>
@@ -170,8 +197,21 @@
 		<div class="contentfooter">
 			<div class="leftflex">
 				<h5>Aseta profiili julkiseksi</h5>
-				<div class="enableDisable">
-					<div class="enableDisableBall"></div>
+				<div
+					(click)="updatePublicity()"
+					[ngClass]="
+						loggedProfile[0].public == 0
+							? 'toggleBtnDisabled'
+							: 'toggleBtnEnabled'
+					"
+				>
+					<div
+						[ngClass]="
+							loggedProfile[0].public == 0
+								? 'toggleBtnBallDisabled'
+								: 'toggleBtnBallEnabled'
+						"
+					></div>
 				</div>
 			</div>
 			<div class="greenbutton">Tallenna</div>
@@ -179,23 +219,29 @@
 	</div>
 </div>
 
+<!-- IMPLEMENT LATER
+<div class="confirmation" *ngIf="confirmation">
+	Tiedot päivitetty onnistuneesti.
+</div>
+-->
+
 <app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
 <app-edit-personal-info
 	*ngIf="isPersonalEditVisible"
 	[loggedProfile]="loggedProfile"
 	[school]="school"
 	[city]="city"
-	(updatedProfile)="refresh()"
+	(updatedProfile)="updated()"
 ></app-edit-personal-info>
 <app-edit-contact-info
 	*ngIf="isEditVisible"
 	[someLinks]="someLinks"
 	[loggedProfile]="loggedProfile"
-	(updatedProfile)="refresh()"
+	(updatedProfile)="updated()"
 ></app-edit-contact-info>
 <app-edit-about-me
 	*ngIf="isAboutMeEditVisible"
 	[loggedProfile]="loggedProfile"
-	(updatedProfile)="refresh()"
+	(updatedProfile)="updated()"
 ></app-edit-about-me>
 <app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>
