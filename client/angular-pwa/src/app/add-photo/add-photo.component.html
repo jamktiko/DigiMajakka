@@ -1,5 +1,5 @@
 <div class="photoAddBox">
-	<div class="backdrop"></div>
+	<div class="backdrop" (click)="changeVisibility()"></div>
 	<div class="photoTitle">
 		<h2>Valokuva</h2>
 	</div>
@@ -27,7 +27,7 @@
 	</div>
 	<div class="greenbutton">Tallenna</div>
 
-	<div class="editButton" (click)="changeVisibilityPhoto()">
+	<div class="editButton" (click)="changeVisibility()">
 		<img
 			class="close-icon"
 			src="assets\icons\close.svg"
