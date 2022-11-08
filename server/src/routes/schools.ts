@@ -7,6 +7,11 @@ import schoolC from '../controllers/school-controller';
 const schoolRouter = express.Router();
 
 // Route to get school by id
-schoolRouter.get('/findById/:id', schoolC.findById);
+// /schools/findById/:name
+schoolRouter.get('/findById/:name', schoolC.findById);
+
+// Route to get all schools
+// /schools/findAll
+schoolRouter.get('/findAll', schoolC.findAll);
 
 export default schoolRouter;

@@ -4,7 +4,6 @@
 
 /* eslint-disable @typescript-eslint/naming-convention */
 import process from 'node:process';
-// Import 'cross-fetch/polyfill'
 
 import {
 	AuthenticationDetails,
@@ -17,6 +16,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+// Create new instance of cognitoUserPool to connect to cognito
 const userPool = new CognitoUserPool({
 	UserPoolId: process.env.USER_POOL_ID ?? '',
 	ClientId: process.env.CLIENT_ID ?? '',
@@ -81,7 +81,7 @@ const cognitoHelper = {
 				Pool: userPool,
 			});
 
-			// Use class method to verify confirmation code
+			// Use cognitoUser class method to verify confirmation code
 			cognitoUser.confirmRegistration(code, true, (error, result) => {
 				if (error) {
 					reject(error);
@@ -170,18 +170,26 @@ const cognitoHelper = {
 			});
 		});
 	},
+	/**
+	 * Deletes authenticated user from cognito and from database
+	 * @param email users email
+	 * @param password users password fro authentication
+	 * @returns promise
+	 */
 	async deleteUser(email: string, password: string) {
 		return new Promise((resolve, reject) => {
+			// Create new instance of cognitoUser
 			const cognitoUser = new CognitoUser({
 				Username: email,
 				Pool: userPool,
 			});
-
+			// Details for authentication
 			const authenticationDetails = new AuthenticationDetails({
 				Username: email,
 				Password: password,
 			});
 
+			// Try to authenticate user
 			cognitoUser.authenticateUser(authenticationDetails, {
 				// If sign in was success check if user has confirmed their account with code
 				onSuccess(_session, userConfirmationNecessary) {
@@ -189,6 +197,7 @@ const cognitoHelper = {
 						resolve({userConfirmationNecessary});
 					}
 
+					// On successfull login delete user
 					cognitoUser.deleteUser((error, result) => {
 						if (error) {
 							reject(error);

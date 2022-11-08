@@ -19,7 +19,7 @@ const userC = {
 				[
 					_request.body.email,
 					_request.body.admin,
-					_request.body.schoolid,
+					_request.body.schoolname,
 				]
 			);
 			// Try to sign user to cognito and save ansewer to result

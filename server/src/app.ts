@@ -6,10 +6,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 
-// Imports for error handlers
-// import createError from 'http-errors';
-// import type {ErrorRequestHandler} from 'express';
-
+// Import routes from routes folder
 import profileRouter from './routes/profile';
 import joblistingRouter from './routes/joblisting';
 import userRouter from './routes/users';
@@ -20,6 +17,7 @@ import somelinkRouter from './routes/somelinks';
 // Usage of environment varaibles
 dotenv.config();
 
+// Create express app
 const app = express();
 
 // Necessary middlewares
@@ -30,7 +28,6 @@ app.use(cors());
 app.use(morgan('common'));
 
 // Take routes in use
-
 app.use('/profiles', profileRouter);
 app.use('/joblistings', joblistingRouter);
 app.use('/users', userRouter);
@@ -38,22 +35,5 @@ app.use('/images', imageRouter);
 app.use('/cities', cityRouter);
 app.use('/schools', schoolRouter);
 app.use('/somelinks', somelinkRouter);
-// Error handling code created by express generator
-// TBD if we use it or our own error handler
-// app.use((request, response, next) => {
-// 	next(createError(404));
-// });
-
-// const errorHandler: ErrorRequestHandler = (error, request, response, next) => {
-// 	response.locals.message = error.message;
-// 	response.locals.error =
-// 		request.app.get('env') === 'development' ? error : {};
-
-// 	// Render the error page
-// 	response.status(error.status || 500);
-// 	response.render('error');
-// };
-
-// app.use(errorHandler);
 
 export = app;

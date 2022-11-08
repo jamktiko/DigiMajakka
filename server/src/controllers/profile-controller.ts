@@ -5,6 +5,7 @@
 import type express from 'express';
 import queryDb from '../db-connection';
 import * as validation from '../validation';
+import type {Profile} from '../models/profile-model';
 
 // Return all profiles from database
 const profileController = {
@@ -43,33 +44,61 @@ const profileController = {
 	},
 
 	// Insert profile into database
-	// async createProfile(
-	// 	_request: express.Request,
-	// 	response: express.Response,
-	// 	next: express.NextFunction
-	// ) {
-	// 	try {
-	// 		// Profile needs to be validated before inserting it into databse
-	// 		// Function profileValidator return opbject which has validated profile and information if validation passed
-	// 		const profile = profileValidator(_request.body);
-	// 		if (!profile.valid) {
-	// 			throw new Error(JSON.stringify(profile));
-	// 		} else if (profile.valid) {
-	// 			const insertedProfile = await queryDb(
-	// 				'INSERT INTO UserProfile (userprofileid, firstname, familyname, phonenumber, aboutme, lookingfor, studyfield, yearofstudy, public, UserAccount_email, School_schoolid, City_cityid, picturelink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-	// 				Object.values(profile.profile)
-	// 			);
-	// 			console.log(insertedProfile);
+	async createProfile(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			// Find users data and citys name that users school is in
+			const userdata = await queryDb(
+				'SELECT UA.email, UA.School_name AS schoolname, SC.City_name AS cityname FROM UserAccount UA INNER JOIN SchoolCity SC ON SC.School_name=UA.School_name WHERE UA.email = ?;',
+				[_request.body.email]
+			);
 
-	// 			response.status(201).json({
-	// 				message: 'Profile created succesfully',
-	// 				success: true,
-	// 			});
-	// 		}
-	// 	} catch (error: unknown) {
-	// 		next(error);
-	// 	}
-	// },
+			// Take users data from array
+			const user = userdata[0];
+
+			// Check that user object has specified keys and that they are correct type
+			if (
+				typeof user.email === 'string' &&
+				typeof user.schoolname === 'string' &&
+				typeof user.cityname === 'string'
+			) {
+				// Template profile with placeholder data
+				const profile: Profile = {
+					firstname: 'Etunimi',
+					familyname: 'Sukunimi',
+					phonenumber: 'Puhelinnumero',
+					description: 'Kuvaus',
+					lookingfor: 'Mitä etsit',
+					studyfield: 'Koulutusala',
+					yearofstudy: 1,
+					publicity: false,
+					picturelink: '',
+					email: '',
+					cityname: user.cityname,
+					accountemail: user.email,
+					schoolname: user.schoolname,
+				};
+				// Insert placeholder data to users profile
+				const insertedProfile = await queryDb(
+					'INSERT INTO UserProfile (firstname, familyname, phonenumber, aboutme, lookingfor, studyfield, yearofstudy, public, picturelink, email, City_name, UserAccount_email, UserAccount_School_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+					Object.values(profile)
+				);
+				console.log(insertedProfile);
+
+				response.status(201).json({
+					message: 'Profile created succesfully',
+					success: true,
+				});
+			} else {
+				throw new TypeError('Error when trying to create new profile');
+			}
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
 
 	// Updates all fields of profile. Values taken from request body.
 	async updateProfile(
@@ -226,13 +255,15 @@ const profileController = {
 	) {
 		try {
 			// Check if profile already have skill provided in request
+			// Find all profiles skills
 			const skillExists = await queryDb(
 				'SELECT S.name AS S, SS.name AS SS FROM UserProfileSkills US INNER JOIN SpecialSkills SS ON SS.specialskillid=US.SpecialSkills_specialskillid INNER JOIN Skills S ON S.skillid=US.SpecialSkills_Skills_skillid WHERE US.UserProfile_userprofileid = ?;',
 				[_request.params.profileid]
 			);
 
+			// Make array to store skills
 			const skillArray: string[] = [];
-
+			// Query returns data in format [{}, {}] so extract values from objects into single array
 			for (const x of skillExists) {
 				const items = Object.values(x);
 				for (const y of items) {
@@ -240,6 +271,7 @@ const profileController = {
 				}
 			}
 
+			// Check that profile doesn't already have skill
 			if (!skillArray.includes(_request.params.skillname)) {
 				// If profile doesn't have skill insert to ProfiiliOsaaminen table
 				const profileSkillInsert = await queryDb(
@@ -253,6 +285,7 @@ const profileController = {
 				console.log(profileSkillInsert);
 
 				response.status(200).json(profileSkillInsert);
+				// If profile already has skill just return ok status and message profile already has skill
 			} else if (skillArray.includes(_request.params.skillname)) {
 				response.status(200).json({
 					message:
