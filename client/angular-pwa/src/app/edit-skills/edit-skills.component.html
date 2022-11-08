@@ -1,1 +1,40 @@
-<p>edit-skills works!</p>
+<!-- Backdrop styles come from global styles. Backdrop causes the form to be displayed on top of other components -->
+<div class="backdrop" (click)="changeVisibility()">
+	<!-- Form is the container for the form, and provides the formdata for Angular -->
+	<form
+		#f="ngForm"
+		class="formcontainer"
+		(click)="$event.stopPropagation()"
+		(ngSubmit)="onSubmit(f.value)"
+	>
+		<!-- Button to close the edit-window -->
+		<div class="close-button" (click)="changeVisibility()">
+			<img
+				class="close-icon"
+				src="assets\icons\close.svg"
+				alt="close-button"
+			/>
+		</div>
+
+		<h2>Osaaminen</h2>
+
+		<!-- Dropdown-input for skills -->
+		<label>
+			Valitse listalta taito
+			<select name="skill" #skill="ngModel" [(ngModel)]="skills">
+				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
+				<option>JAMK</option>
+				<option>XAMK</option>
+			</select>
+		</label>
+
+		<button class="graybutton">Lisää taito profiiliin</button>
+
+		<!-- Submit-button inside a div to position it correctly -->
+		<div class="buttoncontainer">
+			<button [disabled]="!f.valid" type="submit" class="greenbutton">
+				Tallenna
+			</button>
+		</div>
+	</form>
+</div>
