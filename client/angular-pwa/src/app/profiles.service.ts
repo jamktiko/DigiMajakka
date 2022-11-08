@@ -20,13 +20,6 @@ export class ProfilesService {
 		return this.http.get(this.findAllUrl);
 	}
 
-	getProfileSkills(id: number) {
-		return this.http.get(
-			'http://localhost:3000/profiles/skills/3',
-			this.httpOptions
-		);
-	}
-
 	httpOptions = {
 		headers: new HttpHeaders({'Content-Type': 'application/json'}),
 	};
@@ -39,30 +32,37 @@ export class ProfilesService {
 			.pipe(map((response: any) => response));
 	}
 
-	/*
-	
+	getProfileSkills(id: number) {
+		return this.http.get(
+			`http://localhost:3000/profiles/skills/${id}`,
+			this.httpOptions
+		);
+	}
 
-	
-	// Error handler
-	private handleError<T>(operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
-			// TODO: send the error to remote logging infrastructure
-			console.error(error); // log to console instead
+	getProfileSomeLinks(id: number) {
+		return this.http.get(
+			`http://localhost:3000/somelinks/${id}`,
+			this.httpOptions
+		);
+	}
 
-			// Let the app keep running by returning an empty result.
-			return of(result as T);
-		};
+	getProfileCity(id: number) {
+		return this.http.get(`http://localhost:3000/cities/findById/${id}`);
+	}
+
+	getProfileSchool(id: number) {
+		return this.http.get(`http://localhost:3000/schools/findById/${id}`);
 	}
 
 	// Method to update a profile using Http put-method.
-	updateProfile(profile: any): Observable<any> {
+	updateProfile(id: number, profile: any) {
+		const body = profile;
 		return this.http
-			.put(
-				'http://localhost:3000/profiles/updateProfile',
-				profile,
+			.put<any>(
+				`http://localhost:3000/profiles/update/${id}`,
+				body,
 				this.httpOptions
 			)
-			.pipe(catchError(this.handleError<any>('updateProfile')));
+			.subscribe((response) => console.log(response));
 	}
-  */
 }

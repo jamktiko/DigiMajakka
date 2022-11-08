@@ -1,44 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProfileEditService } from '../profile-edit.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {StateManagementService} from '../state-management.service';
+import {ProfilesService} from '../profiles.service';
+import {Profile} from '../profile';
 
 @Component({
-  selector: 'app-edit-personal-info',
-  templateUrl: './edit-personal-info.component.html',
-  styleUrls: ['./edit-personal-info.component.css']
+	selector: 'app-edit-personal-info',
+	templateUrl: './edit-personal-info.component.html',
+	styleUrls: ['./edit-personal-info.component.css'],
 })
 export class EditPersonalInfoComponent implements OnInit {
+	// Declaration for form values
+	info = {
+		firstname: '',
+		lastname: '',
+		field: '',
+		school: '',
+		city: '',
+		year: '',
+	};
 
-  // Declaration for form values
-  info = {
-    firstname: '',
-    lastname: '',
-    field: '',
-    school: '',
-    city: '',
-    year: ''
-  };
+	@Input() loggedProfile: any;
+	@Input() school: any;
+	@Input() city: any;
 
-  visible: boolean;
+	@Output() updatedProfile = new EventEmitter();
 
-  constructor(private editservice: ProfileEditService) {
-    this.visible = editservice.personalEdit;
-   }
+	constructor(
+		private editservice: StateManagementService,
+		private profileservice: ProfilesService
+	) {}
 
-   changeVisibility() {
-    this.editservice.togglePersonalVisibility();
-    
-  }
+	changeVisibility() {
+		this.editservice.togglePersonalVisibility();
+	}
 
-  ngOnInit(): void {
-    
-  }
+	ngOnInit(): void {
+		this.info.firstname = this.loggedProfile[0].firstname;
+		this.info.lastname = this.loggedProfile[0].familyname;
+		this.info.field = this.loggedProfile[0].studyfield;
+		// CONTINUE WHEN DATABASE FIXED
+		this.info.school = this.school.name;
+		this.info.city = this.city.name;
+	}
 
-  // Method that has the functionality for submitting the form
-  onSubmit(formdata: any) {
-    // ADD FUNCTIONALITY
-    this.info.firstname = formdata.firstname
-    console.log(this.info.firstname)
-  }
-
+	// Method that has the functionality for submitting the form
+	onSubmit(formdata: any) {
+		this.profileservice.updateProfile(
+			this.loggedProfile[0].userprofileid,
+			// CONTINUE WHEN DATABASE FIXED
+			`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "school"}`
+		);
+		console.log('Submitted');
+		this.changeVisibility();
+		this.updatedProfile.emit();
+	}
 }

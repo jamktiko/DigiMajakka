@@ -3,6 +3,7 @@ export interface Profile {
 	School_schoolid: number;
 	UserAccount_email: string;
 	aboutme: string;
+	email: string;
 	familyname: string;
 	firstname: string;
 	lookingfor: string;

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {ProfileEditService} from '../profile-edit.service';
+import {StateManagementService} from '../state-management.service';
 
 @Component({
 	selector: 'app-edit-attachments',
@@ -16,7 +16,7 @@ export class EditAttachmentsComponent implements OnInit {
 
 	detailForm!: FormGroup;
 
-	constructor(private editservice: ProfileEditService) {}
+	constructor(private editservice: StateManagementService) {}
 
 	onSubmit(formdata: any) {}
 

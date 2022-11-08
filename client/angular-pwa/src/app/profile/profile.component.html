@@ -3,6 +3,7 @@
 
 <div class="upperContent">
 	<div class="upperBox first">
+		<!-- Button to open photo-edit window -->
 		<div class="editButton upleft" (click)="changePhotoVisibility()">
 			<img
 				class="edit-icon"
@@ -13,6 +14,7 @@
 		<img src="https://via.placeholder.com/576x403.png" class="profile" />
 	</div>
 	<div class="upperBox second">
+		<!-- Button to open personalinfo-edit-->
 		<div
 			class="editButton upcenter"
 			(click)="changePersonalEditVisibility()"
@@ -23,15 +25,17 @@
 				alt="edit-icon"
 			/>
 		</div>
+		<!-- Userprofiles first- and lastname -->
 		<h2 *ngIf="loggedProfile">
 			{{ loggedProfile[0].firstname }} {{ loggedProfile[0].familyname }}
 		</h2>
+		<!-- Userprofiles field of study -->
 		<p class="listtext">{{ loggedProfile[0].studyfield }}</p>
-		<!--LISÄÄ KOULUHAKU-->
+		<!-- Schoolname -->
 		<p class="listtext">
-			{{ loggedProfile[0].School_schoolid }} LISÄÄ KOULUNHAKU
-			TIETOKANNASTA
+			{{ school[0].name }}
 		</p>
+		<!-- Year of study, gives different text based on the year-value -->
 		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 1">
 			{{ loggedProfile[0].yearofstudy }}:sen vuoden opiskelija
 		</p>
@@ -41,13 +45,17 @@
 		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 3">
 			{{ loggedProfile[0].yearofstudy }}:nnen vuoden opiskelija
 		</p>
-		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy >= 4"></p>
+		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy >= 4">
+			4:nnen (tai enemmän) vuoden opiskelija
+		</p>
+
+		<!-- City-name -->
 		<p class="listtext">
-			{{ loggedProfile[0].City_cityid }} LISÄÄ KAUPUNGIN HAKU
-			TIETOKANNASTA
+			{{ city[0].name }}
 		</p>
 	</div>
 	<div class="upperBox third">
+		<!-- Button to open contactinfo-edit-->
 		<div class="editButton upright" (click)="changeVisibility()">
 			<img
 				class="edit-icon"
@@ -56,18 +64,22 @@
 			/>
 		</div>
 		<h2>Yhteystiedot</h2>
-		<p>Sähköposti: <br />{{ loggedProfile[0].UserAccount_email }}</p>
+		<p>Sähköposti: <br />{{ loggedProfile[0].email }}</p>
 		<p>
 			Puhelinnumero: <br />
 			{{ loggedProfile[0].phonenumber }}
 		</p>
-		<div class="socials"></div>
+		<div class="socials">
+			<!-- ADD ICONS AND *NGIF BASED ON LINK.NAME TO GET CORRECT ICONS -->
+			<p *ngFor="let link of someLinks">{{ link.name }}</p>
+		</div>
 	</div>
 </div>
 <!--Alempi osio jaettu gridillä kahteen 1fr osioon, sekä keskiviiva lisätty väliin-->
 <div class="lowerContent">
 	<!--Alemman tason viivan vasen puoli-->
 	<div class="lowerBox left">
+		<!-- Button to open aboutme-edit-->
 		<div
 			class="editButton lowercenter"
 			(click)="changeAboutMeEditVisibility()"
@@ -91,6 +103,7 @@
 		<!--Läpinäkyvälaatikko joka sisältää tagit-->
 		<div class="glassbox">
 			<h4>Osaaminen</h4>
+			<!-- Button to open skills-edit-->
 			<div class="editButton lowercornerright">
 				<img
 					class="edit-icon"
@@ -99,15 +112,16 @@
 				/>
 			</div>
 			<div class="tags">
+				<p *ngIf="skills.length === 0">Lisää tähän taitojasi.</p>
+				<!-- Every skill put inside their own tag -->
 				<div class="tag" *ngFor="let skill of skills">
-					<p>{{ skill.name }}</p>
+					<p>{{ skill.Skill }}</p>
 				</div>
 			</div>
 			<div class="graybutton">Näytä kaikki</div>
 		</div>
 		<!--Lasilaatikon alla olevat nappulat-->
 		<div class="checkboxRow">
-			<!-- ADD *ngIf TO CHECKMARKS -->
 			<div class="btnwithcheckmark">
 				<div
 					class="bluebutton"
@@ -116,6 +130,7 @@
 					Lataa CV
 				</div>
 				<img
+					*ngIf="someLinks.cv"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -129,6 +144,7 @@
 					Portfolio
 				</div>
 				<img
+					*ngIf="someLinks.portfolio"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -142,6 +158,7 @@
 					GitHub
 				</div>
 				<img
+					*ngIf="someLinks.github"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -163,7 +180,22 @@
 </div>
 
 <app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
-<app-edit-personal-info *ngIf="isPersonalEditVisible"></app-edit-personal-info>
-<app-edit-contact-info *ngIf="isEditVisible"></app-edit-contact-info>
-<app-edit-about-me *ngIf="isAboutMeEditVisible"></app-edit-about-me>
+<app-edit-personal-info
+	*ngIf="isPersonalEditVisible"
+	[loggedProfile]="loggedProfile"
+	[school]="school"
+	[city]="city"
+	(updatedProfile)="refresh()"
+></app-edit-personal-info>
+<app-edit-contact-info
+	*ngIf="isEditVisible"
+	[someLinks]="someLinks"
+	[loggedProfile]="loggedProfile"
+	(updatedProfile)="refresh()"
+></app-edit-contact-info>
+<app-edit-about-me
+	*ngIf="isAboutMeEditVisible"
+	[loggedProfile]="loggedProfile"
+	(updatedProfile)="refresh()"
+></app-edit-about-me>
 <app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>

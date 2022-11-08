@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ProfileEditService} from '../profile-edit.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {StateManagementService} from '../state-management.service';
+import {ProfilesService} from '../profiles.service';
+import {Profile} from '../profile';
+import {Output, EventEmitter} from '@angular/core';
 
 @Component({
 	selector: 'app-edit-about-me',
@@ -12,11 +15,28 @@ export class EditAboutMeComponent implements OnInit {
 	lookingfor = '';
 	chars = 0;
 
-	constructor(private editservice: ProfileEditService) {}
+	@Input() loggedProfile: any;
+	@Output() updatedProfile = new EventEmitter();
 
-	ngOnInit(): void {}
+	constructor(
+		private editservice: StateManagementService,
+		private profileservice: ProfilesService
+	) {}
 
-	onSubmit(formdata: any) {}
+	ngOnInit(): void {
+		this.aboutme = this.loggedProfile[0].aboutme;
+		this.lookingfor = this.loggedProfile[0].lookingfor;
+	}
+
+	onSubmit(formdata: any) {
+		this.profileservice.updateProfile(
+			this.loggedProfile[0].userprofileid,
+			`{"aboutme": "${formdata.aboutme}", "lookingfor": "${formdata.lookingfor}"}`
+		);
+		console.log('Submitted');
+		this.changeVisibility();
+		this.updatedProfile.emit();
+	}
 
 	changeVisibility() {
 		this.editservice.toggleAboutMeVisibility();
