@@ -11,7 +11,7 @@ const somelinkC = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT * FROM SomeLinks WHERE UserProfile_userprofileid= ?;',
+				'SELECT * FROM Links WHERE UserProfile_userprofileid= ?;',
 				[_request.params.profileid]
 			);
 			console.log(data);
@@ -27,7 +27,7 @@ const somelinkC = {
 	) {
 		try {
 			const result = await queryDb(
-				'INSERT INTO SomeLinks (name, link, UserProfile_userprofileid) VALUES (?, ?, ?);',
+				'INSERT INTO Links (name, link, UserProfile_userprofileid) VALUES (?, ?, ?);',
 				[
 					_request.body.name,
 					_request.body.link,
