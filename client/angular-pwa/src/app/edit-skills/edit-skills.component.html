@@ -21,14 +21,15 @@
 		<!-- Dropdown-input for skills -->
 		<label>
 			Valitse listalta taito
-			<select name="skill" #skill="ngModel" [(ngModel)]="skills">
+			<select name="skill" #skill="ngModel" [(ngModel)]="toBeAddedSkill">
 				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-				<option>JAMK</option>
-				<option>XAMK</option>
+				<option *ngFor="let skill of skills">{{ skill.name }}</option>
 			</select>
 		</label>
 
-		<button class="graybutton">Lisää taito profiiliin</button>
+		<button class="graybutton" (click)="addSkill(f.value)">
+			Lisää taito profiiliin
+		</button>
 
 		<!-- Submit-button inside a div to position it correctly -->
 		<div class="buttoncontainer">
