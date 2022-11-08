@@ -143,6 +143,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .socials>a {
   cursor: pointer;
   margin: 0;
@@ -226,7 +227,6 @@ h5 {
 }
 
 .graybutton {
-  
   margin: 10px;
 }
 
@@ -269,7 +269,8 @@ h5 {
   max-width: 650px;
 }
 
-.enableDisable {
+.toggleBtnDisabled, .toggleBtnEnabled {
+  cursor: pointer;
   max-width: 71px;
   height: 38px;
   border-radius: 20px;
@@ -279,14 +280,29 @@ h5 {
   width:100%
 }
 
-.enableDisableBall {
+.toggleBtnDisabled {
+  justify-content: left;
+}
+
+.toggleBtnEnabled {
+  justify-content: right;
+}
+
+.toggleBtnBallDisabled, .toggleBtnBallEnabled {
   width:33px;
   height: 33px;
-  background-color: var(--mediumblue);
   border-radius: 15px;
   justify-self: center;
   align-self: center;
-  margin-left: 2px;
+  margin:  2px;
+}
+
+.toggleBtnBallDisabled {
+  background-color: var(--mediumblue);
+}
+
+.toggleBtnBallEnabled {
+  background-color: var(--green);
 }
 
 .leftflex {

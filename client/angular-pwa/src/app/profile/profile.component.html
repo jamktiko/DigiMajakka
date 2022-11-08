@@ -197,8 +197,20 @@
 		<div class="contentfooter">
 			<div class="leftflex">
 				<h5>Aseta profiili julkiseksi</h5>
-				<div class="enableDisable">
-					<div class="enableDisableBall"></div>
+				<div
+					[ngClass]="
+						loggedProfile[0].public == 0
+							? 'toggleBtnDisabled'
+							: 'toggleBtnEnabled'
+					"
+				>
+					<div
+						[ngClass]="
+							loggedProfile[0].public == 0
+								? 'toggleBtnBallDisabled'
+								: 'toggleBtnBallEnabled'
+						"
+					></div>
 				</div>
 			</div>
 			<div class="greenbutton">Tallenna</div>
