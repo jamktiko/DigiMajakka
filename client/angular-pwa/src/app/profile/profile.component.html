@@ -131,7 +131,10 @@
 		<div class="glassbox">
 			<h4>Osaaminen</h4>
 			<!-- Button to open skills-edit-->
-			<div class="editButton lowercornerright">
+			<div
+				class="editButton lowercornerright"
+				(click)="changeSkillsEditVisibility()"
+			>
 				<img
 					class="edit-icon"
 					src="assets\icons\edit.svg"
@@ -244,4 +247,8 @@
 	[loggedProfile]="loggedProfile"
 	(updatedProfile)="updated()"
 ></app-edit-about-me>
+<app-edit-skills
+	*ngIf="isSkillEditVisible"
+	[loggedProfile]="loggedProfile"
+></app-edit-skills>
 <app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>

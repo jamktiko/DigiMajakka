@@ -1,0 +1,62 @@
+* {
+  color: var(--darkblue);
+}
+
+.formcontainer {
+  background-color: var(--lightblue);
+  margin: 2% auto;
+  max-width: fit-content;
+  padding: 35px;
+  border-radius: 20px;
+  transform: translateZ(0);
+}
+
+.buttoncontainer {
+  width: 365px;
+  display: flex;
+  justify-content: center;
+}
+
+label {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25em;
+}
+
+select {
+  box-sizing: border-box;
+  padding-left: 0.75em;
+  height: 33px;
+  width: 365px;
+  border-radius: 5px;
+  border: 0;
+  box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
+  background-color: var(--lightblue);
+}
+
+.close-button {
+  cursor: pointer;
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  background-color: var(--darkgray);
+  color: var(--lightblue);
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  border-radius: 6px;
+}
+
+.close-icon {
+  color: var(--lightblue);
+  height: 35px;
+  width: 35px;
+}
+
+.greenbutton {
+  margin: 1.5em auto 0;
+}
+
+.graybutton {
+  color: var(--lightblue);
+  margin-top: 1.5em;
+}

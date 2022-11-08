@@ -145,6 +145,14 @@ export class ProfileComponent implements OnInit {
 		this.editservice.toggleAboutMeVisibility();
 	}
 
+	get isSkillEditVisible(): boolean {
+		return this.editservice.skillEdit;
+	}
+
+	changeSkillsEditVisibility() {
+		this.editservice.toggleSkillVisibility();
+	}
+
 	get isAttachmentEditVisible(): boolean {
 		return this.editservice.attachmentEdit;
 	}
