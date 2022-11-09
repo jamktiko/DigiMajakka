@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import http from 'node:http';
 import process from 'node:process';
 import app from '../app.js';

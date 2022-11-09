@@ -1,7 +1,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable import/extensions */
 import type Jobadvert from '../models/jobadvert-model';
-import {validatePhoneNumber, validateEmail} from '../validation';
+import {validatePhoneNumber, validateEmail} from './validation';
 
 const jobadvertFactor = ({
 	advertid = '',

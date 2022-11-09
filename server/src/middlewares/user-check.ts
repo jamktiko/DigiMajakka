@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 
 import type express from 'express';
-import querydb from './db-connection';
+import querydb from '../db-connection';
 
 import type {IAuthenticatedRequest} from './auth';
 

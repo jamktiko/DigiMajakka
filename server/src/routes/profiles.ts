@@ -2,8 +2,9 @@
 /* eslint-disable @typescript-eslint/comma-dangle */
 import express from 'express';
 import profileC from '../controllers/profile-controller';
-import {authHandler} from '../auth';
-import userCheck from '../user-check';
+import {authHandler} from '../middlewares/auth';
+import userCheck from '../middlewares/user-check';
+import bodyChecker from '../middlewares/body-check';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 
@@ -14,19 +15,21 @@ profileRouter.get('/findAll', profileC.findAll);
 profileRouter.get('/findById/:id', profileC.findById);
 
 // Route to post profile
-profileRouter.post('/create', profileC.createProfile);
+profileRouter.post('/create', bodyChecker, profileC.createProfile);
 
 // Route to update profile
 profileRouter.put(
 	'/update/:id',
-	// authHandler,
-	// userCheck,
+	bodyChecker,
+	authHandler,
+	userCheck,
 	profileC.updateProfile
 );
 
 // Update one column of profile
 profileRouter.put(
 	'/updateOne/:id/:column/:value',
+	bodyChecker,
 	authHandler,
 	userCheck,
 	profileC.updateProfileColumn
@@ -34,6 +37,7 @@ profileRouter.put(
 // Deletes profile by id
 profileRouter.delete(
 	'/deleteOne/:id',
+	bodyChecker,
 	authHandler,
 	userCheck,
 	profileC.deleteProfile
@@ -45,10 +49,11 @@ profileRouter.get('/skills/:id', profileC.findProfileSkills);
 // Insert skill to a profile
 profileRouter.post(
 	'/insertSkill/:profileid/:skillname',
+	bodyChecker,
 
 	profileC.addSkill
 );
 
-profileRouter.post('/findByEmail', profileC.findByEmail);
+profileRouter.post('/findByEmail', bodyChecker, profileC.findByEmail);
 
 export = profileRouter;

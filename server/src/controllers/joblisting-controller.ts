@@ -4,9 +4,11 @@ import type express from 'express';
 
 import uniqid from 'uniqid';
 import queryDb from '../db-connection';
-import SesHelper from '../ses-helper';
+import SesHelper from '../service-helpers/ses-helper';
 import jobadvertValidation from '../validators/jobadvert-validator';
+import CustomError from '../custom-error';
 
+// Create new instacne of ses helper
 const ses = new SesHelper();
 
 const joblistingC = {
@@ -58,8 +60,15 @@ const joblistingC = {
 					success: true,
 				});
 			} else {
-				throw new Error(
-					'Error when creating advert: validation failed'
+				throw new CustomError(
+					JSON.stringify({
+						message:
+							'Some advert fields not valid, shows false at invalid fields',
+						phonenumber: valid.phonenumberValid,
+						email: valid.emailValid,
+						fieldtypes: valid.typeCheck,
+					}),
+					400
 				);
 			}
 		} catch (error: unknown) {
