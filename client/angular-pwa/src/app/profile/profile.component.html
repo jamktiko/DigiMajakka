@@ -33,7 +33,7 @@
 		<p class="listtext">{{ loggedProfile[0].studyfield }}</p>
 		<!-- Schoolname -->
 		<p class="listtext">
-			{{ school[0].name }}
+			{{ loggedProfile[0].UserAccount_School_name }}
 		</p>
 		<!-- Year of study, gives different text based on the year-value -->
 		<p class="listtext" *ngIf="loggedProfile[0].yearofstudy === 1">
@@ -51,7 +51,7 @@
 
 		<!-- City-name -->
 		<p class="listtext">
-			{{ city[0].name }}
+			{{ loggedProfile[0].City_name }}
 		</p>
 	</div>
 	<div class="upperBox third">
@@ -69,9 +69,18 @@
 			Puhelinnumero: <br />
 			{{ loggedProfile[0].phonenumber }}
 		</p>
-		<div *ngIf="someLinks.length > 0" class="socials">
-			<!-- ADD ICONS AND *NGIF BASED ON LINK.NAME TO GET CORRECT ICONS -->
-			<a *ngIf="someLinks[0].linkedin" [href]="someLinks.linkedin">
+		<!-- Social media icons. -->
+		<div
+			*ngIf="
+				someLinks[0].linkedin ||
+				someLinks[0].facebook ||
+				someLinks[0].instagram ||
+				someLinks[0].twitter
+			"
+			class="socials"
+		>
+			<!-- Social media icons with links. Icon is only displayed if the profile has a link set to that service -->
+			<a *ngIf="someLinks[0].linkedin" [href]="someLinks[0].linkedin">
 				<img
 					class="some-icon linkedin"
 					src="assets\icons\In-2C-101px-TM.png"
@@ -232,7 +241,6 @@
 <app-edit-personal-info
 	*ngIf="isPersonalEditVisible"
 	[loggedProfile]="loggedProfile"
-	[school]="school"
 	[city]="city"
 	(updatedProfile)="updated()"
 ></app-edit-personal-info>
