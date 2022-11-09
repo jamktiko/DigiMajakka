@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StateManagementService} from '../state-management.service';
 
@@ -18,42 +18,52 @@ export class EditContactInfoComponent implements OnInit {
 		twitter: '',
 	};
 
-	showUnsavedChanges: boolean = false;
+	@Input() loggedProfile: any;
+	@Input() someLinks: any;
+
+	@Output() updatedProfile = new EventEmitter();
+
+	// showUnsavedChanges: boolean = false;
 
 	// Declaration for FormGroup
 	detailForm!: FormGroup;
 
-	reference: any;
-	hasChanges: boolean = false;
+	// reference: any;
+	// hasChanges: boolean = false;
 
 	constructor(private editservice: StateManagementService) {}
 
-	// Creates a reference of the initial form values
-	createReference(obj: any) {
-		this.reference = Object.assign({}, obj);
+	ngOnInit(): void {
+		// this.createReference(this.info);
+		this.info.email = this.loggedProfile[0].email;
+		this.info.phone = this.loggedProfile[0].phonenumber;
 	}
+
+	// Creates a reference of the initial form values
+	// createReference(obj: any) {
+	// 	this.reference = Object.assign({}, obj);
+	// }
 
 	// Returns true if the user has changed the value in the form
-	isDifferent(obj: any, prop: string) {
-		return this.reference[prop] !== obj[prop];
-	}
+	// isDifferent(obj: any, prop: string) {
+	// 	return this.reference[prop] !== obj[prop];
+	// }
 
-	changeVisibility(info: any) {
-		for (let prop in info) {
-			if (this.isDifferent(info, prop)) {
-				this.hasChanges = true;
-			}
-		}
-		if (!this.hasChanges) {
-			this.editservice.toggleContactVisibility();
-		} else {
-			this.showUnsavedChanges = true;
-		}
+	changeVisibility() {
+		this.editservice.toggleContactVisibility();
+
+		// FUNCTIONALITY FOR NOTIFYING ABOUT UNSAVED CHANGES, ADD LATER (ADD INFO AS PARAMETER TO THIS METHOD)
+		// for (let prop in info) {
+		// 	if (this.isDifferent(info, prop)) {
+		// 		this.hasChanges = true;
+		// 	}
+		// }
+		// if (!this.hasChanges) {
+		// 	this.editservice.toggleContactVisibility();
+		// } else {
+		// 	this.showUnsavedChanges = true;
+		// }
 	}
 
 	onSubmit(formdata: any) {}
-
-	ngOnInit(): void {
-		this.createReference(this.info);
-	}
 }

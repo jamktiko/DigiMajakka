@@ -31,7 +31,7 @@ describe('Database crud operations', () => {
 	});
 	it('INSERT query', async () => {
 		const result = await querydb(
-			'INSERT INTO UserAccount VALUES ("testi@gmail.com", true, 1);',
+			'INSERT INTO UserAccount VALUES ("testi@gmail.com", true, "Orja opisto");',
 			[]
 		);
 		const resultParsed = JSON.parse(JSON.stringify(result));

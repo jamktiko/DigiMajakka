@@ -14,12 +14,46 @@ export class ProfileComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
-	loggedProfile!: Profile[];
+	confirmation: boolean = false;
+
+	loggedProfile: Profile[] = [
+		{
+			City_cityid: 1,
+			School_schoolid: 1,
+			UserAccount_email: 'Sähköposti',
+			aboutme: 'Kerro jotain itsestäsi',
+			email: 'Sähköposti',
+			familyname: 'Sukunimi',
+			firstname: 'Etunimi',
+			lookingfor: 'Kerro, millaista työtä haluaisit tehdä.',
+			phonenumber: '0400111222',
+			picturelink: 'jokukuva',
+			public: 0,
+			studyfield: 'Koulutusohjelma',
+			userprofileid: 1,
+			yearofstudy: 1,
+		},
+	];
 	skills: any = [];
 	someLinks: any = [];
+	city: any = [
+		{
+			cityid: 0,
+			name: 'Kaupunki',
+		},
+	];
+	school: any = [
+		{
+			name: 'Koulun nimi',
+		},
+	];
 
 	ngOnInit(): void {
 		this.getLoggedInProfile();
+	}
+
+	updated(): void {
+		window.location.reload();
 	}
 
 	getLoggedProfileSkills(id: number): void {
@@ -36,6 +70,20 @@ export class ProfileComponent implements OnInit {
 		});
 	}
 
+	getLoggedProfileCity(id: number): void {
+		this.profileservice.getProfileCity(id).subscribe((city) => {
+			this.city = city;
+			console.log(this.city[0]);
+		});
+	}
+
+	getLoggedProfileSchool(id: number): void {
+		this.profileservice.getProfileSchool(id).subscribe((school) => {
+			this.school = school;
+			console.log(this.school[0]);
+		});
+	}
+
 	getLoggedInProfile(): void {
 		this.profileservice.getLoggedInProfile().subscribe((profile) => {
 			this.loggedProfile = profile;
@@ -44,24 +92,26 @@ export class ProfileComponent implements OnInit {
 
 			this.getLogggedProfileLinks(this.loggedProfile[0].userprofileid);
 
+			this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
+
+			this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
+
 			console.log(this.loggedProfile[0]);
 		});
 	}
 
-	// getLoggedInProfile(): void {
-	// 	this.profileservice.getLoggedInProfile();
-	// 	setTimeout(() => {
-	// 		this.loggedProfile = this.profileservice.loggedProfile;
-	// 		 this.loggedProfile.forEach(
-	// 		 	(item: {[s: string]: unknown} | ArrayLike<unknown>) => {
-	// 		 		for (const [key, value] of Object.entries(item)) {
-	// 		 			console.log(key, value);
-	// 		 		}
-	// 		 	}
-	// 		 );
-	// 		console.log(this.loggedProfile);
-	// 	}, 3000);
-	// }
+	updatePublicity(): void {
+		let value;
+		if ((this.loggedProfile[0].public = 0)) {
+			value = 1;
+		} else {
+			value = 0;
+		}
+		this.profileservice.updateProfile(
+			this.loggedProfile[0].userprofileid,
+			`{"public": "${value}"}`
+		);
+	}
 
 	get isEditVisible(): boolean {
 		return this.editservice.contactEdit;
@@ -93,6 +143,14 @@ export class ProfileComponent implements OnInit {
 
 	changeAboutMeEditVisibility() {
 		this.editservice.toggleAboutMeVisibility();
+	}
+
+	get isSkillEditVisible(): boolean {
+		return this.editservice.skillEdit;
+	}
+
+	changeSkillsEditVisibility() {
+		this.editservice.toggleSkillVisibility();
 	}
 
 	get isAttachmentEditVisible(): boolean {

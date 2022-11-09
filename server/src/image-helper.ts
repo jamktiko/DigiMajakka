@@ -22,6 +22,7 @@ const imageHelper = {
 		// Create filestream to read saved file
 		const fileStream = fs.createReadStream(file.path);
 		// Use upload method to upload filer to s3
+		// code try catch structure here
 		const result = await s3
 			.upload({
 				Bucket: process.env.AWS_BUCKET ?? '',
@@ -29,7 +30,7 @@ const imageHelper = {
 				Key: file.filename ?? '',
 			})
 			.promise();
-
+		// Delete image from servers local folder
 		fs.unlink(process.cwd() + '/src/images/' + file.filename, (error) => {
 			if (error) {
 				console.error(error);
@@ -39,6 +40,11 @@ const imageHelper = {
 
 		return result;
 	},
+	/**
+	 * Function that downloads image from s3 bucket
+	 * @param key S3 objects key that stores image
+	 * @returns readstream to read data
+	 */
 	async getImg(key: string) {
 		return s3
 			.getObject({

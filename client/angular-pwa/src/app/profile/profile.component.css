@@ -134,9 +134,31 @@
 
 .socials {
   background-color: var(--lightblue);
+  padding: 0.3em 0.6em;
+  gap: 0.6em;
   height: 55px;
-  width: 239px;
+  width: fit-content;
   border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.socials>a {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.some-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.linkedin {
+  width: 44.75px
 }
 
 .splitStick {
@@ -149,13 +171,24 @@ p {
   color: var(--lightblue);
 }
 
+h2, h3, h4, h5 {
+  font-weight: 400;
+}
+
 h2 {
   color: var(--lightblue);
+  
 }
 
 h3 {
   color: var(--lightblue);
   margin-top: 50px;
+}
+
+h4 {
+  font-size: 1.6rem;
+  margin: 0px;
+  color: var(--darkblue);
 }
 
 h5 {
@@ -174,6 +207,13 @@ h5 {
   display:flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-left: 0.75em;
+}
+
+.tags>p {
+  margin: 0;
+  color: var(--darkblue);
+  font-size: 1.2em;
 }
 
 .tag {
@@ -187,14 +227,7 @@ h5 {
 }
 
 .graybutton {
-  width: 90px;
   margin: 10px;
-}
-
-h4 {
-  font-size: 1.6rem;
-  margin: 0px;
-  color: var(--darkblue)
 }
 
 .checkboxRow{
@@ -209,9 +242,12 @@ h4 {
 .btnwithcheckmark {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-items: center;
+  justify-content: start;
   align-items: center;
+}
+
+.btnwithcheckmark>img {
+  margin: 0;
 }
 
 .checkmark-icon {
@@ -225,13 +261,16 @@ h4 {
 .contentfooter {
   display: flex;
   margin-left: 30px;
+  margin-top: 2em;
+  margin-bottom: 3em;
   align-items: center;
   gap: 10px;
   justify-content: space-between;
   max-width: 650px;
 }
 
-.enableDisable {
+.toggleBtnDisabled, .toggleBtnEnabled {
+  cursor: pointer;
   max-width: 71px;
   height: 38px;
   border-radius: 20px;
@@ -241,14 +280,29 @@ h4 {
   width:100%
 }
 
-.enableDisableBall {
+.toggleBtnDisabled {
+  justify-content: left;
+}
+
+.toggleBtnEnabled {
+  justify-content: right;
+}
+
+.toggleBtnBallDisabled, .toggleBtnBallEnabled {
   width:33px;
   height: 33px;
-  background-color: var(--mediumblue);
   border-radius: 15px;
   justify-self: center;
   align-self: center;
-  margin-left: 2px;
+  margin:  2px;
+}
+
+.toggleBtnBallDisabled {
+  background-color: var(--mediumblue);
+}
+
+.toggleBtnBallEnabled {
+  background-color: var(--green);
 }
 
 .leftflex {
@@ -258,4 +312,21 @@ h4 {
 
 .greenbutton {
   margin-right: 20px;
+}
+
+.confirmation {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightblue);
+  color: var(--darkblue);
+  font-size: 1.2em;
+  font-weight: 600;
+  width: 15em;
+  height: 3em;
+  top: 5em;
+  right: 5%;
+  z-index: 15;
+  border-radius: 6px;
 }
