@@ -19,8 +19,8 @@ profileRouter.post('/create', profileC.createProfile);
 // Route to update profile
 profileRouter.put(
 	'/update/:id',
-	authHandler,
-	userCheck,
+	// authHandler,
+	// userCheck,
 	profileC.updateProfile
 );
 
