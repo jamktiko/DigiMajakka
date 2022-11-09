@@ -4,8 +4,10 @@ import type express from 'express';
 
 import uniqid from 'uniqid';
 import queryDb from '../db-connection';
-import sendEmail from '../ses-helper';
+import SesHelper from '../ses-helper';
 import jobadvertValidation from '../validators/jobadvert-validator';
+
+const ses = new SesHelper();
 
 const joblistingC = {
 	// Return all jobs from Tyoilmoitus board
@@ -35,28 +37,31 @@ const joblistingC = {
 
 			// Validate profile
 			const valid = jobadvertValidation({advertid, ..._request.body});
+
 			// If profile is not valid throw error
-			if (!valid.valid) {
+			if (valid.valid && typeof valid.filteredAdvert !== 'undefined') {
+				const insert = queryDb(
+					'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+					[...Object.values(valid.filteredAdvert)]
+				);
+				// Send email to job adverts creator with link to update advert
+				await ses.sendEmail(
+					'digimajakka.asiakaspalvelu@gmail.com',
+					'Testi sposti',
+					'testi'
+				);
+
+				console.log(insert);
+
+				response.status(201).json({
+					message: 'Created advert successfully',
+					success: true,
+				});
+			} else {
 				throw new Error(
 					'Error when creating advert: validation failed'
 				);
 			}
-
-			const insert = queryDb(
-				'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-				[...Object.values(_request.body)]
-			);
-			// Send email to job adverts creator with link to update advert
-			await sendEmail(
-				'digimajakka.asiakaspalvelu@gmail.com',
-				'Testi sposti',
-				'testi'
-			);
-			console.log(insert);
-			response.status(201).json({
-				message: 'Created advert successfully',
-				success: true,
-			});
 		} catch (error: unknown) {
 			next(error);
 		}

@@ -86,6 +86,7 @@ const jobadvertValidation = (jobadvert: Jobadvert) => {
 	const filteredAdvert: Jobadvert = jobadvertFactor(jobadvert);
 
 	const typeCheck = jobadvertTypeChecker(jobadvert);
+
 	if (!phonenumberValid || !emailValid || !filteredAdvert || !typeCheck) {
 		return {
 			valid: false,

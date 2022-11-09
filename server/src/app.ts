@@ -7,7 +7,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 // Import routes from routes folder
-import profileRouter from './routes/profile';
+import profileRouter from './routes/profiles';
 import joblistingRouter from './routes/joblisting';
 import userRouter from './routes/users';
 import imageRouter from './routes/images';
