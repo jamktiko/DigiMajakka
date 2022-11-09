@@ -69,9 +69,18 @@
 			Puhelinnumero: <br />
 			{{ loggedProfile[0].phonenumber }}
 		</p>
-		<div *ngIf="someLinks.length > 0" class="socials">
-			<!-- ADD ICONS AND *NGIF BASED ON LINK.NAME TO GET CORRECT ICONS -->
-			<a *ngIf="someLinks[0].linkedin" [href]="someLinks.linkedin">
+		<!-- Social media icons. -->
+		<div
+			*ngIf="
+				someLinks[0].linkedin ||
+				someLinks[0].facebook ||
+				someLinks[0].instagram ||
+				someLinks[0].twitter
+			"
+			class="socials"
+		>
+			<!-- Social media icons with links. Icon is only displayed if the profile has a link set to that service -->
+			<a *ngIf="someLinks[0].linkedin" [href]="someLinks[0].linkedin">
 				<img
 					class="some-icon linkedin"
 					src="assets\icons\In-2C-101px-TM.png"

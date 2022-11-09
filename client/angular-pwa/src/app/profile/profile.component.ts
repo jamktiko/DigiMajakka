@@ -35,7 +35,14 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 	skills: any = [];
-	someLinks: any = [];
+	someLinks: any = [
+		{
+			linkedin: '',
+			facebook: '',
+			instagram: '',
+			twitter: '',
+		},
+	];
 	city: any = [
 		{
 			cityid: 0,
