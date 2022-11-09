@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable operator-linebreak */
 
 /**
@@ -7,18 +6,13 @@
  * @param schoolemailend schools unique email ending to check that user really is student from the school
  * @returns boolean if email was valid or not
  */
-export const validateEmail = (email: string, schoolemailend: string) => {
+export const validateEmail = (email: string) => {
 	// Email regular expression taken from website: https://emailregex.com/
 	const expression =
 		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[(?:\d{1,3}\.){3}\d{1,3}])|(([a-zA-Z\-\d]+\.)+[a-zA-Z]{2,}))$/;
 
-	// Slice emails end to check if it matches with given school email end
-	const emailend = email.slice(email.indexOf('@'));
-
 	// Check that both validation criteria passes
-	const validation = Boolean(
-		expression.test(email) && emailend === schoolemailend
-	);
+	const validation = expression.test(email);
 
 	if (validation) {
 		return true;
@@ -44,6 +38,17 @@ export const validatePhoneNumber = (phoneNumber: string) => {
 
 	// If either format passes then return true
 	if (validate1 || validate2) {
+		return true;
+	}
+
+	return false;
+};
+
+export const validateEmailEnd = (email: string, schoolemailend: string) => {
+	// Slice emails end to check if it matches with given school email end
+	const emailend = email.slice(email.indexOf('@'));
+
+	if (emailend === schoolemailend) {
 		return true;
 	}
 

@@ -6,7 +6,7 @@ import queryDb from '../db-connection';
 
 const schoolC = {
 	// Function for finding school by name
-	async findById(
+	async findByName(
 		_request: express.Request,
 		response: express.Response,
 		next: express.NextFunction

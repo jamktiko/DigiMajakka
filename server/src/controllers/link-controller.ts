@@ -4,6 +4,7 @@ import type express from 'express';
 import queryDb from '../db-connection';
 
 const somelinkC = {
+	// Function to find links by profile id
 	async findById(
 		_request: express.Request,
 		response: express.Response,
@@ -20,6 +21,8 @@ const somelinkC = {
 			next(error);
 		}
 	},
+	// Currently not working!!!!!!!
+	// Function to insert link into database
 	async addLink(
 		_request: express.Request,
 		response: express.Response,

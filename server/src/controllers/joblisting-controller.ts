@@ -5,6 +5,7 @@ import type express from 'express';
 import uniqid from 'uniqid';
 import queryDb from '../db-connection';
 import sendEmail from '../ses-helper';
+import jobadvertValidation from '../validators/jobadvert-validator';
 
 const joblistingC = {
 	// Return all jobs from Tyoilmoitus board
@@ -22,16 +23,25 @@ const joblistingC = {
 			next(error);
 		}
 	},
+	// Function to insert new advert into database
 	async createAdvert(
 		_request: express.Request,
 		response: express.Response,
 		next: express.NextFunction
 	) {
 		try {
-			const id: string = uniqid();
+			// Create unique id for advert
+			const advertid: string = uniqid();
+			const valid = jobadvertValidation({advertid, ..._request.body});
+			if (!valid) {
+				throw new Error(
+					'Error when creating advert: validation failed'
+				);
+			}
+
 			const insert = queryDb(
 				'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-				[id, ...Object.values(_request.body)]
+				[advertid, ...Object.values(_request.body)]
 			);
 			// Amazon ses code here
 			await sendEmail(
