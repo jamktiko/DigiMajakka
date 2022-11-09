@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable import/extensions */
 import type Jobadvert from '../models/jobadvert-model';
@@ -81,13 +80,26 @@ const jobadvertTypeChecker = (jobadvert: Jobadvert) => {
 };
 
 const jobadvertValidation = (jobadvert: Jobadvert) => {
-	const valid = Boolean(
-		validatePhoneNumber(jobadvert.phonenumber) &&
-			validateEmail(jobadvert.email) &&
-			jobadvertFactor(jobadvert) &&
-			jobadvertTypeChecker(jobadvert)
-	);
-	return Boolean(valid);
+	const phonenumberValid = validatePhoneNumber(jobadvert.phonenumber);
+	const emailValid = validateEmail(jobadvert.email);
+
+	const filteredAdvert: Jobadvert = jobadvertFactor(jobadvert);
+
+	const typeCheck = jobadvertTypeChecker(jobadvert);
+	if (!phonenumberValid || !emailValid || !filteredAdvert || !typeCheck) {
+		return {
+			valid: false,
+			phonenumberValid,
+			emailValid,
+			filteredAdvert,
+			typeCheck,
+		};
+	}
+
+	return {
+		jobadvert: filteredAdvert,
+		valid: true,
+	};
 };
 
 export default jobadvertValidation;
