@@ -21,8 +21,7 @@ profileRouter.post('/create', bodyChecker, profileC.createProfile);
 profileRouter.put(
 	'/update/:id',
 	bodyChecker,
-	authHandler,
-	userCheck,
+
 	profileC.updateProfile
 );
 

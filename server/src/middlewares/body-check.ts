@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/comma-dangle */
 import type express from 'express';
 
@@ -9,7 +10,14 @@ const bodyChecker = (
 ) => {
 	try {
 		const values = Object.values(_request.body);
-		if (values.includes(undefined) || values.includes(null)) {
+		console.log(values);
+
+		if (
+			values.includes(undefined) ||
+			values.includes(null) ||
+			values.includes('undefined') ||
+			values.includes('null')
+		) {
 			throw new Error('Undefined or null values in body');
 		} else {
 			next();
