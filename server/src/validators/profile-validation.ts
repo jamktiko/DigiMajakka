@@ -2,7 +2,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable import/extensions */
 import type Profile from '../models/profile-model';
-import * as validation from '../validation';
+import * as validation from './validation';
 
 const profileFactor = ({
 	userprofileid = -1,

@@ -4,7 +4,7 @@
 
 import type express from 'express';
 import queryDb from '../db-connection';
-import CognitoHelper from '../cognito-helper';
+import CognitoHelper from '../service-helpers/cognito-helper';
 
 const cognitoHelper = new CognitoHelper();
 
