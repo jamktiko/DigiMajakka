@@ -60,7 +60,11 @@ img {
   display:flex;
   flex-direction: column;
   padding:50px;
+  width: 756px;
+  align-items: center;
 }
+
+
 
 .errorinput {
   border: 2px solid var(--error);
@@ -85,4 +89,22 @@ input {
   background: #E0FCFE;
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
   border-radius: 5px;
+}
+
+.glassbox {
+  width: 610px;
+  margin-top: 30px;
+  padding: 40px;
+  padding-top: 20px;
+  
+}
+
+.glassbox h2 {
+  margin-bottom: 40px;
+  color: var(--darkblue)
+}
+
+.glassbox p {
+  margin-bottom: 40px;
+  color: var(--darkblue)
 }
