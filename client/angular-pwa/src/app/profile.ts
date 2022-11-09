@@ -1,6 +1,6 @@
 export interface Profile {
-	City_cityid: number;
-	School_schoolid: number;
+	City_name: string;
+	UserAccount_School_name: string;
 	UserAccount_email: string;
 	aboutme: string;
 	email: string;

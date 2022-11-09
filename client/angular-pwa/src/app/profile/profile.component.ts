@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
 
 	loggedProfile: Profile[] = [
 		{
-			City_cityid: 1,
-			School_schoolid: 1,
+			City_name: 'Kaupunki',
+			UserAccount_School_name: 'Koulun nimi',
 			UserAccount_email: 'Sähköposti',
 			aboutme: 'Kerro jotain itsestäsi',
 			email: 'Sähköposti',
@@ -70,19 +70,20 @@ export class ProfileComponent implements OnInit {
 		});
 	}
 
-	getLoggedProfileCity(id: number): void {
-		this.profileservice.getProfileCity(id).subscribe((city) => {
-			this.city = city;
-			console.log(this.city[0]);
-		});
-	}
-
-	getLoggedProfileSchool(id: number): void {
-		this.profileservice.getProfileSchool(id).subscribe((school) => {
-			this.school = school;
-			console.log(this.school[0]);
-		});
-	}
+	// NOT NEEDED CURRENTLY
+	// getLoggedProfileCity(name: string): void {
+	// 	this.profileservice.getProfileCity(name).subscribe((city) => {
+	// 		this.city = city;
+	// 		console.log(this.city[0]);
+	// 	});
+	// }
+	//
+	// getLoggedProfileSchool(name: string): void {
+	// 	this.profileservice.getProfileSchool(name).subscribe((school) => {
+	// 		this.school = school;
+	// 		console.log(this.school[0]);
+	// 	});
+	// }
 
 	getLoggedInProfile(): void {
 		this.profileservice.getLoggedInProfile().subscribe((profile) => {
@@ -92,9 +93,8 @@ export class ProfileComponent implements OnInit {
 
 			this.getLogggedProfileLinks(this.loggedProfile[0].userprofileid);
 
-			this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
-
-			this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
+			// this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
+			// this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
 
 			console.log(this.loggedProfile[0]);
 		});
