@@ -6,9 +6,9 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit {
-	//Depending on number 0-5 modal will not show or show
+	//Depending on number 0-6 modal will not show or show
 	//specific message.
-	isNumber: number = 5;
+	isNumber: number = 6;
 	constructor() {}
 
 	ngOnInit(): void {}
