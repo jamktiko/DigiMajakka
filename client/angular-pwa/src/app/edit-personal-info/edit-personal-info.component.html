@@ -93,14 +93,13 @@
 			Koulun nimi *
 			<select
 				[ngClass]="{errorinput: school.errors && school.touched}"
-				required
 				name="school"
 				#school="ngModel"
 				[(ngModel)]="info.school"
 			>
-				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-				<option>JAMK</option>
-				<option>XAMK</option>
+				<option *ngFor="let school of schools" [ngValue]="school">
+					{{ school.name }}
+				</option>
 			</select>
 		</label>
 
@@ -114,14 +113,13 @@
 			Kaupunki *
 			<select
 				[ngClass]="{errorinput: city.errors && city.touched}"
-				required
 				name="city"
 				#city="ngModel"
 				[(ngModel)]="info.city"
 			>
-				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-				<option>Jyväskylä</option>
-				<option>Perse</option>
+				<option *ngFor="let city of cities" [ngValue]="city">
+					{{ city.name }}
+				</option>
 			</select>
 		</label>
 

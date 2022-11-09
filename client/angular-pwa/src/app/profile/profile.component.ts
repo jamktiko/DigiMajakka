@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 			lookingfor: 'Kerro, millaista työtä haluaisit tehdä.',
 			phonenumber: '0400111222',
 			picturelink: 'jokukuva',
-			public: 0,
+			public: 1,
 			studyfield: 'Koulutusohjelma',
 			userprofileid: 1,
 			yearofstudy: 1,
@@ -102,7 +102,7 @@ export class ProfileComponent implements OnInit {
 
 	updatePublicity(): void {
 		let value;
-		if ((this.loggedProfile[0].public = 0)) {
+		if (this.loggedProfile[0].public === 0) {
 			value = 1;
 		} else {
 			value = 0;
@@ -111,6 +111,7 @@ export class ProfileComponent implements OnInit {
 			this.loggedProfile[0].userprofileid,
 			`{"public": "${value}"}`
 		);
+		this.updated();
 	}
 
 	get isEditVisible(): boolean {

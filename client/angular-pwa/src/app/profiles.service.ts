@@ -46,15 +46,23 @@ export class ProfilesService {
 		);
 	}
 
-	getProfileCity(name: string) {
-		return this.http.get(`http://localhost:3000/cities/findByName/${name}`);
+	getCities() {
+		return this.http.get('http://localhost:3000/cities/findAll');
 	}
 
-	getProfileSchool(name: string) {
-		return this.http.get(
-			`http://localhost:3000/schools/findByName/${name}`
-		);
+	getSchools() {
+		return this.http.get('http://localhost:3000/schools/findAll');
 	}
+
+	// getProfileCity(name: string) {
+	// 	return this.http.get(`http://localhost:3000/cities/findByName/${name}`);
+	// }
+
+	// getProfileSchool(name: string) {
+	// 	return this.http.get(
+	// 		`http://localhost:3000/schools/findByName/${name}`
+	// 	);
+	// }
 
 	// Method to update a profile using Http put-method.
 	updateProfile(id: number, profile: any) {
