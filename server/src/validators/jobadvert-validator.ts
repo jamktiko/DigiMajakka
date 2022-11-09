@@ -1,7 +1,7 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable import/extensions */
 import type Jobadvert from '../models/jobadvert-model';
-import {validatePhoneNumber, validateEmail} from '../validation';
+import {validatePhoneNumber, validateEmail} from './validation';
 
 const jobadvertFactor = ({
 	advertid = '',
@@ -86,6 +86,7 @@ const jobadvertValidation = (jobadvert: Jobadvert) => {
 	const filteredAdvert: Jobadvert = jobadvertFactor(jobadvert);
 
 	const typeCheck = jobadvertTypeChecker(jobadvert);
+
 	if (!phonenumberValid || !emailValid || !filteredAdvert || !typeCheck) {
 		return {
 			valid: false,

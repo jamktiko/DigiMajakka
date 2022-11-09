@@ -4,8 +4,9 @@
 
 import type express from 'express';
 import queryDb from '../db-connection';
-import * as validation from '../validation';
+import * as validation from '../validators/validation';
 import type Profile from '../models/profile-model';
+import CustomError from '../custom-error';
 
 // Return all profiles from database
 const profileController = {
@@ -112,28 +113,14 @@ const profileController = {
 				_request.body.phonenumber &&
 				!validation.validatePhoneNumber(_request.body.phonenumber)
 			) {
-				throw new Error('Phone number is not valid');
+				throw new CustomError('Phonenumber is not valid', 400);
 			}
 
-			// Check if email is in valid format
-			const emaildata = await queryDb(
-				'SELECT School.emailend FROM UserAccount INNER JOIN School ON UserAccount.School_name=School.name WHERE UserAccount.email = ?;',
-				[_request.params.id]
-			);
-
-			const emaildataobj = emaildata[0];
-
 			if (
-				(_request.body.useraccountemail &&
-					!validation.validateEmail(
-						_request.body.useraccountemail
-					)) ||
-				!validation.validateEmailEnd(
-					_request.body.useraccountemail,
-					String(emaildataobj.emailend)
-				)
+				_request.body.email &&
+				!validation.validateEmail(_request.body.email)
 			) {
-				throw new Error('Email is not valid');
+				throw new CustomError('Email is not valid', 400);
 			}
 
 			// Take values values from object to array
@@ -288,7 +275,7 @@ const profileController = {
 				);
 				console.log(profileSkillInsert);
 
-				response.status(200).json(profileSkillInsert);
+				response.status(201).json(profileSkillInsert);
 				// If profile already has skill just return ok status and message profile already has skill
 			} else if (skillArray.includes(_request.params.skillname)) {
 				response.status(200).json({

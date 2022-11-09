@@ -5,9 +5,10 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
+import ErrorHandler from './middlewares/error-handler';
 
 // Import routes from routes folder
-import profileRouter from './routes/profile';
+import profileRouter from './routes/profiles';
 import joblistingRouter from './routes/joblisting';
 import userRouter from './routes/users';
 import imageRouter from './routes/images';
@@ -36,4 +37,6 @@ app.use('/cities', cityRouter);
 app.use('/schools', schoolRouter);
 app.use('/links', somelinkRouter);
 
+// Take custom error handler in use
+app.use(ErrorHandler);
 export = app;
