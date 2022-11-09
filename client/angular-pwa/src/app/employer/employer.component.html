@@ -19,12 +19,15 @@
 		<img src="../../assets/img/employer_background.png" />
 		<div class="lowerBoxContent">
 			<div class="contentBox left">
-				<h1>VALOA NÄKYY</h1>
+				<div class="labelheader">
+					<h2>Jätä työilmoitus</h2>
+				</div>
 				<form
 					#f="ngForm"
 					class="formcontainer"
 					(ngSubmit)="onSubmit(f.value)"
 				>
+					<h3>Yhteyshenkilön tiedot</h3>
 					<label>
 						Etunimi *
 						<br />
@@ -120,8 +123,8 @@
 							[(ngModel)]="info.phone"
 						/>
 					</label>
-
-					<!-- Errors for field-validation -->
+					<h3>Työtehtävän tiedot</h3>
+					<!-- Errors for phone-validation -->
 					<p
 						class="error"
 						*ngIf="phone.errors?.required && phone.touched"
@@ -155,7 +158,7 @@
 						/>
 					</label>
 
-					<!-- Errors for field-validation -->
+					<!-- Errors for assignment-validation -->
 					<p
 						class="error"
 						*ngIf="
@@ -164,6 +167,53 @@
 					>
 						Tehtävänimike on pakollinen tieto
 					</p>
+					<label>
+						Tehtävän kuvaus *
+						<input
+							class="largeInput"
+							type="text"
+							[ngClass]="{
+								errorinput:
+									description.errors && description.touched
+							}"
+							required
+							name="description"
+							#description="ngModel"
+							[(ngModel)]="info.description"
+						/>
+					</label>
+
+					<!-- Errors for assignment-validation -->
+					<p
+						class="error"
+						*ngIf="
+							description.errors?.required && description.touched
+						"
+					>
+						Tehtävän kuvaus on pakollinen tieto
+					</p>
+					<label>
+						Palkka € *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: payment.errors && payment.touched
+							}"
+							required
+							name="payment"
+							#payment="ngModel"
+							[(ngModel)]="info.payment"
+						/>
+					</label>
+
+					<!-- Errors for assignment-validation -->
+					<p
+						class="error"
+						*ngIf="payment.errors?.required && payment.touched"
+					>
+						Palkka on pakollinen tieto
+					</p>
+					<button class="greenbutton">Lähetä ilmoitus</button>
 				</form>
 			</div>
 			<div class="contentBox right">
@@ -177,6 +227,12 @@
 					</p>
 					<button class="graybutton">Katso ohjeita</button>
 				</div>
+				<app-profilecarousel></app-profilecarousel>
+				<h2>
+					Katso kaikki profiilit ja etsi työntekijöitä <br />
+					esimerkiksi taitojen perusteella
+				</h2>
+				<button class="bluebutton">Etsi työntekijä</button>
 			</div>
 		</div>
 	</div>

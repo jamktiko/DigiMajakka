@@ -15,13 +15,13 @@ export class EditPersonalInfoComponent implements OnInit {
 		firstname: '',
 		lastname: '',
 		field: '',
-		school: '',
 		city: '',
 		year: '',
 	};
 
+	cities: any;
+
 	@Input() loggedProfile: any;
-	@Input() school: any;
 	@Input() city: any;
 
 	@Output() updatedProfile = new EventEmitter();
@@ -35,21 +35,26 @@ export class EditPersonalInfoComponent implements OnInit {
 		this.editservice.togglePersonalVisibility();
 	}
 
+	getCities() {
+		this.profileservice.getCities().subscribe((cities) => {
+			this.cities = cities;
+			console.log(cities);
+		});
+	}
+
 	ngOnInit(): void {
+		this.getCities();
 		this.info.firstname = this.loggedProfile[0].firstname;
 		this.info.lastname = this.loggedProfile[0].familyname;
 		this.info.field = this.loggedProfile[0].studyfield;
-		// CONTINUE WHEN DATABASE FIXED
-		this.info.school = this.school.name;
-		this.info.city = this.city.name;
+		this.info.city = this.loggedProfile[0].City_name;
 	}
 
 	// Method that has the functionality for submitting the form
 	onSubmit(formdata: any) {
 		this.profileservice.updateProfile(
 			this.loggedProfile[0].userprofileid,
-			// CONTINUE WHEN DATABASE FIXED
-			`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "school"}`
+			`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "City_name": "${formdata.city}", "yearofstudy":"${formdata.year}"}`
 		);
 		console.log('Submitted');
 		this.changeVisibility();

@@ -88,45 +88,24 @@
 			Koulutusala on pakollinen tieto
 		</p>
 
-		<!-- Dropdown-input fot school -->
-		<label>
-			Koulun nimi *
-			<select
-				[ngClass]="{errorinput: school.errors && school.touched}"
-				required
-				name="school"
-				#school="ngModel"
-				[(ngModel)]="info.school"
-			>
-				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-				<option>JAMK</option>
-				<option>XAMK</option>
-			</select>
-		</label>
-
-		<!-- Errors for school-validation -->
-		<p class="error" *ngIf="school.errors?.required && school.touched">
-			Koulu on pakollinen tieto
-		</p>
-
 		<!-- Dropdown for city-select -->
 		<label>
 			Kaupunki *
 			<select
-				[ngClass]="{errorinput: city.errors && city.touched}"
-				required
+				[ngClass]="{errorinput: city.pristine && city.touched}"
 				name="city"
 				#city="ngModel"
 				[(ngModel)]="info.city"
 			>
-				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
-				<option>Jyväskylä</option>
-				<option>Perse</option>
+				<option [selected] [disabled]>Valitse kaupunki</option>
+				<option *ngFor="let city of cities">
+					{{ city.name }}
+				</option>
 			</select>
 		</label>
 
 		<!-- Error-message for city-validation -->
-		<p class="error" *ngIf="city.errors?.required && city.touched">
+		<p class="error" *ngIf="city.pristine && city.touched">
 			Kaupunki on pakollinen tieto
 		</p>
 
@@ -190,7 +169,11 @@
 
 		<!-- Submit-button inside a div to position it correctly -->
 		<div class="buttoncontainer">
-			<button [disabled]="!f.valid" type="submit" class="greenbutton">
+			<button
+				[disabled]="!f.valid || city.pristine"
+				type="submit"
+				class="greenbutton"
+			>
 				Tallenna
 			</button>
 		</div>
