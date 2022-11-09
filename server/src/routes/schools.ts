@@ -8,7 +8,7 @@ const schoolRouter = express.Router();
 
 // Route to get school by id
 // /schools/findById/:name
-schoolRouter.get('/findById/:name', schoolC.findById);
+schoolRouter.get('/findByName/:name', schoolC.findByName);
 
 // Route to get all schools
 // /schools/findAll

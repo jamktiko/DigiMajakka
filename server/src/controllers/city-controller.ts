@@ -5,14 +5,14 @@ import type express from 'express';
 import queryDb from '../db-connection';
 
 const cityC = {
-	async findById(
+	async findByName(
 		_request: express.Request,
 		response: express.Response,
 		next: express.NextFunction
 	) {
 		try {
-			const data = await queryDb('SELECT * FROM City WHERE cityid = ?;', [
-				_request.params.id,
+			const data = await queryDb('SELECT * FROM City WHERE name = ?;', [
+				_request.params.name,
 			]);
 			console.log(data);
 			response.status(200).json(data);

@@ -6,6 +6,7 @@ import type express from 'express';
 import queryDb from '../db-connection';
 import * as validation from '../validation';
 import type {Profile} from '../models/profile-model';
+import type School from '../models/school-model';
 
 // Return all profiles from database
 const profileController = {
@@ -116,17 +117,19 @@ const profileController = {
 			}
 
 			// Check if email is in valid format
-			const emaildata = queryDb(
-				'SELECT School.emailend FROM UserAccount INNER JOIN School ON UserAccount.School_schoolid=School.schoolid WHERE UserAccount.email = ?;',
+			const emaildata = await queryDb(
+				'SELECT School.emailend FROM UserAccount INNER JOIN School ON UserAccount.School_name=School.name WHERE UserAccount.email = ?;',
 				[_request.params.id]
 			);
 
+			const emaildataobj = emaildata[0];
+
 			if (
-				_request.body.email &&
-				Array.isArray(emaildata) &&
-				!validation.validateEmail(
+				(_request.body.email &&
+					!validation.validateEmail(_request.body.email)) ||
+				!validation.validateEmailEnd(
 					_request.body.email,
-					emaildata[0].emailend
+					String(emaildataobj.emailend)
 				)
 			) {
 				throw new Error('Email is not valid');

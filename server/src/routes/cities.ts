@@ -6,7 +6,7 @@ import cityC from '../controllers/city-controller';
 
 const cityRouter = express.Router();
 
-cityRouter.get('/findById/:id', cityC.findById);
+cityRouter.get('/findByName/:name', cityC.findByName);
 
 // Route to get all cities
 // /cities/findAll
