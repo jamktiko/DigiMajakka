@@ -30,7 +30,7 @@ const imageHelper = {
 				Key: file.filename ?? '',
 			})
 			.promise();
-		// Delete image from servers local folder
+		// Delete image from servers local folder after upload
 		fs.unlink(process.cwd() + '/src/images/' + file.filename, (error) => {
 			if (error) {
 				console.error(error);

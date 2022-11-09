@@ -115,23 +115,9 @@ const profileController = {
 				throw new Error('Phone number is not valid');
 			}
 
-			// Check if email is in valid format
-			const emaildata = await queryDb(
-				'SELECT School.emailend FROM UserAccount INNER JOIN School ON UserAccount.School_name=School.name WHERE UserAccount.email = ?;',
-				[_request.params.id]
-			);
-
-			const emaildataobj = emaildata[0];
-
 			if (
-				(_request.body.useraccountemail &&
-					!validation.validateEmail(
-						_request.body.useraccountemail
-					)) ||
-				!validation.validateEmailEnd(
-					_request.body.useraccountemail,
-					String(emaildataobj.emailend)
-				)
+				_request.body.email &&
+				!validation.validateEmail(_request.body.email)
 			) {
 				throw new Error('Email is not valid');
 			}
