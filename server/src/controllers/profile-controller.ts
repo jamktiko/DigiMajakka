@@ -5,8 +5,7 @@
 import type express from 'express';
 import queryDb from '../db-connection';
 import * as validation from '../validation';
-import type {Profile} from '../models/profile-model';
-import type School from '../models/school-model';
+import type Profile from '../models/profile-model';
 
 // Return all profiles from database
 const profileController = {
@@ -125,10 +124,12 @@ const profileController = {
 			const emaildataobj = emaildata[0];
 
 			if (
-				(_request.body.email &&
-					!validation.validateEmail(_request.body.email)) ||
+				(_request.body.useraccountemail &&
+					!validation.validateEmail(
+						_request.body.useraccountemail
+					)) ||
 				!validation.validateEmailEnd(
-					_request.body.email,
+					_request.body.useraccountemail,
 					String(emaildataobj.emailend)
 				)
 			) {

@@ -32,8 +32,11 @@ const joblistingC = {
 		try {
 			// Create unique id for advert
 			const advertid: string = uniqid();
+
+			// Validate profile
 			const valid = jobadvertValidation({advertid, ..._request.body});
-			if (!valid) {
+			// If profile is not valid throw error
+			if (!valid.valid) {
 				throw new Error(
 					'Error when creating advert: validation failed'
 				);
@@ -41,9 +44,9 @@ const joblistingC = {
 
 			const insert = queryDb(
 				'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-				[advertid, ...Object.values(_request.body)]
+				[...Object.values(_request.body)]
 			);
-			// Amazon ses code here
+			// Send email to job adverts creator with link to update advert
 			await sendEmail(
 				'digimajakka.asiakaspalvelu@gmail.com',
 				'Testi sposti',
