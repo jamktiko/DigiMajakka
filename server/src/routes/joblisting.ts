@@ -7,5 +7,6 @@ const joblistingRouter = express.Router();
 
 // Gets all joblistings
 joblistingRouter.get('/findAll', joblistingC.findAll);
+joblistingRouter.post('/create', joblistingC.createAdvert);
 
 export default joblistingRouter;

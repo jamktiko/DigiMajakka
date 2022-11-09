@@ -48,6 +48,8 @@ h2 {
 }
 
 .editButton {
+  cursor: pointer;
+  display: flex;
   width: 52px;
   height: 52px;
   background-color: var(--darkgray);
@@ -55,6 +57,13 @@ h2 {
   position: absolute;
   top: 20px;
   right: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-icon {
+  height: 35px;
+  width: 35px;
 }
 
 

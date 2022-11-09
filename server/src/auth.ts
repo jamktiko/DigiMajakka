@@ -43,7 +43,7 @@ export const authHandler = async (
 			const rawUser = await identityServiceProvider
 				.getUser({AccessToken: token})
 				.promise();
-			// Place token to requests user attribute
+			// Place token adn email to requests user attribute
 			_request.user = {
 				id: rawUser.UserAttributes.find((attr) => attr.Name === 'sub')
 					?.Value,

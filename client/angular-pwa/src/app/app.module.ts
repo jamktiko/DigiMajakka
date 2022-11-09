@@ -19,6 +19,7 @@ import {EditAttachmentsComponent} from './edit-attachments/edit-attachments.comp
 import {AppRoutingModule} from './app-routing.module';
 import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.component';
 import { EmployerComponent } from './employer/employer.component';
+import { EditSkillsComponent } from './edit-skills/edit-skills.component';
 
 @NgModule({
 	declarations: [
@@ -36,6 +37,7 @@ import { EmployerComponent } from './employer/employer.component';
 		EditAttachmentsComponent,
 		UnSavedChangesComponent,
   EmployerComponent,
+  EditSkillsComponent,
 	],
 	imports: [
 		BrowserModule,

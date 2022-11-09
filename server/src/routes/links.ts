@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 
 import express from 'express';
-import somelinkC from '../controllers/somelink-controller';
+import somelinkC from '../controllers/link-controller';
 
 const somelinkRouter = express.Router();
 
