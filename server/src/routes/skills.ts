@@ -19,3 +19,5 @@ skillRouter.post(
 
 	skillC.addSkill
 );
+
+export default skillRouter;

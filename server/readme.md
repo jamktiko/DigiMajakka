@@ -22,7 +22,10 @@ all routes running at localhost:3000 when in development environment
 #### POST REQUESTS
 
 -   post profile: /profiles/
--   find profile by useraccounts email: /email/:email
+-   find profile by useraccounts email: /profiles/email/
+    {
+    email: string;
+    }
 
 #### PUT REQUESTS
 
