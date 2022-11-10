@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {StateManagementService} from '../state-management.service';
+import {ProfilesService} from '../profiles.service';
 
 @Component({
 	selector: 'app-edit-contact-info',
@@ -18,9 +19,11 @@ export class EditContactInfoComponent implements OnInit {
 		twitter: '',
 	};
 
+	// loggedProfile and someLinks come from profile-component
 	@Input() loggedProfile: any;
 	@Input() someLinks: any;
 
+	// when the form is submitted, sends an event to profile-component
 	@Output() updatedProfile = new EventEmitter();
 
 	// showUnsavedChanges: boolean = false;
@@ -31,7 +34,10 @@ export class EditContactInfoComponent implements OnInit {
 	// reference: any;
 	// hasChanges: boolean = false;
 
-	constructor(private editservice: StateManagementService) {}
+	constructor(
+		private stateservice: StateManagementService,
+		private profileservice: ProfilesService
+	) {}
 
 	ngOnInit(): void {
 		// this.createReference(this.info);
@@ -49,8 +55,9 @@ export class EditContactInfoComponent implements OnInit {
 	// 	return this.reference[prop] !== obj[prop];
 	// }
 
+	// Method to hide or display the form
 	changeVisibility() {
-		this.editservice.toggleContactVisibility();
+		this.stateservice.toggleContactVisibility();
 
 		// FUNCTIONALITY FOR NOTIFYING ABOUT UNSAVED CHANGES, ADD LATER (ADD INFO AS PARAMETER TO THIS METHOD)
 		// for (let prop in info) {
@@ -65,5 +72,15 @@ export class EditContactInfoComponent implements OnInit {
 		// }
 	}
 
-	onSubmit(formdata: any) {}
+	// When the form is submitted, send an update request to backend through the profileservice.
+	// Also hides the form on submit, and send an event to profile-component.
+	onSubmit(formdata: any) {
+		this.profileservice.updateProfile(
+			this.loggedProfile[0].userprofileid,
+			`{"email": "${formdata.email}", "phonenumber": "${formdata.phone}"}`
+		);
+		console.log('Submitted');
+		this.changeVisibility();
+		this.updatedProfile.emit();
+	}
 }

@@ -21,20 +21,23 @@ export class EditPersonalInfoComponent implements OnInit {
 
 	cities: any;
 
+	// loggedprofile and
 	@Input() loggedProfile: any;
 	@Input() city: any;
 
 	@Output() updatedProfile = new EventEmitter();
 
 	constructor(
-		private editservice: StateManagementService,
+		private stateservice: StateManagementService,
 		private profileservice: ProfilesService
 	) {}
 
+	// Method that hides or displays the form
 	changeVisibility() {
-		this.editservice.togglePersonalVisibility();
+		this.stateservice.togglePersonalVisibility();
 	}
 
+	// Method to fetch all cities from the database
 	getCities() {
 		this.profileservice.getCities().subscribe((cities) => {
 			this.cities = cities;

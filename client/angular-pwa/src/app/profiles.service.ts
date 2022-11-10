@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import {Profile} from './profile';
 import {LoginService} from './login.service';
 
@@ -12,12 +12,17 @@ export class ProfilesService {
 	constructor(private http: HttpClient, private loginservice: LoginService) {}
 
 	loggedUser: any = 'orja@gmail.com';
-	private findAllUrl = 'http://localhost:3000/profiles/findAll';
-	private findByEmail = 'http://localhost:3000/profiles/findByEmail';
+	private findAllUrl = 'http://localhost:3000/profiles/';
+	private findByEmail = 'http://localhost:3000/profiles/email/';
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
 
 	getProfiles() {
-		return this.http.get(this.findAllUrl);
+		return this.http.get(this.findAllUrl).pipe(
+			catchError((error) => {
+				console.log('Error: ' + error);
+				return throwError(error);
+			})
+		);
 	}
 
 	httpOptions = {
@@ -34,24 +39,24 @@ export class ProfilesService {
 
 	getProfileSkills(id: number) {
 		return this.http.get(
-			`http://localhost:3000/profiles/skills/${id}`,
+			`http://localhost:3000/skills/profile/${id}`,
 			this.httpOptions
 		);
 	}
 
 	getProfileSomeLinks(id: number) {
 		return this.http.get(
-			`http://localhost:3000/somelinks/${id}`,
+			`http://localhost:3000/links/${id}`,
 			this.httpOptions
 		);
 	}
 
 	getCities() {
-		return this.http.get('http://localhost:3000/cities/findAll');
+		return this.http.get('http://localhost:3000/cities');
 	}
 
 	getSchools() {
-		return this.http.get('http://localhost:3000/schools/findAll');
+		return this.http.get('http://localhost:3000/schools');
 	}
 
 	// getProfileCity(name: string) {
@@ -69,7 +74,7 @@ export class ProfilesService {
 		const body = profile;
 		return this.http
 			.put<any>(
-				`http://localhost:3000/profiles/update/${id}`,
+				`http://localhost:3000/profiles/${id}`,
 				body,
 				this.httpOptions
 			)
