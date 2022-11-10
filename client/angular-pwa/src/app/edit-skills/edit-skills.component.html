@@ -23,6 +23,7 @@
 			Valitse listalta taito
 			<select name="skill" #skill="ngModel" [(ngModel)]="toBeAddedSkill">
 				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
+				<option [selected] [disabled]>Valitse taito</option>
 				<option *ngFor="let skill of skills">{{ skill.name }}</option>
 			</select>
 		</label>

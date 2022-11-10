@@ -20,7 +20,7 @@ export class EditSkillsComponent implements OnInit {
 	skills: any = [];
 
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
-	toBeAddedSkill: any;
+	toBeAddedSkill: string = '';
 	toBeAddedSkills: any = [];
 
 	ngOnInit(): void {
@@ -35,7 +35,8 @@ export class EditSkillsComponent implements OnInit {
 
 	// Method to push the selected skill into the array
 	addSkill(formdata: any) {
-		this.toBeAddedSkills.push(formdata.toBeAddedSkill);
+		console.log(formdata.skill);
+		this.toBeAddedSkills.push(formdata.skill);
 		console.log(this.toBeAddedSkills);
 	}
 

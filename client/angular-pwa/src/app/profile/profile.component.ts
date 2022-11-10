@@ -14,9 +14,11 @@ export class ProfileComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
+	// boolean-variable to toggle visibility of "updated successfully" -notification
 	confirmation: boolean = false;
 
 	loggedProfile: Profile[] = [
+		// Placeholder data for the profile, if can't fetch the profile from database
 		{
 			City_name: 'Kaupunki',
 			UserAccount_School_name: 'Koulun nimi',
@@ -35,6 +37,9 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 	skills: any = [];
+	specialSkills: any = [];
+	skillFields: any = [];
+
 	someLinks: any = [
 		{
 			linkedin: '',
@@ -55,22 +60,34 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 
+	// Get the logged in users profile when the component is created
 	ngOnInit(): void {
 		this.getLoggedInProfile();
 	}
 
+	// Method that reloads the window, to get updated values after updates to profile
 	updated(): void {
 		window.location.reload();
 	}
 
+	// Method that calls profileservive-method to get skills of the currently logged in profile.
+	// Also sets specialskill and field of skill into their own arrays. Then removes duplicates from the field-array
 	getLoggedProfileSkills(id: number): void {
 		this.profileservice.getProfileSkills(id).subscribe((skills) => {
 			this.skills = skills;
+			this.specialSkills = this.skills.map(
+				(skill: any) => skill.SpecialSkill
+			);
+			this.skillFields = this.skills.map((skill: any) => skill.Skill);
+			this.skillFields = [...new Set(this.skillFields)];
 			console.log(this.skills);
+			console.log('Special skills: ' + this.specialSkills);
+			console.log('Skillfields: ' + this.skillFields);
 		});
 	}
 
-	getLogggedProfileLinks(id: number): void {
+	// Method to get the links (cv, social media etc.) from the currently logged in profile
+	getLoggedProfileLinks(id: number): void {
 		this.profileservice.getProfileSomeLinks(id).subscribe((links) => {
 			this.someLinks = links;
 			console.log(this.someLinks);
@@ -92,13 +109,14 @@ export class ProfileComponent implements OnInit {
 	// 	});
 	// }
 
+	// method that gets the profile of the currently logged in user
 	getLoggedInProfile(): void {
 		this.profileservice.getLoggedInProfile().subscribe((profile) => {
 			this.loggedProfile = profile;
 
+			// Fetch skills and links at the same time with profile
 			this.getLoggedProfileSkills(this.loggedProfile[0].userprofileid);
-
-			this.getLogggedProfileLinks(this.loggedProfile[0].userprofileid);
+			this.getLoggedProfileLinks(this.loggedProfile[0].userprofileid);
 
 			// this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
 			// this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
@@ -107,6 +125,7 @@ export class ProfileComponent implements OnInit {
 		});
 	}
 
+	// Method to toggle the publicity value of the profile. 1 = true, 0 = false
 	updatePublicity(): void {
 		let value;
 		if (this.loggedProfile[0].public === 0) {
@@ -121,11 +140,12 @@ export class ProfileComponent implements OnInit {
 		this.updated();
 	}
 
+	// Methods to toggle visibilities of profile edit-forms
 	get isEditVisible(): boolean {
 		return this.editservice.contactEdit;
 	}
 
-	changeVisibility() {
+	changeContactVisibility() {
 		this.editservice.toggleContactVisibility();
 	}
 
