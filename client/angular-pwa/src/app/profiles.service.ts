@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import {Profile} from './profile';
 import {LoginService} from './login.service';
 
@@ -17,7 +17,12 @@ export class ProfilesService {
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
 
 	getProfiles() {
-		return this.http.get(this.findAllUrl);
+		return this.http.get(this.findAllUrl).pipe(
+			catchError((error) => {
+				console.log('Error: ' + error);
+				return throwError(error);
+			})
+		);
 	}
 
 	httpOptions = {
