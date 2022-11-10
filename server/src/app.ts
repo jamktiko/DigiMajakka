@@ -14,7 +14,7 @@ import userRouter from './routes/users';
 import imageRouter from './routes/images';
 import cityRouter from './routes/cities';
 import schoolRouter from './routes/schools';
-import somelinkRouter from './routes/links';
+import linkRouter from './routes/links';
 import skillRouter from './routes/skills';
 // Usage of environment varaibles
 dotenv.config();
@@ -36,7 +36,7 @@ app.use('/users', userRouter);
 app.use('/images', imageRouter);
 app.use('/cities', cityRouter);
 app.use('/schools', schoolRouter);
-app.use('/links', somelinkRouter);
+app.use('/links', linkRouter);
 app.use('/skills', skillRouter);
 // Take custom error handler in use
 app.use(ErrorHandler);

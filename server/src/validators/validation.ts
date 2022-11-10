@@ -27,17 +27,16 @@ export const validateEmail = (email: string) => {
  * @returns boolean if phonenumber was valid or not
  */
 export const validatePhoneNumber = (phoneNumber: string) => {
-	// Phonenumber regular expressions taken from website: https://www.w3resource.com/javascript/form/phone-no-validation.php
+	// Phonenumber regular expressions taken from website: https://regex101.com/library/ffGtsW
 
 	// Can be two differen formats
-	const expression1 = /^\(?(\d{3})\)?[-. ]?(\d{3})[-. ]?(\d{4})$/;
-	const expression2 = /^\+?(\d{2})\)?[-. ]?(\d{4})[-. ]?(\d{4})$/;
+	const expression =
+		/^((04\d)(\s?|-?)|050(\s?|-?)|0457(\s?|-?)|\+?358(\s?|-?)50|0358(\s?|-?)50|00358(\s?|-?)50|\+?358(\s?|-?)4\d|0358(\s?|-?)4\d|00358(\s?|-?)4\d)(\s?|-?)((\d{3,4})(\s|-)?\d{1,4})$/;
 
-	const validate1 = expression1.test(phoneNumber);
-	const validate2 = expression2.test(phoneNumber);
+	const validate = expression.test(phoneNumber);
 
 	// If either format passes then return true
-	if (validate1 || validate2) {
+	if (validate) {
 		return true;
 	}
 

@@ -122,7 +122,18 @@ all routes running at localhost:3000 when in development environment
 
 -   get links profiles links by profile id: /links/:profileid
 
-#### POST REQUESTS
+#### PUT REQUESTS
+
+-   update profiles links by profile id: /links/:profileid
+    {
+    linkedin: string;
+    instagram: string;
+    facebook: string;
+    twitter: string;
+    cv: string;
+    portfolio: string;
+    github: string;
+    }
 
 ## schools
 

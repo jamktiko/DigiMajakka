@@ -9,14 +9,13 @@ const skillRouter = express.Router();
 
 // Gets all skills of a profile
 // /skills/profile/:id
-skillRouter.get('/skills/:id', skillC.findProfileSkills);
+skillRouter.get('/profile/:id', skillC.findProfileSkills);
 
 // Insert skill to a profile
 // /skills/profile/:profileid/:skillname
 skillRouter.post(
-	'/skills/:profileid/:skillname',
+	'/profile/:profileid/:skillname',
 	bodyChecker,
-
 	skillC.addSkill
 );
 
