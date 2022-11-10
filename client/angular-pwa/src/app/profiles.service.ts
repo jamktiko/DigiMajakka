@@ -71,13 +71,19 @@ export class ProfilesService {
 
 	// Method to update a profile using Http put-method.
 	updateProfile(id: number, profile: any) {
-		const body = profile;
 		return this.http
 			.put<any>(
 				`http://localhost:3000/profiles/${id}`,
-				body,
+				profile,
 				this.httpOptions
 			)
+			.subscribe((response) => console.log(response));
+	}
+
+	// Method to update links(social media etc.) of a profile
+	updateProfileLinks(id: number, links: any) {
+		return this.http
+			.put(`http://localhost:3000/links/${id}`, links, this.httpOptions)
 			.subscribe((response) => console.log(response));
 	}
 }

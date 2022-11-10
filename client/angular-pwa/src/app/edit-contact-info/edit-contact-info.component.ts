@@ -43,6 +43,10 @@ export class EditContactInfoComponent implements OnInit {
 		// this.createReference(this.info);
 		this.info.email = this.loggedProfile[0].email;
 		this.info.phone = this.loggedProfile[0].phonenumber;
+		this.info.linkedin = this.someLinks[0].linkedin;
+		this.info.instagram = this.someLinks[0].instagram;
+		this.info.facebook = this.someLinks[0].facebook;
+		this.info.twitter = this.someLinks[0].twitter;
 	}
 
 	// Creates a reference of the initial form values
@@ -78,6 +82,10 @@ export class EditContactInfoComponent implements OnInit {
 		this.profileservice.updateProfile(
 			this.loggedProfile[0].userprofileid,
 			`{"email": "${formdata.email}", "phonenumber": "${formdata.phone}"}`
+		);
+		this.profileservice.updateProfileLinks(
+			this.loggedProfile[0].userprofileid,
+			`{"linkedin": "${formdata.linkedin}", "instagram": "${formdata.instagram}", "facebook": "${formdata.facebook}", "twitter": "${formdata.twitter}"}`
 		);
 		console.log('Submitted');
 		this.changeVisibility();
