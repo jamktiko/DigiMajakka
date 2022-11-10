@@ -1,55 +1,149 @@
 ## How to start
 
-### under dev_DB directory:
-
-create .env file
-
-Choose username and password and put they in .env file
-
-MARIADB_ROOT_PASSWORD=''
-MARIADB_USER=''
-
-docker-compose up -d
-
 ### Under server directory
 
 Install npm packages (npm i)
 
-Create .env file with template and set same username and password you chose above:
-DB_USER=''
-DB_PASSWORD=''
-DB='digimajakka_db'
-HOST='localhost'
+start server with 'npm run dev'
 
-npm run devStart
+ask for .env file from Kalle
 
 ## Routes
 
 all routes running at localhost:3000 when in development environment
 
-### Profile
+### Profiles
 
--   /profiles/findAll - Returns all profiles in database
+#### GET REQUESTS
 
--   /profiles/findById/:id - Returns profile with specific id
+-   get all profiles: /profiles/
+-   get profile by id: /profiles/:id
 
--   /profiles/createProfile - inserts new profile to db. Send profile to backend in request body with template:
-    profile = {
-    idprofile: string,
-    firstname: string,
-    surname: string,
-    phone: string,
-    description: string,
-    whatlookingfor: string,
-    fieldOfStudy: string,
-    studyYear: number,
-    publicity: boolean,
-    email: string,
-    idschool: number,
-    idcity: number,
-    picture: string,
-    };
+#### POST REQUESTS
 
-## joblisting
+-   post profile: /profiles/
+-   find profile by useraccounts email: /email/:email
 
--   /joblistings/findAll - returns all joblistings
+#### PUT REQUESTS
+
+-   update profile by id: /profiles/:id
+    {
+    firstname: string;
+    familyname: string;
+    phonenumber: string;
+    description: string;
+    lookingfor: string;
+    studyfield: string;
+    yearofstudy: number;
+    publicity: boolean | number;
+    accountemail: string;
+    schoolname: string;
+    cityname: string;
+    picturelink: string;
+    email: string;
+    }
+
+#### DELETE REQUESTS
+
+-   delete profile by id: /profiles/:id
+
+## jobadverts
+
+#### GET REQUESTS
+
+-   get all job adverts: /jobadverts/
+
+#### POST REQUESTS
+
+-   post new job advert: /jobadverts/
+    {
+    advertid: string;
+    firstname: string;
+    familyname: string;
+    company: string;
+    startdate: string;
+    enddate: string;
+    email: string;
+    phonenumber: string;
+    jobtitle: string;
+    description: string;
+    salary: string;
+    validuntil: string;
+    isvalid: boolean;
+    accepted: boolean;
+    city: string;
+    }
+
+#### PUT REQUESTS
+
+#### DELETE REQUESTS
+
+## users
+
+#### POST REQUESTS
+
+-   sign up new user: /users/signup
+    {
+    email: string;
+    admin: boolean;
+    schoolid: number;
+    password: string;
+    }
+-   sign in user: /users/signin
+    {
+    email: string;
+    password: string;
+    }
+-   resend confirmation link to email: /users/resend
+    {
+    email: string;
+
+    }
+
+-   sign user out: /users/signout
+    {
+    email: string;
+
+    }
+
+## cities
+
+#### GET REQUESTS
+
+-   get all cities: /cities/
+-   get city by name: /cities/:name
+
+## links
+
+#### GET REQUESTS
+
+-   get links profiles links by profile id: /links/:profileid
+
+#### POST REQUESTS
+
+## schools
+
+#### GET REQUESTS
+
+-   get all schools: /schools/
+-   get school by name: /schools/:name
+
+## images
+
+#### GET REQUESTS
+
+-   get profiles image by profile id: /images/:id
+
+#### POST REQUESTS
+
+-   post picture to profile: /images/:id
+
+## skills
+
+#### GET REQUESTS
+
+-   get profiles skills by profile id: /skills/:id
+
+#### POST REQUESTS
+
+-   add new skill to profile: /skills/:profileid/:skillname

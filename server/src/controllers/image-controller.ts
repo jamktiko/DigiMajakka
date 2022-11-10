@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import type express from 'express';
 import querydb from '../db-connection';
-import imageHelper from '../service-helpers/image-helper';
+import imageHelper from '../service-helpers/s3-image-helper';
 
 const imageC = {
 	// Function to upload image to s3 bucket

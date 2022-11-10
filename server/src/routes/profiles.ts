@@ -9,17 +9,21 @@ import bodyChecker from '../middlewares/body-check';
 const profileRouter = express.Router();
 
 // Route to get all profiles
-profileRouter.get('/findAll', profileC.findAll);
+// /profiles/
+profileRouter.get('/', profileC.findAll);
 
 // Route to get profile with specific id
-profileRouter.get('/findById/:id', profileC.findById);
+// /profiles/:id
+profileRouter.get('/:id', profileC.findById);
 
 // Route to post profile
-profileRouter.post('/create', bodyChecker, profileC.createProfile);
+// /profiles/
+profileRouter.post('/', bodyChecker, profileC.createProfile);
 
 // Route to update profile
+// /profiles/:id
 profileRouter.put(
-	'/update/:id',
+	'/:id',
 	bodyChecker,
 
 	profileC.updateProfile
@@ -33,26 +37,19 @@ profileRouter.put(
 	userCheck,
 	profileC.updateProfileColumn
 );
+
 // Deletes profile by id
+// /profiles/:id
 profileRouter.delete(
-	'/deleteOne/:id',
+	'/:id',
 	bodyChecker,
 	authHandler,
 	userCheck,
 	profileC.deleteProfile
 );
 
-// Gets all skills of a profile
-profileRouter.get('/skills/:id', profileC.findProfileSkills);
-
-// Insert skill to a profile
-profileRouter.post(
-	'/insertSkill/:profileid/:skillname',
-	bodyChecker,
-
-	profileC.addSkill
-);
-
-profileRouter.post('/findByEmail', bodyChecker, profileC.findByEmail);
+// Find profile by useraccount email
+// /profiles/email/:email
+profileRouter.post('/email/:email', bodyChecker, profileC.findByEmail);
 
 export = profileRouter;
