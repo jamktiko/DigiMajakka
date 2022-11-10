@@ -169,7 +169,7 @@
 					Lataa CV
 				</div>
 				<img
-					*ngIf="someLinks.cv"
+					*ngIf="someLinks[0].cv"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -183,7 +183,7 @@
 					Portfolio
 				</div>
 				<img
-					*ngIf="someLinks.portfolio"
+					*ngIf="someLinks[0].portfolio"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"
@@ -197,7 +197,7 @@
 					GitHub
 				</div>
 				<img
-					*ngIf="someLinks.github"
+					*ngIf="someLinks[0].github"
 					class="checkmark-icon"
 					src="assets\icons\checkmark.svg"
 					alt="checkmark-icon"

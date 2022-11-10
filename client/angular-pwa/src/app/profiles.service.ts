@@ -34,24 +34,24 @@ export class ProfilesService {
 
 	getProfileSkills(id: number) {
 		return this.http.get(
-			`http://localhost:3000/skills/${id}`,
+			`http://localhost:3000/skills/profile/${id}`,
 			this.httpOptions
 		);
 	}
 
 	getProfileSomeLinks(id: number) {
 		return this.http.get(
-			`http://localhost:3000/somelinks/${id}`,
+			`http://localhost:3000/links/${id}`,
 			this.httpOptions
 		);
 	}
 
 	getCities() {
-		return this.http.get('http://localhost:3000/cities/findAll');
+		return this.http.get('http://localhost:3000/cities');
 	}
 
 	getSchools() {
-		return this.http.get('http://localhost:3000/schools/findAll');
+		return this.http.get('http://localhost:3000/schools');
 	}
 
 	// getProfileCity(name: string) {
@@ -69,7 +69,7 @@ export class ProfilesService {
 		const body = profile;
 		return this.http
 			.put<any>(
-				`http://localhost:3000/profiles/update/${id}`,
+				`http://localhost:3000/profiles/${id}`,
 				body,
 				this.httpOptions
 			)
