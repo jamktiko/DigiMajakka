@@ -7,6 +7,11 @@ import bodyChecker from '../middlewares/body-check';
 
 const skillRouter = express.Router();
 
+// Get all skills
+// /skills/
+
+skillRouter.get('/', skillC.findAll);
+
 // Gets all skills of a profile
 // /skills/profile/:id
 skillRouter.get('/profile/:id', skillC.findProfileSkills);

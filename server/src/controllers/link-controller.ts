@@ -58,7 +58,7 @@ const linkC = {
 			const update = await queryDb(updateString, [
 				// Destructure values and ad profile id from params to last index of array
 				...values,
-				Number(_request.params.id),
+				Number(_request.params.profileid),
 			]);
 
 			console.log(update);

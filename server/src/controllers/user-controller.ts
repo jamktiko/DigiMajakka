@@ -159,6 +159,67 @@ const userC = {
 			next(error);
 		}
 	},
+	async updateSchool(
+		_request: express.Request,
+		response: express.Response,
+		next: express.NextFunction
+	) {
+		try {
+			if (
+				!_request.body ||
+				!_request.body.oldemail ||
+				!_request.body.newemail ||
+				!_request.body.newschool ||
+				!_request.body.password
+			) {
+				throw new Error(
+					'Not all required information was provided in request'
+				);
+			}
+
+			const userDelete = await cognitoHelper.deleteUser(
+				_request.body.oldemail,
+				_request.body.password
+			);
+			const updateUser = await queryDb(
+				'UPDATE UserAccount SET email = ?, School_name = ? WHERE email = ?;',
+				[
+					_request.body.newemail,
+					_request.body.newschool,
+					_request.body.oldemail,
+				]
+			);
+
+			const updateProfile = await queryDb(
+				'UPDATE UserProfile SET UserAccount_email = ?, UserAccount_School_name = ?, City_name = (SELECT City_name FROM SchoolCity WHERE School_name = ?) WHERE UserAccount_email = ?;',
+				[
+					_request.body.newemail,
+					_request.body.newschool,
+					_request.body.newschool,
+					_request.body.oldemail,
+				]
+			);
+			const userSignup = await cognitoHelper.signUp(
+				_request.body.newemail,
+				_request.body.password
+			);
+
+			if (!userDelete || !updateUser || !updateProfile || !userSignup) {
+				throw new Error('Error when updating school');
+			}
+
+			console.log('Succesfully updated users school');
+
+			response.status(200).json({
+				success: true,
+				message:
+					'Succesfully changed users school to ' +
+					String(_request.body.newschool),
+			});
+		} catch (error: unknown) {
+			next(error);
+		}
+	},
 };
 
 export default userC;

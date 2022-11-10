@@ -28,7 +28,11 @@ const skillC = {
 		next: express.NextFunction
 	) {
 		try {
-			const data = await queryDb('SELECT * FROM Skills;', []);
+			const data = await queryDb(
+				'SELECT * FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
+				[]
+			);
+			console.log(data);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {
