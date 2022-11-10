@@ -37,6 +37,10 @@ export class ProfilesService {
 			.pipe(map((response: any) => response));
 	}
 
+	getAllSkills() {
+		return this.http.get(`http://localhost:3000/skills`);
+	}
+
 	getProfileSkills(id: number) {
 		return this.http.get(
 			`http://localhost:3000/skills/profile/${id}`,

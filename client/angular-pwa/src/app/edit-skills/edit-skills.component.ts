@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
+import {ProfilesService} from '../profiles.service';
 
 @Component({
 	selector: 'app-edit-skills',
@@ -7,29 +8,34 @@ import {StateManagementService} from '../state-management.service';
 	styleUrls: ['./edit-skills.component.css'],
 })
 export class EditSkillsComponent implements OnInit {
-	constructor(private stateservice: StateManagementService) {}
+	constructor(
+		private stateservice: StateManagementService,
+		private profileservice: ProfilesService
+	) {}
 
 	// Currently logged in users profile fetched from profile-component
 	@Input() loggedProfile: any;
 
 	// placeholder data until database-fetching is implemented
-	skills: any = [
-		{
-			name: 'Angular',
-		},
-		{name: 'AWS'},
-	];
+	skills: any = [];
 
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
 	toBeAddedSkill: any;
 	toBeAddedSkills: any = [];
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.getSkills();
+	}
+
+	getSkills() {
+		this.profileservice.getAllSkills().subscribe((skills) => {
+			this.skills = skills;
+		});
+	}
 
 	// Method to push the selected skill into the array
 	addSkill(formdata: any) {
 		this.toBeAddedSkills.push(formdata.toBeAddedSkill);
-		this.toBeAddedSkills = this.toBeAddedSkills;
 		console.log(this.toBeAddedSkills);
 	}
 
