@@ -6,12 +6,12 @@ import schoolC from '../controllers/school-controller';
 
 const schoolRouter = express.Router();
 
-// Route to get school by id
-// /schools/findById/:name
-schoolRouter.get('/findByName/:name', schoolC.findByName);
+// Route to get school by name
+// /schools/:name
+schoolRouter.get('/:name', schoolC.findByName);
 
 // Route to get all schools
-// /schools/findAll
-schoolRouter.get('/findAll', schoolC.findAll);
+// /schools/
+schoolRouter.get('/', schoolC.findAll);
 
 export default schoolRouter;

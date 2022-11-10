@@ -6,10 +6,12 @@ import cityC from '../controllers/city-controller';
 
 const cityRouter = express.Router();
 
-cityRouter.get('/findByName/:name', cityC.findByName);
+// Route to find city by name
+// /cities/name/:name
+cityRouter.get('/name/:name', cityC.findByName);
 
 // Route to get all cities
-// /cities/findAll
-cityRouter.get('/findAll', cityC.findAll);
+// /cities/
+cityRouter.get('/', cityC.findAll);
 
 export default cityRouter;
