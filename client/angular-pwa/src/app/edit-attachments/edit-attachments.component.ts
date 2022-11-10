@@ -15,6 +15,7 @@ export class EditAttachmentsComponent implements OnInit {
 		github: '',
 	};
 
+	// declaration for FormGroup
 	detailForm!: FormGroup;
 
 	// loggedProfile and someLinks come from profile-component
@@ -29,12 +30,14 @@ export class EditAttachmentsComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
+	// All form-inputs are initialized as the current link-values
 	ngOnInit(): void {
 		this.attachments.cv = this.someLinks[0].cv;
 		this.attachments.portfolio = this.someLinks[0].portfolio;
 		this.attachments.github = this.someLinks[0].github;
 	}
 
+	// Method to hide and display the component
 	changeVisibility() {
 		this.stateservice.toggleAttachmentVisibility();
 	}

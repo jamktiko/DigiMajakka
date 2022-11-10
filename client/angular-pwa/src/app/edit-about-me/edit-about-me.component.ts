@@ -15,7 +15,9 @@ export class EditAboutMeComponent implements OnInit {
 	lookingfor = '';
 	chars = 0;
 
+	// loggedProfile comes from profile-component
 	@Input() loggedProfile: any;
+	// Event to send when the form is submitted
 	@Output() updatedProfile = new EventEmitter();
 
 	constructor(
@@ -23,11 +25,14 @@ export class EditAboutMeComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
+	// Form inputs initialized as the current profile-values
 	ngOnInit(): void {
 		this.aboutme = this.loggedProfile[0].aboutme;
 		this.lookingfor = this.loggedProfile[0].lookingfor;
 	}
 
+	// When the form is submitted send form values to profileservices updateProfile()-method.
+	// Then form is closed, and the event is sent to profile-component
 	onSubmit(formdata: any) {
 		this.profileservice.updateProfile(
 			this.loggedProfile[0].userprofileid,
@@ -38,6 +43,7 @@ export class EditAboutMeComponent implements OnInit {
 		this.updatedProfile.emit();
 	}
 
+	// Method to hide and display the component
 	changeVisibility() {
 		this.editservice.toggleAboutMeVisibility();
 	}

@@ -23,10 +23,12 @@ export class EditSkillsComponent implements OnInit {
 	toBeAddedSkill: string = '';
 	toBeAddedSkills: any = [];
 
+	// getSkills() called when the component is created
 	ngOnInit(): void {
 		this.getSkills();
 	}
 
+	// Method to get all skills by calling the getAllSkills()-method in profileservice
 	getSkills() {
 		this.profileservice.getAllSkills().subscribe((skills) => {
 			this.skills = skills;

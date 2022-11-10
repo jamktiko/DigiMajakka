@@ -39,6 +39,7 @@ export class EditContactInfoComponent implements OnInit {
 		private profileservice: ProfilesService
 	) {}
 
+	// All form-inputs are initialized as the current values from the profile, when the component is created
 	ngOnInit(): void {
 		// this.createReference(this.info);
 		this.info.email = this.loggedProfile[0].email;

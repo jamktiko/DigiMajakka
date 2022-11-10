@@ -1,3 +1,4 @@
+// Interface/model for a userprofile
 export interface Profile {
 	City_name: string;
 	UserAccount_School_name: string;

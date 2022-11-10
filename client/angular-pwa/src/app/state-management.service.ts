@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 	providedIn: 'root',
 })
 export class StateManagementService {
+	// variables for visibility of components
 	contactEdit: boolean = false;
 	personalEdit: boolean = false;
 	aboutMeEdit: boolean = false;
@@ -13,6 +14,7 @@ export class StateManagementService {
 	skillEdit: boolean = false;
 	attachmentEdit: boolean = false;
 
+	// Initializing subjects to allow for automatic updates of the values in other components
 	visibilityChange: Subject<boolean> = new Subject<boolean>();
 	visibilityChangePersonal: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeAboutMe: Subject<boolean> = new Subject<boolean>();
@@ -20,6 +22,7 @@ export class StateManagementService {
 	visibilityChangeSkills: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeAttachments: Subject<boolean> = new Subject<boolean>();
 
+	// Setting the values in the constructor
 	constructor() {
 		this.visibilityChange.subscribe((value) => {
 			this.contactEdit = value;
@@ -41,6 +44,7 @@ export class StateManagementService {
 		});
 	}
 
+	// Methods that toggle the visibility-values
 	toggleContactVisibility() {
 		this.visibilityChange.next(!this.contactEdit);
 	}

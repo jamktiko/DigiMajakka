@@ -10,13 +10,14 @@ export class JoblistsmallComponent implements OnInit {
 	constructor(private jobService: JobService) {}
 
 	// jobs-array will contain all job-listing fetched from the database
-	// REPLACE PLACEHOLDER DATA WITH REAL DATA
 	jobs: any = [];
 
+	// getJobs() called when compoent is created
 	ngOnInit(): void {
 		this.getJobs();
 	}
 
+	// Method to get all joblistings from the database by calling the getJobs()-method in jobservice
 	getJobs(): void {
 		this.jobService.getJobs().subscribe((jobs) => (this.jobs = jobs));
 	}

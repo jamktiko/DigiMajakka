@@ -19,9 +19,10 @@ export class EditPersonalInfoComponent implements OnInit {
 		year: '',
 	};
 
+	// All the cities will be in this array
 	cities: any;
 
-	// loggedprofile and
+	// loggedprofile and city come from the parent component (profile-component)
 	@Input() loggedProfile: any;
 	@Input() city: any;
 
@@ -45,6 +46,8 @@ export class EditPersonalInfoComponent implements OnInit {
 		});
 	}
 
+	// getCities() called in ngOnInit() to get cities when the component is created
+	// all the form-inputs are initialized with the current values of the profile
 	ngOnInit(): void {
 		this.getCities();
 		this.info.firstname = this.loggedProfile[0].firstname;

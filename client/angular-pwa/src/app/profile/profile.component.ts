@@ -36,10 +36,14 @@ export class ProfileComponent implements OnInit {
 			yearofstudy: 1,
 		},
 	];
+	// All skills of the profile will be in this array
 	skills: any = [];
+	// All specialskills from the skills-array will be put in this array
 	specialSkills: any = [];
+	// All skillfields from the skills-array will be put in this array
 	skillFields: any = [];
 
+	// Links for the profiles social-media will be in this array
 	someLinks: any = [
 		{
 			linkedin: '',
@@ -48,12 +52,14 @@ export class ProfileComponent implements OnInit {
 			twitter: '',
 		},
 	];
+	// The profiles' city will be in this array
 	city: any = [
 		{
 			cityid: 0,
 			name: 'Kaupunki',
 		},
 	];
+	// The profiles' school will be in this array
 	school: any = [
 		{
 			name: 'Koulun nimi',
@@ -72,8 +78,8 @@ export class ProfileComponent implements OnInit {
 
 	// Method that calls profileservive-method to get skills of the currently logged in profile.
 	// Also sets specialskill and field of skill into their own arrays. Then removes duplicates from the field-array
-	getLoggedProfileSkills(id: number): void {
-		this.profileservice.getProfileSkills(id).subscribe((skills) => {
+	getLoggedProfileSkills(profileid: number): void {
+		this.profileservice.getProfileSkills(profileid).subscribe((skills) => {
 			this.skills = skills;
 			this.specialSkills = this.skills.map(
 				(skill: any) => skill.SpecialSkill
@@ -87,8 +93,8 @@ export class ProfileComponent implements OnInit {
 	}
 
 	// Method to get the links (cv, social media etc.) from the currently logged in profile
-	getLoggedProfileLinks(id: number): void {
-		this.profileservice.getProfileSomeLinks(id).subscribe((links) => {
+	getLoggedProfileLinks(profileid: number): void {
+		this.profileservice.getProfileLinks(profileid).subscribe((links) => {
 			this.someLinks = links;
 			console.log(this.someLinks);
 		});

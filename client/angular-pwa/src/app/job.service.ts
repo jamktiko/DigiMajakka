@@ -11,6 +11,7 @@ export class JobService {
 
 	private jobsUrl = 'http://localhost:3000/joblistings/findAll';
 
+	// Method to fetch all joblistings from the database
 	getJobs() {
 		return this.http.get(this.jobsUrl);
 	}
