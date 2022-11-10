@@ -12,8 +12,8 @@ export class ProfilesService {
 	constructor(private http: HttpClient, private loginservice: LoginService) {}
 
 	loggedUser: any = 'orja@gmail.com';
-	private findAllUrl = 'http://localhost:3000/profiles/findAll';
-	private findByEmail = 'http://localhost:3000/profiles/findByEmail';
+	private findAllUrl = 'http://localhost:3000/profiles/';
+	private findByEmail = 'http://localhost:3000/profiles/email/';
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
 
 	getProfiles() {
@@ -34,7 +34,7 @@ export class ProfilesService {
 
 	getProfileSkills(id: number) {
 		return this.http.get(
-			`http://localhost:3000/profiles/skills/${id}`,
+			`http://localhost:3000/skills/${id}`,
 			this.httpOptions
 		);
 	}
