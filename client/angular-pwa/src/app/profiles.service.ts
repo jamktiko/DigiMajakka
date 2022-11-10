@@ -16,6 +16,10 @@ export class ProfilesService {
 	private findByEmail = 'http://localhost:3000/profiles/email/';
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
 
+	httpOptions = {
+		headers: new HttpHeaders({'Content-Type': 'application/json'}),
+	};
+
 	getProfiles() {
 		return this.http.get(this.findAllUrl).pipe(
 			catchError((error) => {
@@ -24,10 +28,6 @@ export class ProfilesService {
 			})
 		);
 	}
-
-	httpOptions = {
-		headers: new HttpHeaders({'Content-Type': 'application/json'}),
-	};
 
 	// Method that requests the currently logged in users profile
 	getLoggedInProfile(): Observable<Profile[]> {
