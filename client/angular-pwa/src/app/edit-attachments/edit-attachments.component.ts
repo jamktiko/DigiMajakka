@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {StateManagementService} from '../state-management.service';
+import {ProfilesService} from '../profiles.service';
 
 @Component({
 	selector: 'app-edit-attachments',
@@ -16,13 +17,37 @@ export class EditAttachmentsComponent implements OnInit {
 
 	detailForm!: FormGroup;
 
-	constructor(private editservice: StateManagementService) {}
+	// loggedProfile and someLinks come from profile-component
+	@Input() loggedProfile: any;
+	@Input() someLinks: any;
 
-	onSubmit(formdata: any) {}
+	// when the form is submitted, sends an event to profile-component
+	@Output() updatedProfile = new EventEmitter();
 
-	changeVisibility() {
-		this.editservice.toggleAttachmentVisibility();
+	constructor(
+		private stateservice: StateManagementService,
+		private profileservice: ProfilesService
+	) {}
+
+	ngOnInit(): void {
+		this.attachments.cv = this.someLinks[0].cv;
+		this.attachments.portfolio = this.someLinks[0].portfolio;
+		this.attachments.github = this.someLinks[0].github;
 	}
 
-	ngOnInit(): void {}
+	changeVisibility() {
+		this.stateservice.toggleAttachmentVisibility();
+	}
+
+	// When the form is submitted, send an update request to backend through the profileservice.
+	// Also hides the form on submit, and send an event to profile-component.
+	onSubmit(formdata: any) {
+		this.profileservice.updateProfileLinks(
+			this.loggedProfile[0].userprofileid,
+			`{"cv": "${formdata.cv}", "portfolio": "${formdata.portfolio}", "github": "${formdata.github}"}`
+		);
+		console.log('Submitted');
+		this.changeVisibility();
+		this.updatedProfile.emit();
+	}
 }

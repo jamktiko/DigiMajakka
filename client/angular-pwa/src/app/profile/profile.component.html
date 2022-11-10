@@ -259,4 +259,9 @@
 	*ngIf="isSkillEditVisible"
 	[loggedProfile]="loggedProfile"
 ></app-edit-skills>
-<app-edit-attachments *ngIf="isAttachmentEditVisible"></app-edit-attachments>
+<app-edit-attachments
+	*ngIf="isAttachmentEditVisible"
+	[loggedProfile]="loggedProfile"
+	[someLinks]="someLinks"
+	(updatedProfile)="updated()"
+></app-edit-attachments>
