@@ -27,14 +27,34 @@
 				<option *ngFor="let skill of skills">{{ skill.name }}</option>
 			</select>
 		</label>
+		<p class="error" *ngIf="error">Taito on jo listalla!</p>
 
 		<!-- Button to add the selected skill into the array of to be added skills -->
 		<button class="graybutton" (click)="addSkill(f.value)">
 			Lisää taito profiiliin
 		</button>
 
+		<div class="tags">
+			<!-- Every skill put inside their own tag -->
+			<div
+				[ngClass]="selected.includes(skill) ? 'selected' : 'tag'"
+				class="tag"
+				*ngFor="let skill of toBeAddedSkills"
+				(click)="selectSkill(skill)"
+			>
+				<p>{{ skill }}</p>
+			</div>
+		</div>
+
 		<!-- Submit-button inside a div to position it correctly -->
 		<div class="buttoncontainer">
+			<button
+				class="graybutton"
+				*ngIf="selected.length > 0"
+				(click)="removeSelected()"
+			>
+				Poista valitut
+			</button>
 			<button [disabled]="!f.valid" type="submit" class="greenbutton">
 				Tallenna
 			</button>

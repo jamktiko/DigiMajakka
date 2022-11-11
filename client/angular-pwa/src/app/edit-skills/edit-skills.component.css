@@ -5,7 +5,7 @@
 .formcontainer {
   background-color: var(--lightblue);
   margin: 2% auto;
-  max-width: fit-content;
+  max-width: 365px;
   padding: 35px;
   border-radius: 20px;
   transform: translateZ(0);
@@ -35,6 +35,14 @@ select {
   background-color: var(--lightblue);
 }
 
+.error {
+  font-size: 0.9em;
+  color: var(--error);
+  margin-top: 0.2em;
+  margin-bottom: 0em;
+  text-align: right;
+}
+
 .close-button {
   cursor: pointer;
   position: fixed;
@@ -51,6 +59,46 @@ select {
   height: 35px;
   width: 35px;
 }
+
+.tags {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1em;
+}
+
+
+.tag {
+  display:flex;
+  background-color: var(--mediumblue);
+  border-radius: 10px;
+  padding:10px;
+  height: 15px;
+  align-items: center;
+}
+
+.tag>p {
+  color: var(--lightblue);
+}
+
+.selected {
+  display:flex;
+  background-color: var(--mediumblue);
+  border-radius: 10px;
+  padding:10px;
+  height: 15px;
+  align-items: center;
+  border: 4px solid var(--green);
+}
+
+.selected>p {
+  color: var(--green);
+}
+
+
+
+
 
 .greenbutton {
   margin: 1.5em auto 0;

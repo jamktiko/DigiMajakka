@@ -16,12 +16,24 @@ export class EditSkillsComponent implements OnInit {
 	// Currently logged in users profile fetched from profile-component
 	@Input() loggedProfile: any;
 
+	// Error variable that dictates if an error message is shown
+	error: boolean = false;
+
 	// placeholder data until database-fetching is implemented
-	skills: any = [];
+	skills: any = [
+		{name: 'Angular', skill: 'Frontend'},
+		{
+			name: 'AWS',
+			skill: 'Pilvipalvelut',
+		},
+		{name: 'React', skill: 'Frontend'},
+	];
 
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
 	toBeAddedSkill: string = '';
 	toBeAddedSkills: any = [];
+
+	selected: any = [];
 
 	// getSkills() called when the component is created
 	ngOnInit(): void {
@@ -38,11 +50,35 @@ export class EditSkillsComponent implements OnInit {
 	// Method to push the selected skill into the array
 	addSkill(formdata: any) {
 		console.log(formdata.skill);
-		this.toBeAddedSkills.push(formdata.skill);
+		if (this.toBeAddedSkills.includes(formdata.skill)) {
+			this.error = true;
+		} else {
+			this.toBeAddedSkills.push(formdata.skill);
+			this.error = false;
+			console.log(this.toBeAddedSkills);
+		}
+	}
+
+	// Method that add the clicked skill to selected skills
+	selectSkill(skill: string) {
+		if (this.selected.includes(skill)) {
+			this.selected.splice(this.selected.indexOf(skill), 1);
+			console.log(this.selected);
+		} else {
+			this.selected.push(skill);
+			console.log(this.selected);
+		}
+	}
+
+	removeSelected() {
+		this.selected.forEach((skill: string) => {
+			this.toBeAddedSkills.splice(this.toBeAddedSkills.indexOf(skill), 1);
+		});
+		this.selected = [];
 		console.log(this.toBeAddedSkills);
 	}
 
-	// method to checnge the visibility of the form
+	// method to change the visibility of the form
 	changeVisibility() {
 		this.stateservice.toggleSkillVisibility();
 	}
