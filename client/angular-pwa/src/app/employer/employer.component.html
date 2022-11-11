@@ -132,6 +132,45 @@
 						Puhelinnumero on pakollinen tieto
 					</p>
 
+					<!-- Radio inputs for study-year -->
+
+					<label>
+						<div class="radiocontainer">
+							Ilmoittaja on *
+
+							<p>yritys</p>
+							<label class="radiolabel">
+								<input
+									type="radio"
+									name="year"
+									value="1"
+									[(ngModel)]="info.employer"
+									#employer="ngModel"
+									required
+								/>
+							</label>
+
+							<p>yksityishenkilö</p>
+							<label class="radiolabel">
+								<input
+									type="radio"
+									name="employer"
+									value="2"
+									[(ngModel)]="info.employer"
+									#employer="ngModel"
+									required
+								/>
+							</label>
+						</div>
+					</label>
+
+					<p
+						class="error"
+						*ngIf="employer.errors?.required && f.submitted"
+					>
+						Opintovuosi on pakollinen tieto
+					</p>
+
 					<label>
 						Yrityksen nimi
 						<input
@@ -213,26 +252,36 @@
 					>
 						Palkka on pakollinen tieto
 					</p>
+
+					<label>
+						<input class="dateInput" type="date" name="party" />
+					</label>
 					<button class="greenbutton">Lähetä ilmoitus</button>
 				</form>
 			</div>
 			<div class="contentBox right">
-				<div class="glassbox">
-					<h2>Katso ohjeet ja löydä työntekijöitä</h2>
-					<p>
-						Täältä löydät ohjeita mm. työnhakupalvelu toiminnasta,
-						<br />
-						kevytyrittäjyydestä ja vastauksia usein kysyttyihin
-						kysymyksiin.
-					</p>
-					<button class="graybutton">Katso ohjeita</button>
+				<div class="content">
+					<div class="glassbox">
+						<h2>Katso ohjeet ja löydä työntekijöitä</h2>
+						<p>
+							Täältä löydät ohjeita mm. työnhakupalvelu
+							toiminnasta,
+							<br />
+							kevytyrittäjyydestä ja vastauksia usein kysyttyihin
+							kysymyksiin.
+						</p>
+						<button class="graybutton">Katso ohjeita</button>
+					</div>
+					<h2>Selaa opiskelijoita</h2>
+					<app-profilecarousel></app-profilecarousel>
+					<div class="spaceBetween big"></div>
+					<h3>
+						Katso kaikki profiilit ja etsi työntekijöitä <br />
+						esimerkiksi taitojen perusteella
+					</h3>
+					<div class="spaceBetween"></div>
+					<button class="bluebutton">Etsi työntekijä</button>
 				</div>
-				<app-profilecarousel></app-profilecarousel>
-				<h2>
-					Katso kaikki profiilit ja etsi työntekijöitä <br />
-					esimerkiksi taitojen perusteella
-				</h2>
-				<button class="bluebutton">Etsi työntekijä</button>
 			</div>
 		</div>
 	</div>

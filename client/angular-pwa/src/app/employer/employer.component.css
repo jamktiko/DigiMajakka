@@ -46,8 +46,9 @@ img {
 
 .lowerBox img {
   position: absolute;
-  width: 100%;
-  object-fit: fill;
+  min-height: 1350px;
+  max-width: 100%;
+  max-width: 1512px;
 }
 
 .lowerBoxContent {
@@ -62,8 +63,6 @@ img {
   width: 756px;
   align-items: center;
 }
-
-
 
 .errorinput {
   border: 2px solid var(--error);
@@ -91,11 +90,11 @@ input {
 }
 
 .glassbox {
-  width: 610px;
+  
   margin-top: 30px;
   padding: 40px;
   padding-top: 20px;
-  
+  margin-bottom: 60px;
 }
 
 .glassbox h2 {
@@ -105,7 +104,8 @@ input {
 
 .glassbox p {
   margin-bottom: 40px;
-  color: var(--darkblue)
+  color: var(--darkblue);
+  font-size: 18px;
 }
 
 .labelheader {
@@ -117,3 +117,61 @@ input {
 .largeInput {
   height: 132px;
 }
+
+.dateInput {
+  width: 150px;
+}
+
+.radiocontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input[type="radio"] {
+  width: 2em;
+  height: 2em;
+  appearance: none;
+  background-color: var(--lightblue);
+  box-shadow: inset 0px 2px 4px 1px #396472;
+  border-radius: 50%;
+  transform: translateY(-1.00em);
+  display: grid;
+  place-content: center;
+  padding-left: 0;
+}
+
+input[type="radio"]::before {
+  content: '';
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  transform: scale(0);
+  box-shadow: inset 1em 1em var(--green);
+}
+
+input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+
+.radiolabel {
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
+
+}
+
+.spaceBetween {
+  height: 20px;
+}
+
+.spaceBetween.big {
+  height: 40px;
+}
+
+input, select, textarea{
+  color: var(--darkblue);
+}
+
+

@@ -18,6 +18,8 @@ export class EmployerComponent implements OnInit {
 		description: '',
 		payment: '',
 	};
+
+	today = Date();
 	constructor() {}
 
 	ngOnInit(): void {}
