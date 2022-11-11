@@ -98,4 +98,17 @@ export class ProfilesService {
 			)
 			.subscribe((response) => console.log(response));
 	}
+
+	// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
+	getProfilePhoto(profileid: number): Observable<Blob> {
+		return this.http.get(`http://localhost:3000/images/${profileid}`, {
+			responseType: 'blob',
+		});
+	}
+
+	uploadProfilePhoto(profileid: number, photo: any) {
+		return this.http
+			.post(`http://localhost:3000/images/${profileid}`, photo)
+			.subscribe((res) => console.log(res));
+	}
 }

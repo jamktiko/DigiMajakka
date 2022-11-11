@@ -240,7 +240,11 @@
 </div>
 -->
 
-<app-add-photo *ngIf="isPhotoVisible"></app-add-photo>
+<app-add-photo
+	*ngIf="isPhotoVisible"
+	[loggedProfile]="loggedProfile"
+	(updatedProfile)="updated()"
+></app-add-photo>
 <app-edit-personal-info
 	*ngIf="isPersonalEditVisible"
 	[loggedProfile]="loggedProfile"

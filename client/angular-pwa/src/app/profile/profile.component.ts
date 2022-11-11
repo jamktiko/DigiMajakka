@@ -66,9 +66,15 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 
+	profilePhoto: any;
+
 	// Get the logged in users profile when the component is created
 	ngOnInit(): void {
 		this.getLoggedInProfile();
+		// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
+		this.profileservice
+			.getProfilePhoto(this.loggedProfile[0].userprofileid)
+			.subscribe((profilePhoto) => (this.profilePhoto = profilePhoto));
 	}
 
 	// Method that reloads the window, to get updated values after updates to profile

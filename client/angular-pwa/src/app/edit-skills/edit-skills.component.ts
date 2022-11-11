@@ -32,7 +32,7 @@ export class EditSkillsComponent implements OnInit {
 	];
 
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
-	toBeAddedSkill: string = '';
+	toBeAddedSkill: string = 'Valitse taito';
 	toBeAddedSkills: any = [];
 
 	selected: any = [];

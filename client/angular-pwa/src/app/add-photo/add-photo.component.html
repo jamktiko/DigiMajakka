@@ -1,33 +1,36 @@
+<div class="backdrop" (click)="changeVisibility()"></div>
 <div class="photoAddBox">
-	<div class="backdrop" (click)="changeVisibility()"></div>
-	<div class="photoTitle">
-		<h2>Valokuva</h2>
-	</div>
+	<h2>Valokuva</h2>
 	<div class="photoArea"></div>
-	<div class="button">
-		<div class="graybutton">Vaihda kuva tiedostoistasi</div>
-	</div>
-	<div class="editButton">
-		<img
-			class="close-icon"
-			src="assets\icons\close.svg"
-			alt="close-button"
-		/>
-	</div>
-</div>
 
-<div class="photoAddedBox">
-	<div class="photoTitle">
-		<h2>Valokuva</h2>
-	</div>
-	<div class="photoArea"></div>
-	<div class="buttons">
-		<div class="graybutton">Vaihda kuva</div>
-		<div class="graybutton">Poista kuva</div>
-	</div>
-	<div class="greenbutton">Tallenna</div>
+	<!-- The actual input is hidden from the user, because it cannot be styled very well.
+		It is instead opened by clicking on the button below -->
+	<input
+		type="file"
+		class="photo-input"
+		(change)="onPhotoSelected($event)"
+		#photoUpload
+	/>
 
-	<div class="editButton" (click)="changeVisibility()">
+	<div class="buttoncontainer" *ngIf="!photo">
+		<button class="graybutton" (click)="photoUpload.click()">
+			Valitse kuva tiedostoistasi
+		</button>
+	</div>
+
+	<div class="buttoncontainer" *ngIf="photo">
+		<button class="graybutton" (click)="photoUpload.click()">
+			Vaihda kuva
+		</button>
+		<button class="graybutton">Poista kuva</button>
+	</div>
+
+	<!-- Submit-button inside a div to position it correctly -->
+	<div class="buttoncontainer" *ngIf="photo" (click)="onSubmit()">
+		<button type="submit" class="greenbutton">Tallenna</button>
+	</div>
+
+	<div class="closeButton" (click)="changeVisibility()">
 		<img
 			class="close-icon"
 			src="assets\icons\close.svg"
