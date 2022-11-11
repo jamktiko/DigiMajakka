@@ -15,6 +15,8 @@ export class EditSkillsComponent implements OnInit {
 
 	// Currently logged in users profile fetched from profile-component
 	@Input() loggedProfile: any;
+	@Input() profileSpecialSkills: any;
+	@Input() profileSkillFields: any;
 
 	// Error variable that dictates if an error message is shown
 	error: boolean = false;
@@ -38,6 +40,12 @@ export class EditSkillsComponent implements OnInit {
 	// getSkills() called when the component is created
 	ngOnInit(): void {
 		this.getSkills();
+		this.profileSpecialSkills.forEach((skill: string) => {
+			this.toBeAddedSkills.push(skill);
+		});
+		this.profileSkillFields.forEach((skill: string) => {
+			this.toBeAddedSkills.push(skill);
+		});
 	}
 
 	// Method to get all skills by calling the getAllSkills()-method in profileservice

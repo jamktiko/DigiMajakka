@@ -29,8 +29,15 @@
 		</label>
 		<p class="error" *ngIf="error">Taito on jo listalla!</p>
 
-		<!-- Button to add the selected skill into the array of to be added skills -->
-		<button class="graybutton" (click)="addSkill(f.value)">
+		<!-- Button to add the selected skill into the array of to be added skills. The button is
+			disabled if the selected value is an empty string or the default ('Valitse taito') value -->
+		<button
+			class="graybutton"
+			(click)="addSkill(f.value)"
+			[disabled]="
+				toBeAddedSkill === 'Valitse taito' || toBeAddedSkill === ''
+			"
+		>
 			Lisää taito profiiliin
 		</button>
 
@@ -50,7 +57,7 @@
 		<div class="buttoncontainer">
 			<button
 				class="graybutton"
-				*ngIf="selected.length > 0"
+				[disabled]="selected.length === 0"
 				(click)="removeSelected()"
 			>
 				Poista valitut

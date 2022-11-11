@@ -70,6 +70,7 @@ select {
 
 
 .tag {
+  cursor: pointer;
   display:flex;
   background-color: var(--mediumblue);
   border-radius: 10px;
@@ -83,6 +84,7 @@ select {
 }
 
 .selected {
+  cursor: pointer;
   display:flex;
   background-color: var(--mediumblue);
   border-radius: 10px;
