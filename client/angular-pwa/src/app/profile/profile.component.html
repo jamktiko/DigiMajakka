@@ -11,7 +11,13 @@
 				alt="edit-icon"
 			/>
 		</div>
-		<img src="https://via.placeholder.com/576x403.png" class="profile" />
+		<div class="profilephoto">
+			<img
+				*ngIf="!isProfilePhotoLoading"
+				[src]="getSanitizedUrl(profilePhoto)"
+				alt="Profile photo"
+			/>
+		</div>
 	</div>
 	<div class="upperBox second">
 		<!-- Button to open personalinfo-edit-->

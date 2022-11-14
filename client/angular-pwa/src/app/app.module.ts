@@ -18,8 +18,9 @@ import {EditAboutMeComponent} from './edit-about-me/edit-about-me.component';
 import {EditAttachmentsComponent} from './edit-attachments/edit-attachments.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.component';
-import { EmployerComponent } from './employer/employer.component';
-import { EditSkillsComponent } from './edit-skills/edit-skills.component';
+import {EmployerComponent} from './employer/employer.component';
+import {EditSkillsComponent} from './edit-skills/edit-skills.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 @NgModule({
 	declarations: [
@@ -36,8 +37,8 @@ import { EditSkillsComponent } from './edit-skills/edit-skills.component';
 		EditAboutMeComponent,
 		EditAttachmentsComponent,
 		UnSavedChangesComponent,
-  EmployerComponent,
-  EditSkillsComponent,
+		EmployerComponent,
+		EditSkillsComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -45,6 +46,7 @@ import { EditSkillsComponent } from './edit-skills/edit-skills.component';
 		HttpClientModule,
 		FormsModule,
 		ReactiveFormsModule,
+		ImageCropperModule,
 	],
 	providers: [ProfileComponent],
 	bootstrap: [AppComponent],

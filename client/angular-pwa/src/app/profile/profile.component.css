@@ -96,7 +96,7 @@
   flex-direction: column;
 }
 
-.profile {
+.profilephoto {
   height: 368px;
   width: 368px;
   border-radius: 20px;
@@ -105,7 +105,15 @@
   top: 60px;
   right: 90px;
   z-index: 9;
+  overflow: hidden;
+}
 
+.profilephoto>img {
+  position: absolute;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  max-height: fill;
 }
 
 .upperBox {

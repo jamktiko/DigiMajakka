@@ -15,6 +15,10 @@ export class AddPhotoComponent implements OnInit {
 
 	photo: any;
 	photoName: string = '';
+	previewPhoto!: any;
+	previewRatio: any;
+	photoWidth: any;
+	photoHeight: any;
 
 	@Input() loggedProfile: any;
 
@@ -22,6 +26,22 @@ export class AddPhotoComponent implements OnInit {
 
 	onPhotoSelected(event: any) {
 		this.photo = event.target.files[0];
+
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			this.previewPhoto = reader.result;
+			let img = new Image();
+			img.onload = () => {
+				this.photoWidth = img.width;
+				this.photoHeight = img.height;
+				this.previewRatio = this.photoWidth / this.photoHeight;
+				console.log(this.previewRatio);
+			};
+
+			img.src = this.previewPhoto;
+		};
+
+		reader.readAsDataURL(this.photo);
 
 		if (this.photo) {
 			this.photoName = this.photo.name;

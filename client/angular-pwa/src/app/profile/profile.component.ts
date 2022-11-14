@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 import {Profile} from '../profile';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-profile',
@@ -11,7 +12,8 @@ import {Profile} from '../profile';
 export class ProfileComponent implements OnInit {
 	constructor(
 		private editservice: StateManagementService,
-		private profileservice: ProfilesService
+		private profileservice: ProfilesService,
+		private _sanitizer: DomSanitizer
 	) {}
 
 	// boolean-variable to toggle visibility of "updated successfully" -notification
@@ -67,14 +69,12 @@ export class ProfileComponent implements OnInit {
 	];
 
 	profilePhoto: any;
+	isProfilePhotoLoading: boolean = false;
 
 	// Get the logged in users profile when the component is created
 	ngOnInit(): void {
 		this.getLoggedInProfile();
-		// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
-		this.profileservice
-			.getProfilePhoto(this.loggedProfile[0].userprofileid)
-			.subscribe((profilePhoto) => (this.profilePhoto = profilePhoto));
+		this.getProfilePhoto(this.loggedProfile[0].userprofileid);
 	}
 
 	// Method that reloads the window, to get updated values after updates to profile
@@ -150,6 +150,40 @@ export class ProfileComponent implements OnInit {
 			`{"public": "${value}"}`
 		);
 		this.updated();
+	}
+
+	// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
+	createImageFromBlob(image: Blob) {
+		let reader = new FileReader();
+		reader.addEventListener(
+			'load',
+			() => {
+				this.profilePhoto = reader.result;
+			},
+			false
+		);
+
+		if (image) {
+			reader.readAsDataURL(image);
+		}
+	}
+
+	getProfilePhoto(id: number) {
+		this.isProfilePhotoLoading = true;
+		this.profileservice.getProfilePhoto(id).subscribe(
+			(imageData) => {
+				this.createImageFromBlob(imageData);
+				this.isProfilePhotoLoading = false;
+			},
+			(error) => {
+				this.isProfilePhotoLoading = false;
+				console.log(error);
+			}
+		);
+	}
+
+	getSanitizedUrl(image: any) {
+		return this._sanitizer.bypassSecurityTrustUrl(image);
 	}
 
 	// Methods to toggle visibilities of profile edit-forms
