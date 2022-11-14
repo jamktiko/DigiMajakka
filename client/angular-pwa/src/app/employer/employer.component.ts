@@ -17,6 +17,7 @@ export class EmployerComponent implements OnInit {
 		assignment: '',
 		description: '',
 		payment: '',
+		calendar: '',
 	};
 
 	today = Date();

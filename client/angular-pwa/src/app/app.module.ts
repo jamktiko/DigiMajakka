@@ -20,7 +20,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.component';
 import {EmployerComponent} from './employer/employer.component';
 import {EditSkillsComponent} from './edit-skills/edit-skills.component';
-import {ImageCropperModule} from 'ngx-image-cropper';
+import {JobAnnouncementComponent} from './job-announcement/job-announcement.component';
 
 @NgModule({
 	declarations: [
@@ -39,6 +39,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 		UnSavedChangesComponent,
 		EmployerComponent,
 		EditSkillsComponent,
+		JobAnnouncementComponent,
 	],
 	imports: [
 		BrowserModule,
