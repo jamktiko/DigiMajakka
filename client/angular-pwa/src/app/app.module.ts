@@ -47,7 +47,6 @@ import {JobAnnouncementComponent} from './job-announcement/job-announcement.comp
 		HttpClientModule,
 		FormsModule,
 		ReactiveFormsModule,
-		ImageCropperModule,
 	],
 	providers: [ProfileComponent],
 	bootstrap: [AppComponent],
