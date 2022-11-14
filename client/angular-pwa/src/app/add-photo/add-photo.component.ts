@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 
@@ -21,6 +21,7 @@ export class AddPhotoComponent implements OnInit {
 	photoHeight: any;
 
 	@Input() loggedProfile: any;
+	@Output() updatedProfile = new EventEmitter();
 
 	formData = new FormData();
 
@@ -54,6 +55,9 @@ export class AddPhotoComponent implements OnInit {
 			this.loggedProfile[0].userprofileid,
 			this.formData
 		);
+
+		this.changeVisibility();
+		this.updatedProfile.emit();
 	}
 
 	ngOnInit(): void {}

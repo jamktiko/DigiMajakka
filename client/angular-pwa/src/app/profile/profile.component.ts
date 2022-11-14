@@ -45,6 +45,10 @@ export class ProfileComponent implements OnInit {
 	// All skillfields from the skills-array will be put in this array
 	skillFields: any = [];
 
+	photoRatio: any;
+	photoWidth: any;
+	photoHeight: any;
+
 	// Links for the profiles social-media will be in this array
 	someLinks: any = [
 		{
@@ -152,13 +156,23 @@ export class ProfileComponent implements OnInit {
 		this.updated();
 	}
 
-	// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
+	// Method that creates an image out of the blob that is received in the http-request.
+	// The aspect ratio is calculated for the image to style the image correctly based on the ratio
 	createImageFromBlob(image: Blob) {
 		let reader = new FileReader();
 		reader.addEventListener(
 			'load',
 			() => {
 				this.profilePhoto = reader.result;
+				let img = new Image();
+				img.onload = () => {
+					this.photoWidth = img.width;
+					this.photoHeight = img.height;
+					this.photoRatio = this.photoWidth / this.photoHeight;
+					console.log(this.photoRatio);
+				};
+
+				img.src = this.profilePhoto;
 			},
 			false
 		);
@@ -168,6 +182,8 @@ export class ProfileComponent implements OnInit {
 		}
 	}
 
+	// Method that fetches the profiles profile-photo from profileservices' getProfilePhoto()-method
+	// The createImageFromBlob()-method is then called to turn the image into a viewable form
 	getProfilePhoto(id: number) {
 		this.isProfilePhotoLoading = true;
 		this.profileservice.getProfilePhoto(id).subscribe(
@@ -182,6 +198,7 @@ export class ProfileComponent implements OnInit {
 		);
 	}
 
+	// Method to sanitize the url of the profilephoto
 	getSanitizedUrl(image: any) {
 		return this._sanitizer.bypassSecurityTrustUrl(image);
 	}

@@ -13,9 +13,10 @@
 		</div>
 		<div class="profilephoto">
 			<img
+				[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
 				*ngIf="!isProfilePhotoLoading"
 				[src]="getSanitizedUrl(profilePhoto)"
-				alt="Profile photo"
+				alt="Profilephoto"
 			/>
 		</div>
 	</div>

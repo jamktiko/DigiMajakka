@@ -108,12 +108,22 @@
   overflow: hidden;
 }
 
-.profilephoto>img {
+.photowide {
   position: absolute;
   left: -9999px;
   right: -9999px;
   margin: auto;
   max-height: fill;
+}
+
+.phototall {
+  position: absolute;
+  left: -9999px;
+  right: -9999px;
+  top: -9999px;
+  bottom: -9999px;
+  margin: auto;
+  max-width: 368px;
 }
 
 .upperBox {
