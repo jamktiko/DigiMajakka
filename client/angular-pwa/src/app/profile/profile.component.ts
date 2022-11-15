@@ -72,7 +72,6 @@ export class ProfileComponent implements OnInit {
 	// Get the logged in users profile when the component is created
 	ngOnInit(): void {
 		this.getLoggedInProfile();
-		this.getProfilePhoto(this.loggedProfile[0].userprofileid);
 	}
 
 	// Method that reloads the window, to get updated values after updates to profile
@@ -127,6 +126,7 @@ export class ProfileComponent implements OnInit {
 			// Fetch skills and links at the same time with profile
 			this.getLoggedProfileSkills(this.loggedProfile[0].userprofileid);
 			this.getLoggedProfileLinks(this.loggedProfile[0].userprofileid);
+			this.getProfilePhoto(this.loggedProfile[0].userprofileid);
 
 			// this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
 			// this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);

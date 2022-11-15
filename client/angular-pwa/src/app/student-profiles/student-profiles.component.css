@@ -244,11 +244,9 @@ h5 {
   align-items: center;
 }
 
-.graybutton {
-  margin: 10px;
-}
 
-.checkboxRow{
+
+.btnRow{
  margin-left: 30px;
  margin-top: 4em;
  display:grid;
@@ -272,9 +270,7 @@ h5 {
   max-width: 50px;
 }
 
-.bluebutton {
-  min-width: 65px;
-}
+
 
 .contentfooter {
   display: flex;
@@ -330,4 +326,16 @@ h5 {
 
 .greenbutton {
   margin-right: 20px;
+}
+
+.bluebutton {
+  min-width: 65px;
+}
+
+.graybutton {
+  margin: 10px;
+}
+
+.attachment {
+  width: 120px;
 }

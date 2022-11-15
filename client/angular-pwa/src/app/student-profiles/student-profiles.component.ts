@@ -72,8 +72,10 @@ export class StudentProfilesComponent implements OnInit {
 			console.log(this.profile);
 		});
 
-		this.getProfileLinks(this.profileid);
+		// Get profiledata using this classes methods
+		// this.getProfileLinks(this.profileid);
 		this.getProfilePhoto(this.profileid);
+		this.getProfileSkills(this.profileid);
 	}
 
 	// Method to get the links (cv, social media etc.) from the profile
@@ -86,7 +88,7 @@ export class StudentProfilesComponent implements OnInit {
 
 	// Method that calls profileservive-method to get skills of the currently logged in profile.
 	// Also sets specialskill and field of skill into their own arrays. Then removes duplicates from the field-array
-	getLoggedProfileSkills(profileid: number): void {
+	getProfileSkills(profileid: number): void {
 		this.profileservice.getProfileSkills(profileid).subscribe((skills) => {
 			this.skills = skills;
 			this.specialSkills = this.skills.map(

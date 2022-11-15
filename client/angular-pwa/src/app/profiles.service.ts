@@ -12,7 +12,7 @@ export class ProfilesService {
 	constructor(private http: HttpClient, private loginservice: LoginService) {}
 
 	// Placeholder uservalue until authentication is implemented
-	loggedUser: any = 'orja@gmail.com';
+	loggedUser: any = 'anneli@gmail.com';
 	private findAllUrl = 'http://localhost:3000/profiles/';
 	private findByEmail = 'http://localhost:3000/profiles/email/';
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
