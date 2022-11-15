@@ -45,12 +45,15 @@ export class EditAttachmentsComponent implements OnInit {
 	// When the form is submitted, send an update request to backend through the profileservice.
 	// Also hides the form on submit, and send an event to profile-component.
 	onSubmit(formdata: any) {
-		this.profileservice.updateProfileLinks(
-			this.loggedProfile[0].userprofileid,
-			`{"cv": "${formdata.cv}", "portfolio": "${formdata.portfolio}", "github": "${formdata.github}"}`
-		);
-		console.log('Submitted');
-		this.changeVisibility();
-		this.updatedProfile.emit();
+		this.profileservice
+			.updateProfileLinks(
+				this.loggedProfile[0].userprofileid,
+				`{"cv": "${formdata.cv}", "portfolio": "${formdata.portfolio}", "github": "${formdata.github}"}`
+			)
+			.subscribe(() => {
+				console.log('Submitted');
+				this.changeVisibility();
+				this.updatedProfile.emit();
+			});
 	}
 }

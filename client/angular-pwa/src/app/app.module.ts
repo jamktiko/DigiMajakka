@@ -18,9 +18,10 @@ import {EditAboutMeComponent} from './edit-about-me/edit-about-me.component';
 import {EditAttachmentsComponent} from './edit-attachments/edit-attachments.component';
 import {AppRoutingModule} from './app-routing.module';
 import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.component';
-import { EmployerComponent } from './employer/employer.component';
-import { EditSkillsComponent } from './edit-skills/edit-skills.component';
-import { JobAnnouncementComponent } from './job-announcement/job-announcement.component';
+import {EmployerComponent} from './employer/employer.component';
+import {EditSkillsComponent} from './edit-skills/edit-skills.component';
+import {JobAnnouncementComponent} from './job-announcement/job-announcement.component';
+import { StudentProfilesComponent } from './student-profiles/student-profiles.component';
 
 @NgModule({
 	declarations: [
@@ -37,9 +38,10 @@ import { JobAnnouncementComponent } from './job-announcement/job-announcement.co
 		EditAboutMeComponent,
 		EditAttachmentsComponent,
 		UnSavedChangesComponent,
-  EmployerComponent,
-  EditSkillsComponent,
-  JobAnnouncementComponent,
+		EmployerComponent,
+		EditSkillsComponent,
+		JobAnnouncementComponent,
+  StudentProfilesComponent,
 	],
 	imports: [
 		BrowserModule,

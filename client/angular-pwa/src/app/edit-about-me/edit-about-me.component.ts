@@ -34,13 +34,16 @@ export class EditAboutMeComponent implements OnInit {
 	// When the form is submitted send form values to profileservices updateProfile()-method.
 	// Then form is closed, and the event is sent to profile-component
 	onSubmit(formdata: any) {
-		this.profileservice.updateProfile(
-			this.loggedProfile[0].userprofileid,
-			`{"aboutme": "${formdata.aboutme}", "lookingfor": "${formdata.lookingfor}"}`
-		);
-		console.log('Submitted');
-		this.changeVisibility();
-		this.updatedProfile.emit();
+		this.profileservice
+			.updateProfile(
+				this.loggedProfile[0].userprofileid,
+				`{"aboutme": "${formdata.aboutme}", "lookingfor": "${formdata.lookingfor}"}`
+			)
+			.subscribe(() => {
+				console.log('Submitted');
+				this.changeVisibility();
+				this.updatedProfile.emit();
+			});
 	}
 
 	// Method to hide and display the component
