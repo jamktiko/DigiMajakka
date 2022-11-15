@@ -65,12 +65,6 @@ export class ProfileComponent implements OnInit {
 			name: 'Kaupunki',
 		},
 	];
-	// The profiles' school will be in this array
-	school: any = [
-		{
-			name: 'Koulun nimi',
-		},
-	];
 
 	profilePhoto: any;
 	isProfilePhotoLoading: boolean = false;

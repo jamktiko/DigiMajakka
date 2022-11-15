@@ -19,7 +19,8 @@ export class StudentProfilesComponent implements OnInit {
 	profileid!: number;
 	private sub: any;
 
-	profile: Profile = // Placeholder data for the profile, if can't fetch the profile from database
+	profile: Profile[] = [
+		// Placeholder data for the profile, if can't fetch the profile from database
 		{
 			City_name: 'Kaupunki',
 			UserAccount_School_name: 'Koulun nimi',
@@ -35,9 +36,17 @@ export class StudentProfilesComponent implements OnInit {
 			studyfield: 'Koulutusohjelma',
 			userprofileid: 1,
 			yearofstudy: 1,
-		};
+		},
+	];
 
-	someLinks: any = [];
+	someLinks: any = [
+		{
+			linkedin: '',
+			facebook: '',
+			instagram: '',
+			twitter: '',
+		},
+	];
 
 	// All skills of the profile will be in this array
 	skills: any = [];
@@ -55,19 +64,20 @@ export class StudentProfilesComponent implements OnInit {
 	ngOnInit(): void {
 		// Subscribed to the correct profile based on the route-parameter 'id'
 		this.sub = this.route.params.subscribe((params) => {
-			this.profileid = +params['profileid']; // (+) is used to convert 'id' into a number
+			this.profileid = +params['id']; // (+) is used to convert 'id' into a number
+			console.log(this.profileid);
 			this.profileservice
 				.getProfileById(this.profileid)
 				.subscribe((profile) => (this.profile = profile));
 			console.log(this.profile);
 		});
 
-		this.getLoggedProfileLinks(this.profileid);
+		this.getProfileLinks(this.profileid);
 		this.getProfilePhoto(this.profileid);
 	}
 
 	// Method to get the links (cv, social media etc.) from the profile
-	getLoggedProfileLinks(profileid: number): void {
+	getProfileLinks(profileid: number): void {
 		this.profileservice.getProfileLinks(profileid).subscribe((links) => {
 			this.someLinks = links;
 			console.log(this.someLinks);

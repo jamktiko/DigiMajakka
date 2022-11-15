@@ -16,39 +16,39 @@
 	<div class="upperBox second">
 		<!-- Userprofiles first- and lastname -->
 		<h2 *ngIf="profile">
-			{{ profile.firstname }} {{ profile.familyname }}
+			{{ profile[0].firstname }} {{ profile[0].familyname }}
 		</h2>
 		<!-- Userprofiles field of study -->
-		<p class="listtext">{{ profile.studyfield }}</p>
+		<p class="listtext">{{ profile[0].studyfield }}</p>
 		<!-- Schoolname -->
 		<p class="listtext">
-			{{ profile.UserAccount_School_name }}
+			{{ profile[0].UserAccount_School_name }}
 		</p>
 		<!-- Year of study, gives different text based on the year-value -->
-		<p class="listtext" *ngIf="profile.yearofstudy === 1">
-			{{ profile.yearofstudy }}:sen vuoden opiskelija
+		<p class="listtext" *ngIf="profile[0].yearofstudy === 1">
+			{{ profile[0].yearofstudy }}:sen vuoden opiskelija
 		</p>
-		<p class="listtext" *ngIf="profile.yearofstudy === 2">
-			{{ profile.yearofstudy }}:sen vuoden opiskelija
+		<p class="listtext" *ngIf="profile[0].yearofstudy === 2">
+			{{ profile[0].yearofstudy }}:sen vuoden opiskelija
 		</p>
-		<p class="listtext" *ngIf="profile.yearofstudy === 3">
-			{{ profile.yearofstudy }}:nnen vuoden opiskelija
+		<p class="listtext" *ngIf="profile[0].yearofstudy === 3">
+			{{ profile[0].yearofstudy }}:nnen vuoden opiskelija
 		</p>
-		<p class="listtext" *ngIf="profile.yearofstudy >= 4">
+		<p class="listtext" *ngIf="profile[0].yearofstudy >= 4">
 			4:nnen (tai enemmän) vuoden opiskelija
 		</p>
 
 		<!-- City-name -->
 		<p class="listtext">
-			{{ profile.City_name }}
+			{{ profile[0].City_name }}
 		</p>
 	</div>
 	<div class="upperBox third">
 		<h2>Yhteystiedot</h2>
-		<p>Sähköposti: <br />{{ profile.email }}</p>
+		<p>Sähköposti: <br />{{ profile[0].email }}</p>
 		<p>
 			Puhelinnumero: <br />
-			{{ profile.phonenumber }}
+			{{ profile[0].phonenumber }}
 		</p>
 	</div>
 </div>
@@ -57,9 +57,9 @@
 	<!--Alemman tason viivan vasen puoli-->
 	<div class="lowerBox left">
 		<h3>Tietoja minusta</h3>
-		<p>{{ profile.aboutme }}</p>
+		<p>{{ profile[0].aboutme }}</p>
 		<h3>Millaista työtä etsin</h3>
-		<p>{{ profile.lookingfor }}</p>
+		<p>{{ profile[0].lookingfor }}</p>
 	</div>
 	<div class="lowerMid">
 		<div class="splitStick"></div>
@@ -150,7 +150,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="greenbutton">Tallenna</div>
+			<div class="greenbutton">Ota yhteyttä</div>
 		</div>
 	</div>
 </div>
