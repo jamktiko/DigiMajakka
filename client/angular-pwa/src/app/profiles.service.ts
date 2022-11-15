@@ -33,6 +33,12 @@ export class ProfilesService {
 		);
 	}
 
+	getProfileById(profileid: number): Observable<Profile> {
+		return this.http
+			.get(`http://localhost:3000/profiles/${profileid}`)
+			.pipe(map((response: any) => response));
+	}
+
 	// Method that requests the currently logged in users profile
 	getLoggedInProfile(): Observable<Profile[]> {
 		const body = {email: this.loggedUser};

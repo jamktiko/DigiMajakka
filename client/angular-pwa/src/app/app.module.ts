@@ -21,6 +21,7 @@ import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.compo
 import {EmployerComponent} from './employer/employer.component';
 import {EditSkillsComponent} from './edit-skills/edit-skills.component';
 import {JobAnnouncementComponent} from './job-announcement/job-announcement.component';
+import { StudentProfilesComponent } from './student-profiles/student-profiles.component';
 
 @NgModule({
 	declarations: [
@@ -40,6 +41,7 @@ import {JobAnnouncementComponent} from './job-announcement/job-announcement.comp
 		EmployerComponent,
 		EditSkillsComponent,
 		JobAnnouncementComponent,
+  StudentProfilesComponent,
 	],
 	imports: [
 		BrowserModule,

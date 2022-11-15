@@ -1,0 +1,350 @@
+.listtext {
+  margin: 0;
+}
+
+.editButton {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  width: 52px;
+  height: 52px;
+  background-color: var(--green);
+  border-radius: 6px;
+  z-index: 7;
+}
+
+.editButton.lowercornerright {
+  justify-self: end;
+  position: fixed;
+  z-index: 10;
+  top: -26px;
+  right: -26px;
+}
+
+.editButton.lowercenter {
+  justify-self: end;
+  position: absolute;
+  top: 20px;
+  right: -50px;
+  z-index: 11;
+}
+
+.editButton.upleft {
+  justify-self: end;
+  position: absolute;
+  z-index: 11;
+  top: 30px;
+  right: 65px;
+}
+
+.editButton.upcenter {
+  justify-self: end;
+  position: absolute;
+  z-index: 11;
+  top: 30px;
+  left: 315px;
+}
+
+.editButton.upright {
+  justify-self: end;
+  position: absolute;
+  z-index: 11;
+  top: 30px;
+  left: 315px;
+}
+
+.edit-icon {
+  height: 35px;
+  width: 35px;
+}
+
+.upperContent {
+  background-color: var(--mediumblue);
+  max-width: 100%;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-width: 1024px;
+  padding-left: 80px;
+}
+
+.lowerContent {
+  background-color: var(--darkgray);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  min-width: 1024px;
+  max-height: fit-content;
+}
+
+.lowerBox {
+  padding: 20px;
+  min-width: 400px;
+  position:relative;
+}
+
+.lowerBox.left {
+  padding-left: 80px;
+  padding-right: 40px;
+}
+
+.lowerMid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.profilephoto {
+  height: 368px;
+  width: 368px;
+  border-radius: 20px;
+  box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
+  position: relative;
+  top: 60px;
+  right: 90px;
+  z-index: 9;
+  overflow: hidden;
+}
+
+.photowide {
+  position: absolute;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  max-height: fill;
+}
+
+.phototall {
+  position: absolute;
+  left: -9999px;
+  right: -9999px;
+  top: -9999px;
+  bottom: -9999px;
+  margin: auto;
+  max-width: 368px;
+}
+
+.upperBox {
+  position: relative;
+}
+
+.upperBox.first {
+  display: flex;
+  justify-content: end;
+}
+
+.upperBox.second {
+  padding: 50px;
+  padding-right: 30px;
+  display:flex;
+  flex-direction: column;
+  min-width:315px;
+}
+
+.upperBox.third {
+  padding: 50px;
+  padding-right: 30px;
+  display:flex;
+  flex-direction: column;
+}
+
+.socials {
+  background-color: var(--lightblue);
+  padding: 0.3em 0.6em;
+  gap: 0.6em;
+  height: 55px;
+  width: fit-content;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.socials>a {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.some-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.linkedin {
+  width: 44.75px
+}
+
+.splitStick {
+  height: 90%;
+  width: 1.1px;
+  background-color: var(--lightblue);
+}
+
+p {
+  color: var(--lightblue);
+}
+
+h2, h3, h4, h5 {
+  font-weight: 400;
+}
+
+h2 {
+  color: var(--lightblue);
+  
+}
+
+h3 {
+  color: var(--lightblue);
+  margin-top: 50px;
+}
+
+h4 {
+  font-size: 1.6rem;
+  margin: 0px;
+  color: var(--darkblue);
+}
+
+h5 {
+  color: var(--lightblue);
+}
+
+.glassbox {
+  display: grid;
+  gap: 10px;
+  max-width: 600px;
+  padding: 20px;
+  margin: 30px;
+}
+
+.tags {
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 0.75em;
+}
+
+.tags>p {
+  margin: 0;
+  color: var(--darkblue);
+  font-size: 1.2em;
+}
+
+.tag {
+  display:flex;
+  background-color: var(--mediumblue);
+  border-radius: 10px;
+  color: var(--lightblue);
+  padding:10px;
+  height: 15px;
+  align-items: center;
+}
+
+.graybutton {
+  margin: 10px;
+}
+
+.checkboxRow{
+ margin-left: 30px;
+ margin-top: 4em;
+ display:grid;
+ grid-template-columns: 120px 120px 120px 120px 120px;
+ gap: 10px;
+ justify-items: center;
+}
+
+.btnwithcheckmark {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.btnwithcheckmark>img {
+  margin: 0;
+}
+
+.checkmark-icon {
+  max-width: 50px;
+}
+
+.bluebutton {
+  min-width: 65px;
+}
+
+.contentfooter {
+  display: flex;
+  margin-left: 30px;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  max-width: 650px;
+}
+
+.toggleBtnDisabled, .toggleBtnEnabled {
+  cursor: pointer;
+  max-width: 71px;
+  height: 38px;
+  border-radius: 20px;
+  background-color: var(--lightblue);
+  border: 2px solid var(--mediumblue);
+  display: flex;
+  width:100%
+}
+
+.toggleBtnDisabled {
+  justify-content: left;
+}
+
+.toggleBtnEnabled {
+  justify-content: right;
+}
+
+.toggleBtnBallDisabled, .toggleBtnBallEnabled {
+  width:33px;
+  height: 33px;
+  border-radius: 15px;
+  justify-self: center;
+  align-self: center;
+  margin:  2px;
+}
+
+.toggleBtnBallDisabled {
+  background-color: var(--mediumblue);
+}
+
+.toggleBtnBallEnabled {
+  background-color: var(--green);
+}
+
+.leftflex {
+  display:flex;
+  align-items: center;
+}
+
+.greenbutton {
+  margin-right: 20px;
+}
+
+.confirmation {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightblue);
+  color: var(--darkblue);
+  font-size: 1.2em;
+  font-weight: 600;
+  width: 15em;
+  height: 3em;
+  top: 5em;
+  right: 5%;
+  z-index: 15;
+  border-radius: 6px;
+}
