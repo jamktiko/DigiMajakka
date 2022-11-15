@@ -143,11 +143,14 @@ export class ProfileComponent implements OnInit {
 		} else {
 			value = 0;
 		}
-		this.profileservice.updateProfile(
-			this.loggedProfile[0].userprofileid,
-			`{"public": "${value}"}`
-		);
-		this.updated();
+		this.profileservice
+			.updateProfile(
+				this.loggedProfile[0].userprofileid,
+				`{"public": "${value}"}`
+			)
+			.subscribe(() => {
+				this.updated();
+			});
 	}
 
 	// Method that creates an image out of the blob that is received in the http-request.
