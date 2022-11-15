@@ -73,9 +73,11 @@ export class ProfilesService {
 
 	// Method to update links(social media etc.) of a profile. Updated links are sent in the body
 	updateProfileLinks(id: number, links: any) {
-		return this.http
-			.put(`http://localhost:3000/links/${id}`, links, this.httpOptions)
-			.subscribe((response) => console.log(response));
+		return this.http.put(
+			`http://localhost:3000/links/${id}`,
+			links,
+			this.httpOptions
+		);
 	}
 
 	// Method to get all cities from the database
@@ -90,13 +92,11 @@ export class ProfilesService {
 
 	// Method to update a profile using Http put-method. Updated fields are sent in the body.
 	updateProfile(profileid: number, profile: any) {
-		return this.http
-			.put<any>(
-				`http://localhost:3000/profiles/${profileid}`,
-				profile,
-				this.httpOptions
-			)
-			.subscribe((response) => console.log(response));
+		return this.http.put<any>(
+			`http://localhost:3000/profiles/${profileid}`,
+			profile,
+			this.httpOptions
+		);
 	}
 
 	// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
@@ -107,8 +107,9 @@ export class ProfilesService {
 	}
 
 	uploadProfilePhoto(profileid: number, photo: any) {
-		return this.http
-			.post(`http://localhost:3000/images/${profileid}`, photo)
-			.subscribe((res) => console.log(res));
+		return this.http.post(
+			`http://localhost:3000/images/${profileid}`,
+			photo
+		);
 	}
 }

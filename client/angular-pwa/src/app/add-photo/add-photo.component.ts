@@ -50,14 +50,16 @@ export class AddPhotoComponent implements OnInit {
 		}
 	}
 
-	onSubmit() {
-		this.profileservice.uploadProfilePhoto(
-			this.loggedProfile[0].userprofileid,
-			this.formData
-		);
-
-		this.changeVisibility();
-		this.updatedProfile.emit();
+	async onSubmit() {
+		this.profileservice
+			.uploadProfilePhoto(
+				this.loggedProfile[0].userprofileid,
+				this.formData
+			)
+			.subscribe(() => {
+				this.changeVisibility();
+				this.updatedProfile.emit();
+			});
 	}
 
 	ngOnInit(): void {}

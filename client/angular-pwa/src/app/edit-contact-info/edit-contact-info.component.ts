@@ -78,18 +78,25 @@ export class EditContactInfoComponent implements OnInit {
 	}
 
 	// When the form is submitted, send an update request to backend through the profileservice.
+	// Updating the profile is done first, and after it has completed, update the links (updatelinks is inside updateprofiles subscribe)
 	// Also hides the form on submit, and send an event to profile-component.
 	onSubmit(formdata: any) {
-		this.profileservice.updateProfile(
-			this.loggedProfile[0].userprofileid,
-			`{"email": "${formdata.email}", "phonenumber": "${formdata.phone}"}`
-		);
-		this.profileservice.updateProfileLinks(
-			this.loggedProfile[0].userprofileid,
-			`{"linkedin": "${formdata.linkedin}", "instagram": "${formdata.instagram}", "facebook": "${formdata.facebook}", "twitter": "${formdata.twitter}"}`
-		);
-		console.log('Submitted');
-		this.changeVisibility();
-		this.updatedProfile.emit();
+		this.profileservice
+			.updateProfile(
+				this.loggedProfile[0].userprofileid,
+				`{"email": "${formdata.email}", "phonenumber": "${formdata.phone}"}`
+			)
+			.subscribe(() => {
+				this.profileservice
+					.updateProfileLinks(
+						this.loggedProfile[0].userprofileid,
+						`{"linkedin": "${formdata.linkedin}", "instagram": "${formdata.instagram}", "facebook": "${formdata.facebook}", "twitter": "${formdata.twitter}"}`
+					)
+					.subscribe(() => {
+						console.log('Submitted');
+						this.changeVisibility();
+						this.updatedProfile.emit();
+					});
+			});
 	}
 }
