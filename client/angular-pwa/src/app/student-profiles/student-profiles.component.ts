@@ -61,6 +61,8 @@ export class StudentProfilesComponent implements OnInit {
 	photoWidth: any;
 	photoHeight: any;
 
+	showContactInfo: boolean = false;
+
 	ngOnInit(): void {
 		// Subscribed to the correct profile based on the route-parameter 'id'
 		this.sub = this.route.params.subscribe((params) => {
@@ -73,7 +75,7 @@ export class StudentProfilesComponent implements OnInit {
 		});
 
 		// Get profiledata using this classes methods
-		// this.getProfileLinks(this.profileid);
+		this.getProfileLinks(this.profileid);
 		this.getProfilePhoto(this.profileid);
 		this.getProfileSkills(this.profileid);
 	}

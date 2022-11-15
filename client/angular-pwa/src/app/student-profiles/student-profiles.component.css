@@ -150,35 +150,6 @@
   flex-direction: column;
 }
 
-.socials {
-  background-color: var(--lightblue);
-  padding: 0.3em 0.6em;
-  gap: 0.6em;
-  height: 55px;
-  width: fit-content;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.socials>a {
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-  width: 40px;
-  height: 40px;
-}
-
-.some-icon {
-  width: 40px;
-  height: 40px;
-}
-
-.linkedin {
-  width: 44.75px
-}
-
 .splitStick {
   height: 90%;
   width: 1.1px;
@@ -244,11 +215,10 @@ h5 {
   align-items: center;
 }
 
-
-
 .btnRow{
  margin-left: 30px;
  margin-top: 4em;
+ margin-bottom: 3em;
  display:grid;
  grid-template-columns: 120px 120px 120px 120px 120px;
  gap: 10px;
@@ -269,8 +239,6 @@ h5 {
 .checkmark-icon {
   max-width: 50px;
 }
-
-
 
 .contentfooter {
   display: flex;
@@ -336,6 +304,43 @@ h5 {
   margin: 10px;
 }
 
+.showcontactsbtn {
+  margin-top: 4em;
+}
+
 .attachment {
   width: 120px;
+}
+
+.noattachments {
+  margin-left: 2em;
+}
+
+.socials {
+  background-color: var(--lightblue);
+  padding: 0.3em 0.6em;
+  gap: 0.6em;
+  height: 55px;
+  width: fit-content;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.socials>a {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.some-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.linkedin {
+  width: 44.75px
 }

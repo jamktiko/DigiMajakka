@@ -20,6 +20,10 @@ h3 {
   justify-content: center;
 }
 
+.gallery-item {
+  cursor: pointer;
+}
+
 .slides {
   margin: 0 1em;
   display: grid;

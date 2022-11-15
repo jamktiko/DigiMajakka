@@ -43,13 +43,23 @@
 			{{ profile[0].City_name }}
 		</p>
 	</div>
+
 	<div class="upperBox third">
 		<h2>Yhteystiedot</h2>
-		<p>Sähköposti: <br />{{ profile[0].email }}</p>
-		<p>
-			Puhelinnumero: <br />
-			{{ profile[0].phonenumber }}
-		</p>
+		<button
+			class="greenbutton showcontactsbtn"
+			*ngIf="!showContactInfo"
+			(click)="showContactInfo = !showContactInfo"
+		>
+			Ota yhteyttä
+		</button>
+		<div *ngIf="showContactInfo">
+			<p>Sähköposti: <br />{{ profile[0].email }}</p>
+			<p>
+				Puhelinnumero: <br />
+				{{ profile[0].phonenumber }}
+			</p>
+		</div>
 	</div>
 </div>
 <!--Alempi osio jaettu gridillä kahteen 1fr osioon, sekä keskiviiva lisätty väliin-->
@@ -82,12 +92,31 @@
 			<div class="graybutton">Näytä kaikki</div>
 		</div>
 		<!--Lasilaatikon alla olevat nappulat-->
+		<h3
+			class="noattachments"
+			*ngIf="
+				!someLinks[0].cv &&
+				!someLinks[0].portfolio &&
+				!someLinks[0].github
+			"
+		>
+			Ei liitteitä
+		</h3>
 		<div class="btnRow">
-			<button class="bluebutton attachment">CV</button>
+			<button class="bluebutton attachment" *ngIf="someLinks[0].cv">
+				CV
+			</button>
 
-			<button class="bluebutton attachment">Portfolio</button>
+			<button
+				class="bluebutton attachment"
+				*ngIf="someLinks[0].portfolio"
+			>
+				Portfolio
+			</button>
 
-			<button class="bluebutton attachment">GitHub</button>
+			<button class="bluebutton attachment" *ngIf="someLinks[0].github">
+				GitHub
+			</button>
 		</div>
 
 		<!--Alimmat jutut-->
