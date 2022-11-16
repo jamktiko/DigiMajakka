@@ -33,7 +33,11 @@ const linkC = {
 				throw new Error('No body received in request');
 			}
 
-			const {sql, sqlvals} = convertBodyToQueryFormat(_request);
+			const {sql, sqlvals} = convertBodyToQueryFormat(
+				_request,
+				'Links',
+				'UserProfile_userprofileid'
+			);
 			const update = await queryDb(sql, [
 				// Destructure values and ad profile id from params to last index of array
 				...sqlvals,

@@ -141,7 +141,11 @@ const profileController = {
 				throw new CustomError('Email is not valid', 400);
 			}
 
-			const {sql, sqlvals} = convertBodyToQueryFormat(_request);
+			const {sql, sqlvals} = convertBodyToQueryFormat(
+				_request,
+				'UserProfile',
+				'userprofileid'
+			);
 
 			const update = await queryDb(sql, [
 				...sqlvals,
