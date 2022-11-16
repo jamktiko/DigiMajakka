@@ -92,5 +92,10 @@ export class EditSkillsComponent implements OnInit {
 	}
 
 	// Functionality that happens when the form is submitted
-	onSubmit(formadata: any) {}
+	onSubmit(skills: any) {
+		this.profileservice.insertNewProfileSkill(
+			this.loggedProfile[0].userprofileid,
+			this.toBeAddedSkills
+		);
+	}
 }
