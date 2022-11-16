@@ -113,7 +113,7 @@
   left: -9999px;
   right: -9999px;
   margin: auto;
-  max-height: fill;
+  max-height: stretch;
 }
 
 .phototall {
@@ -132,7 +132,7 @@
 
 .upperBox.first {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .upperBox.second {
@@ -259,7 +259,7 @@ h5 {
 .btnwithcheckmark {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
