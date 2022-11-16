@@ -39,6 +39,9 @@ h3 {
 
 .joblistArea {
   min-height: 50vw;
+  display:flex;
+  justify-content: center;
+  padding-top: 33px;
 }
 
 input {
