@@ -97,13 +97,26 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		// skills.forEach(skill => {
-		// 	if (this.profileSpecialSkills)
-		//
-		// });
-		this.profileservice.insertNewProfileSkill(
-			this.loggedProfile[0].userprofileid,
-			skills
-		);
+		skills.forEach((skill: string) => {
+			if (this.skillFields.includes(skill)) {
+				this.profileservice
+					.insertNewProfileSkill(
+						this.loggedProfile[0].userprofileid,
+						`{"skill": "${skill}"}`
+					)
+					.subscribe(() => {
+						console.log('sent');
+					});
+			} else {
+				this.profileservice
+					.insertNewProfileSkill(
+						this.loggedProfile[0].userprofileid,
+						`{"specialskill": "${skill}"}`
+					)
+					.subscribe(() => {
+						console.log('sent');
+					});
+			}
+		});
 	}
 }
