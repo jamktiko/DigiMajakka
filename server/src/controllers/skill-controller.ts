@@ -92,26 +92,26 @@ const skillC = {
 					!skillArray.includes(_request.body.specialskill))
 			) {
 				let sql = '';
-				let parameters = [];
+				const parameters: string[] = [];
 
 				// Different sql query depending if trying to insert specialskill or skill
 				if (_request.body.specialskill) {
 					sql =
 						'INSERT INTO UserProfileSpecialSkills VALUES (?, (SELECT specialskillid FROM SpecialSkills WHERE name = ?), (SELECT Skills_skillid FROM SpecialSkills WHERE name = ?));';
-					parameters = [
+					parameters.push(
 						_request.body.specialskill,
-						_request.body.specialskill,
-					];
+						_request.body.specialskill
+					);
 				} else {
 					sql =
 						'INSERT INTO UserProfileSkills VALUES (?, (SELECT skillid FROM Skills WHERE name = ?));';
-					parameters = [_request.body.skill];
+					parameters.push(_request.body.skill);
 				}
 
 				// If profile doesn't have skill insert to ProfiiliOsaaminen table
 				const profileSkillInsert = await queryDb(sql, [
 					Number(_request.params.profileid),
-					parameters,
+					...parameters,
 				]);
 				console.log(profileSkillInsert);
 
