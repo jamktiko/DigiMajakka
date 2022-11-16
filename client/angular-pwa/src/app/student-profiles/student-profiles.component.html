@@ -51,7 +51,7 @@
 			*ngIf="!showContactInfo"
 			(click)="showContactInfo = !showContactInfo"
 		>
-			Ota yhteyttä
+			Näytä yhteystiedot
 		</button>
 		<div *ngIf="showContactInfo">
 			<p>Sähköposti: <br />{{ profile[0].email }}</p>
@@ -72,7 +72,7 @@
 		<p>{{ profile[0].lookingfor }}</p>
 	</div>
 	<div class="lowerMid">
-		<div class="splitStick"></div>
+		<div class="divider"></div>
 	</div>
 	<!--Alemman tason valkoisen viivan oikea puoli-->
 	<div class="lowerBox">
@@ -89,7 +89,6 @@
 					<p>{{ skillField }}</p>
 				</div>
 			</div>
-			<div class="graybutton">Näytä kaikki</div>
 		</div>
 		<!--Lasilaatikon alla olevat nappulat-->
 		<h3
