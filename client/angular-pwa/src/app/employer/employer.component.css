@@ -119,7 +119,7 @@ input {
 }
 
 .dateInput {
-  width: 150px;
+  width: 155px;
 }
 
 .radiocontainer {
@@ -135,7 +135,7 @@ input[type="radio"] {
   background-color: var(--lightblue);
   box-shadow: inset 0px 2px 4px 1px #396472;
   border-radius: 50%;
-  transform: translateY(-1.00em);
+  transform: translate(-2.50em, -1.00em);
   display: grid;
   place-content: center;
   padding-left: 0;
@@ -174,4 +174,11 @@ input, select, textarea{
   color: var(--darkblue);
 }
 
+.submitRow {
+  display: flex;
+  justify-content: space-between;
+}
 
+.greenbutton {
+  margin-top: 40px;
+}

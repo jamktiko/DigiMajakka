@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 
@@ -15,13 +15,34 @@ export class AddPhotoComponent implements OnInit {
 
 	photo: any;
 	photoName: string = '';
+	previewPhoto!: any;
+	previewRatio: any;
+	photoWidth: any;
+	photoHeight: any;
 
 	@Input() loggedProfile: any;
+	@Output() updatedProfile = new EventEmitter();
 
 	formData = new FormData();
 
 	onPhotoSelected(event: any) {
 		this.photo = event.target.files[0];
+
+		const reader = new FileReader();
+		reader.onload = (e) => {
+			this.previewPhoto = reader.result;
+			let img = new Image();
+			img.onload = () => {
+				this.photoWidth = img.width;
+				this.photoHeight = img.height;
+				this.previewRatio = this.photoWidth / this.photoHeight;
+				console.log(this.previewRatio);
+			};
+
+			img.src = this.previewPhoto;
+		};
+
+		reader.readAsDataURL(this.photo);
 
 		if (this.photo) {
 			this.photoName = this.photo.name;
@@ -29,11 +50,16 @@ export class AddPhotoComponent implements OnInit {
 		}
 	}
 
-	onSubmit() {
-		this.profileservice.uploadProfilePhoto(
-			this.loggedProfile[0].userprofileid,
-			this.formData
-		);
+	async onSubmit() {
+		this.profileservice
+			.uploadProfilePhoto(
+				this.loggedProfile[0].userprofileid,
+				this.formData
+			)
+			.subscribe(() => {
+				this.changeVisibility();
+				this.updatedProfile.emit();
+			});
 	}
 
 	ngOnInit(): void {}

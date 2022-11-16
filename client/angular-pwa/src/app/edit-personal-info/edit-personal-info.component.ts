@@ -58,12 +58,15 @@ export class EditPersonalInfoComponent implements OnInit {
 
 	// Method that has the functionality for submitting the form
 	onSubmit(formdata: any) {
-		this.profileservice.updateProfile(
-			this.loggedProfile[0].userprofileid,
-			`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "City_name": "${formdata.city}", "yearofstudy":"${formdata.year}"}`
-		);
-		console.log('Submitted');
-		this.changeVisibility();
-		this.updatedProfile.emit();
+		this.profileservice
+			.updateProfile(
+				this.loggedProfile[0].userprofileid,
+				`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "City_name": "${formdata.city}", "yearofstudy":"${formdata.year}"}`
+			)
+			.subscribe(() => {
+				console.log('Submitted');
+				this.changeVisibility();
+				this.updatedProfile.emit();
+			});
 	}
 }

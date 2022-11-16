@@ -1,0 +1,182 @@
+<!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu 
+	upperbox first/second/third sisälle-->
+
+<div class="upperContent">
+	<div class="upperBox first">
+		<!-- Button to open photo-edit window -->
+		<div class="profilephoto">
+			<img
+				[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
+				*ngIf="!isProfilePhotoLoading"
+				[src]="getSanitizedUrl(profilePhoto)"
+				alt="Profilephoto"
+			/>
+		</div>
+	</div>
+	<div class="upperBox second">
+		<!-- Userprofiles first- and lastname -->
+		<h2 *ngIf="profile">
+			{{ profile[0].firstname }} {{ profile[0].familyname }}
+		</h2>
+		<!-- Userprofiles field of study -->
+		<p class="listtext">{{ profile[0].studyfield }}</p>
+		<!-- Schoolname -->
+		<p class="listtext">
+			{{ profile[0].UserAccount_School_name }}
+		</p>
+		<!-- Year of study, gives different text based on the year-value -->
+		<p class="listtext" *ngIf="profile[0].yearofstudy === 1">
+			{{ profile[0].yearofstudy }}:sen vuoden opiskelija
+		</p>
+		<p class="listtext" *ngIf="profile[0].yearofstudy === 2">
+			{{ profile[0].yearofstudy }}:sen vuoden opiskelija
+		</p>
+		<p class="listtext" *ngIf="profile[0].yearofstudy === 3">
+			{{ profile[0].yearofstudy }}:nnen vuoden opiskelija
+		</p>
+		<p class="listtext" *ngIf="profile[0].yearofstudy >= 4">
+			4:nnen (tai enemmän) vuoden opiskelija
+		</p>
+
+		<!-- City-name -->
+		<p class="listtext">
+			{{ profile[0].City_name }}
+		</p>
+	</div>
+
+	<div class="upperBox third">
+		<h2>Yhteystiedot</h2>
+		<button
+			class="greenbutton showcontactsbtn"
+			*ngIf="!showContactInfo"
+			(click)="showContactInfo = !showContactInfo"
+		>
+			Ota yhteyttä
+		</button>
+		<div *ngIf="showContactInfo">
+			<p>Sähköposti: <br />{{ profile[0].email }}</p>
+			<p>
+				Puhelinnumero: <br />
+				{{ profile[0].phonenumber }}
+			</p>
+		</div>
+	</div>
+</div>
+<!--Alempi osio jaettu gridillä kahteen 1fr osioon, sekä keskiviiva lisätty väliin-->
+<div class="lowerContent">
+	<!--Alemman tason viivan vasen puoli-->
+	<div class="lowerBox left">
+		<h3>Tietoja minusta</h3>
+		<p>{{ profile[0].aboutme }}</p>
+		<h3>Millaista työtä etsin</h3>
+		<p>{{ profile[0].lookingfor }}</p>
+	</div>
+	<div class="lowerMid">
+		<div class="splitStick"></div>
+	</div>
+	<!--Alemman tason valkoisen viivan oikea puoli-->
+	<div class="lowerBox">
+		<!--Läpinäkyvälaatikko joka sisältää tagit-->
+		<div class="glassbox">
+			<h4>Osaaminen</h4>
+			<div class="tags">
+				<p *ngIf="skills.length === 0">Lisää tähän taitojasi.</p>
+				<!-- Every skill put inside their own tag -->
+				<div class="tag" *ngFor="let specialSkill of specialSkills">
+					<p>{{ specialSkill }}</p>
+				</div>
+				<div class="tag" *ngFor="let skillField of skillFields">
+					<p>{{ skillField }}</p>
+				</div>
+			</div>
+			<div class="graybutton">Näytä kaikki</div>
+		</div>
+		<!--Lasilaatikon alla olevat nappulat-->
+		<h3
+			class="noattachments"
+			*ngIf="
+				!someLinks[0].cv &&
+				!someLinks[0].portfolio &&
+				!someLinks[0].github
+			"
+		>
+			Ei liitteitä
+		</h3>
+		<div class="btnRow">
+			<button class="bluebutton attachment" *ngIf="someLinks[0].cv">
+				CV
+			</button>
+
+			<button
+				class="bluebutton attachment"
+				*ngIf="someLinks[0].portfolio"
+			>
+				Portfolio
+			</button>
+
+			<button class="bluebutton attachment" *ngIf="someLinks[0].github">
+				GitHub
+			</button>
+		</div>
+
+		<!--Alimmat jutut-->
+		<div class="contentfooter">
+			<div class="leftflex">
+				<!-- Social media icons. -->
+				<div
+					*ngIf="
+						someLinks[0].linkedin ||
+						someLinks[0].facebook ||
+						someLinks[0].instagram ||
+						someLinks[0].twitter
+					"
+					class="socials"
+				>
+					<!-- Social media icons with links. Icon is only displayed if the profile has a link set to that service -->
+					<a
+						*ngIf="someLinks[0].linkedin"
+						[href]="someLinks[0].linkedin"
+					>
+						<img
+							class="some-icon linkedin"
+							src="assets\icons\In-2C-101px-TM.png"
+							alt="linkedin-icon"
+						/>
+					</a>
+					<a
+						*ngIf="someLinks[0].facebook"
+						[href]="someLinks[0].facebook"
+					>
+						<img
+							class="some-icon"
+							src="assets\icons\f_logo_RGB-Blue_100.png"
+							alt="facebook-icon"
+						/>
+					</a>
+					<a
+						*ngIf="someLinks[0].instagram"
+						[href]="someLinks[0].instagram"
+					>
+						<img
+							class="some-icon"
+							src="assets\icons\Instagram_Glyph_Gradient.png"
+							alt="instagram-icon"
+						/>
+					</a>
+					<a
+						*ngIf="someLinks[0].twitter"
+						[href]="someLinks[0].twitter"
+					>
+						<img
+							class="some-icon"
+							src="assets\icons\Twittersocialicons-roundedsquare-blue.png"
+							alt="twitter-icon"
+						/>
+					</a>
+				</div>
+			</div>
+			<!-- ADD FUNCTIONALITY -->
+			<div class="greenbutton">Ota yhteyttä</div>
+		</div>
+	</div>
+</div>

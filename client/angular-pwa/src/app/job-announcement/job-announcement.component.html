@@ -1,0 +1,181 @@
+<body>
+	<div class="content">
+		<div class="annoucement">
+			<h1>Tehtävänimike</h1>
+			<div class="line"></div>
+			<div class="informationDetailsBox">
+				<div class="details left">
+					<h4><strong>Työnantaja:</strong> {{ employerInfo }}</h4>
+					<h4><strong>Palkka:</strong> {{ payInfo }}</h4>
+					<h4><strong>Työn alkamispäivä:</strong> {{ startInfo }}</h4>
+				</div>
+				<div class="details right">
+					<h4><strong>Yhteyshenkilö:</strong> {{ contactInfo }}</h4>
+					<h4><strong>Sähköposti:</strong> {{ emailInfo }}</h4>
+					<h4><strong>Puhelinnumero:</strong> {{ phoneInfo }}</h4>
+				</div>
+			</div>
+			<div class="line"></div>
+			<div class="jobDescription">
+				<h4>Moikkelis</h4>
+				<p>
+					Lorem ipsum Aaoiwfawnfowanfawifonawoinfowanfoinwaiofnwo
+					ianfowanfoawnfonoawoawngoawngowangoawnognawognawnwg
+					onawognwaongwiaongowangownaognwognoinwgoingoagaovmwomvoawmofmwa
+					ofwoifoiawnfowaifnoin Lorem ipsum
+					Aaoiwfawnfowanfawifonawoinfowanfoinwaiofnwo
+					ianfowanfoawnfonoawoawngoawngowangoawnognawognawnwg
+					onawognwaongwiaongowangownaognwognoinwgoingoagaovmwomvoawmofmwa
+					ofwoifoiawnfowaifnoinLorem ipsum
+					Aaoiwfawnfowanfawifonawoinfowanfoinwaiofnwo
+					ianfowanfoawnfonoawoawngoawngowangoawnognawognawnwg
+					onawognwaongwiaongowangownaognwognoinwgoingoagaovmwomvoawmofmwa
+					ofwoifoiawnfowaifnoinLorem ipsum
+				</p>
+				<h4>Toinen otsikko</h4>
+				<p>
+					Lorem ipsum Aaoiwfawnfowanfawifonawoinfowanfoinwaiofnwo
+					ianfowanfoawnfonoawoawngoawngowangoawnognawognawnwg
+					onawognwaongwiaongowangownaognwognoinwgoingoagaovmwomvoawmofmwa
+					ofwoifoiawnfowaifnoin Lorem ipsum
+					Aaoiwfawnfowanfawifonawoinfowanfoinwaiofnwo
+					ianfowanfoawnfonoawoawngoawngowangoawnognawognawnwg
+					onawognwaongwiaongowangownaognwognoinwgoingoagaovmwomvoawmofmwa
+					ofwoifoiawnfowaifnoinLorem ipsum
+					Aaoiwfawnfowanfawifonawoinfowanfoinwaiofnwo
+					ianfowanfoawnfonoawoawngoawngowangoawnognawognawnwg
+					onawognwaongwiaongowangownaognwognoinwgoingoagaovmwomvoawmofmwa
+					ofwoifoiawnfowaifnoin
+				</p>
+			</div>
+		</div>
+		<div class="contactBox">
+			<h2>Hae tätä työpaikkaa nyt</h2>
+			<div class="line short">
+				<form
+					#f="ngForm"
+					class="formcontainer"
+					(ngSubmit)="onSubmit(f.value)"
+				>
+					<label>
+						Etunimi *
+						<br />
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput:
+									firstname.errors && firstname.touched
+							}"
+							required
+							minlength="2"
+							maxlength="45"
+							name="firstname"
+							#firstname="ngModel"
+							[(ngModel)]="info.firstname"
+						/>
+					</label>
+
+					<p
+						class="error"
+						*ngIf="firstname.errors?.required && firstname.touched"
+					>
+						Etunimi on pakollinen tieto
+					</p>
+					<p
+						class="error"
+						*ngIf="firstname.errors?.minlength && firstname.touched"
+					>
+						Etunimi ei voi olla alle kaksi merkkiä pitkä
+					</p>
+					<label>
+						Sukunimi *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: lastname.errors && lastname.touched
+							}"
+							required
+							minlength="2"
+							maxlength="45"
+							name="lastname"
+							#lastname="ngModel"
+							[(ngModel)]="info.lastname"
+						/>
+					</label>
+
+					<!-- Errors for lastname-validation -->
+					<p
+						class="error"
+						*ngIf="lastname.errors?.required && lastname.touched"
+					>
+						Sukunimi on pakollinen tieto
+					</p>
+					<p
+						class="error"
+						*ngIf="lastname.errors?.minlength && lastname.touched"
+					>
+						Etunimi ei voi olla alle kaksi merkkiä pitkä
+					</p>
+
+					<label>
+						Sähköposti *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: email.errors && email.touched
+							}"
+							required
+							name="email"
+							#email="ngModel"
+							[(ngModel)]="info.email"
+						/>
+					</label>
+
+					<!-- Errors for field-validation -->
+					<p
+						class="error"
+						*ngIf="email.errors?.required && email.touched"
+					>
+						Sähköposti on pakollinen tieto
+					</p>
+
+					<label>
+						Puhelinnumero *
+						<input
+							type="text"
+							[ngClass]="{
+								errorinput: phone.errors && phone.touched
+							}"
+							required
+							name="phone"
+							#phone="ngModel"
+							[(ngModel)]="info.phone"
+						/>
+					</label>
+
+					<!-- Errors for phone-validation -->
+					<p
+						class="error"
+						*ngIf="phone.errors?.required && phone.touched"
+					>
+						Puhelinnumero on pakollinen tieto
+					</p>
+					<label>Viesti</label>
+					<textarea
+						[(ngModel)]="info.message"
+						name="info.message"
+					></textarea>
+				</form>
+				<h5>
+					Huom! Profiilisi lähetetään työnantajalle
+					<br />automaattisesti, joten sinun ei tarvitse huolehtia
+					<br />
+					siitä!
+				</h5>
+				<div class="buttonArea">
+					<button class="greenbutton">Lähetä ilmoitus</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

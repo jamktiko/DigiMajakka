@@ -6,7 +6,11 @@
 	<div class="gallery-container">
 		<div class="slides">
 			<!-- Each profile creates its own gallery-item -->
-			<div *ngFor="let profile of profiles" class="gallery-item">
+			<div
+				*ngFor="let profile of profiles"
+				class="gallery-item"
+				[routerLink]="['/profiles', profile.userprofileid]"
+			>
 				<img
 					src="https://via.placeholder.com/100x100.png"
 					alt="placeholderkuva"

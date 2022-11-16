@@ -1,7 +1,17 @@
 <div class="backdrop" (click)="changeVisibility()"></div>
+
 <div class="photoAddBox">
 	<h2>Valokuva</h2>
-	<div class="photoArea"></div>
+	<div class="photoArea">
+		<h2 *ngIf="!photo">Lisää kuva itsestäsi.</h2>
+		<img
+			[ngClass]="previewRatio > 1 ? 'previewwide' : 'previewtall'"
+			*ngIf="photo"
+			[src]="previewPhoto"
+			alt="profiilikuva"
+		/>
+	</div>
+	<p>{{ photoName }}</p>
 
 	<!-- The actual input is hidden from the user, because it cannot be styled very well.
 		It is instead opened by clicking on the button below -->

@@ -1,26 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-	selector: 'app-employer',
-	templateUrl: './employer.component.html',
-	styleUrls: ['./employer.component.css'],
+	selector: 'app-job-announcement',
+	templateUrl: './job-announcement.component.html',
+	styleUrls: ['./job-announcement.component.css'],
 })
-export class EmployerComponent implements OnInit {
+export class JobAnnouncementComponent implements OnInit {
+	employerInfo = 'Esimerkki';
+	payInfo = 'Placeholder';
+	startInfo = 'ETC';
+	contactInfo = 'ETC';
+	emailInfo = 'ETC';
+	phoneInfo = 'ETC';
+
 	info = {
 		firstname: '',
 		lastname: '',
 		email: '',
 		phone: '',
-		employer: '',
-		companyname: '',
-		assignment: '',
-		description: '',
-		payment: '',
-		calendar: '',
+		message: '',
 	};
-
-	today = Date();
 	constructor() {}
 
 	ngOnInit(): void {}

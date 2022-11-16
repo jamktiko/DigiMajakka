@@ -2,6 +2,7 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 import {Profile} from '../profile';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-profile',
@@ -11,7 +12,8 @@ import {Profile} from '../profile';
 export class ProfileComponent implements OnInit {
 	constructor(
 		private editservice: StateManagementService,
-		private profileservice: ProfilesService
+		private profileservice: ProfilesService,
+		private _sanitizer: DomSanitizer
 	) {}
 
 	// boolean-variable to toggle visibility of "updated successfully" -notification
@@ -43,6 +45,10 @@ export class ProfileComponent implements OnInit {
 	// All skillfields from the skills-array will be put in this array
 	skillFields: any = [];
 
+	photoRatio: any;
+	photoWidth: any;
+	photoHeight: any;
+
 	// Links for the profiles social-media will be in this array
 	someLinks: any = [
 		{
@@ -59,22 +65,13 @@ export class ProfileComponent implements OnInit {
 			name: 'Kaupunki',
 		},
 	];
-	// The profiles' school will be in this array
-	school: any = [
-		{
-			name: 'Koulun nimi',
-		},
-	];
 
 	profilePhoto: any;
+	isProfilePhotoLoading: boolean = false;
 
 	// Get the logged in users profile when the component is created
 	ngOnInit(): void {
 		this.getLoggedInProfile();
-		// https://stackoverflow.com/questions/45530752/getting-image-from-api-in-angular-4-5
-		this.profileservice
-			.getProfilePhoto(this.loggedProfile[0].userprofileid)
-			.subscribe((profilePhoto) => (this.profilePhoto = profilePhoto));
 	}
 
 	// Method that reloads the window, to get updated values after updates to profile
@@ -129,6 +126,7 @@ export class ProfileComponent implements OnInit {
 			// Fetch skills and links at the same time with profile
 			this.getLoggedProfileSkills(this.loggedProfile[0].userprofileid);
 			this.getLoggedProfileLinks(this.loggedProfile[0].userprofileid);
+			this.getProfilePhoto(this.loggedProfile[0].userprofileid);
 
 			// this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
 			// this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
@@ -145,11 +143,61 @@ export class ProfileComponent implements OnInit {
 		} else {
 			value = 0;
 		}
-		this.profileservice.updateProfile(
-			this.loggedProfile[0].userprofileid,
-			`{"public": "${value}"}`
+		this.profileservice
+			.updateProfile(
+				this.loggedProfile[0].userprofileid,
+				`{"public": "${value}"}`
+			)
+			.subscribe(() => {
+				this.updated();
+			});
+	}
+
+	// Method that creates an image out of the blob that is received in the http-request.
+	// The aspect ratio is calculated for the image to style the image correctly based on the ratio
+	createImageFromBlob(image: Blob) {
+		let reader = new FileReader();
+		reader.addEventListener(
+			'load',
+			() => {
+				this.profilePhoto = reader.result;
+				let img = new Image();
+				img.onload = () => {
+					this.photoWidth = img.width;
+					this.photoHeight = img.height;
+					this.photoRatio = this.photoWidth / this.photoHeight;
+					console.log(this.photoRatio);
+				};
+
+				img.src = this.profilePhoto;
+			},
+			false
 		);
-		this.updated();
+
+		if (image) {
+			reader.readAsDataURL(image);
+		}
+	}
+
+	// Method that fetches the profiles profile-photo from profileservices' getProfilePhoto()-method
+	// The createImageFromBlob()-method is then called to turn the image into a viewable form
+	getProfilePhoto(id: number) {
+		this.isProfilePhotoLoading = true;
+		this.profileservice.getProfilePhoto(id).subscribe(
+			(imageData) => {
+				this.createImageFromBlob(imageData);
+				this.isProfilePhotoLoading = false;
+			},
+			(error) => {
+				this.isProfilePhotoLoading = false;
+				console.log(error);
+			}
+		);
+	}
+
+	// Method to sanitize the url of the profilephoto
+	getSanitizedUrl(image: any) {
+		return this._sanitizer.bypassSecurityTrustUrl(image);
 	}
 
 	// Methods to toggle visibilities of profile edit-forms
