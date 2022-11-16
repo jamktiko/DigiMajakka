@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-types */
 type Jobadvert = {
 	advertid: string;
 	firstname: string;
 	familyname: string;
-	company: string;
-	startdate: string;
-	enddate: string;
+	company?: string | null;
+	startdate?: string | null;
 	email: string;
 	phonenumber: string;
 	jobtitle: string;

@@ -7,7 +7,7 @@ import queryDb from '../db-connection';
 import * as validation from '../validators/validation';
 import type Profile from '../models/profile-model';
 import CustomError from '../custom-error';
-
+import convertBodyToQueryFormat from '../functions/convert-body-to-update-string';
 // Return all profiles from database
 const profileController = {
 	async findAll(
@@ -123,41 +123,13 @@ const profileController = {
 				throw new CustomError('Email is not valid', 400);
 			}
 
-			// Take values values from object to array
-			const values = Object.values(_request.body);
-			// Take keys(columns) from object to array
-			const keys = Object.keys(_request.body);
+			const {sql, sqlvals} = convertBodyToQueryFormat(_request);
 
-			// Updatestring will contain update query
-			// It is contructed from values and keys separated from object
-			// This allows to use this route to update any number of columns in table row
-
-			// Start string of the query
-			let updateString = 'UPDATE UserProfile SET ';
-			// Add each of keys(column names) one by one into updatestring
-			for (const x of keys) {
-				updateString += String(x) + ' = ?';
-				// If added last key then insert just ' ' otherwise ',' is needed
-				updateString +=
-					keys.indexOf(x) === keys.length - 1 ? ' ' : ', ';
-			}
-
-			// Last part of update string where you specify profile id
-			updateString += 'WHERE userprofileid = ?;';
-
-			const update = await queryDb(updateString, [
-				// Destructure values and ad profile id from params to last index of array
-				...values,
+			const update = await queryDb(sql, [
+				...sqlvals,
 				Number(_request.params.id),
 			]);
-			// If (values.length < 13) {
-			// 	throw new Error('Update does not have all required fields');
-			// }
 
-			// const update = await queryDb(
-			// 	'UPDATE Profiili SET idprofiili = ?, etunimi = ?, sukunimi = ?, puhelinnumero = ?, kuvaus = ?, mitaetsii = ?, koulutusala = ?, opintovuosi = ?, julkisuus = ?, Kayttaja_sahkoposti = ?, Koulu_idKoulu = ?, Paikkakunta_idPaikkakunta = ?, kuva = ? WHERE idprofiili = ?',
-			// 	[...values, values[0]]
-			// );
 			console.log('Update succesfull');
 
 			console.log(update);

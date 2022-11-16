@@ -157,8 +157,8 @@ all routes running at localhost:3000 when in development environment
 #### GET REQUESTS
 
 -   get all skills: /skills/
--   get profiles skills by profile id: /skills/:id
+-   get profiles skills by profile id: /skills/profile/:id
 
 #### POST REQUESTS
 
--   add new skill to profile: /skills/:profileid/:skillname
+-   add new skill to profile: /skills/profile/:profileid/:skillname

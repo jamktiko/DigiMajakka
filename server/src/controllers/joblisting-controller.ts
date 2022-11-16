@@ -41,10 +41,10 @@ const joblistingC = {
 			const valid = jobadvertValidation({advertid, ..._request.body});
 
 			// If profile is not valid throw error
-			if (valid.valid && typeof valid.filteredAdvert !== 'undefined') {
+			if (valid.valid && valid.jobadvert) {
 				const insert = queryDb(
-					'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
-					[...Object.values(valid.filteredAdvert)]
+					'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
+					[...Object.values(valid.jobadvert)]
 				);
 				// Send email to job adverts creator with link to update advert
 				await ses.sendEmail(

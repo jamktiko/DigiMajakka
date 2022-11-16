@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable operator-linebreak */
 /* eslint-disable import/extensions */
+
 import type Jobadvert from '../models/jobadvert-model';
 import {validatePhoneNumber, validateEmail} from './validation';
 
@@ -7,9 +9,8 @@ const jobadvertFactor = ({
 	advertid = '',
 	firstname = '',
 	familyname = '',
-	company = '',
-	startdate = '0000-00-00',
-	enddate = '0000-00-00',
+	company = null,
+	startdate = null,
 	email = 'esimerkki@sahkoposti.com',
 	phonenumber = '000-0000-0000',
 	jobtitle = '',
@@ -19,13 +20,12 @@ const jobadvertFactor = ({
 	isvalid = true,
 	accepted = false,
 	city = '',
-} = {}) => ({
+}: Jobadvert): Jobadvert => ({
 	advertid,
 	firstname,
 	familyname,
 	company,
 	startdate,
-	enddate,
 	email,
 	phonenumber,
 	jobtitle,
@@ -42,9 +42,13 @@ const jobadvertTypeChecker = (jobadvert: Jobadvert) => {
 		typeof jobadvert.advertid !== 'string' ||
 		typeof jobadvert.firstname !== 'string' ||
 		typeof jobadvert.familyname !== 'string' ||
-		typeof jobadvert.company !== 'string' ||
-		typeof jobadvert.startdate !== 'string' ||
-		typeof jobadvert.enddate !== 'string' ||
+		Boolean(
+			typeof jobadvert.company !== 'string' && jobadvert.company !== null
+		) ||
+		Boolean(
+			typeof jobadvert.startdate !== 'string' &&
+				jobadvert.startdate !== null
+		) ||
 		typeof jobadvert.email !== 'string' ||
 		typeof jobadvert.phonenumber !== 'string' ||
 		typeof jobadvert.jobtitle !== 'string' ||
@@ -59,9 +63,14 @@ const jobadvertTypeChecker = (jobadvert: Jobadvert) => {
 			advertid: typeof jobadvert.advertid !== 'string',
 			firstname: typeof jobadvert.firstname !== 'string',
 			familyname: typeof jobadvert.familyname !== 'string',
-			company: typeof jobadvert.company !== 'string',
-			startdate: typeof jobadvert.startdate !== 'string',
-			enddate: typeof jobadvert.enddate !== 'string',
+			company: Boolean(
+				typeof jobadvert.company !== 'string' ||
+					jobadvert.company !== null
+			),
+			startdate: Boolean(
+				typeof jobadvert.startdate !== 'string' ||
+					jobadvert.startdate !== null
+			),
 			email: typeof jobadvert.email !== 'string',
 			phonenumber: typeof jobadvert.phonenumber !== 'string',
 			jobtitle: typeof jobadvert.jobtitle !== 'string',

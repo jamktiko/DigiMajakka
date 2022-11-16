@@ -6,6 +6,7 @@ import type express from 'express';
 import queryDb from '../db-connection';
 
 const skillC = {
+	// Find Skill by skill id
 	async findOne(
 		_request: express.Request,
 		response: express.Response,
@@ -22,6 +23,7 @@ const skillC = {
 			next(error);
 		}
 	},
+	// Find all skills and specialskills
 	async findAll(
 		_request: express.Request,
 		response: express.Response,
@@ -47,7 +49,7 @@ const skillC = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT SS.name AS SpecialSkill, S.name AS Skill FROM UserProfileSkills INNER JOIN SpecialSkills SS ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills S ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ?;',
+				'SELECT SS.name AS SpecialSkill, S.name AS Skill FROM UserProfileSpecialSkills INNER JOIN SpecialSkills SS ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills S ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ?;',
 				[_request.params.id]
 			);
 			console.log(data);
@@ -84,15 +86,22 @@ const skillC = {
 
 			// Check that profile doesn't already have skill
 			if (!skillArray.includes(_request.params.skillname)) {
+				let sql = '';
+
+				// Different sql query depending if trying to insert specialskill or skill
+				if (_request.body.specialskill) {
+					sql =
+						'INSERT INTO UserProfileSpecialSkills VALUES (?, (SELECT specialskillid FROM SpecialSkills WHERE name = ?), (SELECT Skills_skillid FROM SpecialSkills WHERE name = ?));';
+				} else {
+					sql =
+						'INSERT INTO UserProfileSkills VALUES (?, (SELECT skillid FROM Skills WHERE name = ?));';
+				}
+
 				// If profile doesn't have skill insert to ProfiiliOsaaminen table
-				const profileSkillInsert = await queryDb(
-					'INSERT INTO UserProfileSkills VALUES (?, (SELECT specialskillid FROM SpecialSkills WHERE name = ?), (SELECT Skills_skillid FROM SpecialSkills WHERE name = ?));',
-					[
-						Number(_request.params.profileid),
-						_request.params.skillname,
-						_request.params.skillname,
-					]
-				);
+				const profileSkillInsert = await queryDb(sql, [
+					Number(_request.params.profileid),
+					...Object.values(_request.body),
+				]);
 				console.log(profileSkillInsert);
 
 				response.status(201).json(profileSkillInsert);

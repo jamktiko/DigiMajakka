@@ -28,6 +28,13 @@ const userC = {
 				);
 			}
 
+			const oldschool = await queryDb(
+				'SELECT School_name AS school FROM UserAccount WHERE email = ?;',
+				[_request.body.oldemail]
+			);
+
+			_request.body.oldschool = oldschool[0].school;
+
 			// Try to insert account information to database and save answer to dbresult
 			const dbresult = await queryDb(
 				'INSERT INTO UserAccount VALUES (?,?,?);',
@@ -159,6 +166,12 @@ const userC = {
 			next(error);
 		}
 	},
+	// Function to update users school
+	/*
+	Because users email is validated with "@email.end" email end string provided by school user needs to update email also to correct with new school
+	This leads to problem with cognito. Cognito does not allow change account username (which is email in this case) so when user changes school
+	it is needed to actually delete old account and create new account with new email and school.
+	*/
 	async updateSchool(
 		_request: express.Request,
 		response: express.Response,
@@ -177,34 +190,53 @@ const userC = {
 				);
 			}
 
+			const trySignIn = await cognitoHelper.signIn(
+				_request.body.oldemail,
+				_request.body.password
+			);
+			if (!trySignIn) {
+				throw new Error('Email or password incorrect');
+			}
+
+			// Try to update users information in database first
+			// Call procedure updateUserSchool which updates users information according given parameters
+			const dbupdate = await queryDb('CALL updateUserSchool(?, ?, ?);', [
+				_request.body.oldemail,
+				_request.body.newemail,
+				_request.body.newschool,
+			]);
+
+			// Try to delete user from cognito
 			const userDelete = await cognitoHelper.deleteUser(
 				_request.body.oldemail,
 				_request.body.password
 			);
-			const updateUser = await queryDb(
-				'UPDATE UserAccount SET email = ?, School_name = ? WHERE email = ?;',
-				[
-					_request.body.newemail,
-					_request.body.newschool,
-					_request.body.oldemail,
-				]
-			);
+			// Const updateUser = await queryDb(
+			// 	'UPDATE UserAccount SET email = ?, School_name = ? WHERE email = ?;',
+			// 	[
+			// 		_request.body.newemail,
+			// 		_request.body.newschool,
+			// 		_request.body.oldemail,
+			// 	]
+			// );
 
-			const updateProfile = await queryDb(
-				'UPDATE UserProfile SET UserAccount_email = ?, UserAccount_School_name = ?, City_name = (SELECT City_name FROM SchoolCity WHERE School_name = ?) WHERE UserAccount_email = ?;',
-				[
-					_request.body.newemail,
-					_request.body.newschool,
-					_request.body.newschool,
-					_request.body.oldemail,
-				]
-			);
+			// const updateProfile = await queryDb(
+			// 	'UPDATE UserProfile SET UserAccount_email = ?, UserAccount_School_name = ?, City_name = (SELECT City_name FROM SchoolCity WHERE School_name = ?) WHERE UserAccount_email = ?;',
+			// 	[
+			// 		_request.body.newemail,
+			// 		_request.body.newschool,
+			// 		_request.body.newschool,
+			// 		_request.body.oldemail,
+			// 	]
+			// )
+
+			// Try to register new user to cognito with new email
 			const userSignup = await cognitoHelper.signUp(
 				_request.body.newemail,
 				_request.body.password
 			);
 
-			if (!userDelete || !updateUser || !updateProfile || !userSignup) {
+			if (!userDelete || !userSignup || !dbupdate) {
 				throw new Error('Error when updating school');
 			}
 
