@@ -88,7 +88,24 @@ const profileController = {
 					Object.values(profile)
 				);
 
+				const linksTemplate = {
+					linkedin: '',
+					email: user.email,
+					instagram: '',
+					facebook: '',
+					twitter: '',
+					cv: '',
+					portfolio: '',
+					github: '',
+				};
+
+				const createLinks = await queryDb(
+					'INSERT INTO Links (linkedin, Userprofile_userprofileid, instagram, facebook, twitter, cv, portfolio, github) VALUES (?, (SELECT userprofileid FROM UserProfile WHERE UserAccount_email = ?), ?, ?, ?, ?, ?, ?);',
+					Object.values(linksTemplate)
+				);
+
 				console.log(insertedProfile);
+				console.log(createLinks);
 
 				response.status(201).json({
 					message: 'Profile created succesfully',
