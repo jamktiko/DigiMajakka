@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 import type express from 'express';
 
 /**
@@ -5,7 +6,11 @@ import type express from 'express';
  * @param request express request
  * @returns object which contains sql string and values in array used in mysql.query() function
  */
-const convertBodyToQueryFormat = (request: express.Request) => {
+const convertBodyToQueryFormat = (
+	request: express.Request,
+	tablename: string,
+	idcolumn: string
+) => {
 	if (!request.body) {
 		throw new Error('No body received in request');
 	}
@@ -20,7 +25,7 @@ const convertBodyToQueryFormat = (request: express.Request) => {
 	// This allows to use this route to update any number of columns in table row
 
 	// Start string of the query
-	let updateString = 'UPDATE UserProfile SET ';
+	let updateString = 'UPDATE ' + tablename + ' SET ';
 	// Add each of keys(column names) one by one into updatestring
 	for (const x of keys) {
 		updateString += String(x) + ' = ?';
@@ -29,7 +34,7 @@ const convertBodyToQueryFormat = (request: express.Request) => {
 	}
 
 	// Last part of update string where you specify profile id
-	updateString += 'WHERE userprofileid = ?;';
+	updateString += 'WHERE ' + idcolumn + ' = ?;';
 
 	return {
 		sql: updateString,
