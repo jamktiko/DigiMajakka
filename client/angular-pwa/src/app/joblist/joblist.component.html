@@ -1,1 +1,39 @@
-<p>joblist works!</p>
+<body>
+	<div class="content">
+		<div class="upperContent">
+			<div class="upperBox left">
+				<img src="https://via.placeholder.com/576x403.png" />
+			</div>
+			<div class="upperBox middle"><h1>Työpaikat</h1></div>
+			<div class="upperBox right">
+				<div class="boxTop">
+					<h3>
+						Löydä itsellesi työ selaamalla työilmoituksia tai
+						etsimällä <br />
+						tietynlaista työtä hakusanojen avulla. <br />
+						Voit hakea työtä kätevästi suoraan työilmoitussivulta ja
+						<br />
+						profiilisi lähetetään automaattisesti työnantajalle.
+					</h3>
+				</div>
+				<div class="boxBot">
+					<form
+						#f="ngForm"
+						class="formcontainer"
+						(ngSubmit)="onSubmit(f.value)"
+					>
+						<input
+							type="text"
+							name="search"
+							#search="ngModel"
+							[(ngModel)]="search"
+						/>
+
+						<button class="greenbutton">Etsi</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="joblistArea"></div>
+	</div>
+</body>
