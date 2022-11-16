@@ -31,7 +31,7 @@ const skillC = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT S.name, SS.name FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
+				'SELECT S.name AS skill, SS.name AS specialskill FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
 				[]
 			);
 			console.log(data);
