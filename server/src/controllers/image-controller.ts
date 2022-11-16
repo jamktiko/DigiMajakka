@@ -3,6 +3,7 @@
 /* eslint-disable import/extensions */
 
 import type express from 'express';
+
 import querydb from '../db-connection';
 import imageHelper from '../service-helpers/s3-image-helper';
 
@@ -41,38 +42,47 @@ const imageC = {
 	async getImage(
 		_request: express.Request,
 		response: express.Response,
-		_next: express.NextFunction
+		next: express.NextFunction
 	) {
-		// Get profiles information from database
-		const profile = await querydb(
-			'SELECT * FROM UserProfile WHERE userprofileid = ?;',
-			[_request.params.id]
-		);
-
-		// Check that profile were returned
-		if (Array.isArray(profile) && profile !== null && profile.length > 0) {
-			if (
-				typeof profile[0].picturelink === 'string' &&
-				(!profile[0].picturelink || profile[0].picturelink.length === 0)
-			) {
-				throw new Error('No link to image found in profile');
-			} else if (
-				profile[0].picturelink &&
-				typeof profile[0].picturelink === 'string'
-			) {
-				// Use imageHelpers method to cretae readstream for image
-				const readStream = await imageHelper.getImg(
-					profile[0].picturelink
-				);
-				// Pipe express to send image as response
-				readStream.pipe(response);
-			} else if (typeof profile[0].picturelink !== 'string') {
-				throw new TypeError('Picture link is not type string');
-			}
-		} else {
-			throw new Error(
-				'Error when finding profile. Profile id may be wrong.'
+		try {
+			// Get profiles information from database
+			const profile = await querydb(
+				'SELECT * FROM UserProfile WHERE userprofileid = ?;',
+				[_request.params.id]
 			);
+
+			// Check that profile were returned
+			if (
+				Array.isArray(profile) &&
+				profile !== null &&
+				profile.length > 0
+			) {
+				if (
+					typeof profile[0].picturelink === 'string' &&
+					(!profile[0].picturelink ||
+						profile[0].picturelink.length === 0)
+				) {
+					throw new Error('No link to image found in profile');
+				} else if (
+					profile[0].picturelink &&
+					typeof profile[0].picturelink === 'string'
+				) {
+					// Use imageHelpers method to cretae readstream for image
+					const readStream = await imageHelper.getImg(
+						profile[0].picturelink
+					);
+					// Pipe express to send image as response
+					readStream.pipe(response);
+				} else if (typeof profile[0].picturelink !== 'string') {
+					throw new TypeError('Picture link is not type string');
+				}
+			} else {
+				throw new Error(
+					'Error when finding profile. Profile id may be wrong.'
+				);
+			}
+		} catch (error: unknown) {
+			next(error);
 		}
 	},
 };
