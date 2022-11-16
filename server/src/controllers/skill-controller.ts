@@ -70,7 +70,7 @@ const skillC = {
 			// Check if profile already have skill provided in request
 			// Find all profiles skills
 			const skillExists = await queryDb(
-				'SELECT S.name AS S, SS.name AS SS FROM UserProfileSkills US INNER JOIN SpecialSkills SS ON SS.specialskillid=US.SpecialSkills_specialskillid INNER JOIN Skills S ON S.skillid=US.SpecialSkills_Skills_skillid WHERE US.UserProfile_userprofileid = ?;',
+				'SELECT S.name AS S, SS.name AS SS FROM UserProfileSpecialSkills US INNER JOIN SpecialSkills SS ON SS.specialskillid=US.SpecialSkills_specialskillid INNER JOIN Skills S ON S.skillid=US.SpecialSkills_Skills_skillid WHERE US.UserProfile_userprofileid = ?;',
 				[_request.params.profileid]
 			);
 

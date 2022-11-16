@@ -57,12 +57,14 @@ const imageC = {
 				profile !== null &&
 				profile.length > 0
 			) {
+				// Check that link exists in profile
 				if (
 					typeof profile[0].picturelink === 'string' &&
 					(!profile[0].picturelink ||
 						profile[0].picturelink.length === 0)
 				) {
 					throw new Error('No link to image found in profile');
+					// Check that link is correct type
 				} else if (
 					profile[0].picturelink &&
 					typeof profile[0].picturelink === 'string'
@@ -73,7 +75,9 @@ const imageC = {
 					);
 					// Pipe express to send image as response
 					readStream.pipe(response);
-				} else if (typeof profile[0].picturelink !== 'string') {
+
+					// If link is not correct type throw error
+				} else {
 					throw new TypeError('Picture link is not type string');
 				}
 			} else {

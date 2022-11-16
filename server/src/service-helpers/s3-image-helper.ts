@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable arrow-parens */
 /* eslint-disable @typescript-eslint/naming-convention */
 
@@ -46,12 +47,30 @@ const imageHelper = {
 	 * @returns readstream to read data
 	 */
 	async getImg(key: string) {
-		return s3
-			.getObject({
-				Key: key,
-				Bucket: process.env.AWS_BUCKET ?? '',
-			})
-			.createReadStream();
+		try {
+			return s3
+				.getObject(
+					{
+						Key: key,
+						Bucket: process.env.AWS_BUCKET ?? '',
+					},
+					(error, data) => {
+						if (error) {
+							throw new Error('Image link is not correct');
+						}
+
+						return data;
+					}
+				)
+				.createReadStream()
+				.on('error', (error) => {
+					throw error;
+				});
+		} catch (error: unknown) {
+			console.log('wefgjlewangriugn');
+
+			throw error;
+		}
 	},
 };
 
