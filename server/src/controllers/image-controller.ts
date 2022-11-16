@@ -46,44 +46,30 @@ const imageC = {
 	) {
 		try {
 			// Get profiles information from database
-			const profile = await querydb(
+			const profile: any[] = await querydb(
 				'SELECT * FROM UserProfile WHERE userprofileid = ?;',
 				[_request.params.id]
 			);
-
 			// Check that profile were returned
-			if (
-				Array.isArray(profile) &&
-				profile !== null &&
-				profile.length > 0
-			) {
-				// Check that link exists in profile
-				if (
-					typeof profile[0].picturelink === 'string' &&
-					(!profile[0].picturelink ||
-						profile[0].picturelink.length === 0)
-				) {
-					throw new Error('No link to image found in profile');
-					// Check that link is correct type
-				} else if (
-					profile[0].picturelink &&
-					typeof profile[0].picturelink === 'string'
-				) {
-					// Use imageHelpers method to cretae readstream for image
-					const readStream = await imageHelper.getImg(
-						profile[0].picturelink
-					);
-					// Pipe express to send image as response
-					readStream.pipe(response);
-
-					// If link is not correct type throw error
-				} else {
-					throw new TypeError('Picture link is not type string');
-				}
-			} else {
+			if (profile.length === 0) {
 				throw new Error(
 					'Error when finding profile. Profile id may be wrong.'
 				);
+			}
+
+			// Check that link exists in profile and that it is type string
+			if (
+				typeof profile[0].picturelink === 'string' &&
+				profile[0].picturelink.length > 0
+			) {
+				// Use imageHelpers method to cretae readstream for image
+				const readStream = await imageHelper.getImg(
+					profile[0].picturelink
+				);
+				// Pipe express to send image as response
+				readStream.pipe(response);
+			} else {
+				throw new Error('No link to image found in profile');
 			}
 		} catch (error: unknown) {
 			next(error);

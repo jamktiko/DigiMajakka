@@ -31,7 +31,7 @@ const skillC = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT S.name AS skill, SS.name AS specialskill FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
+				'SELECT S.name AS Skill, SS.name AS SpecialSkill FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
 				[]
 			);
 			console.log(data);
@@ -92,20 +92,26 @@ const skillC = {
 					!skillArray.includes(_request.body.specialskill))
 			) {
 				let sql = '';
+				let parameters = [];
 
 				// Different sql query depending if trying to insert specialskill or skill
 				if (_request.body.specialskill) {
 					sql =
 						'INSERT INTO UserProfileSpecialSkills VALUES (?, (SELECT specialskillid FROM SpecialSkills WHERE name = ?), (SELECT Skills_skillid FROM SpecialSkills WHERE name = ?));';
+					parameters = [
+						_request.body.specialskill,
+						_request.body.specialskill,
+					];
 				} else {
 					sql =
 						'INSERT INTO UserProfileSkills VALUES (?, (SELECT skillid FROM Skills WHERE name = ?));';
+					parameters = [_request.body.skill];
 				}
 
 				// If profile doesn't have skill insert to ProfiiliOsaaminen table
 				const profileSkillInsert = await queryDb(sql, [
 					Number(_request.params.profileid),
-					...Object.values(_request.body),
+					parameters,
 				]);
 				console.log(profileSkillInsert);
 

@@ -87,6 +87,7 @@ const profileController = {
 					'INSERT INTO UserProfile (firstname, familyname, phonenumber, aboutme, lookingfor, studyfield, yearofstudy, public, picturelink, email, City_name, UserAccount_email, UserAccount_School_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 					Object.values(profile)
 				);
+
 				console.log(insertedProfile);
 
 				response.status(201).json({
