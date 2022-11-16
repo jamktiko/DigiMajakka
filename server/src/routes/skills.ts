@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable new-cap */
 /* eslint-disable import/extensions */
 import express from 'express';
@@ -18,10 +17,6 @@ skillRouter.get('/profile/:id', skillC.findProfileSkills);
 
 // Insert skill to a profile
 // /skills/profile/:profileid/:skillname
-skillRouter.post(
-	'/profile/:profileid/:skillname',
-	bodyChecker,
-	skillC.addSkill
-);
+skillRouter.post('/profile/:profileid', bodyChecker, skillC.addSkill);
 
 export default skillRouter;

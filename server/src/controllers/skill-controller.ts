@@ -31,7 +31,7 @@ const skillC = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT * FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
+				'SELECT S.name, SS.name FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
 				[]
 			);
 			console.log(data);
@@ -85,7 +85,12 @@ const skillC = {
 			}
 
 			// Check that profile doesn't already have skill
-			if (!skillArray.includes(_request.params.skillname)) {
+			if (
+				(_request.body.skill &&
+					!skillArray.includes(_request.body.skill)) ||
+				(_request.body.specialskill &&
+					!skillArray.includes(_request.body.specialskill))
+			) {
 				let sql = '';
 
 				// Different sql query depending if trying to insert specialskill or skill
@@ -106,11 +111,11 @@ const skillC = {
 
 				response.status(201).json(profileSkillInsert);
 				// If profile already has skill just return ok status and message profile already has skill
-			} else if (skillArray.includes(_request.params.skillname)) {
+			} else if (skillArray.includes(_request.body.skillname)) {
 				response.status(200).json({
 					message:
 						'Profile already has skill ' +
-						String(_request.params.skillname),
+						String(_request.body.skillname),
 				});
 			}
 		} catch (error: unknown) {
