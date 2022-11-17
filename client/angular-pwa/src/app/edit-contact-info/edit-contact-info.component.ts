@@ -26,11 +26,10 @@ export class EditContactInfoComponent implements OnInit {
 	// when the form is submitted, sends an event to profile-component
 	@Output() updatedProfile = new EventEmitter();
 
-	// showUnsavedChanges: boolean = false;
-
 	// Declaration for FormGroup
 	detailForm!: FormGroup;
 
+	// showUnsavedChanges: boolean = false;
 	// reference: any;
 	// hasChanges: boolean = false;
 
@@ -61,20 +60,22 @@ export class EditContactInfoComponent implements OnInit {
 	// }
 
 	// Method to hide or display the form
+	// checkForChanges() {
+	// 	// FUNCTIONALITY FOR NOTIFYING ABOUT UNSAVED CHANGES, ADD LATER (ADD INFO AS PARAMETER TO THIS METHOD)
+	// 	for (let prop in this.info) {
+	// 		if (this.isDifferent(this.info, prop)) {
+	// 			this.hasChanges = true;
+	// 		}
+	// 	}
+	// 	if (!this.hasChanges) {
+	// 		this.stateservice.toggleContactVisibility();
+	// 	} else {
+	// 		this.showUnsavedChanges = true;
+	// 	}
+	// }
+
 	changeVisibility() {
 		this.stateservice.toggleContactVisibility();
-
-		// FUNCTIONALITY FOR NOTIFYING ABOUT UNSAVED CHANGES, ADD LATER (ADD INFO AS PARAMETER TO THIS METHOD)
-		// for (let prop in info) {
-		// 	if (this.isDifferent(info, prop)) {
-		// 		this.hasChanges = true;
-		// 	}
-		// }
-		// if (!this.hasChanges) {
-		// 	this.editservice.toggleContactVisibility();
-		// } else {
-		// 	this.showUnsavedChanges = true;
-		// }
 	}
 
 	// When the form is submitted, send an update request to backend through the profileservice.

@@ -1,20 +1,24 @@
+.container {
+  background-image: url(src\assets\img\profile_bg.png);
+  background-size: cover;
+}
+
+
 .listtext {
   margin: 0;
 }
 
 .upperContent {
-  background-color: var(--mediumblue);
   max-width: 100%;
   height: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   min-width: 1024px;
-  padding-left: 80px;
+  margin: 0 40px
 }
 
 .lowerContent {
-  background-color: var(--darkgray);
-  width: 100%;
+  margin: 0 40px;
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
   min-width: 1024px;
@@ -28,7 +32,7 @@
 }
 
 .lowerBox.left {
-  padding-left: 80px;
+  padding-left: 40px;
   padding-right: 40px;
 }
 
@@ -46,10 +50,11 @@
   border-radius: 20px;
   box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
   position: relative;
-  top: 60px;
   right: 90px;
   z-index: 9;
   overflow: hidden;
+  margin-left: 80px;
+  
 }
 
 .photowide {
@@ -77,6 +82,8 @@
 .upperBox.first {
   display: flex;
   justify-content: end;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .upperBox.second {
@@ -159,7 +166,7 @@ h4 {
  margin-top: 4em;
  margin-bottom: 3em;
  display:grid;
- grid-template-columns: 120px 120px 120px 120px 120px;
+ grid-template-columns: 120px 120px 120px;
  gap: 10px;
  justify-items: center;
 }

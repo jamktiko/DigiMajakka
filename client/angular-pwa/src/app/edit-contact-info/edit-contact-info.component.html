@@ -182,7 +182,10 @@
 	</form>
 </div>
 
-<!-- ADD BACK LATER WHEN FUNCTIONALITY WORKING
-<app-un-saved-changes *ngIf="showUnsavedChanges"></app-un-saved-changes>
-
+<!-- NOT IMPLEMENTED YET
+<app-un-saved-changes
+	*ngIf="showUnsavedChanges"
+	(save)="onSubmit(f.value)"
+	(cancel)="changeVisibility()"
+></app-un-saved-changes>
 -->
