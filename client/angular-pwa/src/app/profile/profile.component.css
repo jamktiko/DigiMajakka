@@ -1,6 +1,6 @@
 .container {
   background-image: url(src\assets\img\profile_bg.png);
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
 
@@ -184,7 +184,7 @@
   width: 44.75px
 }
 
-.splitStick {
+.divider {
   height: 90%;
   width: 1.1px;
   background-color: var(--lightblue);
@@ -284,7 +284,6 @@ h5 {
   display: flex;
   margin-left: 30px;
   margin-top: 2em;
-  
   align-items: center;
   gap: 10px;
   justify-content: space-between;
