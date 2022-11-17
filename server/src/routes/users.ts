@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-
 import express from 'express';
 import userC from '../controllers/user-controller';
 import bodyChecker from '../middlewares/body-check';

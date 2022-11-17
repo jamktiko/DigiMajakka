@@ -3,23 +3,22 @@
 import type express from 'express';
 
 type CustomError = {
-	status?: number;
+  status?: number;
 } & Error;
 
 const ErrorHandler = (
-	error: CustomError,
-	_request: express.Request,
-	response: express.Response,
-	_next: express.NextFunction
+  error: CustomError,
+  _request: express.Request,
+  response: express.Response,
 ) => {
-	console.log('Custom error handling');
-	console.log('---------------------');
-	console.error(error);
+  console.log('Custom error handling');
+  console.log('---------------------');
+  console.error(error.message);
 
-	response.status(error.status ?? 500).json({
-		success: false,
-		message: error.message,
-	});
+  response.status(Number(error.status) ?? 500).json({
+    success: false,
+    message: error.message,
+  });
 };
 
 export default ErrorHandler;

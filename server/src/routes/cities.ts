@@ -1,6 +1,4 @@
 /* eslint-disable new-cap */
-/* eslint-disable import/extensions */
-
 import express from 'express';
 import cityC from '../controllers/city-controller';
 

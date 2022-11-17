@@ -1,6 +1,6 @@
 type School = {
-	name: string;
-	emailend: string;
+  name: string;
+  emailend: string;
 };
 
 export default School;
