@@ -11,7 +11,7 @@ body {
 
 .bg-change {
   background-image: url(src\assets\img\studentFrontpage_LoggedIn.png);
-  background-size: cover;
+  background-size: fill;
 
 }
 

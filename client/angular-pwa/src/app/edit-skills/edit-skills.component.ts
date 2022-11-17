@@ -22,14 +22,10 @@ export class EditSkillsComponent implements OnInit {
 	error: boolean = false;
 
 	// placeholder data until database-fetching is implemented
-	skills: any = [
-		{name: 'Angular', skill: 'Frontend'},
-		{
-			name: 'AWS',
-			skill: 'Pilvipalvelut',
-		},
-		{name: 'React', skill: 'Frontend'},
-	];
+	skills: any = [];
+
+	specialSkills: any = [];
+	skillFields: any = [];
 
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
 	toBeAddedSkill: string = 'Valitse taito';
@@ -52,6 +48,14 @@ export class EditSkillsComponent implements OnInit {
 	getSkills() {
 		this.profileservice.getAllSkills().subscribe((skills) => {
 			this.skills = skills;
+			console.log(this.skills);
+			this.specialSkills = this.skills.map(
+				(skill: any) => skill.SpecialSkill
+			);
+			this.skillFields = this.skills.map((skill: any) => skill.Skill);
+			this.skillFields = [...new Set(this.skillFields)];
+			console.log(this.skillFields);
+			console.log(this.specialSkills);
 		});
 	}
 
@@ -93,9 +97,26 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		this.profileservice.insertNewProfileSkill(
-			this.loggedProfile[0].userprofileid,
-			this.toBeAddedSkills
-		);
+		skills.forEach((skill: string) => {
+			if (this.skillFields.includes(skill)) {
+				this.profileservice
+					.insertNewProfileSkill(
+						this.loggedProfile[0].userprofileid,
+						`{"skill": "${skill}"}`
+					)
+					.subscribe(() => {
+						console.log('sent');
+					});
+			} else {
+				this.profileservice
+					.insertNewProfileSkill(
+						this.loggedProfile[0].userprofileid,
+						`{"specialskill": "${skill}"}`
+					)
+					.subscribe(() => {
+						console.log('sent');
+					});
+			}
+		});
 	}
 }

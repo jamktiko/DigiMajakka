@@ -64,7 +64,8 @@ export class ProfilesService {
 	// NOT IMPLEMENTED YET, BODY MISSING ETC
 	insertNewProfileSkill(profileid: number, skill: string) {
 		return this.http.post(
-			`http://localhost:3000/skills/profile/${profileid}/${skill}`,
+			`http://localhost:3000/skills/profile/${profileid}/`,
+			skill,
 			this.httpOptions
 		);
 	}
