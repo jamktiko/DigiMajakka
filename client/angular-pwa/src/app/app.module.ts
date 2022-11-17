@@ -23,6 +23,7 @@ import {EditSkillsComponent} from './edit-skills/edit-skills.component';
 import {JobAnnouncementComponent} from './job-announcement/job-announcement.component';
 import { StudentProfilesComponent } from './student-profiles/student-profiles.component';
 import { JoblistComponent } from './joblist/joblist.component';
+import { JoblistAnnouncementComponent } from './joblist-announcement/joblist-announcement.component';
 
 @NgModule({
 	declarations: [
@@ -44,6 +45,7 @@ import { JoblistComponent } from './joblist/joblist.component';
 		JobAnnouncementComponent,
   StudentProfilesComponent,
   JoblistComponent,
+  JoblistAnnouncementComponent,
 	],
 	imports: [
 		BrowserModule,

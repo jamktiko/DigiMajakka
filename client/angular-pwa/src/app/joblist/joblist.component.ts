@@ -6,14 +6,17 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./joblist.component.css'],
 })
 export class JoblistComponent implements OnInit {
-	search = '';
+	infoSearch = {
+		engine: '',
+	};
+
 	constructor() {}
 
 	ngOnInit(): void {}
 
 	onSubmit(formdata: any) {
 		// ADD FUNCTIONALITY
-		this.search = formdata.search;
-		console.log(this.search);
+		this.infoSearch.engine = formdata.infoSearch.engine;
+		console.log(this.infoSearch.engine);
 	}
 }
