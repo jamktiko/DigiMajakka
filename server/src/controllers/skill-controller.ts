@@ -13,27 +13,23 @@ const skillC = {
 		next: express.NextFunction
 	) {
 		try {
-			const data = await queryDb(
-				'SELECT * FROM Skills WHERE skillid = ?;',
-				[_request.params.id]
-			);
+			const data = await queryDb('SELECT * FROM Skills WHERE name = ?;', [
+				_request.params.name,
+			]);
 
 			response.status(200).json(data);
 		} catch (error: unknown) {
 			next(error);
 		}
 	},
-	// Find all skills and specialskills
+	// Find all skills
 	async findAll(
 		_request: express.Request,
 		response: express.Response,
 		next: express.NextFunction
 	) {
 		try {
-			const data = await queryDb(
-				'SELECT S.name AS Skill, SS.name AS SpecialSkill FROM Skills S INNER JOIN SpecialSkills SS ON S.skillid=SS.Skills_skillid;',
-				[]
-			);
+			const data = await queryDb('SELECT * FROM Skills;', []);
 			console.log(data);
 
 			response.status(200).json(data);
@@ -49,7 +45,7 @@ const skillC = {
 	) {
 		try {
 			const data = await queryDb(
-				'SELECT SS.name AS SpecialSkill, S.name AS Skill FROM UserProfileSpecialSkills INNER JOIN SpecialSkills SS ON SpecialSkills_specialskillid=specialskillid INNER JOIN Skills S ON Skills_skillid=skillid WHERE UserProfile_userprofileid = ?;',
+				'SELECT Skills_name AS name FROM UserProfileSkills WHERE Userprofile_userprofileid = ?;',
 				[_request.params.id]
 			);
 			console.log(data);
@@ -70,58 +66,76 @@ const skillC = {
 			// Check if profile already have skill provided in request
 			// Find all profiles skills
 			const skillExists = await queryDb(
-				'SELECT S.name AS S, SS.name AS SS FROM UserProfileSpecialSkills US INNER JOIN SpecialSkills SS ON SS.specialskillid=US.SpecialSkills_specialskillid INNER JOIN Skills S ON S.skillid=US.SpecialSkills_Skills_skillid WHERE US.UserProfile_userprofileid = ?;',
+				'SELECT Skills_name AS name FROM UserProfileSkills WHERE Userprofile_userprofileid = ?;',
 				[_request.params.profileid]
 			);
 
-			// Make array to store skills
-			const skillArray: string[] = [];
-			// Query returns data in format [{}, {}] so extract values from objects into single array
-			for (const x of skillExists) {
-				const items = Object.values(x);
-				for (const y of items) {
-					skillArray.push(String(y));
+			// Profiles existing skill
+			const oldSkills =
+				skillExists.length > 0 ? skillExists[0] : skillExists;
+
+			const newSkills = [];
+
+			const skillsToInsert = [];
+
+			if (_request.body.skills && Array.isArray(_request.body.skills)) {
+				skillsToInsert.push(..._request.body.skills);
+			}
+
+			for (const skill of skillsToInsert) {
+				if (Array.isArray(oldSkills) && !oldSkills.includes(skill)) {
+					// If profile doesn't have skill insert to ProfiiliOsaaminen table
+					if (
+						skillsToInsert.indexOf(skill) + 1 ===
+						skillsToInsert.length
+					) {
+						newSkills.push(
+							'(' +
+								'"' +
+								String(skill) +
+								'"' +
+								', ' +
+								String(_request.params.profileid) +
+								')'
+						);
+					} else {
+						newSkills.push(
+							'(' +
+								'"' +
+								String(skill) +
+								'"' +
+								', ' +
+								String(_request.params.profileid) +
+								'), '
+						);
+					}
 				}
 			}
 
-			// Check that profile doesn't already have skill
-			if (
-				(_request.body.skill &&
-					!skillArray.includes(_request.body.skill)) ||
-				(_request.body.specialskill &&
-					!skillArray.includes(_request.body.specialskill))
-			) {
-				let sql = '';
-				const parameters: string[] = [];
+			if (newSkills.length > 0) {
+				let sql = 'INSERT INTO UserProfileSkills VALUES ';
 
-				// Different sql query depending if trying to insert specialskill or skill
-				if (_request.body.specialskill) {
-					sql =
-						'INSERT INTO UserProfileSpecialSkills VALUES (?, (SELECT specialskillid FROM SpecialSkills WHERE name = ?), (SELECT Skills_skillid FROM SpecialSkills WHERE name = ?));';
-					parameters.push(
-						_request.body.specialskill,
-						_request.body.specialskill
-					);
-				} else {
-					sql =
-						'INSERT INTO UserProfileSkills VALUES (?, (SELECT skillid FROM Skills WHERE name = ?));';
-					parameters.push(_request.body.skill);
+				for (const x of newSkills) {
+					sql += String(x);
 				}
 
-				// If profile doesn't have skill insert to ProfiiliOsaaminen table
-				const profileSkillInsert = await queryDb(sql, [
-					Number(_request.params.profileid),
-					...parameters,
-				]);
-				console.log(profileSkillInsert);
+				sql += ';';
 
-				response.status(201).json(profileSkillInsert);
-				// If profile already has skill just return ok status and message profile already has skill
-			} else if (skillArray.includes(_request.body.skillname)) {
+				const result = await queryDb(sql, []);
+
+				console.log(result);
+
+				response.status(201).json({
+					success: true,
+					message: 'Inserted new skills successfully',
+				});
+			} else {
+				console.log('All skills were already assigned to profile');
+
 				response.status(200).json({
+					success: true,
 					message:
-						'Profile already has skill ' +
-						String(_request.body.skillname),
+						'No new skills inserted because all provided skills were already assigned to profile',
 				});
 			}
 		} catch (error: unknown) {
