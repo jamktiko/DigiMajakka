@@ -1,5 +1,4 @@
 /* eslint-disable new-cap */
-/* eslint-disable import/extensions */
 
 import express from 'express';
 import schoolC from '../controllers/school-controller';

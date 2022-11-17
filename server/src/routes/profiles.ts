@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable @typescript-eslint/comma-dangle */
 import express from 'express';
 import profileC from '../controllers/profile-controller';
 import {authHandler} from '../middlewares/auth';
@@ -23,29 +21,20 @@ profileRouter.post('/', bodyChecker, profileC.createProfile);
 // Route to update profile
 // /profiles/:id
 profileRouter.put(
-	'/:id',
-	bodyChecker,
+  '/:id',
+  bodyChecker,
 
-	profileC.updateProfile
-);
-
-// Update one column of profile
-profileRouter.put(
-	'/updateOne/:id/:column/:value',
-	bodyChecker,
-	authHandler,
-	userCheck,
-	profileC.updateProfileColumn
+  profileC.updateProfile,
 );
 
 // Deletes profile by id
 // /profiles/:id
 profileRouter.delete(
-	'/:id',
-	bodyChecker,
-	authHandler,
-	userCheck,
-	profileC.deleteProfile
+  '/:id',
+  bodyChecker,
+  authHandler,
+  userCheck,
+  profileC.deleteProfile,
 );
 
 // Find profile by useraccount email

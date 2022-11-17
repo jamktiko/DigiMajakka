@@ -1,5 +1,5 @@
 /* eslint-disable new-cap */
-/* eslint-disable import/extensions */
+
 import express from 'express';
 import skillC from '../controllers/skill-controller';
 import bodyChecker from '../middlewares/body-check';

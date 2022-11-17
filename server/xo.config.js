@@ -1,3 +1,0 @@
-module.export = {
-	prettier: true,
-};
