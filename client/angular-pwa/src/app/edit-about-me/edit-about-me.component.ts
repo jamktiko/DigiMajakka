@@ -10,6 +10,7 @@ import {Output, EventEmitter} from '@angular/core';
 	styleUrls: ['./edit-about-me.component.css'],
 })
 export class EditAboutMeComponent implements OnInit {
+	// maxChars defines how many characters the user is able to enter into the textarea
 	maxChars = 600;
 	aboutme = '';
 	lookingfor = '';
