@@ -15,17 +15,13 @@ export class EditSkillsComponent implements OnInit {
 
 	// Currently logged in users profile fetched from profile-component
 	@Input() loggedProfile: any;
-	@Input() profileSpecialSkills: any;
-	@Input() profileSkillFields: any;
+	@Input() profileSkills: any;
 
 	// Error variable that dictates if an error message is shown
 	error: boolean = false;
 
 	// placeholder data until database-fetching is implemented
-	skills: any = [];
-
-	specialSkills: any = [];
-	skillFields: any = [];
+	allSkills: any = [];
 
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
 	toBeAddedSkill: string = 'Valitse taito';
@@ -36,26 +32,16 @@ export class EditSkillsComponent implements OnInit {
 	// getSkills() called when the component is created
 	ngOnInit(): void {
 		this.getSkills();
-		this.profileSpecialSkills.forEach((skill: string) => {
-			this.toBeAddedSkills.push(skill);
-		});
-		this.profileSkillFields.forEach((skill: string) => {
-			this.toBeAddedSkills.push(skill);
+		this.profileSkills.forEach((skill: any) => {
+			this.toBeAddedSkills.push(skill.name);
 		});
 	}
 
 	// Method to get all skills by calling the getAllSkills()-method in profileservice
 	getSkills() {
 		this.profileservice.getAllSkills().subscribe((skills) => {
-			this.skills = skills;
-			console.log(this.skills);
-			this.specialSkills = this.skills.map(
-				(skill: any) => skill.SpecialSkill
-			);
-			this.skillFields = this.skills.map((skill: any) => skill.Skill);
-			this.skillFields = [...new Set(this.skillFields)];
-			console.log(this.skillFields);
-			console.log(this.specialSkills);
+			this.allSkills = skills;
+			console.log(this.allSkills);
 		});
 	}
 
@@ -97,26 +83,9 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		skills.forEach((skill: string) => {
-			if (this.skillFields.includes(skill)) {
-				this.profileservice
-					.insertNewProfileSkill(
-						this.loggedProfile[0].userprofileid,
-						`{"skill": "${skill}"}`
-					)
-					.subscribe(() => {
-						console.log('sent');
-					});
-			} else {
-				this.profileservice
-					.insertNewProfileSkill(
-						this.loggedProfile[0].userprofileid,
-						`{"specialskill": "${skill}"}`
-					)
-					.subscribe(() => {
-						console.log('sent');
-					});
-			}
-		});
+		this.profileservice.insertNewProfileSkills(
+			this.loggedProfile[0].userprofileid,
+			`{"skills": "${skills}"}`
+		);
 	}
 }

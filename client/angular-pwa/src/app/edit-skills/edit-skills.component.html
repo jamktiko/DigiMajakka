@@ -24,11 +24,8 @@
 			<select name="skill" #skill="ngModel" [(ngModel)]="toBeAddedSkill">
 				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
 				<option [selected] [disabled]>Valitse taito</option>
-				<option *ngFor="let skill of specialSkills">
-					{{ skill }}
-				</option>
-				<option *ngFor="let skillField of skillFields">
-					{{ skillField }}
+				<option *ngFor="let skill of allSkills">
+					{{ skill.name }}
 				</option>
 			</select>
 		</label>
