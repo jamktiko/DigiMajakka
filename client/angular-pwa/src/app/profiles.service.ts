@@ -62,10 +62,10 @@ export class ProfilesService {
 
 	// Method to insert a new skill to a profile and in to the database
 	// NOT IMPLEMENTED YET, BODY MISSING ETC
-	insertNewProfileSkill(profileid: number, skill: string) {
+	insertNewProfileSkills(profileid: number, skills: any) {
 		return this.http.post(
 			`http://localhost:3000/skills/profile/${profileid}/`,
-			skill,
+			skills,
 			this.httpOptions
 		);
 	}

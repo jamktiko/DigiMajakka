@@ -1,12 +1,7 @@
 <!-- Backdrop styles come from global styles. Backdrop causes the form to be displayed on top of other components -->
 <div class="backdrop" (click)="changeVisibility()">
 	<!-- Form is the container for the form, and provides the formdata for Angular -->
-	<form
-		#f="ngForm"
-		class="formcontainer"
-		(click)="$event.stopPropagation()"
-		(ngSubmit)="onSubmit(toBeAddedSkills)"
-	>
+	<form #f="ngForm" class="formcontainer" (click)="$event.stopPropagation()">
 		<!-- Button to close the edit-window -->
 		<div class="close-button" (click)="changeVisibility()">
 			<img
@@ -24,11 +19,8 @@
 			<select name="skill" #skill="ngModel" [(ngModel)]="toBeAddedSkill">
 				<!-- ADD FUNCTIONALITY TO FETCH DATA FROM DATABASE -->
 				<option [selected] [disabled]>Valitse taito</option>
-				<option *ngFor="let skill of specialSkills">
-					{{ skill }}
-				</option>
-				<option *ngFor="let skillField of skillFields">
-					{{ skillField }}
+				<option *ngFor="let skill of allSkills">
+					{{ skill.name }}
 				</option>
 			</select>
 		</label>
@@ -67,7 +59,11 @@
 			>
 				Poista valitut
 			</button>
-			<button [disabled]="!f.valid" type="submit" class="greenbutton">
+			<button
+				[disabled]="!skillAdded"
+				(click)="onSubmit(toBeAddedSkills)"
+				class="greenbutton"
+			>
 				Tallenna
 			</button>
 		</div>

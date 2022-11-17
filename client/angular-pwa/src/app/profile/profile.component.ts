@@ -40,10 +40,6 @@ export class ProfileComponent implements OnInit {
 	];
 	// All skills of the profile will be in this array
 	skills: any = [];
-	// All specialskills from the skills-array will be put in this array
-	specialSkills: any = [];
-	// All skillfields from the skills-array will be put in this array
-	skillFields: any = [];
 
 	photoRatio: any;
 	photoWidth: any;
@@ -84,14 +80,6 @@ export class ProfileComponent implements OnInit {
 	getLoggedProfileSkills(profileid: number): void {
 		this.profileservice.getProfileSkills(profileid).subscribe((skills) => {
 			this.skills = skills;
-			this.specialSkills = this.skills.map(
-				(skill: any) => skill.SpecialSkill
-			);
-			this.skillFields = this.skills.map((skill: any) => skill.Skill);
-			this.skillFields = [...new Set(this.skillFields)];
-			console.log(this.skills);
-			console.log('Special skills: ' + this.specialSkills);
-			console.log('Skillfields: ' + this.skillFields);
 		});
 	}
 
