@@ -71,8 +71,11 @@ const skillC = {
 			);
 
 			// Profiles existing skill
-			const oldSkills =
-				skillExists.length > 0 ? skillExists[0] : skillExists;
+			const oldSkills = [];
+
+			for (const skill of skillExists) {
+				oldSkills.push(skill.name);
+			}
 
 			const newSkills = [];
 
@@ -111,6 +114,8 @@ const skillC = {
 					}
 				}
 			}
+
+			console.log(newSkills);
 
 			if (newSkills.length > 0) {
 				let sql = 'INSERT INTO UserProfileSkills VALUES ';
