@@ -15,10 +15,12 @@ li {
 h2 {
   font-size: 1.125em;
   margin: 0.6em 0 1em 1em;
+  font-weight: 400;
 }
 
 h3 {
   font-size: 0.9em;
+  font-weight: 400;
 }
 
 .desc {
