@@ -20,6 +20,8 @@ export class LoginService {
 		this.loggedUser = username;
 	}
 
+	loginCallBack() {}
+
 	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
 	logout() {
 		this.logged = false;
