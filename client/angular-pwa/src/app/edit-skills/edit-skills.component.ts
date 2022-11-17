@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {StateManagementService} from '../state-management.service';
 import {ProfilesService} from '../profiles.service';
 
@@ -16,9 +16,12 @@ export class EditSkillsComponent implements OnInit {
 	// Currently logged in users profile fetched from profile-component
 	@Input() loggedProfile: any;
 	@Input() profileSkills: any;
-
+	@Output() updatedProfile = new EventEmitter();
 	// Error variable that dictates if an error message is shown
 	error: boolean = false;
+
+	// skillAdded tells if the user has added any new skills to the list. If not, the submit-button is disabled
+	skillAdded: boolean = false;
 
 	// placeholder data until database-fetching is implemented
 	allSkills: any = [];
@@ -45,13 +48,14 @@ export class EditSkillsComponent implements OnInit {
 		});
 	}
 
-	// Method to push the selected skill into the array
+	// Method to push the selected skill into the array. If the skill is already in the list, doesn't add the skill and notifies the user
 	addSkill(formdata: any) {
 		console.log(formdata.skill);
 		if (this.toBeAddedSkills.includes(formdata.skill)) {
 			this.error = true;
 		} else {
 			this.toBeAddedSkills.push(formdata.skill);
+			this.skillAdded = true;
 			this.error = false;
 			console.log(this.toBeAddedSkills);
 		}
@@ -83,9 +87,15 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		this.profileservice.insertNewProfileSkills(
-			this.loggedProfile[0].userprofileid,
-			`{"skills": "${skills}"}`
-		);
+		skills = JSON.stringify(skills);
+		this.profileservice
+			.insertNewProfileSkills(
+				this.loggedProfile[0].userprofileid,
+				'{"skills": ' + skills + '}'
+			)
+			.subscribe(() => {
+				this.changeVisibility();
+				this.updatedProfile.emit();
+			});
 	}
 }

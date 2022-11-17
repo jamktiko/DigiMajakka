@@ -248,6 +248,7 @@
 </div>
 -->
 
+	<!-- Forms to update profile.  -->
 	<app-add-photo
 		*ngIf="isPhotoVisible"
 		[loggedProfile]="loggedProfile"
@@ -274,6 +275,7 @@
 		*ngIf="isSkillEditVisible"
 		[loggedProfile]="loggedProfile"
 		[profileSkills]="skills"
+		(updatedProfile)="updated()"
 	></app-edit-skills>
 	<app-edit-attachments
 		*ngIf="isAttachmentEditVisible"
