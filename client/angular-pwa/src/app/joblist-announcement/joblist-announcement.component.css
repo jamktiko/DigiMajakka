@@ -1,0 +1,52 @@
+.jobBox {
+  width: 1308px;
+  height:159px;
+  border-radius: 20px;
+  background-color: var(--mediumblue);
+  margin-bottom: 13px;
+  display:flex;
+}
+
+.hoverSide {
+  width: 15px;
+  height:159px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: var(--mediumblue);
+}
+
+.jobBox:hover .hoverSide  {
+  background-color: var(--green);
+}
+
+.jobBox:hover .graybutton {
+  background-color: var(--green);
+  color: var(--darkgray)
+}
+
+.titleArea {
+  width: 372px;
+  display:flex;
+  justify-content: center;
+}
+
+.buttonArea {
+  width: 212px;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.graybutton {
+  margin-right: 44px;
+}
+
+.textArea {
+  max-width: 709px;
+}
+
+h3 {
+  margin-top:33px;
+  font-size: 1.25em;
+  font-weight: 200;
+}
