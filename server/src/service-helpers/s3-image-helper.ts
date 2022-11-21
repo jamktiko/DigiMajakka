@@ -48,28 +48,30 @@ const imageHelper = {
    */
   async getImg(key: string) {
     try {
-      return s3
-        .getObject(
-          {
-            Key: key,
-            Bucket: process.env.AWS_BUCKET ?? '',
-          },
-          (error, data) => {
-            if (error) {
-              throw new Error('Image link is not correct');
-            }
+      const downloadParams = {
+        Key: key,
+        Bucket: process.env.AWS_BUCKET ?? '',
+      };
 
-            return data;
-          },
-        )
+      // Check that object with specified key exists
+      // Throws error if it does not
+      await s3.headObject(downloadParams).promise();
+
+      // Else return readstream
+      return s3
+        .getObject(downloadParams, (error, data) => {
+          if (error) {
+            throw new Error('Image link is not correct');
+          }
+
+          return data;
+        })
         .createReadStream()
         .on('error', (error) => {
           throw error;
         });
     } catch (error: unknown) {
-      console.log('wefgjlewangriugn');
-
-      throw error;
+      return null;
     }
   },
 };

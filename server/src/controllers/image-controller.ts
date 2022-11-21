@@ -58,8 +58,13 @@ const imageC = {
       ) {
         // Use imageHelpers method to cretae readstream for image
         const readStream = await imageHelper.getImg(profile[0].picturelink);
-        // Pipe express to send image as response
-        readStream.pipe(response);
+
+        if (readStream !== null) {
+          // Pipe express to send image as response
+          readStream.pipe(response);
+        } else {
+          throw new Error('Object with given key deos not exist');
+        }
       } else {
         throw new Error('No link to image found in profile');
       }

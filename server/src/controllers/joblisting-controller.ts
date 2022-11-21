@@ -73,6 +73,28 @@ const joblistingC = {
       next(error);
     }
   },
+  // Function to delete advert from database
+  async deleteAdvert(
+    _request: express.Request,
+    response: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const result = await queryDb(
+        'DELETE FROM JobAdvert WHERE advertid = ?;',
+        [_request.params.advertid],
+      );
+
+      console.log(result);
+
+      response.status(200).json({
+        success: true,
+        message: 'Deleted job advert successfully',
+      });
+    } catch (error: unknown) {
+      next(error);
+    }
+  },
 };
 
 export default joblistingC;

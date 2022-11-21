@@ -12,4 +12,8 @@ joblistingRouter.get('/', joblistingC.findAll);
 // /jobadverts/
 joblistingRouter.post('/', joblistingC.createAdvert);
 
+// Delete job advert
+// /jobadverts/
+joblistingRouter.delete('/', joblistingC.deleteAdvert);
+
 export default joblistingRouter;

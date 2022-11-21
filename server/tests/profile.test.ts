@@ -1,7 +1,7 @@
 //import {expect} from 'chai';
 
 // import {expect} from 'chai';
-import queryDb from '../src/db-connection';
+
 import {describe} from 'mocha';
 import {expect} from 'chai';
 import request from 'supertest';
@@ -35,7 +35,7 @@ describe('Profile controller test', () => {
           return done;
         }
 
-        expect(JSON.parse(res.text)).to.be.an('array').length.to.equal(1);
+        expect(JSON.parse(res.text)).to.be.an('array').to.not.be.empty;
 
         return done();
       });
@@ -43,7 +43,7 @@ describe('Profile controller test', () => {
 
   it('Insert profile', (done) => {
     request(app)
-      .post('/profiles/')
+      .post('/profiles')
       .send({
         email: 'testaus@gmail.com',
       })
@@ -54,57 +54,74 @@ describe('Profile controller test', () => {
         if (err) {
           return done;
         }
+        console.log(res.text);
 
         expect(JSON.parse(res.text).success).to.be.true;
         return done();
       });
   });
-  it('Update profile', async (done) => {
-    const profileid = await queryDb(
-      'SELECT userprofileid FROM UserProfile WHERE UserAccount_email = testaus@gmail.com;',
-      [],
-    );
-    request(app)
-      .put('/profiles/update/' + profileid[0].userprofileid)
+  // Testi ei toimi, virhe: Error: Resolution method is overspecified. Specify a callback *or* return a Promise; not both.
+  // Ilmeisesti testistä pitäisi palauttaa promise eikä kustua done() funktiota
+  it('Update profile', async () => {
+    const id = await request(app)
+      .post('/profiles/email/')
+      .send({email: 'testaus@gmail.com'});
+
+    await request(app)
+      .put('/profiles/' + JSON.parse(id.text)[0].userprofileid)
       .send({
         firstname: 'Anneli',
         familyname: 'Auvikainen',
         phonenumber: '0458263328',
-        description: 'Olen anneli',
+        aboutme: 'Olen anneli',
         lookingfor: 'Jotain töitä emt.',
         studyfield: 'joku',
         yearofstudy: 2,
-        publicity: true,
-        picture: 'anneli.photo',
+        public: true,
+        picturelink: 'anneli.photo',
         email: 'anneli.anneli@gmail.com',
       })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200)
-      .end((err, res) => {
-        if (err) {
-          return done;
-        }
+      .expect(200);
 
-        expect(JSON.parse(res.text).success).to.be.true;
+    // .end((err, res) => {
+    //   if (err) {
+    //     return done;
+    //   }
 
-        return done();
-      });
+    //   expect(JSON.parse(res.text).success).to.be.true;
+
+    //   return done();
+    // });
   });
 
-  //   it('Delete one profile', (done) => {
-  //     request(app)
-  //       .delete('/profiles/2')
-  //       .expect(200)
-  //       .end((err, res) => {
-  //         if (err) {
-  //           return done;
-  //         }
+  it('Update profile links', async () => {
+    const id = await request(app)
+      .post('/profiles/email/')
+      .send({email: 'testaus@gmail.com'});
 
-  //         expect(JSON.parse(res.text).del.affectedRows).to.be.equal(1);
-  //         return done();
-  //       });
-  //   });
+    await request(app)
+      .put('/links/' + JSON.parse(id.text)[0].userprofileid)
+      .send({
+        facebook: 'facebook.com',
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200);
+  });
+
+  it('Return profiles links', async () => {
+    const id = await request(app)
+      .post('/profiles/email/')
+      .send({email: 'testaus@gmail.com'});
+
+    await request(app)
+      .get('/profiles/' + JSON.parse(id.text)[0].userprofileid)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200);
+  });
 
   it('Find profiles skills', (done) => {
     request(app)
@@ -123,16 +140,27 @@ describe('Profile controller test', () => {
       });
   });
 
-  //   it('Insert new skill', (done) => {
-  //     request(app)
-  //       .post('/profiles/insertSkill/1/aws')
-  //       .expect(200)
-  //       .end((err, res) => {
-  //         if (err) {
-  //           return done;
-  //         }
-  //         res;
-  //         return done();
-  //       });
-  //   });
+  it('Insert new skill', async () => {
+    const id = await request(app)
+      .post('/profiles/email/')
+      .send({email: 'testaus@gmail.com'});
+
+    await request(app)
+      .post('/skills/profile/' + JSON.parse(id.text)[0].userprofileid)
+      .send({
+        skills: ['aws'],
+      })
+      .expect(201);
+  });
+  // Testi ei toimi, virhe: Error: Resolution method is overspecified. Specify a callback *or* return a Promise; not both.
+  // Ilmeisesti testistä pitäisi palauttaa promise eikä kustua done() funktiota
+  it('Delete one profile', async () => {
+    const id = await request(app)
+      .post('/profiles/email/')
+      .send({email: 'testaus@gmail.com'});
+
+    await request(app)
+      .delete('/profiles/' + JSON.parse(id.text)[0].userprofileid)
+      .expect(200);
+  });
 });
