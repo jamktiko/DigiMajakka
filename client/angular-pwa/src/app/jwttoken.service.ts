@@ -23,7 +23,7 @@ export class JWTTokenService {
 		}
 	}
 
-	// Method to decode the JWT by using the jwt_decode libraby method
+	// Method to decode the JWT by using the jwt_decode library method
 	decodeToken() {
 		if (this.jwtToken) {
 			this.decodeToken = jwt_decode(this.jwtToken);
