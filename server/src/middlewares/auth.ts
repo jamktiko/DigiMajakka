@@ -43,12 +43,13 @@ export const authHandler = async (
       // Place token adn email to requests user attribute
       _request.user = {
         id: rawUser.UserAttributes.find((attr) => attr.Name === 'sub')?.Value,
-        email: rawUser.UserAttributes.find((attr) => attr.Name === 'username')
+        email: rawUser.UserAttributes.find((attr) => attr.Name === 'email')
           ?.Value,
       };
+      console.log(_request.user);
+
       next();
     } else {
-      throw new Error('No token');
     }
   } catch (error: unknown) {
     next(error);
