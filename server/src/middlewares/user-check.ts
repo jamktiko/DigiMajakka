@@ -20,7 +20,6 @@ const checkUser = async (
         'SELECT * FROM UserProfile WHERE UserAccount_email = ?;',
         [_request.user.email],
       );
-      console.log(_request.params.id);
 
       if (user[0].userprofileid === Number(_request.params.id)) {
         next();

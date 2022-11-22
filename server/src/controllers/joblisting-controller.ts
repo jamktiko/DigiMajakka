@@ -36,8 +36,18 @@ const joblistingC = {
       // Create unique id for advert
       const advertid: string = uniqid();
 
+      const date = new Date();
+
+      const newDate = new Date(date.setMonth(date.getMonth() + 6));
+
       // Validate profile
-      const valid = jobadvertValidation({advertid, ..._request.body});
+      const valid = jobadvertValidation({
+        advertid,
+        ..._request.body,
+        accepted: false,
+        isvalid: true,
+        validuntil: `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`,
+      });
 
       // If profile is not valid throw error
       if (valid.valid && valid.jobadvert) {
