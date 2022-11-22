@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {JobService} from '../job.service';
 
 @Component({
 	selector: 'app-employer',
@@ -21,14 +22,14 @@ export class EmployerComponent implements OnInit {
 	};
 
 	today = Date();
-	constructor() {}
+	constructor(private jobservice: JobService) {}
 
 	ngOnInit(): void {}
 
 	// Method that has the functionality for submitting the form
 	onSubmit(formdata: any) {
 		// ADD FUNCTIONALITY
-		this.info.firstname = formdata.firstname;
-		console.log(this.info.firstname);
+		console.log(this.info);
+		this.jobservice.postJobAnnoucement(this.info);
 	}
 }
