@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivate {
 		if (this.jwtservice.getUser()) {
 			if (this.jwtservice.isTokenExpired()) {
 				// Functionality to redirect to login-page
+				return false;
 			} else {
 				return true;
 			}
@@ -36,7 +37,9 @@ export class AuthGuard implements CanActivate {
 					.then((e: any) => {
 						resolve(true);
 					})
-					.catch((e) => {});
+					.catch((e) => {
+						// Functionality to redirect to login-page
+					});
 			});
 		}
 	}

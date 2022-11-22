@@ -20,7 +20,9 @@ export class LoginService {
 		this.loggedUser = username;
 	}
 
-	loginCallBack() {}
+	loginCallBack(): Promise<any> {
+		return Promise.resolve();
+	}
 
 	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
 	logout() {
