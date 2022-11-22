@@ -57,11 +57,7 @@ const profileController = {
       const user = userdata[0];
 
       // Check that user object has specified keys and that they are correct type
-      if (
-        typeof user.email === 'string' &&
-        typeof user.schoolname === 'string' &&
-        typeof user.cityname === 'string'
-      ) {
+      if ('email' in user && 'cityname' in user && 'schoolname' in user) {
         // Template profile with placeholder data
         const profile: Profile = {
           firstname: 'Etunimi',
@@ -74,9 +70,9 @@ const profileController = {
           publicity: false,
           picturelink: '',
           email: '',
-          cityname: user.cityname,
-          accountemail: user.email,
-          schoolname: user.schoolname,
+          cityname: String(user.cityname),
+          accountemail: String(user.email),
+          schoolname: String(user.schoolname),
         };
         // Insert placeholder data to users profile
         const insertedProfile = await queryDb(
@@ -84,24 +80,24 @@ const profileController = {
           Object.values(profile),
         );
 
-        const linksTemplate = {
-          linkedin: '',
-          email: user.email,
-          instagram: '',
-          facebook: '',
-          twitter: '',
-          cv: '',
-          portfolio: '',
-          github: '',
-        };
+        // const linksTemplate = {
+        //   linkedin: '',
+        //   email: user.email,
+        //   instagram: '',
+        //   facebook: '',
+        //   twitter: '',
+        //   cv: '',
+        //   portfolio: '',
+        //   github: '',
+        // };
 
-        const createLinks = await queryDb(
-          'INSERT INTO Links (linkedin, Userprofile_userprofileid, instagram, facebook, twitter, cv, portfolio, github) VALUES (?, (SELECT userprofileid FROM UserProfile WHERE UserAccount_email = ?), ?, ?, ?, ?, ?, ?);',
-          Object.values(linksTemplate),
-        );
+        // const createLinks = await queryDb(
+        //   'INSERT INTO Links (linkedin, Userprofile_userprofileid, instagram, facebook, twitter, cv, portfolio, github) VALUES (?, (SELECT userprofileid FROM UserProfile WHERE UserAccount_email = ?), ?, ?, ?, ?, ?, ?);',
+        //   Object.values(linksTemplate),
+        // );
 
         console.log(insertedProfile);
-        console.log(createLinks);
+        // console.log(createLinks);
 
         response.status(201).json({
           message: 'Profile created succesfully',
@@ -165,12 +161,25 @@ const profileController = {
     next: express.NextFunction,
   ) {
     try {
-      const del = await queryDb(
+      // Delete skills of a profile
+      const delSkills = await queryDb(
+        'DELETE FROM UserProfileSkills WHERE UserProfile_userprofileid = ?;',
+        [_request.params.id],
+      );
+      // Delete links of a profile
+      const delLinks = await queryDb(
+        'DELETE FROM Links WHERE UserProfile_userprofileid = ?;',
+        [_request.params.id],
+      );
+      // delete profile
+      const delProfile = await queryDb(
         'DELETE FROM UserProfile WHERE userprofileid = ?',
         [_request.params.id],
       );
-      console.log(del);
 
+      console.log(delProfile);
+      console.log(delLinks);
+      console.log(delSkills);
       response.status(200).json({
         message: 'Deleted profile succesfully',
         success: true,

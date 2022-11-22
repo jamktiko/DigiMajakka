@@ -1,4 +1,5 @@
 import type express from 'express';
+import CustomError from '../custom-error';
 
 import querydb from '../db-connection';
 import imageHelper from '../service-helpers/s3-image-helper';
@@ -58,9 +59,16 @@ const imageC = {
       ) {
         // Use imageHelpers method to cretae readstream for image
         const readStream = await imageHelper.getImg(profile[0].picturelink);
-        // Pipe express to send image as response
-        readStream.pipe(response);
+
+        if (readStream !== null) {
+          // Pipe express to send image as response
+          readStream.pipe(response);
+        } else {
+          // If object does not exsist throw new error
+          throw new CustomError('Object with given key does not exist', 404);
+        }
       } else {
+        // If profile does not have image throw new error
         throw new Error('No link to image found in profile');
       }
     } catch (error: unknown) {

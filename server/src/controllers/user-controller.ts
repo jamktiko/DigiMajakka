@@ -180,6 +180,14 @@ const userC = {
       ) {
         throw new Error('Not all required information was provided in request');
       }
+      // Find users current school
+      const oldschool = await queryDb(
+        'SELECT School_name AS school FROM UserAccount WHERE email = ?;',
+        [_request.body.oldemail],
+      );
+
+      // Put users current school in request body. It is needed in error handling.
+      _request.body.oldschool = oldschool[0].school;
 
       // Try to sign user in so we know that user exists in cognito
       const trySignIn = await cognitoHelper.signIn(
