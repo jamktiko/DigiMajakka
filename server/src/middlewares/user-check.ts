@@ -20,12 +20,11 @@ const checkUser = async (
         'SELECT * FROM UserProfile WHERE UserAccount_email = ?;',
         [_request.user.email],
       );
-      if (Array.isArray(user) && user !== null) {
-        if (user[0].userprofileid === _request.params.id) {
-          next();
-        } else {
-          throw new Error('Authorization failed');
-        }
+
+      if (user[0].userprofileid === _request.params.id) {
+        next();
+      } else {
+        throw new Error('Authorization failed');
       }
     }
   } catch (error: unknown) {
