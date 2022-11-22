@@ -33,6 +33,8 @@ const joblistingC = {
     next: express.NextFunction,
   ) {
     try {
+      console.log(_request.body);
+
       // Create unique id for advert
       const advertid: string = uniqid();
 

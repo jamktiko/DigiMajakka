@@ -55,24 +55,24 @@ const jobadvertTypeChecker = (jobadvert: Jobadvert) => {
     typeof jobadvert.city !== 'string'
   ) {
     console.log({
-      advertid: typeof jobadvert.advertid !== 'string',
-      firstname: typeof jobadvert.firstname !== 'string',
-      familyname: typeof jobadvert.familyname !== 'string',
+      advertid: typeof jobadvert.advertid === 'string',
+      firstname: typeof jobadvert.firstname === 'string',
+      familyname: typeof jobadvert.familyname === 'string',
       company: Boolean(
-        typeof jobadvert.company !== 'string' || jobadvert.company !== null,
+        typeof jobadvert.company === 'string' || jobadvert.company === null,
       ),
       startdate: Boolean(
-        typeof jobadvert.startdate !== 'string' || jobadvert.startdate !== null,
+        typeof jobadvert.startdate === 'string' || jobadvert.startdate === null,
       ),
-      email: typeof jobadvert.email !== 'string',
-      phonenumber: typeof jobadvert.phonenumber !== 'string',
-      jobtitle: typeof jobadvert.jobtitle !== 'string',
-      description: typeof jobadvert.description !== 'string',
-      salary: typeof jobadvert.salary !== 'string',
-      validuntil: typeof jobadvert.validuntil !== 'string',
-      isvalid: typeof jobadvert.isvalid !== 'boolean',
-      accepted: typeof jobadvert.accepted !== 'boolean',
-      city: typeof jobadvert.city !== 'string',
+      email: typeof jobadvert.email === 'string',
+      phonenumber: typeof jobadvert.phonenumber === 'string',
+      jobtitle: typeof jobadvert.jobtitle === 'string',
+      description: typeof jobadvert.description === 'string',
+      salary: typeof jobadvert.salary === 'string',
+      validuntil: typeof jobadvert.validuntil === 'string',
+      isvalid: typeof jobadvert.isvalid === 'boolean',
+      accepted: typeof jobadvert.accepted === 'boolean',
+      city: typeof jobadvert.city === 'string',
     });
 
     return false;
