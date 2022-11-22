@@ -1,16 +1,23 @@
-<div class="jobBox">
-	<div class="hoverSide"></div>
-	<div class="titleArea">
-		<h3>Jyväskylän ammattikorkeakoulu</h3>
+<li *ngFor="let job of annoucements">
+	<div class="jobBox">
+		<div class="hoverSide"></div>
+		<div class="titleArea">
+			<h3 *ngIf="job.company">{{ job.company }}</h3>
+			<h3 *ngIf="!job.company">
+				{{ job.firstname }} {{ job.familyname }}
+			</h3>
+		</div>
+		<div class="textArea">
+			<h3>{{ job.jobtitle }}</h3>
+			<p>
+				Lyhyt kuvaus siitä mitä duuni on. Millaista ihmistä toivoisimme
+				löytävämme. Tarkemmat tiedot ja isompi ilmoitus, kun klikkaat
+				ilmoituksen auki. Lyhyt kuvaus siitä mitä duuni on. Millaista
+				ihmistä toivoisimme...
+			</p>
+		</div>
+		<div class="buttonArea">
+			<button class="graybutton">Lue lisää</button>
+		</div>
 	</div>
-	<div class="textArea">
-		<h3>Väliaikainen korvaava opettaja</h3>
-		<p>
-			Lyhyt kuvaus siitä mitä duuni on. Millaista ihmistä toivoisimme
-			löytävämme. Tarkemmat tiedot ja isompi ilmoitus, kun klikkaat
-			ilmoituksen auki. Lyhyt kuvaus siitä mitä duuni on. Millaista
-			ihmistä toivoisimme...
-		</p>
-	</div>
-	<div class="buttonArea"><button class="graybutton">Lue lisää</button></div>
-</div>
+</li>

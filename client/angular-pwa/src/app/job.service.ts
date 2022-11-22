@@ -9,10 +9,11 @@ export class JobService {
 
 	constructor(private http: HttpClient) {}
 
-	private jobsUrl = 'http://localhost:3000/joblistings/';
+	private jobsUrl = 'http://localhost:3000/joblistings/findAll';
 
 	// Method to fetch all joblistings from the database
 	getJobs() {
+		console.log(this.jobsUrl);
 		return this.http.get(this.jobsUrl);
 	}
 }
