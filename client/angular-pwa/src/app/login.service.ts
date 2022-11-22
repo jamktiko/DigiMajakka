@@ -13,12 +13,7 @@ export class LoginService {
 
 	constructor() {}
 
-	// Placeholder method that takes username as an argument and sets it as currently logged in user.
-	// Also set logged-status as true.
-	login(username: string) {
-		this.logged = true;
-		this.loggedUser = username;
-	}
+	login(email: string, password: string) {}
 
 	loginCallBack(): Promise<any> {
 		return Promise.resolve();

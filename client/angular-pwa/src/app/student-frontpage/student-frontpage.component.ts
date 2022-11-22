@@ -15,13 +15,6 @@ export class StudentFrontpageComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	// Placeholder method to set logged in status
-	login() {
-		this.loginService.login('orja@gmail.com');
-		this.logged = this.loginService.logged;
-		this.loggedUser = this.loginService.loggedUser;
-	}
-
 	// Placeholder method to logout
 	logout() {
 		this.loginService.logout();

@@ -28,7 +28,7 @@
 
 				<div>
 					<p class="label">Onko sinulla jo tili?</p>
-					<button class="greenbutton" (click)="login()">
+					<button class="greenbutton" routerLink="/login">
 						Kirjaudu sisään
 					</button>
 				</div>
@@ -138,7 +138,7 @@
 	<button
 		*ngIf="!logged"
 		class="greenbutton loginfloat px14"
-		(click)="login()"
+		routerLink="/login"
 	>
 		Kirjaudu sisään
 	</button>
