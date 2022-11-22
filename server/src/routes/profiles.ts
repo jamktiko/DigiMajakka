@@ -1,7 +1,5 @@
 import express from 'express';
 import profileC from '../controllers/profile-controller';
-// import {authHandler} from '../middlewares/auth';
-// import userCheck from '../middlewares/user-check';
 import bodyChecker from '../middlewares/body-check';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();

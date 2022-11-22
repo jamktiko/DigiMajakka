@@ -66,10 +66,7 @@ const imageHelper = {
 
           return data;
         })
-        .createReadStream()
-        .on('error', (error) => {
-          throw error;
-        });
+        .createReadStream();
     } catch (error: unknown) {
       return null;
     }
