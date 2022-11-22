@@ -15,11 +15,7 @@
 
 			<h2>Kirjaudu sisään</h2>
 
-			<form
-				#f="ngForm"
-				(click)="$event.stopPropagation()"
-				(ngSubmit)="onSubmit(f.value)"
-			>
+			<form #f="ngForm" (click)="$event.stopPropagation()">
 				<!-- Input for email -->
 				<label>
 					Sähköposti *
@@ -50,7 +46,12 @@
 			<p>Unohdin salasanani</p>
 
 			<div class="btnandtxt">
-				<button [disabled]="!f.valid" type="submit" class="greenbutton">
+				<button
+					[disabled]="!f.valid"
+					(click)="onSubmit(f.value)"
+					type="submit"
+					class="greenbutton"
+				>
 					Kirjaudu sisään
 				</button>
 				<div>

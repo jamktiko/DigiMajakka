@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JWTTokenService} from './jwttoken.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,9 +13,31 @@ export class LoginService {
 	logged!: boolean;
 	loggedUser = '';
 
-	constructor() {}
+	tokens: any;
 
-	login(email: string, password: string) {}
+	constructor(
+		private http: HttpClient,
+		private jwtservice: JWTTokenService
+	) {}
+
+	// Options for http-requests
+	httpOptions = {
+		headers: new HttpHeaders({'Content-Type': 'application/json'}),
+	};
+
+	login(email: string, password: string) {
+		return this.http
+			.post(
+				'http://localhost:3000/users/signin',
+				`{"email": "${email}", "password": "${password}"}`,
+				this.httpOptions
+			)
+			.subscribe((tokens) => {
+				console.log(tokens);
+				this.tokens = tokens;
+				this.jwtservice.setToken(this.tokens.accessToken);
+			});
+	}
 
 	loginCallBack(): Promise<any> {
 		return Promise.resolve();

@@ -19,6 +19,7 @@ export class JWTTokenService {
 	setToken(token: string) {
 		if (token) {
 			this.jwtToken = token;
+			console.log(this.jwtToken);
 		}
 	}
 
