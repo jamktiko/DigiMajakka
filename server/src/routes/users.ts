@@ -33,4 +33,10 @@ userRouter.post('/delete', bodyChecker, userC.deleteUser);
 // /users/school
 userRouter.put('/school', bodyChecker, userC.updateSchool, handleError);
 
+// Start reset password flow
+userRouter.post('/reset/sendcode', userC.resetPassword);
+
+// Complete password reset with code received via email
+userRouter.post('/reset/confirm', userC.confirmPasswordReset);
+
 export = userRouter;

@@ -1,4 +1,5 @@
 import type express from 'express';
+import CustomError from '../custom-error';
 import queryDb from '../db-connection';
 import CognitoHelper from '../service-helpers/cognito-helper';
 
@@ -12,13 +13,6 @@ const userC = {
     next: express.NextFunction,
   ) {
     try {
-      console.log({
-        email: !_request.body.email,
-        adimn: !_request.body.admin,
-        schoolname: !_request.body.schoolname,
-        password: !_request.body.password,
-      });
-
       // Check that are required fields are provided in the body
       if (
         !('email' in _request.body) ||
@@ -55,12 +49,12 @@ const userC = {
       }
     } catch (error: unknown) {
       // If there were error when creating user find if users information was inserted into database and remove that user
-      const user = await queryDb('SELECT * FROM UserAccount WHERE email=?', [
+      const user = await queryDb('SELECT * FROM UserAccount WHERE email=?;', [
         _request.body.email,
       ]);
 
       if (user.length > 0) {
-        await queryDb('DELETE FROM UserAccount WHERE email=?', [
+        await queryDb('DELETE FROM UserAccount WHERE email=?;', [
           _request.body.email,
         ]);
       }
@@ -108,6 +102,10 @@ const userC = {
     next: express.NextFunction,
   ) {
     try {
+      if (!('email' in _request.body)) {
+        throw new CustomError('No email received in body', 400);
+      }
+
       const result = await cognitoHelper.resendConfirmCode(_request.body.email);
 
       response.status(200).json(result);
@@ -122,7 +120,11 @@ const userC = {
     next: express.NextFunction,
   ) {
     try {
+      if (!('email' in _request.body)) {
+        throw new CustomError('No email received in body', 400);
+      }
       const result = await cognitoHelper.signOut(_request.body.email);
+
       console.log(result);
 
       response.status(200).json({
@@ -132,27 +134,46 @@ const userC = {
       next(error);
     }
   },
+  // Function that deletes users data from database and cognito
   async deleteUser(
     _request: express.Request,
     response: express.Response,
     next: express.NextFunction,
   ) {
     try {
-      // Try to delete user from database
-      const dbresult = queryDb('DELETE FROM UserAccount WHERE email=?', [
-        _request.body.email,
-      ]);
-      // Try to delete user from cognito
-      const result = await cognitoHelper.deleteUser(
-        _request.body.email,
-        _request.body.password,
+      const body = _request.body;
+      // Check that requierd valus are in body
+      if (!('email' in body) || !('password' in body)) {
+        throw new CustomError(
+          'Did not receive ' + 'email' in body
+            ? 'password '
+            : 'email ' + 'in request body',
+          400,
+        );
+      }
+      // Take users profiles data from database
+      const profiledata = await queryDb(
+        'SELECT userprofileid FROM UserProfile WHERE UserAccount_email = ?;',
+        [body.email],
       );
+      // Take profiles id from profile data
+      const profileid = profiledata[0].userprofileid;
+
+      // Call procedure which deletes users data
+      const deluser = queryDb('CALL deleteUserData(?, ?);', [
+        profileid,
+        body.email,
+      ]);
+
+      // Try to delete user from cognito
+      const result = await cognitoHelper.deleteUser(body.email, body.password);
 
       console.log('User deleted from cognito successfully');
       console.log(result);
-      console.log(dbresult);
+      console.log(deluser);
 
       response.status(200).json({
+        succes: true,
         message: 'Deleted user successfully',
       });
     } catch (error: unknown) {
@@ -246,6 +267,62 @@ const userC = {
         success: true,
         message:
           'Succesfully changed users school to ' + _request.body.newschool,
+      });
+    } catch (error: unknown) {
+      next(error);
+    }
+  },
+  async resetPassword(
+    _request: express.Request,
+    response: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      // If no email received throw error
+      if (!('email' in _request.body)) {
+        throw new CustomError('No email received in request body', 400);
+      }
+
+      const result = await cognitoHelper.resetPassword(_request.body.email);
+
+      console.log(result);
+
+      response.status(200).json({
+        success: true,
+        message: 'Code for password reset send to users email',
+      });
+    } catch (error: unknown) {
+      next(error);
+    }
+  },
+  async confirmPasswordReset(
+    _request: express.Request,
+    response: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      if (
+        !('email' in _request.body) ||
+        !('newPassword' in _request.body) ||
+        !('confirmationCode' in _request.body)
+      ) {
+        throw new CustomError(
+          'All recuired fields not received in request body',
+          400,
+        );
+      }
+
+      const result = await cognitoHelper.confirmPassword(
+        _request.body.email,
+        _request.body.confirmationCode,
+        _request.body.newPassword,
+      );
+
+      console.log(result);
+
+      response.status(200).json({
+        success: true,
+        message: 'Succesfully changed users password',
       });
     } catch (error: unknown) {
       next(error);
