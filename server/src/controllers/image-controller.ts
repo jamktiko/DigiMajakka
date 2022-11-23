@@ -58,7 +58,7 @@ const imageC = {
         profile[0].picturelink.length > 0
       ) {
         // Use imageHelpers method to cretae readstream for image
-        const readStream = await imageHelper.getImg(profile[0].picturelink);
+        const readStream = imageHelper.getImg(profile[0].picturelink);
 
         if (readStream !== null) {
           // Pipe express to send image as response
