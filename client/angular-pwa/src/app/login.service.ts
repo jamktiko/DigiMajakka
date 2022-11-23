@@ -26,17 +26,11 @@ export class LoginService {
 	};
 
 	login(email: string, password: string) {
-		return this.http
-			.post(
-				'http://localhost:3000/users/signin',
-				`{"email": "${email}", "password": "${password}"}`,
-				this.httpOptions
-			)
-			.subscribe((tokens) => {
-				console.log(tokens);
-				this.tokens = tokens;
-				this.jwtservice.setToken(this.tokens.accessToken);
-			});
+		return this.http.post(
+			'http://localhost:3000/users/signin',
+			`{"email": "${email}", "password": "${password}"}`,
+			this.httpOptions
+		);
 	}
 
 	loginCallBack(): Promise<any> {

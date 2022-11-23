@@ -16,7 +16,6 @@ const routes: Routes = [
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
 	{path: 'joblist', component: JoblistComponent},
-	{path: 'login', component: LoginComponent},
 ];
 
 @NgModule({

@@ -13,6 +13,7 @@ export class StateManagementService {
 	addPhotoEdit: boolean = false;
 	skillEdit: boolean = false;
 	attachmentEdit: boolean = false;
+	loginFormVisible: boolean = false;
 
 	// Initializing subjects to allow for automatic updates of the values in other components
 	visibilityChange: Subject<boolean> = new Subject<boolean>();
@@ -21,6 +22,7 @@ export class StateManagementService {
 	visibilityChangePhoto: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeSkills: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeAttachments: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeLoginForm: Subject<boolean> = new Subject<boolean>();
 
 	// Setting the values in the constructor
 	constructor() {
@@ -41,6 +43,9 @@ export class StateManagementService {
 		});
 		this.visibilityChangeAttachments.subscribe((value) => {
 			this.attachmentEdit = value;
+		});
+		this.visibilityChangeLoginForm.subscribe((value) => {
+			this.loginFormVisible = value;
 		});
 	}
 
@@ -67,5 +72,9 @@ export class StateManagementService {
 
 	toggleAttachmentVisibility() {
 		this.visibilityChangeAttachments.next(!this.attachmentEdit);
+	}
+
+	toggleLoginFormVisibility() {
+		this.visibilityChangeLoginForm.next(!this.loginFormVisible);
 	}
 }

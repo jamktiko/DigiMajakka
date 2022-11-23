@@ -1,9 +1,7 @@
 <!-- Backdrop styles come from global styles. Backdrop causes the form to be displayed on top of other components -->
 <div class="backdrop" (click)="changeVisibility()">
-	<div class="bg">
+	<div class="bg" (click)="$event.stopPropagation()">
 		<div class="glassbox">
-			<!-- Form is the container for the form, and provides the formdata for Angular -->
-
 			<!-- Button to close the edit-window -->
 			<div class="close-button" (click)="changeVisibility()">
 				<img
@@ -43,7 +41,7 @@
 				</label>
 			</form>
 
-			<p>Unohdin salasanani</p>
+			<p class="forgotpw">Unohdin salasanani</p>
 
 			<div class="btnandtxt">
 				<button

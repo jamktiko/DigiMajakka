@@ -28,7 +28,10 @@
 
 				<div>
 					<p class="label">Onko sinulla jo tili?</p>
-					<button class="greenbutton" routerLink="/login">
+					<button
+						class="greenbutton"
+						(click)="changeLoginVisibility()"
+					>
 						Kirjaudu sisään
 					</button>
 				</div>
@@ -138,7 +141,7 @@
 	<button
 		*ngIf="!logged"
 		class="greenbutton loginfloat px14"
-		routerLink="/login"
+		(click)="changeLoginVisibility()"
 	>
 		Kirjaudu sisään
 	</button>
@@ -151,3 +154,5 @@
 		</button>
 	</div>
 </body>
+
+<app-login *ngIf="isLoginVisible"></app-login>

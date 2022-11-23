@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<any> | Promise<any> | boolean {
-		if (this.jwtservice.getUser()) {
+		if (this.jwtservice.jwtToken) {
 			if (this.jwtservice.isTokenExpired()) {
 				// Functionality to redirect to login-page
 				this.router.navigateByUrl('/notauthorized');

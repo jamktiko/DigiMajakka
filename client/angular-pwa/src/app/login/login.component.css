@@ -83,6 +83,10 @@ p:hover {
   color: var(--mediumblue);
 }
 
+.forgotpw {
+  max-width: fit-content;
+}
+
 .register {
   margin: 0;
 }
