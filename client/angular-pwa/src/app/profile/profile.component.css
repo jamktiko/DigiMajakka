@@ -69,11 +69,11 @@
 .upperContent {
   max-width: 100%;
   background-color: var(--mediumblue);
-  height: fit-content;
+  height: 425px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   min-width: 1024px;
-  padding: 0 40px 2em;
+  padding: 0 40px;
 }
 
 .lowerContent {
@@ -82,7 +82,7 @@
   max-width: 100%;
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
-  max-height: fit-content;
+  height: 63vh;
 }
 
 .lowerBox {
