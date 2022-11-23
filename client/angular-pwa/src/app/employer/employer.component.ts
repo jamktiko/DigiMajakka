@@ -29,7 +29,24 @@ export class EmployerComponent implements OnInit {
 	// Method that has the functionality for submitting the form
 	onSubmit(formdata: any) {
 		// ADD FUNCTIONALITY
-		console.log(this.info);
-		this.jobservice.postJobAnnoucement(this.info);
+		console.log(
+			`{"firstname":"${this.info.firstname}, "familyname":"${this.info.lastname}", "company":"${this.info.companyname}", "startdate":"2022-12-12", "email":"${this.info.email}", "phonenumber":"${this.info.phone}, "jobtitle":"${this.info.assignment}, "description":"${this.info.description}, "salary":"${this.info.payment}, "city":"Muurame"}`
+		);
+		this.jobservice
+			.postJobAnnoucement(
+				`{"firstname":"${this.info.firstname}, 
+				"familyname":"${this.info.lastname}", 
+				"company":"${this.info.companyname}", 
+				"startdate":"2022-12-12", 
+				"email":"${this.info.email}", 
+				"phonenumber":"${this.info.phone}, 
+				"jobtitle":"${this.info.assignment}, 
+				"description":"${this.info.description}, 
+				"salary":"${this.info.payment}, 
+				"city":"Muurame"}`
+			)
+			.subscribe(() => {
+				console.log('Data has been moved!');
+			});
 	}
 }
