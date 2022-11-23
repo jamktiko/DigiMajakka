@@ -10,7 +10,7 @@ export class LoginService {
 	// WILL BE IMPLEMENTED LATER
 
 	// Declarations for placeholder functionality
-	logged!: boolean;
+	logged: boolean = false;
 	loggedUser = '';
 
 	tokens: any;

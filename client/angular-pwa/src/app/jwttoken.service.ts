@@ -8,7 +8,7 @@ export class JWTTokenService {
 	// https://www.syncfusion.com/blogs/post/best-practices-for-jwt-authentication-in-angular-apps.aspx
 
 	// Variable that the token is stored in
-	jwtToken!: string;
+	jwtToken: string = '';
 
 	// Variable where the token is stored after decoding
 	decodedToken!: {[key: string]: string};
@@ -19,7 +19,7 @@ export class JWTTokenService {
 	setToken(token: string) {
 		if (token) {
 			this.jwtToken = token;
-			console.log(this.jwtToken);
+			console.log('In jwtservice setToken: ' + this.jwtToken);
 		}
 	}
 
@@ -32,23 +32,26 @@ export class JWTTokenService {
 
 	// Method that gets the decoded token
 	getDecodedToken() {
-		console.log(jwt_decode('Decoded token: ' + this.jwtToken));
+		console.log(jwt_decode(this.jwtToken));
 		return jwt_decode(this.jwtToken);
 	}
 
 	// Method to get the username from the decoded token.
-	// MAYBE NOT NEEDED, SINCE WE DON'T HAVE A USERNAME??
 	getUser() {
 		this.decodeToken();
-		console.log(this.decodedToken ? this.decodedToken.displayname : null);
-		return this.decodedToken ? this.decodedToken.displayname : null;
+		console.log(
+			'User ' + this.decodedToken
+				? String(this.decodedToken.username)
+				: null
+		);
+		return this.decodedToken ? this.decodedToken.username : null;
 	}
 
 	// Method to get the useremail from the decoded token
-	getEmailId() {
-		this.decodeToken();
-		return this.decodedToken ? this.decodedToken.email : null;
-	}
+	// getEmailId() {
+	// 	this.decodeToken();
+	// 	return this.decodedToken ? this.decodedToken.email : null;
+	// }
 
 	// Method to get the time of expiration for the token
 	getExpiryTime() {

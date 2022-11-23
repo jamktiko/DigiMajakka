@@ -16,8 +16,8 @@ import {Router} from '@angular/router';
 })
 export class AuthGuard implements CanActivate {
 	constructor(
-		private loginService: LoginService,
-		private storageService: LocalStorageService,
+		private loginservice: LoginService,
+		private storageservice: LocalStorageService,
 		private jwtservice: JWTTokenService,
 		private router: Router
 	) {}
@@ -25,26 +25,31 @@ export class AuthGuard implements CanActivate {
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<any> | Promise<any> | boolean {
-		if (this.jwtservice.jwtToken) {
-			if (this.jwtservice.isTokenExpired()) {
-				// Functionality to redirect to login-page
-				this.router.navigateByUrl('/notauthorized');
-				return false;
-			} else {
-				return true;
-			}
+		if (this.storageservice.get('token')) {
+			return true;
 		} else {
-			return new Promise((resolve) => {
-				this.loginService
-					.loginCallBack()
-					.then((e: any) => {
-						resolve(true);
-					})
-					.catch((e) => {
-						// Functionality to redirect to login-page
-						this.router.navigateByUrl('/notauthorized');
-					});
-			});
+			return false;
 		}
+		//	if (this.jwtservice.jwtToken) {
+		//		if (this.jwtservice.isTokenExpired()) {
+		//			// Functionality to redirect to login-page
+		//			this.router.navigateByUrl('/notauthorized');
+		//			return false;
+		//		} else {
+		//			return true;
+		//		}
+		//	} else {
+		//		return new Promise((resolve) => {
+		//			this.loginService
+		//				.loginCallBack()
+		//				.then((e: any) => {
+		//					resolve(true);
+		//				})
+		//				.catch((e) => {
+		//					// Functionality to redirect to login-page
+		//					this.router.navigateByUrl('/notauthorized');
+		//				});
+		//		});
+		//	}
 	}
 }

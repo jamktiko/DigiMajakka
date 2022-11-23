@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
 		this.loginservice
 			.login(formData.email, formData.password)
 			.subscribe((tokens) => {
-				console.log(tokens);
+				console.log('Both tokens' + tokens);
 				this.tokens = tokens;
 				this.jwtservice.setToken(this.tokens.accessToken);
+				console.log('In logincomponent: ' + this.jwtservice.jwtToken);
 				this.jwtservice.getDecodedToken();
 				this.localstorageservice.set('token', this.tokens.accessToken);
 				this.jwtservice.isTokenExpired();
