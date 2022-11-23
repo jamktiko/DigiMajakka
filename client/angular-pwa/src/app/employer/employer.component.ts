@@ -34,15 +34,15 @@ export class EmployerComponent implements OnInit {
 		);
 		this.jobservice
 			.postJobAnnoucement(
-				`{"firstname":"${this.info.firstname}, 
+				`{"firstname":"${this.info.firstname}", 
 				"familyname":"${this.info.lastname}", 
 				"company":"${this.info.companyname}", 
 				"startdate":"2022-12-12", 
 				"email":"${this.info.email}", 
-				"phonenumber":"${this.info.phone}, 
-				"jobtitle":"${this.info.assignment}, 
-				"description":"${this.info.description}, 
-				"salary":"${this.info.payment}, 
+				"phonenumber":"${this.info.phone}", 
+				"jobtitle":"${this.info.assignment}", 
+				"description":"${this.info.description}", 
+				"salary":"${this.info.payment}", 
 				"city":"Muurame"}`
 			)
 			.subscribe(() => {
