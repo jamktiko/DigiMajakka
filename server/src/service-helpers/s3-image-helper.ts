@@ -46,7 +46,7 @@ const imageHelper = {
    * @param {string} key S3 objects key that stores image
    * @return {internal.Readable} readstream to read data
    */
-  async getImg(key: string) {
+  getImg(key: string) {
     try {
       const downloadParams = {
         Key: key,
@@ -55,7 +55,7 @@ const imageHelper = {
 
       // Check that object with specified key exists
       // Throws error if it does not
-      await s3.headObject(downloadParams).promise();
+      s3.headObject(downloadParams).promise();
 
       // Else return readstream
       return s3
