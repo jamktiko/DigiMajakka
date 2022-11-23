@@ -50,6 +50,7 @@ export const authHandler = async (
 
       next();
     } else {
+      throw new Error('No authorization header received');
     }
   } catch (error: unknown) {
     next(error);

@@ -229,6 +229,55 @@ class CognitoHelper {
       });
     });
   }
+
+  // Function to start password reset
+  // This will send email with confirmation code to user
+  async resetPassword(email: string) {
+    return new Promise((resolve, reject) => {
+      const cognitoUser = new CognitoUser({
+        Username: email,
+        Pool: userPool,
+      });
+
+      cognitoUser.forgotPassword({
+        onSuccess: function (result) {
+          console.log('call result: ' + result);
+          resolve(result);
+        },
+        onFailure: function (error) {
+          reject(error);
+        },
+      });
+    });
+  }
+
+  /**
+   * Completes password reset request
+   * @param {string} email users email
+   * @param {string} confirmationCode password reset confirmation code received via email
+   * @param {string} newPassword new password provided by user
+   * @returns promise
+   */
+  async confirmPassword(
+    email: string,
+    confirmationCode: string,
+    newPassword: string,
+  ) {
+    return new Promise((resolve, reject) => {
+      const cognitoUser = new CognitoUser({
+        Username: email,
+        Pool: userPool,
+      });
+      cognitoUser.confirmPassword(confirmationCode, newPassword, {
+        onFailure(error) {
+          reject(error);
+        },
+        onSuccess() {
+          resolve('Password reset success');
+        },
+      });
+    });
+  }
 }
 
 export default CognitoHelper;
