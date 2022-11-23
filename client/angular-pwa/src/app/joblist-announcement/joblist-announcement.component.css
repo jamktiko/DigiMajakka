@@ -50,3 +50,7 @@ h3 {
   font-size: 1.25em;
   font-weight: 200;
 }
+
+li {
+  list-style-type: none;
+}
