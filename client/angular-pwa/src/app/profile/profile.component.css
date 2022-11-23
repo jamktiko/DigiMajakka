@@ -1,9 +1,7 @@
 
 .container {
-  background-image: url(src\assets\img\profile_bg.png);
-  background-size: 20% fill;
-  background-repeat: no-repeat;
-  background-position: right;
+  
+  z-index: 200;
 }
 
 .listtext {
@@ -67,6 +65,11 @@
 }
 
 .upperContent {
+ /* background-image: url(src\assets\img\profile_bg.png);
+  background-size: cover 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+  overflow: visible; */
   max-width: 100%;
   background-color: var(--mediumblue);
   height: 425px;
@@ -83,6 +86,7 @@
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
   height: 63vh;
+  z-index: -2;
 }
 
 .lowerBox {
@@ -113,6 +117,7 @@
   z-index: 9;
   overflow: hidden;
   margin-left: 80px;
+  margin-top: 2em;
 }
 
 .photowide {
