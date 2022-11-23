@@ -1,8 +1,10 @@
+
 .container {
   background-image: url(src\assets\img\profile_bg.png);
-  background-size: 100% 100%;
+  background-size: 20% fill;
+  background-repeat: no-repeat;
+  background-position: right;
 }
-
 
 .listtext {
   margin: 0;
@@ -66,16 +68,17 @@
 
 .upperContent {
   max-width: 100%;
+  background-color: var(--mediumblue);
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   min-width: 1024px;
-  margin: 0 40px
+  padding: 0 40px 2em;
 }
 
 .lowerContent {
-  margin: 0 40px;
-  padding-bottom: 4em;
+  padding: 0 40px 4em;
+  background-color: var(--darkgray);
   max-width: 100%;
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
