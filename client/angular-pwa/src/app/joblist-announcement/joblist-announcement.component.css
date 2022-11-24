@@ -43,6 +43,7 @@
 
 .textArea {
   max-width: 709px;
+  min-width: 709px;
 }
 
 h3 {
