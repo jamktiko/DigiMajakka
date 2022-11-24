@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../login.service';
 import {StateManagementService} from '../state-management.service';
 import {LocalStorageService} from '../local-storage.service';
+import {JWTTokenService} from '../jwttoken.service';
+import {ThrowStmt} from '@angular/compiler';
 
 @Component({
 	selector: 'app-student-frontpage',
@@ -12,23 +14,25 @@ export class StudentFrontpageComponent implements OnInit {
 	constructor(
 		private loginService: LoginService,
 		private stateservice: StateManagementService,
-		private storageservice: LocalStorageService
+		private storageservice: LocalStorageService,
+		private jwtservice: JWTTokenService
 	) {}
 
 	// Declarations for logged-status and currently logged in user
-	logged = this.stateservice.loggedIn;
+	logged!: boolean;
 	loggedUser = this.loginService.loggedUser;
 
 	ngOnInit(): void {
-		this.getLoggedInStatus();
+		if (this.loginService.validateLoginStatus()) {
+			this.logged = true;
+		} else {
+			this.logged = false;
+		}
 	}
 
-	getLoggedInStatus() {
-		if (this.storageservice.get('loggedIn') === 'true') {
-			return true;
-		} else {
-			return false;
-		}
+	// Method that reloads the window, to get updated values after updates to profile
+	reloadPage(): void {
+		window.location.reload();
 	}
 
 	// Placeholder method to logout

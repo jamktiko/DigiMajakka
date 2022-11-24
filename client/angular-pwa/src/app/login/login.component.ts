@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginService} from '../login.service';
 import {JWTTokenService} from '../jwttoken.service';
 import {StateManagementService} from '../state-management.service';
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 	password: string = '';
 	tokens: any;
 
+	@Output() logged = new EventEmitter();
 	ngOnInit(): void {}
 
 	// Method that hides or displays the form
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
 				this.stateservice.loggedIn = true;
 				console.log(this.stateservice.loggedIn);
 				this.changeVisibility();
+				this.logged.emit();
 			});
 	}
 }
