@@ -24,10 +24,8 @@ export class JWTTokenService {
 	}
 
 	// Method to decode the JWT by using the jwt_decode library method
-	decodeToken() {
-		if (this.jwtToken) {
-			this.decodedToken = jwt_decode(this.jwtToken);
-		}
+	decodeToken(token: string) {
+		this.decodedToken = jwt_decode(token);
 	}
 
 	// Method that gets the decoded token
@@ -37,8 +35,8 @@ export class JWTTokenService {
 	}
 
 	// Method to get the username from the decoded token.
-	getUser() {
-		this.decodeToken();
+	getUser(token: string) {
+		this.decodeToken(token);
 		console.log(
 			'User ' + this.decodedToken
 				? String(this.decodedToken.username)
@@ -54,14 +52,14 @@ export class JWTTokenService {
 	// }
 
 	// Method to get the time of expiration for the token
-	getExpiryTime() {
-		this.decodeToken();
+	getExpiryTime(token: string) {
+		this.decodeToken(token);
 		return this.decodedToken ? this.decodedToken.exp : null;
 	}
 
 	// Method to check if the token has expired
-	isTokenExpired(): boolean {
-		const expiryTime: string | null = this.getExpiryTime();
+	isTokenExpired(token: string): boolean {
+		const expiryTime: string | null = this.getExpiryTime(token);
 		if (expiryTime) {
 			console.log(
 				'Is token expired: ' +

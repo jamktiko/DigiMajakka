@@ -25,7 +25,11 @@ export class AuthGuard implements CanActivate {
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot
 	): Observable<any> | Promise<any> | boolean {
-		if (this.storageservice.get('token')) {
+		let token = this.storageservice.get('token');
+		if (
+			this.storageservice.get('token') &&
+			!this.jwtservice.isTokenExpired(String(token))
+		) {
 			return true;
 		} else {
 			return false;

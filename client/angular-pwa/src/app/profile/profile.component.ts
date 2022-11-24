@@ -202,7 +202,7 @@ export class ProfileComponent implements OnInit {
 	}
 
 	changePhotoVisibility() {
-		this.editservice.toggleContactVisibilityPhoto();
+		this.editservice.togglePhotoVisibility();
 	}
 
 	get isPersonalEditVisible(): boolean {

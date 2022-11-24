@@ -15,6 +15,9 @@ export class StateManagementService {
 	attachmentEdit: boolean = false;
 	loginFormVisible: boolean = false;
 
+	// Variable to hold information about if user is logged in or not
+	loggedIn: boolean = false;
+
 	// Initializing subjects to allow for automatic updates of the values in other components
 	visibilityChange: Subject<boolean> = new Subject<boolean>();
 	visibilityChangePersonal: Subject<boolean> = new Subject<boolean>();
@@ -62,7 +65,7 @@ export class StateManagementService {
 		this.visibilityChangeAboutMe.next(!this.aboutMeEdit);
 	}
 
-	toggleContactVisibilityPhoto() {
+	togglePhotoVisibility() {
 		this.visibilityChangePhoto.next(!this.addPhotoEdit);
 	}
 
