@@ -38,15 +38,21 @@ const joblistingC = {
       // Create unique id for advert
       const advertid: string = uniqid();
 
-      const date = new Date();
+      // Create new date object
+      const currentDate = new Date();
 
-      const newDate = new Date(date.setMonth(date.getMonth() + 6));
+      // Create date object that is six months from current date
+      const newDate = new Date(
+        currentDate.setMonth(currentDate.getMonth() + 6),
+      );
 
       // Validate profile
       const valid = jobadvertValidation({
         advertid,
         ..._request.body,
+
         accepted: false,
+
         isvalid: true,
         validuntil: `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`,
       });
@@ -115,6 +121,7 @@ const joblistingC = {
       next(error);
     }
   },
+  // Function to update job advert
   async updateAdvert(
     _request: express.Request,
     response: express.Response,

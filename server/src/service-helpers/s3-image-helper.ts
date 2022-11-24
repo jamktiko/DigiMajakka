@@ -48,25 +48,24 @@ const imageHelper = {
    */
   async getImg(key: string) {
     try {
+      // Define download parameters
       const downloadParams = {
         Key: key,
-        Bucket: process.env.AWS_BUCKET ?? '',
+        Bucket: process.env.AWS_BUCKET || '',
       };
 
       // Check that object with specified key exists
       // Throws error if it does not
       await s3.headObject(downloadParams).promise();
 
-      // Else return readstream
-      return s3
-        .getObject(downloadParams, (error, data) => {
-          if (error) {
-            throw new Error('Image link is not correct');
-          }
+      // Use getObject method to feth image and return it as promise
+      const data = await s3.getObject(downloadParams).promise();
 
-          return data;
-        })
-        .createReadStream();
+      if (typeof data.Body !== 'undefined') {
+        return data.Body;
+      } else {
+        throw new Error('iosrjg');
+      }
     } catch (error: unknown) {
       return null;
     }

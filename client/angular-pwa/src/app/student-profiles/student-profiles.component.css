@@ -9,23 +9,29 @@
 }
 
 .upperContent {
-  max-width: 100%;
-  height: fit-content;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  min-width: 1024px;
-  margin: 0 40px
-}
-
-.lowerContent {
-  margin: 0 40px;
-  padding-top: 2em;
-  padding-bottom: 4em;
-  max-width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 50px 1fr;
-  max-height: fit-content;
-}
+  /* background-image: url(src\assets\img\profile_bg.png);
+   background-size: cover 100%;
+   background-repeat: no-repeat;
+   background-position: right;
+   overflow: visible; */
+   max-width: 100%;
+   background-color: var(--mediumblue);
+   height: 425px;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   min-width: 1024px;
+   padding: 0 40px;
+ }
+ 
+ .lowerContent {
+   padding: 0 40px 4em;
+   background-color: var(--darkgray);
+   max-width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 50px 1fr;
+   height: 63vh;
+   z-index: -2;
+ }
 
 .lowerBox {
   padding: 20px;
@@ -55,6 +61,7 @@
   z-index: 9;
   overflow: hidden;
   margin-left: 80px;
+  margin-top: 2em;
 }
 
 .photowide {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/comma-dangle */
 import type express from 'express';
@@ -10,10 +11,11 @@ const ErrorHandler = (
   error: CustomError,
   _request: express.Request,
   response: express.Response,
+  _next: express.NextFunction,
 ) => {
   console.log('Custom error handling');
   console.log('---------------------');
-  console.error(error.message);
+  console.error(error);
 
   const statusCode = Number(error.status) || 500;
 

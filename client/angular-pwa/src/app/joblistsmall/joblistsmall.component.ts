@@ -19,6 +19,8 @@ export class JoblistsmallComponent implements OnInit {
 
 	// Method to get all joblistings from the database by calling the getJobs()-method in jobservice
 	getJobs(): void {
-		this.jobService.getJobs().subscribe((jobs) => (this.jobs = jobs));
+		this.jobService.getJobs().subscribe((jobs) => {
+			this.jobs = jobs;
+		});
 	}
 }

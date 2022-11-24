@@ -43,7 +43,7 @@ const imageC = {
   ) {
     try {
       // Get profiles information from database
-      const profile: [Record<string, unknown>] = await querydb(
+      const profile = await querydb(
         'SELECT * FROM UserProfile WHERE userprofileid = ?;',
         [_request.params.id],
       );
@@ -58,11 +58,13 @@ const imageC = {
         profile[0].picturelink.length > 0
       ) {
         // Use imageHelpers method to cretae readstream for image
-        const readStream = await imageHelper.getImg(profile[0].picturelink);
+        const image = await imageHelper.getImg(profile[0].picturelink);
 
-        if (readStream !== null) {
-          // Pipe express to send image as response
-          readStream.pipe(response);
+        // Check that image is not null
+        // If it is it means that object with given key does not exists
+        if (image !== null) {
+          // Send iimage as a response
+          response.send(image);
         } else {
           // If object does not exsist throw new error
           throw new CustomError('Object with given key does not exist', 404);

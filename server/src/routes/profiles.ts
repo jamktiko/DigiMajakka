@@ -1,6 +1,8 @@
 import express from 'express';
 import profileC from '../controllers/profile-controller';
 import bodyChecker from '../middlewares/body-check';
+import {authHandler} from '../middlewares/auth';
+import userCheck from '../middlewares/user-check';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 
@@ -20,8 +22,9 @@ profileRouter.post('/', bodyChecker, profileC.createProfile);
 // /profiles/:id
 profileRouter.put(
   '/:id',
+  authHandler,
+  userCheck,
   bodyChecker,
-
   profileC.updateProfile,
 );
 
