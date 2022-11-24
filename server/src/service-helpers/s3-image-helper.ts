@@ -58,9 +58,9 @@ const imageHelper = {
       // Throws error if it does not
       await s3.headObject(downloadParams).promise();
 
-      // Else return readstream
-
+      // Use getObject method to feth image and return it as promise
       const data = await s3.getObject(downloadParams).promise();
+
       if (typeof data.Body !== 'undefined') {
         return data.Body;
       } else {
