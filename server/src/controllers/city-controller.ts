@@ -2,6 +2,7 @@ import type express from 'express';
 import queryDb from '../db-connection';
 
 const cityC = {
+  // Function to find city by name
   async findByName(
     _request: express.Request,
     response: express.Response,
