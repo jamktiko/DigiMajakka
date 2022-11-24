@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {JWTTokenService} from './jwttoken.service';
 import {LocalStorageService} from './local-storage.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -11,7 +12,6 @@ export class LoginService {
 	// WILL BE IMPLEMENTED LATER
 
 	// Declarations for placeholder functionality
-	logged: boolean = false;
 	loggedUser = '';
 
 	tokens: any;
@@ -35,14 +35,25 @@ export class LoginService {
 		);
 	}
 
+	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
+	async logout() {
+		this.localstorageservice.remove('token');
+		this.localstorageservice.remove('loggedIn');
+		this.loggedUser = '';
+	}
+
 	validateLoginStatus(): boolean {
-		if (
-			!this.jwtservice.isTokenExpired(
-				String(this.localstorageservice.get('token'))
-			) &&
-			this.localstorageservice.get('loggedIn') === 'true'
-		) {
-			return true;
+		if (this.localstorageservice.get('token')) {
+			if (
+				!this.jwtservice.isTokenExpired(
+					String(this.localstorageservice.get('token'))
+				) &&
+				this.localstorageservice.get('loggedIn') === 'true'
+			) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}
@@ -50,11 +61,5 @@ export class LoginService {
 
 	loginCallBack(): Promise<any> {
 		return Promise.resolve();
-	}
-
-	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
-	logout() {
-		this.logged = false;
-		this.loggedUser = '';
 	}
 }

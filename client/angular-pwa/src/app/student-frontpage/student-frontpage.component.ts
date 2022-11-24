@@ -36,10 +36,10 @@ export class StudentFrontpageComponent implements OnInit {
 	}
 
 	// Placeholder method to logout
-	logout() {
-		this.loginService.logout();
-		this.logged = this.loginService.logged;
+	async logout() {
+		await this.loginService.logout();
 		this.loggedUser = this.loginService.loggedUser;
+		this.reloadPage();
 	}
 
 	// Methods to toggle visibilities of profile edit-forms
