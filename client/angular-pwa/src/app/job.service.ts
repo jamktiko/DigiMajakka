@@ -9,7 +9,7 @@ export class JobService {
 
 	constructor(private http: HttpClient) {}
 
-	private jobsUrl = 'http://localhost:3000/joblistings/findAll';
+	private jobsUrl = 'http://localhost:3000/joblistings';
 
 	httpOptions = {
 		headers: new HttpHeaders({'Content-Type': 'application/json'}),

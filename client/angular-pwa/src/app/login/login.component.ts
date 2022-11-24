@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
 				console.log('In logincomponent: ' + this.jwtservice.jwtToken);
 				this.jwtservice.getDecodedToken();
 				this.localstorageservice.set('token', this.tokens.accessToken);
+				this.localstorageservice.set('loggedIn', 'true');
+				this.stateservice.loggedIn = true;
+				console.log(this.stateservice.loggedIn);
 				this.changeVisibility();
 			});
 	}

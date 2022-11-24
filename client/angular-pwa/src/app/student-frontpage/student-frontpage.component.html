@@ -1,6 +1,6 @@
-<body [ngClass]="{'bg-change': logged}">
+<body [ngClass]="{'bg-change': getLoggedInStatus()}">
 	<!-- Content for the top part of the page, when the user is not logged in -->
-	<div *ngIf="!logged" class="container">
+	<div *ngIf="!getLoggedInStatus()" class="container">
 		<div class="imgcontainer">
 			<!-- Placeholder image, replace later 576x403 -->
 			<img
@@ -40,7 +40,7 @@
 	</div>
 
 	<!-- Content on the top part of the page that the user sees when logged in -->
-	<div *ngIf="logged" class="containerlogged">
+	<div *ngIf="getLoggedInStatus()" class="containerlogged">
 		<div class="imgcontainerlogged">
 			<!-- Placeholder image, replace later 550x391 -->
 			<img
@@ -80,7 +80,7 @@
 	</div>
 
 	<!-- Box with link to guides, shown for users that are not logged in -->
-	<div *ngIf="!logged" class="glassbox">
+	<div *ngIf="!getLoggedInStatus()" class="glassbox">
 		<h2>Katso ohjeet ja aloita työnhaku</h2>
 		<p>
 			Täältä löydät ohjeita mm. työnhakupalvelun toiminnasta,
@@ -92,7 +92,7 @@
 	</div>
 
 	<!-- Content at the lower part of the page, shown for logged in users -->
-	<div *ngIf="logged" class="contentgrid">
+	<div *ngIf="getLoggedInStatus()" class="contentgrid">
 		<!-- Content on the left side of the lower part of the page -->
 		<div class="lcontent">
 			<h2>Avoimet työilmoitukset</h2>
@@ -141,7 +141,7 @@
 
 	<!-- If user is not logged in, display the login-button -->
 	<button
-		*ngIf="!logged"
+		*ngIf="!getLoggedInStatus()"
 		class="greenbutton loginfloat px14"
 		(click)="changeLoginVisibility()"
 	>
@@ -149,7 +149,7 @@
 	</button>
 
 	<!-- If user is logged in, display logout-button and the logged users name -->
-	<div class="loginfloat" *ngIf="logged">
+	<div class="loginfloat" *ngIf="getLoggedInStatus()">
 		<p>Hei {{ loggedUser }}!</p>
 		<button class="greenbutton px14" (click)="logout()">
 			Kirjaudu ulos
