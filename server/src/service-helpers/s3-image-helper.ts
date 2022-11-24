@@ -46,27 +46,26 @@ const imageHelper = {
    * @param {string} key S3 objects key that stores image
    * @return {internal.Readable} readstream to read data
    */
-  getImg(key: string) {
+  async getImg(key: string) {
     try {
+      // Define download parameters
       const downloadParams = {
         Key: key,
-        Bucket: process.env.AWS_BUCKET ?? '',
+        Bucket: process.env.AWS_BUCKET || '',
       };
 
       // Check that object with specified key exists
       // Throws error if it does not
-      s3.headObject(downloadParams).promise();
+      await s3.headObject(downloadParams).promise();
 
       // Else return readstream
-      return s3
-        .getObject(downloadParams, (error, data) => {
-          if (error) {
-            throw new Error('Image link is not correct');
-          }
 
-          return data;
-        })
-        .createReadStream();
+      const data = await s3.getObject(downloadParams).promise();
+      if (typeof data.Body !== 'undefined') {
+        return data.Body;
+      } else {
+        throw new Error('iosrjg');
+      }
     } catch (error: unknown) {
       return null;
     }
