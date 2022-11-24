@@ -22,6 +22,7 @@ const linkC = {
       next(error);
     }
   },
+  // Function to update links
   async updateLinks(
     _request: express.Request,
     response: express.Response,
