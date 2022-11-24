@@ -21,6 +21,7 @@ export class EditPersonalInfoComponent implements OnInit {
 
 	// All the cities will be in this array
 	cities: any;
+	updateError: boolean = false;
 
 	// loggedprofile and city come from the parent component (profile-component)
 	@Input() loggedProfile: any;
@@ -63,10 +64,16 @@ export class EditPersonalInfoComponent implements OnInit {
 				this.loggedProfile[0].userprofileid,
 				`{"firstname": "${formdata.firstname}", "familyname": "${formdata.lastname}", "studyfield": "${formdata.field}", "City_name": "${formdata.city}", "yearofstudy":"${formdata.year}"}`
 			)
-			.subscribe(() => {
-				console.log('Submitted');
-				this.changeVisibility();
-				this.updatedProfile.emit();
-			});
+			.subscribe(
+				() => {
+					console.log('Submitted');
+					this.changeVisibility();
+					this.updatedProfile.emit();
+				},
+				(Error) => {
+					console.log('ounou');
+					this.updateError = true;
+				}
+			);
 	}
 }

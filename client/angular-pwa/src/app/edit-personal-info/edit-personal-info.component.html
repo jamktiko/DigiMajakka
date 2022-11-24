@@ -177,5 +177,9 @@
 				Tallenna
 			</button>
 		</div>
+		<p *ngIf="updateError" class="error updateErr">
+			Virhe profiilin päivittämisessä. <br />
+			Päivitä sivu ja kokeile uudelleen.
+		</p>
 	</form>
 </div>

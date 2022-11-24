@@ -28,7 +28,9 @@ export class AuthGuard implements CanActivate {
 		let token = this.storageservice.get('token');
 		if (
 			this.storageservice.get('token') &&
-			!this.jwtservice.isTokenExpired(String(token))
+			!this.jwtservice.isTokenExpired(
+				String(this.storageservice.get('token'))
+			)
 		) {
 			return true;
 		} else {

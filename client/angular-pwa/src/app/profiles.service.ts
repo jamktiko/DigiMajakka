@@ -4,12 +4,17 @@ import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Profile} from './profile';
 import {LoginService} from './login.service';
+import {LocalStorageService} from './local-storage.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ProfilesService {
-	constructor(private http: HttpClient, private loginservice: LoginService) {}
+	constructor(
+		private http: HttpClient,
+		private loginservice: LoginService,
+		private storageservice: LocalStorageService
+	) {}
 
 	// Placeholder uservalue until authentication is implemented
 	loggedUser: any = 'orja@gmail.com';
@@ -19,10 +24,13 @@ export class ProfilesService {
 
 	// Options for http-requests
 	httpOptions = {
-		headers: new HttpHeaders({'Content-Type': 'application/json'}),
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json',
+			authorization: String(this.storageservice.get('token')),
+		}),
 	};
 
-	// Method to get all profiles form the database
+	// Method to get all profiles from the database
 	// CONTINUE THE ERRORHANDLING
 	getProfiles() {
 		return this.http.get(this.findAllUrl).pipe(

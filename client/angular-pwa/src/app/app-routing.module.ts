@@ -16,7 +16,11 @@ const routes: Routes = [
 	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
-	{path: 'student/joblist', component: JoblistComponent},
+	{
+		path: 'student/joblist',
+		component: JoblistComponent,
+		canActivate: [AuthGuard],
+	},
 ];
 
 @NgModule({

@@ -36,6 +36,12 @@ label {
   margin-top: 0.2em;
 }
 
+.updateErr {
+  font-size: 1.2em;
+  margin-top: 1em;
+  text-align: center;
+}
+
 .errorinput {
   border: 2px solid var(--error);
 }
