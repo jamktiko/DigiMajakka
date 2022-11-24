@@ -60,7 +60,10 @@ const imageC = {
         // Use imageHelpers method to cretae readstream for image
         const image = await imageHelper.getImg(profile[0].picturelink);
 
+        // Check that image is not null
+        // If it is it means that object with given key does not exists
         if (image !== null) {
+          // Send iimage as a response
           response.send(image);
         } else {
           // If object does not exsist throw new error
