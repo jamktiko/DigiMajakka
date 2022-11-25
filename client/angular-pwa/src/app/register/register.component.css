@@ -84,14 +84,11 @@ h2 {
   cursor: pointer;
 }
 
-
 .error {
   font-size: 0.9em;
   color: var(--error);
   margin-top: 0.2em;
 }
-
-
 
 .btnandtxt {
   display: flex;

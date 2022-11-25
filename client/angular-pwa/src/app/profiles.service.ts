@@ -19,7 +19,7 @@ export class ProfilesService {
 	// Placeholder uservalue until authentication is implemented
 	loggedUser: any = 'orja@gmail.com';
 	private findAllUrl = 'http://localhost:3000/profiles/';
-	private findByEmail = 'http://localhost:3000/profiles/email/';
+	private findByEmail = 'http://localhost:3000/profiles/user/email';
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
 
 	// Options for http-requests
@@ -50,7 +50,7 @@ export class ProfilesService {
 	// Method that requests the currently logged in users profile
 	getLoggedInProfile(): Observable<Profile[]> {
 		return this.http
-			.post(this.findByEmail, '{"test": "testi"}', this.httpOptions)
+			.get(this.findByEmail, this.httpOptions)
 			.pipe(map((response: any) => response));
 	}
 
