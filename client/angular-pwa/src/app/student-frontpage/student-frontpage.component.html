@@ -70,7 +70,7 @@
 				</div>
 
 				<div class="logoutthin">
-					<p class="label">Hei {{ loggedUser }}!</p>
+					<p class="label">Kirjaudu ulos</p>
 					<button class="greenbutton" (click)="logout()">
 						Kirjaudu ulos
 					</button>
@@ -150,7 +150,7 @@
 
 	<!-- If user is logged in, display logout-button and the logged users name -->
 	<div class="loginfloat" *ngIf="logged">
-		<p>Hei {{ loggedUser }}!</p>
+		<button class="greenbutton px14">Omat tiedot</button>
 		<button class="greenbutton px14" (click)="logout()">
 			Kirjaudu ulos
 		</button>
