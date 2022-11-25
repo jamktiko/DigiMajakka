@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
 	password: string = '';
 	tokens: any;
 
+	loginError: boolean = false;
+
 	@Output() logged = new EventEmitter();
 	ngOnInit(): void {}
 
@@ -31,9 +33,8 @@ export class LoginComponent implements OnInit {
 
 	onSubmit(formData: any) {
 		console.log(formData.email + formData.password);
-		this.loginservice
-			.login(formData.email, formData.password)
-			.subscribe((tokens) => {
+		this.loginservice.login(formData.email, formData.password).subscribe(
+			(tokens) => {
 				console.log('Both tokens' + tokens);
 				this.tokens = tokens;
 				this.jwtservice.setToken(this.tokens.accessToken);
@@ -45,6 +46,11 @@ export class LoginComponent implements OnInit {
 				console.log(this.stateservice.loggedIn);
 				this.changeVisibility();
 				this.logged.emit();
-			});
+			},
+			(Error) => {
+				console.log('Kirjautumiserrori');
+				this.loginError = true;
+			}
+		);
 	}
 }

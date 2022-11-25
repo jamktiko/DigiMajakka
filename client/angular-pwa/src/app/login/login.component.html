@@ -43,6 +43,10 @@
 
 			<p class="forgotpw">Unohdin salasanani</p>
 
+			<p *ngIf="loginError" class="error updateErr">
+				Virhe kirjautumisessa. Tarkista sähköpostiosoite ja salasana.
+			</p>
+
 			<div class="btnandtxt">
 				<button
 					[disabled]="!f.valid"

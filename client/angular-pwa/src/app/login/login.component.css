@@ -75,16 +75,19 @@ h2 {
   margin-top: 0;
 }
 
-p {
-  cursor: pointer;
-}
-
-p:hover {
+.forgotpw:hover, .register:hover {
   color: var(--mediumblue);
+  cursor: pointer;
 }
 
 .forgotpw {
   max-width: fit-content;
+}
+
+.error {
+  font-size: 0.9em;
+  color: var(--error);
+  margin-top: 0.2em;
 }
 
 .register {
