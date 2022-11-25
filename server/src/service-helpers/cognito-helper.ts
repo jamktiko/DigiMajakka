@@ -157,7 +157,6 @@ class CognitoHelper {
 
           resolve({
             accessToken: session.getAccessToken().getJwtToken(),
-            refreshToken: session.getRefreshToken().getToken(),
           });
         },
         onFailure(error) {
