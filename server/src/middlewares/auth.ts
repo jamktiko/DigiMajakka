@@ -36,6 +36,7 @@ export const authHandler = async (
     // Check that there is authorization header
     if (_request.headers.authorization) {
       const token = _request.headers.authorization;
+      console.log(token);
 
       const rawUser = await identityServiceProvider
         .getUser({AccessToken: token})
@@ -46,7 +47,6 @@ export const authHandler = async (
         email: rawUser.UserAttributes.find((attr) => attr.Name === 'email')
           ?.Value,
       };
-      console.log(_request.user);
 
       next();
     } else {

@@ -2,7 +2,6 @@ import express from 'express';
 import profileC from '../controllers/profile-controller';
 import bodyChecker from '../middlewares/body-check';
 import {authHandler} from '../middlewares/auth';
-import userCheck from '../middlewares/user-check';
 
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
@@ -33,6 +32,6 @@ profileRouter.delete(
 
 // Find profile by useraccount email
 // /profiles/email/:email
-profileRouter.get('/email', authHandler, profileC.findByEmail);
+profileRouter.get('/user/email', authHandler, profileC.findByEmail);
 
 export = profileRouter;
