@@ -33,6 +33,6 @@ profileRouter.delete(
 
 // Find profile by useraccount email
 // /profiles/email/:email
-profileRouter.post('/email/', authHandler, bodyChecker, profileC.findByEmail);
+profileRouter.get('/email', authHandler, profileC.findByEmail);
 
 export = profileRouter;
