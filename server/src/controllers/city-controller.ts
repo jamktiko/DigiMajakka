@@ -25,7 +25,7 @@ const cityC = {
     next: express.NextFunction,
   ) {
     try {
-      const data = await queryDb('SELECT * FROM Cit;', []);
+      const data = await queryDb('SELECT * FROM City;', []);
 
       console.log(data);
 
