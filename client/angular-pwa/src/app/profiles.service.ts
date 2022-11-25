@@ -49,9 +49,8 @@ export class ProfilesService {
 
 	// Method that requests the currently logged in users profile
 	getLoggedInProfile(): Observable<Profile[]> {
-		const body = {email: this.loggedUser};
 		return this.http
-			.post(this.findByEmail, JSON.stringify(body), this.httpOptions)
+			.post(this.findByEmail, '{"test": "testi"}', this.httpOptions)
 			.pipe(map((response: any) => response));
 	}
 
