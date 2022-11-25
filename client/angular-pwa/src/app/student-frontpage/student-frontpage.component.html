@@ -23,7 +23,12 @@
 				<div>
 					<p class="label">Uusi käyttäjä?</p>
 					<!-- ADD FUNCTIONALITY TO THIS BUTTON -->
-					<button class="graybutton">Rekisteröidy</button>
+					<button
+						class="graybutton"
+						(click)="changeRegisterVisibility()"
+					>
+						Rekisteröidy
+					</button>
 				</div>
 
 				<div>
@@ -158,3 +163,7 @@
 </body>
 
 <app-login *ngIf="isLoginVisible" (logged)="reloadPage()"></app-login>
+<app-register
+	*ngIf="isRegisterVisible"
+	(registered)="reloadPage()"
+></app-register>

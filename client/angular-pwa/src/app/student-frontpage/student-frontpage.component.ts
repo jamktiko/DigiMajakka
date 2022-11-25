@@ -50,4 +50,12 @@ export class StudentFrontpageComponent implements OnInit {
 	changeLoginVisibility() {
 		this.stateservice.toggleLoginFormVisibility();
 	}
+
+	get isRegisterVisible(): boolean {
+		return this.stateservice.registerFormVisible;
+	}
+
+	changeRegisterVisibility() {
+		this.stateservice.toggleRegisterFormVisibility();
+	}
 }

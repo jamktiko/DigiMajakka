@@ -14,6 +14,9 @@ export class LoginService {
 	// Declarations for placeholder functionality
 	loggedUser = '';
 
+	private loginUrl = 'http://localhost:3000/users/signin';
+	private registerUrl = 'http://localhost:3000/users/signup';
+
 	tokens: any;
 
 	constructor(
@@ -30,14 +33,20 @@ export class LoginService {
 	// Method that logs the user in. Returns the authorization token
 	login(email: string, password: string) {
 		return this.http.post(
-			'http://localhost:3000/users/signin',
+			this.loginUrl,
 			`{"email": "${email}", "password": "${password}"}`,
 			this.httpOptions
 		);
 	}
 
 	// Method to register a new user to the service
-	register() {}
+	register(email: string, password: string) {
+		return this.http.post(
+			this.registerUrl,
+			`{"email": "${email}", "password": "${password}"}`,
+			this.httpOptions
+		);
+	}
 
 	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
 	async logout() {

@@ -14,6 +14,7 @@ export class StateManagementService {
 	skillEdit: boolean = false;
 	attachmentEdit: boolean = false;
 	loginFormVisible: boolean = false;
+	registerFormVisible: boolean = false;
 
 	// Variable to hold information about if user is logged in or not
 	loggedIn: boolean = false;
@@ -26,6 +27,7 @@ export class StateManagementService {
 	visibilityChangeSkills: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeAttachments: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeLoginForm: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeRegisterForm: Subject<boolean> = new Subject<boolean>();
 
 	// Setting the values in the constructor
 	constructor() {
@@ -49,6 +51,9 @@ export class StateManagementService {
 		});
 		this.visibilityChangeLoginForm.subscribe((value) => {
 			this.loginFormVisible = value;
+		});
+		this.visibilityChangeRegisterForm.subscribe((value) => {
+			this.registerFormVisible = value;
 		});
 	}
 
@@ -79,5 +84,9 @@ export class StateManagementService {
 
 	toggleLoginFormVisibility() {
 		this.visibilityChangeLoginForm.next(!this.loginFormVisible);
+	}
+
+	toggleRegisterFormVisibility() {
+		this.visibilityChangeRegisterForm.next(!this.registerFormVisible);
 	}
 }

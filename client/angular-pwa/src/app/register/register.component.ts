@@ -29,11 +29,13 @@ export class RegisterComponent implements OnInit {
 
 	// Method that hides or displays the form
 	changeVisibility() {
-		this.stateservice.toggleLoginFormVisibility();
+		this.stateservice.toggleRegisterFormVisibility();
 	}
 
 	onSubmit(formData: any) {
 		console.log(formData.email + ' ' + formData.password);
-		this.loginservice.login(formData.email, formData.password).subscribe();
+		this.loginservice
+			.register(formData.email, formData.password)
+			.subscribe();
 	}
 }
