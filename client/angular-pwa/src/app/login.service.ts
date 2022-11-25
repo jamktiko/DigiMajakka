@@ -27,6 +27,7 @@ export class LoginService {
 		headers: new HttpHeaders({'Content-Type': 'application/json'}),
 	};
 
+	// Method that logs the user in. Returns the authorization token
 	login(email: string, password: string) {
 		return this.http.post(
 			'http://localhost:3000/users/signin',
@@ -34,6 +35,9 @@ export class LoginService {
 			this.httpOptions
 		);
 	}
+
+	// Method to register a new user to the service
+	register() {}
 
 	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
 	async logout() {
