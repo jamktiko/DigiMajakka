@@ -2,10 +2,9 @@
 .bg {
   background-image: url(src\assets\img\login_bg.png);
   background-size: 100% 100%;
-  max-width: fit-content;
+  width: 953px;
   border-radius: 20px;
   margin: 2% auto;
-  max-width: fit-content;
   border-radius: 20px;
   transform: translateZ(0);
 }
@@ -29,13 +28,35 @@
 
 .glassbox {
   padding: 35px 35px 63px 61px;
+  box-sizing: content-box;
+  width: 1024px;
+  
   
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 3em;
+  margin: 0;
+}
+
+.leftContent {
+  max-width: fit-content;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  /* JATKA TÄSTÄ */
+}
+
+
 
 form {
   display: flex;
   flex-direction: column;
-  width: 1024px;
 }
 
 label {
@@ -49,7 +70,7 @@ input {
   box-sizing: border-box;
   padding-left: 0.75em;
   height: 33px;
-  width: 545px;
+  width: 409px;
   border-radius: 5px;
   border: 0;
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
@@ -67,12 +88,17 @@ input:-webkit-autofill:active {
 }
 
 h2, label {
-  color: var(--mediumblue);
+  color: var(--darkblue);
 }
 
 h2 {
   font-size: 2.5em;
   margin-top: 0;
+}
+
+.help {
+  color: var(--darkblue);
+  max-width: 400px;
 }
 
 .login {
@@ -94,6 +120,6 @@ h2 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1em;
+  gap: 2em;
   margin: 2em 0 0.5em;
 }
