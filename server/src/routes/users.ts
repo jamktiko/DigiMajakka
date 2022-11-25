@@ -2,6 +2,7 @@ import express from 'express';
 import userC from '../controllers/user-controller';
 import bodyChecker from '../middlewares/body-check';
 import handleError from '../middlewares/school-change-error-handler';
+
 // eslint-disable-next-line new-cap
 const userRouter = express.Router();
 

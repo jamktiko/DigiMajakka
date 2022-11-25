@@ -3,6 +3,7 @@ import profileC from '../controllers/profile-controller';
 import bodyChecker from '../middlewares/body-check';
 import {authHandler} from '../middlewares/auth';
 import userCheck from '../middlewares/user-check';
+
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 
@@ -20,13 +21,7 @@ profileRouter.post('/', bodyChecker, profileC.createProfile);
 
 // Route to update profile
 // /profiles/:id
-profileRouter.put(
-  '/:id',
-  authHandler,
-  userCheck,
-  bodyChecker,
-  profileC.updateProfile,
-);
+profileRouter.put('/:id', bodyChecker, authHandler, profileC.updateProfile);
 
 // Deletes profile by id
 // /profiles/:id
@@ -38,6 +33,6 @@ profileRouter.delete(
 
 // Find profile by useraccount email
 // /profiles/email/:email
-profileRouter.post('/email/', bodyChecker, profileC.findByEmail);
+profileRouter.post('/email/', authHandler, bodyChecker, profileC.findByEmail);
 
 export = profileRouter;
