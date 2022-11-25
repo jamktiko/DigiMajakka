@@ -17,7 +17,7 @@ const convertBodyToQueryFormat = (
   }
 
   // Take values values from object to array
-  const values = Object.values(request.body);
+  const values: unknown[] = Object.values(request.body);
   // Take keys(columns) from object to array
   const keys = Object.keys(request.body);
 

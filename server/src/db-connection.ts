@@ -19,7 +19,7 @@ type ResultField = string | boolean | number;
 // Type for database query return object
 type DbResult = Record<string, ResultField>;
 
-const queryDb = async (query: string, parameters: any[]) =>
+const queryDb = async (query: string, parameters: unknown[]) =>
   new Promise<[DbResult]>((resolve, reject) => {
     // Get pool connection
     pool.getConnection(async (error, connection) => {
