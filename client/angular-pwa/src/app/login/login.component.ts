@@ -35,17 +35,14 @@ export class LoginComponent implements OnInit {
 		console.log(formData.email + formData.password);
 		this.loginservice.login(formData.email, formData.password).subscribe(
 			(tokens) => {
-				console.log('Both tokens' + tokens);
 				this.tokens = tokens;
 				this.jwtservice.setToken(this.tokens.accessToken);
-				console.log('In logincomponent: ' + this.jwtservice.jwtToken);
 				this.jwtservice.getDecodedToken();
 				this.localstorageservice.set('token', this.tokens.accessToken);
 				this.localstorageservice.set('loggedIn', 'true');
-				this.stateservice.loggedIn = true;
-				console.log(this.stateservice.loggedIn);
-				this.changeVisibility();
-				this.logged.emit();
+				this.localstorageservice.set('email', formData.email);
+				// this.changeVisibility();
+				// this.logged.emit();
 			},
 			(Error) => {
 				console.log('Kirjautumiserrori');
