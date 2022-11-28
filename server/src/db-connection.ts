@@ -1,9 +1,6 @@
 import process from 'node:process';
 // Import mysql library
 import mysql from 'mysql';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 // Create mysql connection pool
 const pool: mysql.Pool = mysql.createPool({
