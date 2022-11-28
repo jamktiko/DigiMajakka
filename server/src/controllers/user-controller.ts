@@ -16,7 +16,7 @@ const userC = {
       // Check that are required fields are provided in the body
       if (!('email' in _request.body) || !('password' in _request.body)) {
         throw new Error(
-          'Did not receive all required fields in body (email, admin, schoolname, password)',
+          'Did not receive all required fields in body (email, password)',
         );
       }
       // Separate email end after @ from email string
@@ -40,7 +40,7 @@ const userC = {
 
       // Try to insert account information to database and save answer to dbresult
       const dbresult = await queryDb(
-        'INSERT INTO UserAccount VALUES (?,?,?);',
+        'CALL createUser(?,?,?);',
         // Admin field is set to false a default because no admin functionality is implemented yet in the app
         [_request.body.email, false, schooldata[0].name],
       );
@@ -56,22 +56,23 @@ const userC = {
         console.log('Created user ' + String(result));
 
         response.status(200).json({
+          success: true,
           message: 'Created user ' + String(result),
         });
       } else {
         throw new Error('Error when creating user');
       }
     } catch (error: unknown) {
-      // If there were error when creating user find if users information was inserted into database and remove that user
-      const user = await queryDb('SELECT * FROM UserAccount WHERE email=?;', [
-        _request.body.email,
-      ]);
+      // // If there were error when creating user find if users information was inserted into database and remove that user
+      // const user = await queryDb('SELECT * FROM UserAccount WHERE email=?;', [
+      //   _request.body.email,
+      // ]);
 
-      if (user.length > 0) {
-        await queryDb('DELETE FROM UserAccount WHERE email=?;', [
-          _request.body.email,
-        ]);
-      }
+      // if (user.length > 0) {
+      //   await queryDb('DELETE FROM UserAccount WHERE email=?;', [
+      //     _request.body.email,
+      //   ]);
+      // }
       // Forward error to errorHandler middleware
       next(error);
     }

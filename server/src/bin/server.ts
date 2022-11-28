@@ -66,6 +66,7 @@ function onError(error: any) {
 function onListening() {
   const addr = server.address();
   const bind =
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     typeof addr === 'string' ? 'pipe ' + addr : 'port ' + String(addr!.port);
   console.log('Listening on ' + bind);
 }
