@@ -30,8 +30,6 @@
   padding: 35px 35px 63px 61px;
   box-sizing: content-box;
   width: 1024px;
-  
-  
 }
 
 .container {
@@ -47,12 +45,14 @@
 }
 
 .rightContent {
+  height: 230px;
+  padding-top: 1em;
+  padding-bottom: 0;
+  margin-bottom: 0;
   display: flex;
   flex-direction: column;
-  /* JATKA TÄSTÄ */
+  justify-content: space-between;
 }
-
-
 
 form {
   display: flex;
@@ -76,6 +76,10 @@ input {
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
   background-color: var(--lightblue);
   color: var(--mediumblue);
+}
+
+.errorinput {
+  border: 2px solid var(--error);
 }
 
 input:-webkit-autofill,
@@ -121,5 +125,5 @@ h2 {
   flex-direction: row;
   align-items: center;
   gap: 2em;
-  margin: 2em 0 0.5em;
+  margin: 2em 0 0;
 }

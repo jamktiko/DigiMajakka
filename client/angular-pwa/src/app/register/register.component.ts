@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
 	passwordconfirm: string = '';
 	tokens: any;
 
+	pwError: boolean = false;
 	registerError: boolean = false;
 
 	@Output() logged = new EventEmitter();
@@ -33,9 +34,27 @@ export class RegisterComponent implements OnInit {
 	}
 
 	onSubmit(formData: any) {
-		console.log(formData.email + ' ' + formData.password);
-		this.loginservice
-			.register(formData.email, formData.password)
-			.subscribe();
+		if (formData.password === formData.passwordconfirm) {
+			console.log(formData.email + ' ' + formData.password);
+			this.loginservice
+				.register(formData.email, formData.password)
+				.subscribe(
+					() => {
+						console.log('Registered');
+					},
+					(Error) => {
+						console.log('Oh no: ' + Error.message);
+						this.registerError = true;
+					}
+				);
+		} else {
+			console.log(
+				'Salasanat ei täsmää: ' +
+					formData.password +
+					'' +
+					formData.passwordconfirm
+			);
+			this.pwError = true;
+		}
 	}
 }

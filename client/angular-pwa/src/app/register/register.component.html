@@ -32,6 +32,7 @@
 						<label>
 							Salasana *
 							<input
+								[ngClass]="{errorinput: pwError}"
 								type="password"
 								required
 								minlength="2"
@@ -41,10 +42,15 @@
 							/>
 						</label>
 
+						<p class="error" *ngIf="pwError">
+							Salasanat eivät vastaa toisiaan
+						</p>
+
 						<!-- Input for password confirmation -->
 						<label>
 							Salasana uudelleen *
 							<input
+								[ngClass]="{errorinput: pwError}"
 								type="password"
 								required
 								minlength="2"
@@ -53,6 +59,9 @@
 								[(ngModel)]="passwordconfirm"
 							/>
 						</label>
+						<p class="error" *ngIf="pwError">
+							Salasanat eivät vastaa toisiaan
+						</p>
 					</form>
 				</div>
 				<div class="rightContent">
