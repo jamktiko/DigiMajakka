@@ -80,4 +80,20 @@ export class RegisterComponent implements OnInit {
 				}
 			);
 	}
+
+	resendCode() {
+		this.loginservice.resendConfirmationCode(this.emailToConfirm).subscribe(
+			() => {
+				console.log('New code sent');
+			},
+			(Error) => {
+				console.log('Virhe uuden koodin lähettämisessä');
+			}
+		);
+	}
+
+	showLogin() {
+		this.changeVisibility();
+		this.stateservice.toggleLoginFormVisibility();
+	}
 }

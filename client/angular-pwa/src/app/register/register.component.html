@@ -84,7 +84,7 @@
 								Rekisteröidy
 							</button>
 							<div>
-								<p class="login">
+								<p class="login" (click)="showLogin()">
 									Onko sinulla jo tili?<br />
 									Kirjaudu sisään tästä
 								</p>
@@ -128,7 +128,7 @@
 							Rekisteröidy
 						</button>
 						<div>
-							<p class="login">
+							<p class="login" (click)="resendCode()">
 								Etkö saanut koodia?<br />
 								Tarkista roskapostikansio tai tilaa uusi koodi
 								tästä.

@@ -17,6 +17,7 @@ export class LoginService {
 	private loginUrl = 'http://localhost:3000/users/signin';
 	private registerUrl = 'http://localhost:3000/users/signup';
 	private confirmUrl = 'http://localhost:3000/users/confirm';
+	private resendCodeUrl = 'http://localhost:3000/users/resend';
 
 	tokens: any;
 
@@ -53,6 +54,14 @@ export class LoginService {
 		return this.http.post(
 			this.confirmUrl,
 			`{"email": "${email}", "code": "${code}"}`,
+			this.httpOptions
+		);
+	}
+
+	resendConfirmationCode(email: string) {
+		return this.http.post(
+			this.resendCodeUrl,
+			`{"email": "${email}"}`,
 			this.httpOptions
 		);
 	}

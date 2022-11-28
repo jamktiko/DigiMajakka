@@ -49,4 +49,9 @@ export class LoginComponent implements OnInit {
 			}
 		);
 	}
+
+	showRegisterForm() {
+		this.changeVisibility();
+		this.stateservice.toggleRegisterFormVisibility();
+	}
 }
