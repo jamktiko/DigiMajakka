@@ -69,6 +69,16 @@
 						Syötä ammattikorkeakoulusi opiskelija- sähköpostiosoite,
 						johon lähetämme vahvistuskoodin.
 					</p>
+
+					<p class="linktext" (click)="confirmForm = !confirmForm">
+						Vahvista jo luotu tili tästä.
+					</p>
+
+					<label class="radiolabel">
+						<input type="radio" />
+						Hyväksyn <a class="linktext">käyttöehdot</a>
+					</label>
+
 					<div>
 						<p *ngIf="registerError" class="error">
 							Virhe rekisteröinnissä.
@@ -84,7 +94,7 @@
 								Rekisteröidy
 							</button>
 							<div>
-								<p class="login" (click)="showLogin()">
+								<p class="linktext" (click)="showLogin()">
 									Onko sinulla jo tili?<br />
 									Kirjaudu sisään tästä
 								</p>
@@ -98,7 +108,24 @@
 					Syötä 6-numeroinen koodi, jonka lähetimme sinulle
 					sähköpostiisi.
 				</p>
-				<form #confirmForm="ngForm" (click)="$event.stopPropagation()">
+				<form
+					#confirmForm="ngForm"
+					class="confirmForm"
+					(click)="$event.stopPropagation()"
+				>
+					<!-- Input for email -->
+					<label>
+						Sähköposti *
+						<input
+							type="text"
+							required
+							minlength="2"
+							maxlength="45"
+							name="email"
+							[(ngModel)]="email"
+						/>
+					</label>
+
 					<!-- Input for code -->
 					<label>
 						Koodi *
@@ -128,7 +155,7 @@
 							Rekisteröidy
 						</button>
 						<div>
-							<p class="login" (click)="resendCode()">
+							<p class="linktext" (click)="resendCode()">
 								Etkö saanut koodia?<br />
 								Tarkista roskapostikansio tai tilaa uusi koodi
 								tästä.
