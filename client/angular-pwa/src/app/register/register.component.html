@@ -75,7 +75,12 @@
 					</p>
 
 					<label class="radiolabel">
-						<input type="radio" />
+						<input
+							type="checkbox"
+							[checked]="acceptTerms"
+							(change)="acceptTerms = !acceptTerms"
+							required
+						/>
 						Hyväksyn <a class="linktext">käyttöehdot</a>
 					</label>
 
@@ -86,7 +91,7 @@
 
 						<div class="btnandtxt">
 							<button
-								[disabled]="!f.valid"
+								[disabled]="!f.valid || !acceptTerms"
 								(click)="onSubmit(f.value)"
 								type="submit"
 								class="greenbutton"
@@ -121,8 +126,8 @@
 							required
 							minlength="2"
 							maxlength="45"
-							name="email"
-							[(ngModel)]="email"
+							name="emailToConfirm"
+							[(ngModel)]="emailToConfirm"
 						/>
 					</label>
 
@@ -152,7 +157,7 @@
 							type="submit"
 							class="greenbutton"
 						>
-							Rekisteröidy
+							Vahvista käyttäjä
 						</button>
 						<div>
 							<p class="linktext" (click)="resendCode()">

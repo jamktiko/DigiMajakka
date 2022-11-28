@@ -54,4 +54,9 @@ export class LoginComponent implements OnInit {
 		this.changeVisibility();
 		this.stateservice.toggleRegisterFormVisibility();
 	}
+
+	showPwReset() {
+		this.changeVisibility();
+		this.stateservice.toggleResetPasswordVisibility();
+	}
 }

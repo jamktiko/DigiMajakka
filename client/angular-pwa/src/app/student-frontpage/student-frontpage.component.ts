@@ -58,4 +58,8 @@ export class StudentFrontpageComponent implements OnInit {
 	changeRegisterVisibility() {
 		this.stateservice.toggleRegisterFormVisibility();
 	}
+
+	get isPasswordResetVisible() {
+		return this.stateservice.resetPasswordVisible;
+	}
 }

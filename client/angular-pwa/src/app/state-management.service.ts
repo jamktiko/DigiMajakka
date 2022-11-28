@@ -15,8 +15,10 @@ export class StateManagementService {
 	attachmentEdit: boolean = false;
 	loginFormVisible: boolean = false;
 	registerFormVisible: boolean = false;
+	resetPasswordVisible: boolean = false;
 
 	// Variable to hold information about if user is logged in or not
+	// ADD FUNCTIONALITY TO USE THIS??
 	loggedIn: boolean = false;
 
 	// Initializing subjects to allow for automatic updates of the values in other components
@@ -28,6 +30,7 @@ export class StateManagementService {
 	visibilityChangeAttachments: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeLoginForm: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeRegisterForm: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeResetPassword: Subject<boolean> = new Subject<boolean>();
 
 	// Setting the values in the constructor
 	constructor() {
@@ -54,6 +57,9 @@ export class StateManagementService {
 		});
 		this.visibilityChangeRegisterForm.subscribe((value) => {
 			this.registerFormVisible = value;
+		});
+		this.visibilityChangeResetPassword.subscribe((value) => {
+			this.resetPasswordVisible = value;
 		});
 	}
 
@@ -88,5 +94,9 @@ export class StateManagementService {
 
 	toggleRegisterFormVisibility() {
 		this.visibilityChangeRegisterForm.next(!this.registerFormVisible);
+	}
+
+	toggleResetPasswordVisibility() {
+		this.visibilityChangeResetPassword.next(!this.resetPasswordVisible);
 	}
 }

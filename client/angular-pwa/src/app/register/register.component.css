@@ -67,7 +67,7 @@ label {
   font-size: 1.25em;
 }
 
-input[type="radio"] {
+input[type="checkbox"] {
   width: 2em;
   height: 2em;
   appearance: none;
@@ -80,7 +80,7 @@ input[type="radio"] {
   margin-right: 1em;
 }
 
-input[type="radio"]::before {
+input[type="checkbox"]::before {
   content: '';
   width: 1.25em;
   height: 1.25em;
@@ -89,7 +89,7 @@ input[type="radio"]::before {
   box-shadow: inset 1em 1em var(--green);
 }
 
-input[type="radio"]:checked::before {
+input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 

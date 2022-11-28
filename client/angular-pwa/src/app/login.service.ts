@@ -18,6 +18,7 @@ export class LoginService {
 	private registerUrl = 'http://localhost:3000/users/signup';
 	private confirmUrl = 'http://localhost:3000/users/confirm';
 	private resendCodeUrl = 'http://localhost:3000/users/resend';
+	private resetPwUrl = 'http://localhost:3000/users/reset/sendcode';
 
 	tokens: any;
 
@@ -61,6 +62,14 @@ export class LoginService {
 	resendConfirmationCode(email: string) {
 		return this.http.post(
 			this.resendCodeUrl,
+			`{"email": "${email}"}`,
+			this.httpOptions
+		);
+	}
+
+	resetPassword(email: string) {
+		return this.http.post(
+			this.resetPwUrl,
 			`{"email": "${email}"}`,
 			this.httpOptions
 		);

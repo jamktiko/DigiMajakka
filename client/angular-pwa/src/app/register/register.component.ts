@@ -12,9 +12,7 @@ import {StateManagementService} from '../state-management.service';
 export class RegisterComponent implements OnInit {
 	constructor(
 		private loginservice: LoginService,
-		private jwtservice: JWTTokenService,
-		private stateservice: StateManagementService,
-		private localstorageservice: LocalStorageService
+		private stateservice: StateManagementService
 	) {}
 
 	email: string = '';
@@ -29,6 +27,7 @@ export class RegisterComponent implements OnInit {
 	emailToConfirm: string = '';
 	code!: number;
 
+	acceptTerms: boolean = false;
 	confirmError: boolean = false;
 
 	@Output() logged = new EventEmitter();
