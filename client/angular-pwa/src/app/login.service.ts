@@ -16,6 +16,7 @@ export class LoginService {
 
 	private loginUrl = 'http://localhost:3000/users/signin';
 	private registerUrl = 'http://localhost:3000/users/signup';
+	private confirmUrl = 'http://localhost:3000/users/confirm';
 
 	tokens: any;
 
@@ -48,6 +49,14 @@ export class LoginService {
 		);
 	}
 
+	confirmAccount(email: string, code: number) {
+		return this.http.post(
+			this.confirmUrl,
+			`{"email": "${email}", "code": "${code}"}`,
+			this.httpOptions
+		);
+	}
+
 	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
 	async logout() {
 		this.localstorageservice.remove('token');
@@ -70,9 +79,5 @@ export class LoginService {
 		} else {
 			return false;
 		}
-	}
-
-	loginCallBack(): Promise<any> {
-		return Promise.resolve();
 	}
 }

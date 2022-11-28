@@ -103,6 +103,12 @@ h2 {
 .help {
   color: var(--darkblue);
   max-width: 400px;
+  font-size: 1.25em;
+}
+
+.confirmcontainer> .help {
+  max-width: 100%;
+  font-size: 1.5em;
 }
 
 .login {
@@ -126,4 +132,8 @@ h2 {
   align-items: center;
   gap: 2em;
   margin: 2em 0 0;
+}
+
+.confirmcontainer {
+  width: 953px;
 }

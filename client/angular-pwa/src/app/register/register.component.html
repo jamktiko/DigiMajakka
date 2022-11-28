@@ -12,7 +12,7 @@
 			</div>
 
 			<h2>Rekisteröidy palvelun käyttäjäksi</h2>
-			<div class="container">
+			<div class="container" *ngIf="!confirmForm">
 				<div class="leftContent">
 					<form #f="ngForm" (click)="$event.stopPropagation()">
 						<!-- Input for email -->
@@ -89,6 +89,50 @@
 									Kirjaudu sisään tästä
 								</p>
 							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="confirmcontainer" *ngIf="confirmForm">
+				<p class="help">
+					Syötä 6-numeroinen koodi, jonka lähetimme sinulle
+					sähköpostiisi.
+				</p>
+				<form #confirmForm="ngForm" (click)="$event.stopPropagation()">
+					<!-- Input for code -->
+					<label>
+						Koodi *
+						<input
+							type="text"
+							required
+							minlength="6"
+							maxlength="6"
+							name="code"
+							[(ngModel)]="code"
+						/>
+					</label>
+				</form>
+
+				<div>
+					<p *ngIf="confirmError" class="error">
+						Virhe käyttäjätilin vahvistamisessa.
+					</p>
+
+					<div class="btnandtxt">
+						<button
+							[disabled]="!confirmForm.valid"
+							(click)="confirmAccount(confirmForm.value)"
+							type="submit"
+							class="greenbutton"
+						>
+							Rekisteröidy
+						</button>
+						<div>
+							<p class="login">
+								Etkö saanut koodia?<br />
+								Tarkista roskapostikansio tai tilaa uusi koodi
+								tästä.
+							</p>
 						</div>
 					</div>
 				</div>

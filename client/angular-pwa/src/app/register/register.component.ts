@@ -25,6 +25,12 @@ export class RegisterComponent implements OnInit {
 	pwError: boolean = false;
 	registerError: boolean = false;
 
+	confirmForm: boolean = false;
+	emailToConfirm: string = '';
+	code!: number;
+
+	confirmError: boolean = false;
+
 	@Output() logged = new EventEmitter();
 	ngOnInit(): void {}
 
@@ -41,6 +47,8 @@ export class RegisterComponent implements OnInit {
 				.subscribe(
 					() => {
 						console.log('Registered');
+						this.emailToConfirm = formData.email;
+						this.confirmForm = true;
 					},
 					(Error) => {
 						console.log('Oh no: ' + Error.message);
@@ -56,5 +64,20 @@ export class RegisterComponent implements OnInit {
 			);
 			this.pwError = true;
 		}
+	}
+
+	confirmAccount(formData: any) {
+		this.loginservice
+			.confirmAccount(this.emailToConfirm, formData.code)
+			.subscribe(
+				() => {
+					console.log('Confirmed');
+					this.changeVisibility();
+				},
+				(Error) => {
+					this.confirmError = true;
+					console.log('Error in confirmation');
+				}
+			);
 	}
 }
