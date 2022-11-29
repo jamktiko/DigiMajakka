@@ -47,6 +47,18 @@ export class EmployerComponent implements OnInit {
 			)
 			.subscribe(() => {
 				console.log('Data has been moved!');
+				this.info = {
+					firstname: '',
+					lastname: '',
+					email: '',
+					phone: '',
+					employer: '',
+					companyname: '',
+					assignment: '',
+					description: '',
+					payment: '',
+					calendar: '',
+				};
 			});
 	}
 }
