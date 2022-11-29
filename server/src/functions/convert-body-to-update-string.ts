@@ -2,7 +2,7 @@
 import type express from 'express';
 
 /**
- *
+ * Converts request body to sql query and parameter values used in mysql.query() method
  * @param request express request
  * @return object which contains sql string and values in array used in mysql.query() function
  */

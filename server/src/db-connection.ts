@@ -1,9 +1,6 @@
 import process from 'node:process';
 // Import mysql library
 import mysql from 'mysql';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 // Create mysql connection pool
 const pool: mysql.Pool = mysql.createPool({
@@ -19,8 +16,8 @@ type ResultField = string | boolean | number;
 // Type for database query return object
 type DbResult = Record<string, ResultField>;
 
-const queryDb = async (query: string, parameters: unknown[]) =>
-  new Promise<[DbResult]>((resolve, reject) => {
+const queryDb = async (query: string, parameters: unknown[]) => {
+  return new Promise<[DbResult]>((resolve, reject) => {
     // Get pool connection
     pool.getConnection(async (error, connection) => {
       // If error release connection and throw error forward
@@ -52,5 +49,6 @@ const queryDb = async (query: string, parameters: unknown[]) =>
       });
     });
   });
+};
 
 export default queryDb;

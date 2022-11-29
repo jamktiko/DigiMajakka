@@ -12,8 +12,8 @@ const imageC = {
     next: express.NextFunction,
   ) {
     try {
-      // Check that file is not undefined
-      if (typeof _request.file !== 'undefined') {
+      // Check that file is not undefined or null
+      if (typeof _request.file !== 'undefined' && !_request.file !== null) {
         // Upload image to s3 bucket
         const result = await imageHelper.uploadImg(_request.file);
         // Upload s3 link into profile in database
@@ -28,7 +28,7 @@ const imageC = {
           message: 'Successfully saved image',
           location: result.Location,
         });
-      } else if (typeof _request.file === 'undefined') {
+      } else {
         throw new TypeError('no file received');
       }
     } catch (error: unknown) {
