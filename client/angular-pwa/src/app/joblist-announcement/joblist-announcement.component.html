@@ -9,12 +9,7 @@
 		</div>
 		<div class="textArea">
 			<h3>{{ job.jobtitle }}</h3>
-			<p>
-				Lyhyt kuvaus siitä mitä duuni on. Millaista ihmistä toivoisimme
-				löytävämme. Tarkemmat tiedot ja isompi ilmoitus, kun klikkaat
-				ilmoituksen auki. Lyhyt kuvaus siitä mitä duuni on. Millaista
-				ihmistä toivoisimme...
-			</p>
+			<p>{{ job.description | slice: 0:200 }}...</p>
 		</div>
 		<div class="buttonArea">
 			<button class="graybutton">Lue lisää</button>

@@ -24,7 +24,13 @@ import {JobAnnouncementComponent} from './job-announcement/job-announcement.comp
 import { StudentProfilesComponent } from './student-profiles/student-profiles.component';
 import { JoblistComponent } from './joblist/joblist.component';
 import { JoblistAnnouncementComponent } from './joblist-announcement/joblist-announcement.component';
+<<<<<<< HEAD
 import { DeleteJobAdvertComponent } from './delete-job-advert/delete-job-advert.component';
+=======
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+>>>>>>> b9650474a8aacac34c606258afc7014e1dfccefd
 
 @NgModule({
 	declarations: [
@@ -47,7 +53,13 @@ import { DeleteJobAdvertComponent } from './delete-job-advert/delete-job-advert.
   StudentProfilesComponent,
   JoblistComponent,
   JoblistAnnouncementComponent,
+<<<<<<< HEAD
   DeleteJobAdvertComponent,
+=======
+  LoginComponent,
+  RegisterComponent,
+  RecoverPasswordComponent,
+>>>>>>> b9650474a8aacac34c606258afc7014e1dfccefd
 	],
 	imports: [
 		BrowserModule,

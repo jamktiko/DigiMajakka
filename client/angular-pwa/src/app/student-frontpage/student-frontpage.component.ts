@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../login.service';
+import {StateManagementService} from '../state-management.service';
+import {LocalStorageService} from '../local-storage.service';
+import {JWTTokenService} from '../jwttoken.service';
+import {ThrowStmt} from '@angular/compiler';
 
 @Component({
 	selector: 'app-student-frontpage',
@@ -7,25 +11,55 @@ import {LoginService} from '../login.service';
 	styleUrls: ['./student-frontpage.component.css'],
 })
 export class StudentFrontpageComponent implements OnInit {
-	constructor(private loginService: LoginService) {}
+	constructor(
+		private loginService: LoginService,
+		private stateservice: StateManagementService,
+		private storageservice: LocalStorageService,
+		private jwtservice: JWTTokenService
+	) {}
 
 	// Declarations for logged-status and currently logged in user
-	logged = this.loginService.logged;
+	logged!: boolean;
 	loggedUser = this.loginService.loggedUser;
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		if (this.loginService.validateLoginStatus()) {
+			this.logged = true;
+		} else {
+			this.logged = false;
+		}
+	}
 
-	// Placeholder method to set logged in status
-	login() {
-		this.loginService.login('orja@gmail.com');
-		this.logged = this.loginService.logged;
-		this.loggedUser = this.loginService.loggedUser;
+	// Method that reloads the window, to get updated values after updates to profile
+	reloadPage(): void {
+		window.location.reload();
 	}
 
 	// Placeholder method to logout
-	logout() {
-		this.loginService.logout();
-		this.logged = this.loginService.logged;
+	async logout() {
+		await this.loginService.logout();
 		this.loggedUser = this.loginService.loggedUser;
+		this.reloadPage();
+	}
+
+	// Methods to toggle visibilities of profile edit-forms
+	get isLoginVisible(): boolean {
+		return this.stateservice.loginFormVisible;
+	}
+
+	changeLoginVisibility() {
+		this.stateservice.toggleLoginFormVisibility();
+	}
+
+	get isRegisterVisible(): boolean {
+		return this.stateservice.registerFormVisible;
+	}
+
+	changeRegisterVisibility() {
+		this.stateservice.toggleRegisterFormVisibility();
+	}
+
+	get isPasswordResetVisible() {
+		return this.stateservice.resetPasswordVisible;
 	}
 }

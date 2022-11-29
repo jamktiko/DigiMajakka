@@ -30,7 +30,6 @@
 					<h3>Yhteyshenkilön tiedot</h3>
 					<label>
 						Etunimi *
-						<br />
 						<input
 							type="text"
 							[ngClass]="{
@@ -102,7 +101,7 @@
 						/>
 					</label>
 
-					<!-- Errors for field-validation -->
+					<!-- Errors for email-validation -->
 					<p
 						class="error"
 						*ngIf="email.errors?.required && email.touched"
@@ -273,7 +272,8 @@
 						<p>
 							Täältä löydät ohjeita mm. työnhakupalvelu
 							toiminnasta,
-							<br />
+						</p>
+						<p>
 							kevytyrittäjyydestä ja vastauksia usein kysyttyihin
 							kysymyksiin.
 						</p>
@@ -282,10 +282,8 @@
 					<h2>Selaa opiskelijoita</h2>
 					<app-profilecarousel></app-profilecarousel>
 					<div class="spaceBetween big"></div>
-					<h3>
-						Katso kaikki profiilit ja etsi työntekijöitä <br />
-						esimerkiksi taitojen perusteella
-					</h3>
+					<h3>Katso kaikki profiilit ja etsi työntekijöitä</h3>
+					<h3>esimerkiksi taitojen perusteella</h3>
 					<div class="spaceBetween"></div>
 					<button class="bluebutton">Etsi työntekijä</button>
 				</div>

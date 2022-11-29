@@ -65,6 +65,6 @@ export class AddPhotoComponent implements OnInit {
 	ngOnInit(): void {}
 
 	changeVisibility() {
-		this.stateservice.toggleContactVisibilityPhoto();
+		this.stateservice.togglePhotoVisibility();
 	}
 }

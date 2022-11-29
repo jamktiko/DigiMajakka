@@ -7,14 +7,20 @@
 			<div class="upperBox middle"><h1>Työpaikat</h1></div>
 			<div class="upperBox right">
 				<div class="boxTop">
-					<h3>
-						Löydä itsellesi työ selaamalla työilmoituksia tai
-						etsimällä <br />
-						tietynlaista työtä hakusanojen avulla. <br />
-						Voit hakea työtä kätevästi suoraan työilmoitussivulta ja
-						<br />
-						profiilisi lähetetään automaattisesti työnantajalle.
-					</h3>
+					<div class="boxTop text">
+						<h3>
+							Löydä itsellesi työ selaamalla työilmoituksia tai
+							etsimällä
+						</h3>
+						<h3>tietynlaista työtä hakusanojen avulla.</h3>
+						<h3>
+							Voit hakea työtä kätevästi suoraan
+							työilmoitussivulta ja
+						</h3>
+						<h3>
+							profiilisi lähetetään automaattisesti työnantajalle.
+						</h3>
+					</div>
 				</div>
 				<div class="boxBot">
 					<form
@@ -23,7 +29,6 @@
 						(ngSubmit)="onSubmit(f.value)"
 					>
 						<label>
-							<br />
 							<input
 								type="text"
 								name="engine"
@@ -41,3 +46,4 @@
 		</div>
 	</div>
 </body>
+<app-job-announcement></app-job-announcement>

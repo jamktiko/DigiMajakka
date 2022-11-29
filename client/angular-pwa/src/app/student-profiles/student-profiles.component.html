@@ -55,9 +55,10 @@
 				Näytä yhteystiedot
 			</button>
 			<div *ngIf="showContactInfo">
-				<p>Sähköposti: <br />{{ profile[0].email }}</p>
+				<p>Sähköposti:</p>
+				<p>{{ profile[0].email }}</p>
+				<p>Puhelinnumero:</p>
 				<p>
-					Puhelinnumero: <br />
 					{{ profile[0].phonenumber }}
 				</p>
 			</div>

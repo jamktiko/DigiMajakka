@@ -4,25 +4,33 @@ import {Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {Profile} from './profile';
 import {LoginService} from './login.service';
+import {LocalStorageService} from './local-storage.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ProfilesService {
-	constructor(private http: HttpClient, private loginservice: LoginService) {}
+	constructor(
+		private http: HttpClient,
+		private loginservice: LoginService,
+		private storageservice: LocalStorageService
+	) {}
 
 	// Placeholder uservalue until authentication is implemented
 	loggedUser: any = 'orja@gmail.com';
 	private findAllUrl = 'http://localhost:3000/profiles/';
-	private findByEmail = 'http://localhost:3000/profiles/email/';
+	private findByEmail = 'http://localhost:3000/profiles/user/email';
 	private findProfileSkills = 'http://localhost:3000/profiles/skills';
 
 	// Options for http-requests
 	httpOptions = {
-		headers: new HttpHeaders({'Content-Type': 'application/json'}),
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json',
+			authorization: String(this.storageservice.get('token')),
+		}),
 	};
 
-	// Method to get all profiles form the database
+	// Method to get all profiles from the database
 	// CONTINUE THE ERRORHANDLING
 	getProfiles() {
 		return this.http.get(this.findAllUrl).pipe(
@@ -41,9 +49,8 @@ export class ProfilesService {
 
 	// Method that requests the currently logged in users profile
 	getLoggedInProfile(): Observable<Profile[]> {
-		const body = {email: this.loggedUser};
 		return this.http
-			.post(this.findByEmail, JSON.stringify(body), this.httpOptions)
+			.get(this.findByEmail, this.httpOptions)
 			.pipe(map((response: any) => response));
 	}
 
@@ -61,7 +68,6 @@ export class ProfilesService {
 	}
 
 	// Method to insert a new skill to a profile and in to the database
-	// NOT IMPLEMENTED YET, BODY MISSING ETC
 	insertNewProfileSkills(profileid: number, skills: any) {
 		return this.http.post(
 			`http://localhost:3000/skills/profile/${profileid}/`,

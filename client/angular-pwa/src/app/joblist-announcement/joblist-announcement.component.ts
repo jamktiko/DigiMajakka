@@ -8,6 +8,8 @@ import {JobService} from '../job.service';
 })
 export class JoblistAnnouncementComponent implements OnInit {
 	annoucements: any = [];
+	jobDescription: string = this.annoucements.description;
+
 	constructor(private jobService: JobService) {}
 
 	ngOnInit(): void {

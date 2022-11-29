@@ -6,17 +6,30 @@ import {StudentFrontpageComponent} from './student-frontpage/student-frontpage.c
 import {EmployerComponent} from './employer/employer.component';
 import {StudentProfilesComponent} from './student-profiles/student-profiles.component';
 import {JoblistComponent} from './joblist/joblist.component';
+<<<<<<< HEAD
 import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.component';
+=======
+import {LoginComponent} from './login/login.component';
+import {AuthGuard} from './auth.guard';
+>>>>>>> b9650474a8aacac34c606258afc7014e1dfccefd
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
 	// which component to show in that url.
 	{path: 'student', component: StudentFrontpageComponent},
-	{path: 'profile', component: ProfileComponent},
+	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
+<<<<<<< HEAD
 	{path: 'student/joblist', component: JoblistComponent},
 	{path: 'jobadvert/delete/:id', component: DeleteJobAdvertComponent},
+=======
+	{
+		path: 'student/joblist',
+		component: JoblistComponent,
+		canActivate: [AuthGuard],
+	},
+>>>>>>> b9650474a8aacac34c606258afc7014e1dfccefd
 ];
 
 @NgModule({
