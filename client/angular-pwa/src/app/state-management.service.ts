@@ -13,6 +13,13 @@ export class StateManagementService {
 	addPhotoEdit: boolean = false;
 	skillEdit: boolean = false;
 	attachmentEdit: boolean = false;
+	loginFormVisible: boolean = false;
+	registerFormVisible: boolean = false;
+	resetPasswordVisible: boolean = false;
+
+	// Variable to hold information about if user is logged in or not
+	// ADD FUNCTIONALITY TO USE THIS??
+	loggedIn: boolean = false;
 
 	// Initializing subjects to allow for automatic updates of the values in other components
 	visibilityChange: Subject<boolean> = new Subject<boolean>();
@@ -21,6 +28,9 @@ export class StateManagementService {
 	visibilityChangePhoto: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeSkills: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeAttachments: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeLoginForm: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeRegisterForm: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeResetPassword: Subject<boolean> = new Subject<boolean>();
 
 	// Setting the values in the constructor
 	constructor() {
@@ -42,6 +52,15 @@ export class StateManagementService {
 		this.visibilityChangeAttachments.subscribe((value) => {
 			this.attachmentEdit = value;
 		});
+		this.visibilityChangeLoginForm.subscribe((value) => {
+			this.loginFormVisible = value;
+		});
+		this.visibilityChangeRegisterForm.subscribe((value) => {
+			this.registerFormVisible = value;
+		});
+		this.visibilityChangeResetPassword.subscribe((value) => {
+			this.resetPasswordVisible = value;
+		});
 	}
 
 	// Methods that toggle the visibility-values
@@ -57,7 +76,7 @@ export class StateManagementService {
 		this.visibilityChangeAboutMe.next(!this.aboutMeEdit);
 	}
 
-	toggleContactVisibilityPhoto() {
+	togglePhotoVisibility() {
 		this.visibilityChangePhoto.next(!this.addPhotoEdit);
 	}
 
@@ -67,5 +86,17 @@ export class StateManagementService {
 
 	toggleAttachmentVisibility() {
 		this.visibilityChangeAttachments.next(!this.attachmentEdit);
+	}
+
+	toggleLoginFormVisibility() {
+		this.visibilityChangeLoginForm.next(!this.loginFormVisible);
+	}
+
+	toggleRegisterFormVisibility() {
+		this.visibilityChangeRegisterForm.next(!this.registerFormVisible);
+	}
+
+	toggleResetPasswordVisibility() {
+		this.visibilityChangeResetPassword.next(!this.resetPasswordVisible);
 	}
 }

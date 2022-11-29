@@ -4,6 +4,7 @@ import * as validation from '../validators/validation';
 import type Profile from '../models/profile-model';
 import CustomError from '../custom-error';
 import convertBodyToQueryFormat from '../functions/convert-body-to-update-string';
+import type {IAuthenticatedRequest} from '../middlewares/auth';
 // Return all profiles from database
 const profileController = {
   async findAll(
@@ -74,6 +75,7 @@ const profileController = {
           accountemail: String(user.email),
           schoolname: String(user.schoolname),
         };
+
         // Insert placeholder data to users profile
         const insertedProfile = await queryDb(
           'INSERT INTO UserProfile (firstname, familyname, phonenumber, aboutme, lookingfor, studyfield, yearofstudy, public, picturelink, email, City_name, UserAccount_email, UserAccount_School_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -191,14 +193,24 @@ const profileController = {
 
   // Find profile by user email
   async findByEmail(
-    _request: express.Request,
+    _request: IAuthenticatedRequest,
     response: express.Response,
     next: express.NextFunction,
   ) {
     try {
+      console.log('dsfkojdnmfdkmfdsk');
+
+      let userEmail = '';
+      if (_request.user && typeof _request.user.email !== 'undefined') {
+        userEmail = _request.user.email;
+      } else {
+        throw new Error('Token not valid or email not received in token');
+      }
+      console.log(_request.user);
+
       const data = await queryDb(
         'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
-        [_request.body.email],
+        [userEmail],
       );
       console.log(data);
 

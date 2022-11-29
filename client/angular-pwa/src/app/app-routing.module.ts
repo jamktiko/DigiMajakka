@@ -6,15 +6,21 @@ import {StudentFrontpageComponent} from './student-frontpage/student-frontpage.c
 import {EmployerComponent} from './employer/employer.component';
 import {StudentProfilesComponent} from './student-profiles/student-profiles.component';
 import {JoblistComponent} from './joblist/joblist.component';
+import {LoginComponent} from './login/login.component';
+import {AuthGuard} from './auth.guard';
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
 	// which component to show in that url.
 	{path: 'student', component: StudentFrontpageComponent},
-	{path: 'profile', component: ProfileComponent},
+	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
-	{path: 'student/joblist', component: JoblistComponent},
+	{
+		path: 'student/joblist',
+		component: JoblistComponent,
+		canActivate: [AuthGuard],
+	},
 ];
 
 @NgModule({

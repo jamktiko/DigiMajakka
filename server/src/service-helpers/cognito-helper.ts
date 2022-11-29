@@ -13,10 +13,6 @@ import {
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
 
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
 // Create new instance of cognitoUserPool to connect to cognito
 const userPool = new CognitoUserPool({
   UserPoolId: process.env.USER_POOL_ID ?? '',
@@ -157,7 +153,6 @@ class CognitoHelper {
 
           resolve({
             accessToken: session.getAccessToken().getJwtToken(),
-            refreshToken: session.getRefreshToken().getToken(),
           });
         },
         onFailure(error) {

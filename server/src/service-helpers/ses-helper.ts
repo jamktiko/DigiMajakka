@@ -7,10 +7,6 @@ import SES from 'aws-sdk/clients/ses';
 
 // Import mysql library
 
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
 class SesHelper {
   public ses: SES;
 

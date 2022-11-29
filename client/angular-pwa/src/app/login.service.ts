@@ -1,4 +1,8 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JWTTokenService} from './jwttoken.service';
+import {LocalStorageService} from './local-storage.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -8,21 +12,90 @@ export class LoginService {
 	// WILL BE IMPLEMENTED LATER
 
 	// Declarations for placeholder functionality
-	logged!: boolean;
 	loggedUser = '';
 
-	constructor() {}
+	private loginUrl = 'http://localhost:3000/users/signin';
+	private registerUrl = 'http://localhost:3000/users/signup';
+	private confirmUrl = 'http://localhost:3000/users/confirm';
+	private resendCodeUrl = 'http://localhost:3000/users/resend';
+	private resetPwUrl = 'http://localhost:3000/users/reset/sendcode';
 
-	// Placeholder method that takes username as an argument and sets it as currently logged in user.
-	// Also set logged-status as true.
-	login(username: string) {
-		this.logged = true;
-		this.loggedUser = username;
+	tokens: any;
+
+	constructor(
+		private http: HttpClient,
+		private jwtservice: JWTTokenService,
+		private localstorageservice: LocalStorageService
+	) {}
+
+	// Options for http-requests
+	httpOptions = {
+		headers: new HttpHeaders({'Content-Type': 'application/json'}),
+	};
+
+	// Method that logs the user in. Returns the authorization token
+	login(email: string, password: string) {
+		return this.http.post(
+			this.loginUrl,
+			`{"email": "${email}", "password": "${password}"}`,
+			this.httpOptions
+		);
+	}
+
+	// Method to register a new user to the service
+	register(email: string, password: string) {
+		return this.http.post(
+			this.registerUrl,
+			`{"email": "${email}", "password": "${password}"}`,
+			this.httpOptions
+		);
+	}
+
+	confirmAccount(email: string, code: number) {
+		return this.http.post(
+			this.confirmUrl,
+			`{"email": "${email}", "code": "${code}"}`,
+			this.httpOptions
+		);
+	}
+
+	resendConfirmationCode(email: string) {
+		return this.http.post(
+			this.resendCodeUrl,
+			`{"email": "${email}"}`,
+			this.httpOptions
+		);
+	}
+
+	resetPassword(email: string) {
+		return this.http.post(
+			this.resetPwUrl,
+			`{"email": "${email}"}`,
+			this.httpOptions
+		);
 	}
 
 	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
-	logout() {
-		this.logged = false;
+	async logout() {
+		this.localstorageservice.remove('token');
+		this.localstorageservice.remove('loggedIn');
 		this.loggedUser = '';
+	}
+
+	validateLoginStatus(): boolean {
+		if (this.localstorageservice.get('token')) {
+			if (
+				!this.jwtservice.isTokenExpired(
+					String(this.localstorageservice.get('token'))
+				) &&
+				this.localstorageservice.get('loggedIn') === 'true'
+			) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }

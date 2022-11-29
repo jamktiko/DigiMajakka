@@ -1,12 +1,12 @@
 import express from 'express';
 
 import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import ErrorHandler from './middlewares/error-handler';
 
 // Import routes from routes folder
+import indexRouter from './routes/index';
 import profileRouter from './routes/profiles';
 import joblistingRouter from './routes/joblisting';
 import userRouter from './routes/users';
@@ -16,7 +16,6 @@ import schoolRouter from './routes/schools';
 import linkRouter from './routes/links';
 import skillRouter from './routes/skills';
 // Usage of environment varaibles
-dotenv.config();
 
 // Create express app
 const app = express();
@@ -29,6 +28,7 @@ app.use(cors());
 app.use(morgan('common'));
 
 // Take routes in use
+app.use('/', indexRouter);
 app.use('/profiles', profileRouter);
 app.use('/joblistings', joblistingRouter);
 app.use('/users', userRouter);

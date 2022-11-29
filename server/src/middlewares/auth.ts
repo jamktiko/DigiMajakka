@@ -37,17 +37,17 @@ export const authHandler = async (
     if (_request.headers.authorization) {
       const token = _request.headers.authorization;
 
+      // Get raw user data from token
       const rawUser = await identityServiceProvider
         .getUser({AccessToken: token})
         .promise();
-      // Place token adn email to requests user attribute
+      // Place cognito id and email to requests user attribute
       _request.user = {
         id: rawUser.UserAttributes.find((attr) => attr.Name === 'sub')?.Value,
         email: rawUser.UserAttributes.find((attr) => attr.Name === 'email')
           ?.Value,
       };
-      console.log(_request.user);
-
+      // Move to next middleware
       next();
     } else {
       throw new Error('No authorization header received');

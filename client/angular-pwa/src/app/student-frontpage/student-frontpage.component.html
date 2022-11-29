@@ -23,12 +23,20 @@
 				<div>
 					<p class="label">Uusi käyttäjä?</p>
 					<!-- ADD FUNCTIONALITY TO THIS BUTTON -->
-					<button class="graybutton">Rekisteröidy</button>
+					<button
+						class="graybutton"
+						(click)="changeRegisterVisibility()"
+					>
+						Rekisteröidy
+					</button>
 				</div>
 
 				<div>
 					<p class="label">Onko sinulla jo tili?</p>
-					<button class="greenbutton" (click)="login()">
+					<button
+						class="greenbutton"
+						(click)="changeLoginVisibility()"
+					>
 						Kirjaudu sisään
 					</button>
 				</div>
@@ -67,7 +75,7 @@
 				</div>
 
 				<div class="logoutthin">
-					<p class="label">Hei {{ loggedUser }}!</p>
+					<p class="label">Kirjaudu ulos</p>
 					<button class="greenbutton" (click)="logout()">
 						Kirjaudu ulos
 					</button>
@@ -140,16 +148,23 @@
 	<button
 		*ngIf="!logged"
 		class="greenbutton loginfloat px14"
-		(click)="login()"
+		(click)="changeLoginVisibility()"
 	>
 		Kirjaudu sisään
 	</button>
 
 	<!-- If user is logged in, display logout-button and the logged users name -->
 	<div class="loginfloat" *ngIf="logged">
-		<p>Hei {{ loggedUser }}!</p>
+		<button class="greenbutton px14">Omat tiedot</button>
 		<button class="greenbutton px14" (click)="logout()">
 			Kirjaudu ulos
 		</button>
 	</div>
 </body>
+
+<app-login *ngIf="isLoginVisible" (logged)="reloadPage()"></app-login>
+<app-register
+	*ngIf="isRegisterVisible"
+	(registered)="reloadPage()"
+></app-register>
+<app-recover-password *ngIf="isPasswordResetVisible"></app-recover-password>

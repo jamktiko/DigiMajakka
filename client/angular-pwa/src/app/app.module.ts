@@ -24,6 +24,9 @@ import {JobAnnouncementComponent} from './job-announcement/job-announcement.comp
 import { StudentProfilesComponent } from './student-profiles/student-profiles.component';
 import { JoblistComponent } from './joblist/joblist.component';
 import { JoblistAnnouncementComponent } from './joblist-announcement/joblist-announcement.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 
 @NgModule({
 	declarations: [
@@ -46,6 +49,9 @@ import { JoblistAnnouncementComponent } from './joblist-announcement/joblist-ann
   StudentProfilesComponent,
   JoblistComponent,
   JoblistAnnouncementComponent,
+  LoginComponent,
+  RegisterComponent,
+  RecoverPasswordComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -2,7 +2,7 @@
 import type express from 'express';
 
 /**
- *
+ * Converts request body to sql query and parameter values used in mysql.query() method
  * @param request express request
  * @return object which contains sql string and values in array used in mysql.query() function
  */
@@ -17,7 +17,7 @@ const convertBodyToQueryFormat = (
   }
 
   // Take values values from object to array
-  const values = Object.values(request.body);
+  const values: unknown[] = Object.values(request.body);
   // Take keys(columns) from object to array
   const keys = Object.keys(request.body);
 
