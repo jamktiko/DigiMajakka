@@ -6,6 +6,7 @@ import {StudentFrontpageComponent} from './student-frontpage/student-frontpage.c
 import {EmployerComponent} from './employer/employer.component';
 import {StudentProfilesComponent} from './student-profiles/student-profiles.component';
 import {JoblistComponent} from './joblist/joblist.component';
+import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.component';
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
@@ -15,6 +16,7 @@ const routes: Routes = [
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
 	{path: 'student/joblist', component: JoblistComponent},
+	{path: 'jobadvert/delete/:id', component: DeleteJobAdvertComponent},
 ];
 
 @NgModule({

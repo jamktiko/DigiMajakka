@@ -1,4 +1,6 @@
 import process from 'node:process';
+import dotenv from 'dotenv';
+dotenv.config();
 // Import mysql library
 import mysql from 'mysql';
 

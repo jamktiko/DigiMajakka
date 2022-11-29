@@ -16,7 +16,8 @@ import schoolRouter from './routes/schools';
 import linkRouter from './routes/links';
 import skillRouter from './routes/skills';
 // Usage of environment varaibles
-
+import dotenv from 'dotenv';
+dotenv.config();
 // Create express app
 const app = express();
 

@@ -28,4 +28,11 @@ export class JobService {
 			this.httpOptions
 		);
 	}
+
+	deleteJobAnnoucement(advertid: any) {
+		return this.http.delete(
+			`http://localhost:3000/joblistings/${advertid}`,
+			this.httpOptions
+		);
+	}
 }

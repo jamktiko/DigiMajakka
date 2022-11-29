@@ -5,6 +5,8 @@
 import process from 'node:process';
 import fs from 'node:fs';
 import S3 from 'aws-sdk/clients/s3';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Create new instance of s3
 const s3 = new S3({

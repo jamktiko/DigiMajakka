@@ -45,7 +45,12 @@ const joblistingC = {
       const newDate = new Date(
         currentDate.setMonth(currentDate.getMonth() + 6),
       );
-
+      const userDate = new Date(_request.body.validuntil);
+      // Check that adverts expiration date is less than half year from now
+      const validuntil =
+        userDate > newDate
+          ? `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`
+          : _request.body.validuntil;
       // Validate profile
       const valid = jobadvertValidation({
         advertid,
@@ -54,7 +59,7 @@ const joblistingC = {
         accepted: false,
 
         isvalid: true,
-        validuntil: `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`,
+        validuntil,
       });
 
       // If profile is not valid throw error
@@ -63,18 +68,35 @@ const joblistingC = {
           'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
           Object.values(valid.jobadvert),
         );
-        const emailtext =
-          'Kiitos ilmoituksesta. Pääset muokkaamaan ilmoitustasi linkin kautta ' +
-          'www.digimajakka.fi/muokkaa/' +
-          advertid +
-          'Voit poistaa ilmotuksesi linkistä ' +
-          'www.digimajakka.fi/poista/' +
-          advertid;
+        const emailtext = 'Kiitos ilmoituksestasi. ';
+        const htmlText = `<head>
+        </head>
+        <body>
+            <h2>Ilmoituksen tunniste: ${advertid}<h2>
+            <h2>${_request.body.jobtitle}</h2>
+            <p>Etunimi: ${_request.body.firstname}</p>
+            <p>Sukunimi: ${_request.body.familyname}</p>
+            <p>Yritys: ${
+              _request.body.company === null ? '' : _request.body.company
+            }</p>
+            <p> Alkamispäivä: ${
+              _request.body.startdate === null ? '' : _request.body.startdate
+            }</p>
+            <p>Sähköposti: ${_request.body.email}</p>
+            <p>Puhelinnumero: ${_request.body.phonenumber}</p>
+            <p>Kuvaus: ${_request.body.description}</p>
+            <p>Palkka: ${_request.body.salary}</p>
+            <p>Paikkakunta: ${_request.body.city}</p>
+            <p>Ilmoitus voimassa: ${validuntil}</p>
+            <h3>Poista ilmoitus painamalla alla olevaa linkkiä</h3>
+            <a href="http://localhost:4200/jobadvert/delete/${advertid}">Poista ilmoitus</a>
+        </body>`;
         // Send email to job adverts creator with link to update advert
         await ses.sendEmail(
           'digimajakka.asiakaspalvelu@gmail.com',
           emailtext,
-          'testi',
+          'Kiitos luomastasi ilmoituksesta',
+          htmlText,
         );
 
         console.log(insert);

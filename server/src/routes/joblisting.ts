@@ -14,7 +14,7 @@ joblistingRouter.post('/', joblistingC.createAdvert);
 
 // Delete job advert
 // /jobadverts/
-joblistingRouter.delete('/', joblistingC.deleteAdvert);
+joblistingRouter.delete('/:advertid', joblistingC.deleteAdvert);
 
 // Update job advert
 // /jobadverts/:advertid
