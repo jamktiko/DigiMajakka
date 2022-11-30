@@ -13,7 +13,9 @@
 
 			<h2>Rekisteröidy palvelun käyttäjäksi</h2>
 			<div class="container" *ngIf="!confirmForm">
+				<!-- Content on the left side of the component -->
 				<div class="leftContent">
+					<!-- Form for registration -->
 					<form #f="ngForm" (click)="$event.stopPropagation()">
 						<!-- Input for email -->
 						<label>
@@ -42,6 +44,7 @@
 							/>
 						</label>
 
+						<!-- Error that is displayed if the user did not confirm password correctly -->
 						<p class="error" *ngIf="pwError">
 							Salasanat eivät vastaa toisiaan
 						</p>
@@ -59,21 +62,26 @@
 								[(ngModel)]="passwordconfirm"
 							/>
 						</label>
+
+						<!-- Error that is displayed if the user did not confirm password correctly -->
 						<p class="error" *ngIf="pwError">
 							Salasanat eivät vastaa toisiaan
 						</p>
 					</form>
 				</div>
+				<!-- Content on the right side of the component -->
 				<div class="rightContent">
 					<p class="help">
 						Syötä ammattikorkeakoulusi opiskelija- sähköpostiosoite,
 						johon lähetämme vahvistuskoodin.
 					</p>
 
+					<!-- Link to open account confirmation-form -->
 					<p class="linktext" (click)="confirmForm = !confirmForm">
 						Vahvista jo luotu tili tästä.
 					</p>
 
+					<!-- Checkbox-input to accept terms of service -->
 					<label class="radiolabel">
 						<input
 							type="checkbox"
@@ -85,11 +93,13 @@
 					</label>
 
 					<div>
+						<!-- Error that is displayed if there was an error during registration -->
 						<p *ngIf="registerError" class="error">
 							Virhe rekisteröinnissä.
 						</p>
 
 						<div class="btnandtxt">
+							<!-- Button to submit the registration form -->
 							<button
 								[disabled]="!f.valid || !acceptTerms"
 								(click)="onSubmit(f.value)"
@@ -99,6 +109,7 @@
 								Rekisteröidy
 							</button>
 							<div>
+								<!-- Link to open login-form -->
 								<p class="linktext" (click)="showLogin()">
 									Onko sinulla jo tili?<br />
 									Kirjaudu sisään tästä
@@ -108,6 +119,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- Form used to confirm a new account -->
 			<div class="confirmcontainer" *ngIf="confirmForm">
 				<p class="help">
 					Syötä 6-numeroinen koodi, jonka lähetimme sinulle
@@ -146,11 +158,13 @@
 				</form>
 
 				<div>
+					<!-- Error shown if there was an error while confirming the account -->
 					<p *ngIf="confirmError" class="error">
 						Virhe käyttäjätilin vahvistamisessa.
 					</p>
 
 					<div class="btnandtxt">
+						<!-- Button to confirm the account with given information -->
 						<button
 							[disabled]="!confirmForm.valid"
 							(click)="confirmAccount(confirmForm.value)"
@@ -160,6 +174,7 @@
 							Vahvista käyttäjä
 						</button>
 						<div>
+							<!-- Link to send a new confirmation code for the user -->
 							<p class="linktext" (click)="resendCode()">
 								Etkö saanut koodia?<br />
 								Tarkista roskapostikansio tai tilaa uusi koodi
@@ -173,6 +188,8 @@
 	</div>
 </div>
 
+<!-- Notification popup-component. Receives info about which notification to show,
+	 and which email the confirmation code should be sent to -->
 <app-user-notification
 	*ngIf="accountAlreadyExists"
 	(confirm)="showConfirmForm()"
