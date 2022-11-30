@@ -21,16 +21,13 @@ import {UnSavedChangesComponent} from './un-saved-changes/un-saved-changes.compo
 import {EmployerComponent} from './employer/employer.component';
 import {EditSkillsComponent} from './edit-skills/edit-skills.component';
 import {JobAnnouncementComponent} from './job-announcement/job-announcement.component';
-import { StudentProfilesComponent } from './student-profiles/student-profiles.component';
-import { JoblistComponent } from './joblist/joblist.component';
-import { JoblistAnnouncementComponent } from './joblist-announcement/joblist-announcement.component';
-<<<<<<< HEAD
-import { DeleteJobAdvertComponent } from './delete-job-advert/delete-job-advert.component';
-=======
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { RecoverPasswordComponent } from './recover-password/recover-password.component';
->>>>>>> b9650474a8aacac34c606258afc7014e1dfccefd
+import {StudentProfilesComponent} from './student-profiles/student-profiles.component';
+import {JoblistComponent} from './joblist/joblist.component';
+import {JoblistAnnouncementComponent} from './joblist-announcement/joblist-announcement.component';
+import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {RecoverPasswordComponent} from './recover-password/recover-password.component';
 
 @NgModule({
 	declarations: [
@@ -50,16 +47,13 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
 		EmployerComponent,
 		EditSkillsComponent,
 		JobAnnouncementComponent,
-  StudentProfilesComponent,
-  JoblistComponent,
-  JoblistAnnouncementComponent,
-<<<<<<< HEAD
-  DeleteJobAdvertComponent,
-=======
-  LoginComponent,
-  RegisterComponent,
-  RecoverPasswordComponent,
->>>>>>> b9650474a8aacac34c606258afc7014e1dfccefd
+		StudentProfilesComponent,
+		JoblistComponent,
+		JoblistAnnouncementComponent,
+		DeleteJobAdvertComponent,
+		LoginComponent,
+		RegisterComponent,
+		RecoverPasswordComponent,
 	],
 	imports: [
 		BrowserModule,
