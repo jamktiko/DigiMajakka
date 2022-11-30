@@ -27,7 +27,11 @@ export class LoginComponent implements OnInit {
 	accountNotConfirmed: boolean = false;
 
 	@Output() logged = new EventEmitter();
+	@Output() confirm = new EventEmitter();
+
 	ngOnInit(): void {}
+
+	ngOnDestroy() {}
 
 	// Method that hides or displays the form
 	changeVisibility() {
@@ -53,18 +57,30 @@ export class LoginComponent implements OnInit {
 				this.loginError = true;
 				if (Error.error.message === 'Incorrect username or password.') {
 					this.accountNotFound = true;
-					this.showUserNotification();
+					this.toggleUserNotification();
 				} else if (Error.error.message === 'User is not confirmed.') {
 					this.accountNotConfirmed = true;
-					this.showUserNotification();
+					this.toggleUserNotification();
 				}
 			}
 		);
 	}
 
+	resetUserNotification() {
+		this.accountNotConfirmed = false;
+		this.accountNotFound = false;
+	}
+
 	showRegisterForm() {
+		this.toggleUserNotification();
 		this.changeVisibility();
 		this.stateservice.toggleRegisterFormVisibility();
+	}
+
+	showConfirmForm() {
+		this.confirm.emit();
+		this.toggleUserNotification();
+		this.changeVisibility();
 	}
 
 	showPwReset() {
@@ -76,7 +92,7 @@ export class LoginComponent implements OnInit {
 		return this.stateservice.userNotificationVisible;
 	}
 
-	showUserNotification() {
+	toggleUserNotification() {
 		this.stateservice.toggleUserNotificationVisibility();
 	}
 }

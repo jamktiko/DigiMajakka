@@ -70,6 +70,9 @@
 <app-user-notification
 	*ngIf="isUserNotificationVisible"
 	(register)="showRegisterForm()"
+	(confirm)="showConfirmForm()"
+	(resetUserNotification)="resetUserNotification()"
 	[accountNotFound]="accountNotFound"
 	[accountNotConfirmed]="accountNotConfirmed"
+	[email]="email"
 ></app-user-notification>

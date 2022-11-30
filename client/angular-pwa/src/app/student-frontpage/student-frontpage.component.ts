@@ -22,6 +22,8 @@ export class StudentFrontpageComponent implements OnInit {
 	logged!: boolean;
 	loggedUser = this.loginService.loggedUser;
 
+	confirmForm: boolean = false;
+
 	ngOnInit(): void {
 		if (this.loginService.validateLoginStatus()) {
 			this.logged = true;
@@ -40,6 +42,15 @@ export class StudentFrontpageComponent implements OnInit {
 		await this.loginService.logout();
 		this.loggedUser = this.loginService.loggedUser;
 		this.reloadPage();
+	}
+
+	resetConfirmForm() {
+		this.confirmForm = false;
+	}
+
+	showConfirmForm() {
+		this.confirmForm = true;
+		this.changeRegisterVisibility();
 	}
 
 	// Methods to toggle visibilities of profile edit-forms

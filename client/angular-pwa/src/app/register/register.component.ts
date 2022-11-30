@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {JWTTokenService} from '../jwttoken.service';
 import {LocalStorageService} from '../local-storage.service';
 import {LoginService} from '../login.service';
@@ -23,19 +23,24 @@ export class RegisterComponent implements OnInit {
 	pwError: boolean = false;
 	registerError: boolean = false;
 
-	confirmForm: boolean = false;
 	emailToConfirm: string = '';
 	code!: number;
 
 	acceptTerms: boolean = false;
 	confirmError: boolean = false;
 
+	accountAlreadyExists: boolean = false;
+
+	@Input() confirmForm!: boolean;
 	@Output() logged = new EventEmitter();
+	@Output() resetConfirmForm = new EventEmitter();
+
 	ngOnInit(): void {}
 
 	// Method that hides or displays the form
 	changeVisibility() {
 		this.stateservice.toggleRegisterFormVisibility();
+		this.resetConfirmForm.emit();
 	}
 
 	onSubmit(formData: any) {
@@ -50,8 +55,19 @@ export class RegisterComponent implements OnInit {
 						this.confirmForm = true;
 					},
 					(Error) => {
-						console.log('Oh no: ' + Error.message);
-						this.registerError = true;
+						if (
+							Error.error.message ===
+							'An account with the given email already exists.'
+						) {
+							console.log(Error.error.message);
+							this.accountAlreadyExists = true;
+							this.toggleUserNotification();
+						} else {
+							console.log(
+								'Error in registration: ' + Error.error.message
+							);
+							this.registerError = true;
+						}
 					}
 				);
 		} else {
@@ -91,8 +107,26 @@ export class RegisterComponent implements OnInit {
 		);
 	}
 
+	resetUserNotification() {
+		this.accountAlreadyExists = false;
+	}
+
 	showLogin() {
 		this.changeVisibility();
 		this.stateservice.toggleLoginFormVisibility();
+	}
+
+	showConfirmForm() {
+		this.toggleUserNotification();
+		this.accountAlreadyExists = false;
+		this.confirmForm = true;
+	}
+
+	get isUserNotificationVisible(): boolean {
+		return this.stateservice.userNotificationVisible;
+	}
+
+	toggleUserNotification() {
+		this.stateservice.toggleUserNotificationVisibility();
 	}
 }

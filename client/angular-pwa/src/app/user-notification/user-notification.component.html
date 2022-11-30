@@ -1,9 +1,9 @@
 <!-- Notification that is shown if an useraccount with given email doesn't exist -->
 
 <!-- Backdrop styles come from global styles. Backdrop causes the form to be displayed on top of other components -->
-<div class="backdrop">
+<div class="backdrop" (click)="changeVisibility()">
 	<!-- Container for the notification -->
-	<div class="container">
+	<div class="container" (click)="$event.stopPropagation()">
 		<!-- Button to close the edit-window -->
 		<div class="close-button" (click)="changeVisibility()">
 			<img
@@ -38,6 +38,22 @@
 			<div class="buttoncontainer">
 				<!-- ADD FUNCTIONALITY TO THESE BUTTONS -->
 				<button class="greenbutton" (click)="confirm.emit()">
+					Syötä koodi
+				</button>
+				<button class="graybutton" (click)="resendCode()">
+					Tilaa uusi koodi
+				</button>
+			</div>
+		</div>
+
+		<div *ngIf="accountAlreadyExists">
+			<h2>Tällä sähköposti-osoitteella on jo tehty tili.</h2>
+			<p>Sähköpostia ei ole vielä vahvistettu koodilla.</p>
+			<p class="bold">Koodi on lähetetty sähköpostiisi.</p>
+			<!-- Buttons inside a div to position them correctly -->
+			<div class="buttoncontainer">
+				<!-- ADD FUNCTIONALITY TO THESE BUTTONS -->
+				<button class="greenbutton" (click)="showConfirmForm()">
 					Syötä koodi
 				</button>
 				<button class="graybutton" (click)="resendCode()">
