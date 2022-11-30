@@ -15,11 +15,18 @@ export class RecoverPasswordComponent implements OnInit {
 		private stateservice: StateManagementService
 	) {}
 
-	// Variable to hold form-value
+	// Variables to hold form-values
 	email: string = '';
+	code!: number;
+	password: string = '';
+	confirmPw: string = '';
 
 	// Variable to see if there was an error while sending the resetcode
+	sendError: boolean = false;
 	resetError: boolean = false;
+
+	// Variables to check which form to display
+	codeForm: boolean = false;
 
 	ngOnInit(): void {}
 
@@ -29,18 +36,22 @@ export class RecoverPasswordComponent implements OnInit {
 			() => {
 				// Functionality when the sending is successful
 				console.log('Sent');
+				this.codeForm = true;
 			},
 			(Error) => {
 				// Error handling
 				console.log('Error sending the reset code.');
-				this.resetError = true;
+				this.sendError = true;
 			}
 		);
 	}
 
+	resetPassword(formData: any) {}
+
 	// Method that hides or displays the form
 	changeVisibility() {
-		this.stateservice.toggleLoginFormVisibility();
+		this.codeForm = false;
+		this.stateservice.toggleResetPasswordVisibility();
 	}
 
 	// Method to redirect to registration form
