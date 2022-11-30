@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
 
 	loginError: boolean = false;
 
+	accountNotFound: boolean = false;
+	accountNotConfirmed: boolean = false;
+
 	@Output() logged = new EventEmitter();
 	ngOnInit(): void {}
 
@@ -44,8 +47,17 @@ export class LoginComponent implements OnInit {
 				this.logged.emit();
 			},
 			(Error) => {
-				console.log('Kirjautumiserrori');
+				console.log(
+					'Kirjautumiserrori' + JSON.stringify(Error.error.message)
+				);
 				this.loginError = true;
+				if (Error.error.message === 'Incorrect username or password.') {
+					this.accountNotFound = true;
+					this.showUserNotification();
+				} else if (Error.error.message === 'User is not confirmed.') {
+					this.accountNotConfirmed = true;
+					this.showUserNotification();
+				}
 			}
 		);
 	}
@@ -58,5 +70,13 @@ export class LoginComponent implements OnInit {
 	showPwReset() {
 		this.changeVisibility();
 		this.stateservice.toggleResetPasswordVisibility();
+	}
+
+	get isUserNotificationVisible(): boolean {
+		return this.stateservice.userNotificationVisible;
+	}
+
+	showUserNotification() {
+		this.stateservice.toggleUserNotificationVisibility();
 	}
 }

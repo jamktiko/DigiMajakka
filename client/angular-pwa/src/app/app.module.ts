@@ -28,6 +28,7 @@ import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.co
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {RecoverPasswordComponent} from './recover-password/recover-password.component';
+import { UserNotificationComponent } from './user-notification/user-notification.component';
 
 @NgModule({
 	declarations: [
@@ -54,6 +55,7 @@ import {RecoverPasswordComponent} from './recover-password/recover-password.comp
 		LoginComponent,
 		RegisterComponent,
 		RecoverPasswordComponent,
+  UserNotificationComponent,
 	],
 	imports: [
 		BrowserModule,

@@ -1,0 +1,60 @@
+
+
+h2 {
+  font-size: 1.5em;
+  color: var(--darkblue);
+  font-weight: 600;
+  max-width: 90%;
+  margin: 0.5em auto 1em;
+  text-align: center;
+}
+
+p {
+  font-size: 1.25em;
+  color: var(--darkblue);
+  text-align: center;
+  max-width: 80%;
+  margin: 0 auto 1em;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.container {
+  background-color: var(--lightblue);
+  margin: 5% auto;
+  max-width: 435px;
+  padding: 35px;
+  border-radius: 20px;
+  transform: translateZ(0);
+  z-index: 16;
+}
+
+.greenbutton {
+  font-weight: 600;
+}
+
+.buttoncontainer {
+  width: 435px;
+  display: flex;
+  justify-content: center;
+  gap: 1.5em;
+}
+
+.close-button {
+  cursor: pointer;
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  background-color: var(--darkgray);
+  color: var(--lightblue);
+  padding: 0.53125em 0.53125em 0 0.53125em;
+  border-radius: 6px;
+}
+
+.close-icon {
+  color: var(--lightblue);
+  height: 35px;
+  width: 35px;
+}
