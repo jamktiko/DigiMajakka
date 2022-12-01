@@ -16,7 +16,7 @@ skillRouter.get('/', skillC.findAll);
 // Gets all skills of a profile
 // /skills/profile/:id
 skillRouter.get(
-  '/profile/:id',
+  '/profile/:profileid',
 
   skillC.findProfileSkills,
 );

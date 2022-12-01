@@ -12,7 +12,7 @@ profileRouter.get('/', profileC.findAll);
 
 // Route to get profile with specific id
 // /profiles/:id
-profileRouter.get('/:id', profileC.findById);
+profileRouter.get('/:profileid', profileC.findById);
 
 // Route to post profile
 // /profiles/
@@ -21,7 +21,7 @@ profileRouter.post('/', authHandler, bodyChecker, profileC.createProfile);
 // Route to update profile
 // /profiles/:id
 profileRouter.put(
-  '/:id',
+  '/:profileid',
   bodyChecker,
   authHandler,
   userCheck,
@@ -30,7 +30,12 @@ profileRouter.put(
 
 // Deletes profile by id
 // /profiles/:id
-profileRouter.delete('/:id', authHandler, userCheck, profileC.deleteProfile);
+profileRouter.delete(
+  '/:profileid',
+  authHandler,
+  userCheck,
+  profileC.deleteProfile,
+);
 
 // Find profile by useraccount email
 // /profiles/email/:email

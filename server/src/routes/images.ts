@@ -10,12 +10,12 @@ const imageRouter = express.Router();
 const upload = multer({dest: './src/images'});
 
 imageRouter.post(
-  '/:id',
+  '/:profileid',
   authHandler,
   userCheck,
   upload.single('image'),
   imageC.uploadImage,
 );
-imageRouter.get('/:id', imageC.getImage);
+imageRouter.get('/:profileid', imageC.getImage);
 
 export default imageRouter;

@@ -31,7 +31,7 @@ const profileController = {
     try {
       const data = await queryDb(
         'SELECT * FROM UserProfile WHERE userprofileid = ?',
-        [_request.params.id],
+        [_request.params.profileid],
       );
       console.log(data);
 
@@ -141,7 +141,10 @@ const profileController = {
         'userprofileid',
       );
 
-      const update = await queryDb(sql, [...sqlparams, _request.params.id]);
+      const update = await queryDb(sql, [
+        ...sqlparams,
+        _request.params.profileid,
+      ]);
 
       console.log('Update succesfull');
 
@@ -166,17 +169,17 @@ const profileController = {
       // Delete skills of a profile
       const delSkills = await queryDb(
         'DELETE FROM UserProfileSkills WHERE UserProfile_userprofileid = ?;',
-        [_request.params.id],
+        [_request.params.profileid],
       );
       // Delete links of a profile
       const delLinks = await queryDb(
         'DELETE FROM Links WHERE UserProfile_userprofileid = ?;',
-        [_request.params.id],
+        [_request.params.profileid],
       );
       // delete profile
       const delProfile = await queryDb(
         'DELETE FROM UserProfile WHERE userprofileid = ?',
-        [_request.params.id],
+        [_request.params.profileid],
       );
 
       console.log(delProfile);
