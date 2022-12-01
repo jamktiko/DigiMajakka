@@ -21,16 +21,17 @@ export class RecoverPasswordComponent implements OnInit {
 	password: string = '';
 	passwordConfirm: string = '';
 
-	// Variable to see if there was an error while sending the resetcode
+	// Variables to see if there were errors while resetting password
 	sendError: boolean = false;
 	resetError: boolean = false;
 	pwError: boolean = false;
+	accountNotFound: boolean = false;
 
 	// Variable that is changed to true when a new code is sent. Used to display a message to the user
 	newCodeSent: boolean = false;
 
 	// Variables to check which form to display
-	codeForm: boolean = true;
+	codeForm: boolean = false;
 
 	ngOnInit(): void {}
 
@@ -44,7 +45,13 @@ export class RecoverPasswordComponent implements OnInit {
 			},
 			(Error) => {
 				// Error handling
-				console.log('Error sending the reset code.');
+				if (Error.error.message === 'User does not exist.') {
+					console.log('Ei tiliä');
+					this.accountNotFound = true;
+					this.toggleUserNotification();
+				} else {
+					console.log('Error sending the reset code.');
+				}
 				this.sendError = true;
 			}
 		);
@@ -80,6 +87,8 @@ export class RecoverPasswordComponent implements OnInit {
 			(Error) => {
 				if (Error.error.message === 'User does not exist.') {
 					console.log('Ei tiliä');
+					this.accountNotFound = true;
+					this.toggleUserNotification();
 				}
 			}
 		);
@@ -91,8 +100,9 @@ export class RecoverPasswordComponent implements OnInit {
 		this.stateservice.toggleResetPasswordVisibility();
 	}
 
-	// Method to redirect to registration form
+	// Methods to show/hide different sections and forms
 	showRegisterForm() {
+		this.toggleUserNotification();
 		this.changeVisibility();
 		this.stateservice.toggleRegisterFormVisibility();
 	}
@@ -101,5 +111,18 @@ export class RecoverPasswordComponent implements OnInit {
 	showLoginForm() {
 		this.changeVisibility();
 		this.stateservice.toggleLoginFormVisibility();
+	}
+
+	get isUserNotificationVisible(): boolean {
+		return this.stateservice.userNotificationVisible;
+	}
+
+	toggleUserNotification() {
+		this.stateservice.toggleUserNotificationVisibility();
+	}
+
+	// Method to reset the usernotification, so notifications aren't displayed when they are not supposed to
+	resetUserNotification() {
+		this.accountNotFound = false;
 	}
 }
