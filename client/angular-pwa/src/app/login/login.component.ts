@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
 					'Kirjautumiserrori' + JSON.stringify(Error.error.message)
 				);
 				this.loginError = true;
-				if (Error.error.message === 'Incorrect username or password.') {
-					// CHANGE THE ERROR HANDLING TO HANDLE SITUATION WHEN THE ACCOUNT DOES NOT EXIST
+				if (Error.error.message === 'User does not exist.') {
+					// Functionality if user tries to login to account that doesn't exist
 					this.accountNotFound = true;
 					this.toggleUserNotification();
 				} else if (Error.error.message === 'User is not confirmed.') {

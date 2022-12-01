@@ -26,8 +26,11 @@ export class RecoverPasswordComponent implements OnInit {
 	resetError: boolean = false;
 	pwError: boolean = false;
 
+	// Variable that is changed to true when a new code is sent. Used to display a message to the user
+	newCodeSent: boolean = false;
+
 	// Variables to check which form to display
-	codeForm: boolean = false;
+	codeForm: boolean = true;
 
 	ngOnInit(): void {}
 
@@ -67,6 +70,14 @@ export class RecoverPasswordComponent implements OnInit {
 			// If the new password wasn't confirmed, display an error to the user
 			this.pwError = true;
 		}
+	}
+
+	sendNewResetCode() {
+		this.loginservice
+			.sendPasswordResetCode('asdasd@gmail.com')
+			.subscribe(() => {
+				this.newCodeSent = true;
+			});
 	}
 
 	// Method that hides or displays the form

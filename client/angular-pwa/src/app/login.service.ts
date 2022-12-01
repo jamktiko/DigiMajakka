@@ -15,6 +15,7 @@ export class LoginService {
 	loggedUser = '';
 
 	private loginUrl = 'http://localhost:3000/users/signin';
+	private logoutUrl = 'http://localhost:3000/users/signout';
 	private registerUrl = 'http://localhost:3000/users/signup';
 	private confirmUrl = 'http://localhost:3000/users/confirm';
 	private resendCodeUrl = 'http://localhost:3000/users/resend';
@@ -88,11 +89,20 @@ export class LoginService {
 		);
 	}
 
-	// Placeholder method that sets currently logged in user as empty and sets logged-status to false.
-	async logout() {
-		this.localstorageservice.remove('token');
-		this.localstorageservice.remove('loggedIn');
-		this.loggedUser = '';
+	// Method to log the user out
+	async logout(email: string) {
+		return this.http
+			.post(this.logoutUrl, `{"email": ${email}}`, this.httpOptions)
+			.subscribe(
+				() => {
+					this.localstorageservice.remove('token');
+					this.localstorageservice.remove('loggedIn');
+					this.loggedUser = '';
+				},
+				(Error) => {
+					console.log('Error in logout');
+				}
+			);
 	}
 
 	// Method that checks if the user is logged in and the jwt token hasn't expired
