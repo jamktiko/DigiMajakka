@@ -1,5 +1,6 @@
 import express from 'express';
 import userC from '../controllers/user-controller';
+import {authHandler} from '../middlewares/auth';
 import bodyChecker from '../middlewares/body-check';
 import handleError from '../middlewares/school-change-error-handler';
 
@@ -24,15 +25,21 @@ userRouter.post('/resend', bodyChecker, userC.resendConfirmCode);
 
 // Route to sign out signed in user
 // /users/signout
-userRouter.post('/signout', bodyChecker, userC.signOut);
+userRouter.post('/signout', authHandler, bodyChecker, userC.signOut);
 
 // Delete user
 // /users/delete
-userRouter.post('/delete', bodyChecker, userC.deleteUser);
+userRouter.post('/delete', authHandler, bodyChecker, userC.deleteUser);
 
 // Change users school
 // /users/school
-userRouter.put('/school', bodyChecker, userC.updateSchool, handleError);
+userRouter.put(
+  '/school',
+  authHandler,
+  bodyChecker,
+  userC.updateSchool,
+  handleError,
+);
 
 // Start reset password flow
 userRouter.post('/reset/sendcode', userC.resetPassword);

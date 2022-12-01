@@ -3,8 +3,8 @@
 import express from 'express';
 import skillC from '../controllers/skill-controller';
 import bodyChecker from '../middlewares/body-check';
-// import {authHandler} from '../middlewares/auth';
-// import userCheck from '../middlewares/user-check';
+import {authHandler} from '../middlewares/auth';
+import userCheck from '../middlewares/user-check';
 //
 const skillRouter = express.Router();
 
@@ -23,6 +23,12 @@ skillRouter.get(
 
 // Insert skill to a profile
 // /skills/profile/:profileid/:skillname
-skillRouter.post('/profile/:profileid', bodyChecker, skillC.addSkill);
+skillRouter.post(
+  '/profile/:profileid',
+  bodyChecker,
+  authHandler,
+  userCheck,
+  skillC.addSkill,
+);
 
 export default skillRouter;
