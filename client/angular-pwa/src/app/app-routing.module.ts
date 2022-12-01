@@ -10,6 +10,10 @@ import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.co
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {GuideComponent} from './guide/guide.component';
+import {GuideLightEntrepreneurComponent} from './guide-light-entrepreneur/guide-light-entrepreneur.component';
+import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-conditions.component';
+
+import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
@@ -26,6 +30,9 @@ const routes: Routes = [
 		component: JoblistComponent,
 		canActivate: [AuthGuard],
 	},
+	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
+	{path: 'termsandconditions', component: TermsAndConditionsComponent},
+	{path: 'privacypolicy', component: PrivacyPolicyComponent},
 ];
 
 @NgModule({

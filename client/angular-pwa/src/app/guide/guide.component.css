@@ -107,6 +107,9 @@ h3 {
 }
 
 .topline {
+    display: flex;
+    justify-content: left;
+    align-items: center;
     min-height: 2.125em;
 
     width: 100vw;
@@ -117,18 +120,17 @@ h3 {
     color: var(--lightblue);
     background: none;
     border: none;
-    position: absolute;
-    left: 3.5625em;
-    font-size: 1.125em;
+   font-size: 1rem;
+    margin-left: 3.5625em;
+    margin-right: 3.5625em;
 }
 
 .navbutton {
+    font-size: 1rem;
     color: var(--lightblue);
     background: none;
     border: none;
-    position: absolute;
-    left: 11.4375em;
-    font-size: 1.125em;
+  
 }
 
 .answer {

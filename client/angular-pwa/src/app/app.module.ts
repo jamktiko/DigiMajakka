@@ -32,6 +32,9 @@ import {GuideComponent} from './guide/guide.component';
 import {UserNotificationComponent} from './user-notification/user-notification.component';
 import {CookiesModalComponent} from './cookies-modal/cookies-modal.component';
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
+import {GuideLightEntrepreneurComponent} from './guide-light-entrepreneur/guide-light-entrepreneur.component';
+
+import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
 	declarations: [
@@ -62,6 +65,9 @@ import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component'
 		UserNotificationComponent,
 		CookiesModalComponent,
 		PrivacyPolicyComponent,
+		GuideLightEntrepreneurComponent,
+
+		TermsAndConditionsComponent,
 	],
 	imports: [
 		BrowserModule,
