@@ -32,8 +32,11 @@ import {GuideComponent} from './guide/guide.component';
 import {UserNotificationComponent} from './user-notification/user-notification.component';
 import {CookiesModalComponent} from './cookies-modal/cookies-modal.component';
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
-import { ProfilelistComponent } from './profilelist/profilelist.component';
-import { ProfilecardComponent } from './profilecard/profilecard.component';
+import {GuideLightEntrepreneurComponent} from './guide-light-entrepreneur/guide-light-entrepreneur.component';
+
+import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-conditions.component';
+import {ProfilelistComponent} from './profilelist/profilelist.component';
+import {ProfilecardComponent} from './profilecard/profilecard.component';
 
 @NgModule({
 	declarations: [
@@ -64,8 +67,11 @@ import { ProfilecardComponent } from './profilecard/profilecard.component';
 		UserNotificationComponent,
 		CookiesModalComponent,
 		PrivacyPolicyComponent,
-  ProfilelistComponent,
-  ProfilecardComponent,
+		GuideLightEntrepreneurComponent,
+
+		TermsAndConditionsComponent,
+		ProfilelistComponent,
+		ProfilecardComponent,
 	],
 	imports: [
 		BrowserModule,

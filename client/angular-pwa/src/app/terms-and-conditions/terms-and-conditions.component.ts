@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
+
 @Component({
-	selector: 'app-privacy-policy',
-	templateUrl: './privacy-policy.component.html',
-	styleUrls: ['./privacy-policy.component.css'],
+	selector: 'app-terms-and-conditions',
+	templateUrl: './terms-and-conditions.component.html',
+	styleUrls: ['./terms-and-conditions.component.css'],
 })
-export class PrivacyPolicyComponent implements OnInit {
+export class TermsAndConditionsComponent implements OnInit {
 	// Location is used for navigating back in the app
 	constructor(private location: Location) {}
 
