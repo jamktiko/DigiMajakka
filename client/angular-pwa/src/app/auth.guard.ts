@@ -6,8 +6,6 @@ import {
 	UrlTree,
 } from '@angular/router';
 import {Observable} from 'rxjs';
-import {JWTTokenService} from './jwttoken.service';
-import {LocalStorageService} from './local-storage.service';
 import {LoginService} from './login.service';
 import {Router} from '@angular/router';
 
@@ -17,8 +15,7 @@ import {Router} from '@angular/router';
 export class AuthGuard implements CanActivate {
 	constructor(
 		private loginservice: LoginService,
-		private storageservice: LocalStorageService,
-		private jwtservice: JWTTokenService,
+
 		private router: Router
 	) {}
 	canActivate(
@@ -31,26 +28,5 @@ export class AuthGuard implements CanActivate {
 			this.router.navigateByUrl('/student');
 			return false;
 		}
-		//	if (this.jwtservice.jwtToken) {
-		//		if (this.jwtservice.isTokenExpired()) {
-		//			// Functionality to redirect to login-page
-		//			this.router.navigateByUrl('/notauthorized');
-		//			return false;
-		//		} else {
-		//			return true;
-		//		}
-		//	} else {
-		//		return new Promise((resolve) => {
-		//			this.loginService
-		//				.loginCallBack()
-		//				.then((e: any) => {
-		//					resolve(true);
-		//				})
-		//				.catch((e) => {
-		//					// Functionality to redirect to login-page
-		//					this.router.navigateByUrl('/notauthorized');
-		//				});
-		//		});
-		//	}
 	}
 }

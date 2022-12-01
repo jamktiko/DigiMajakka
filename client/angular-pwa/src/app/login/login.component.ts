@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
 				this.jwtservice.getDecodedToken();
 				this.localstorageservice.set('token', this.tokens.accessToken);
 				this.localstorageservice.set('loggedIn', 'true');
+				this.localstorageservice.set('user', formData.email);
 				this.changeVisibility();
 				this.logged.emit();
 			},

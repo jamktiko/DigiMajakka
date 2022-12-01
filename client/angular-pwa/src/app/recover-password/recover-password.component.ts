@@ -73,11 +73,16 @@ export class RecoverPasswordComponent implements OnInit {
 	}
 
 	sendNewResetCode() {
-		this.loginservice
-			.sendPasswordResetCode('asdasd@gmail.com')
-			.subscribe(() => {
+		this.loginservice.sendPasswordResetCode('asdasd@gmail.com').subscribe(
+			() => {
 				this.newCodeSent = true;
-			});
+			},
+			(Error) => {
+				if (Error.error.message === 'User does not exist.') {
+					console.log('Ei tiliä');
+				}
+			}
+		);
 	}
 
 	// Method that hides or displays the form

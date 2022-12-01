@@ -32,7 +32,10 @@ export class LoginService {
 
 	// Options for http-requests
 	httpOptions = {
-		headers: new HttpHeaders({'Content-Type': 'application/json'}),
+		headers: new HttpHeaders({
+			'Content-Type': 'application/json',
+			authorization: String(this.localstorageservice.get('token')),
+		}),
 	};
 
 	// Method that logs the user in. Returns the authorization token
@@ -42,6 +45,40 @@ export class LoginService {
 			`{"email": "${email}", "password": "${password}"}`,
 			this.httpOptions
 		);
+	}
+
+	// Method that checks if the user is logged in and the jwt token hasn't expired
+	validateLoginStatus(): boolean {
+		if (this.localstorageservice.get('token')) {
+			if (
+				!this.jwtservice.isTokenExpired(
+					String(this.localstorageservice.get('token'))
+				) &&
+				this.localstorageservice.get('loggedIn') === 'true'
+			) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	// Method to log the user out
+	logout(email: string) {
+		return this.http.post(
+			this.logoutUrl,
+			`{"email": "${email}"}`,
+			this.httpOptions
+		);
+	}
+
+	setLoggedOutStatus() {
+		this.localstorageservice.remove('token');
+		this.localstorageservice.remove('loggedIn');
+		this.localstorageservice.remove('user');
+		this.loggedUser = '';
 	}
 
 	// Method to register a new user to the service
@@ -87,39 +124,5 @@ export class LoginService {
 			`{"email": "${email}", "confirmationCode": "${code}", "newPassword": "${newPassword}"}`,
 			this.httpOptions
 		);
-	}
-
-	// Method to log the user out
-	async logout(email: string) {
-		return this.http
-			.post(this.logoutUrl, `{"email": ${email}}`, this.httpOptions)
-			.subscribe(
-				() => {
-					this.localstorageservice.remove('token');
-					this.localstorageservice.remove('loggedIn');
-					this.loggedUser = '';
-				},
-				(Error) => {
-					console.log('Error in logout');
-				}
-			);
-	}
-
-	// Method that checks if the user is logged in and the jwt token hasn't expired
-	validateLoginStatus(): boolean {
-		if (this.localstorageservice.get('token')) {
-			if (
-				!this.jwtservice.isTokenExpired(
-					String(this.localstorageservice.get('token'))
-				) &&
-				this.localstorageservice.get('loggedIn') === 'true'
-			) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
 	}
 }
