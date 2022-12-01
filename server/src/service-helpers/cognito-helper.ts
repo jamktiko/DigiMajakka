@@ -252,6 +252,16 @@ class CognitoHelper {
         Pool: userPool,
       });
 
+      cognitoIdentity.adminGetUser(
+        {
+          UserPoolId: process.env.USER_POOL_ID || '',
+          Username: email || '',
+        },
+        (error) => {
+          if (error) reject(error); // an error occurred
+        },
+      );
+
       cognitoUser.forgotPassword({
         onSuccess: function (result) {
           console.log('call result: ' + result);
