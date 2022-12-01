@@ -9,7 +9,7 @@
   display: grid;
   grid-template-areas: "img tags"
                        "name button"  ;
-  grid-template-columns: 189px auto;
+/* JATKA TÄSTÄ */
   grid-template-rows: 189px auto;
   gap: 2em;
 }
