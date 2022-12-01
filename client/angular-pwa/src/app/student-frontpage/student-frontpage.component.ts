@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../login.service';
 import {StateManagementService} from '../state-management.service';
-import {LocalStorageService} from '../local-storage.service';
-import {JWTTokenService} from '../jwttoken.service';
-import {ThrowStmt} from '@angular/compiler';
 
 @Component({
 	selector: 'app-student-frontpage',
@@ -13,15 +10,17 @@ import {ThrowStmt} from '@angular/compiler';
 export class StudentFrontpageComponent implements OnInit {
 	constructor(
 		private loginService: LoginService,
-		private stateservice: StateManagementService,
-		private storageservice: LocalStorageService,
-		private jwtservice: JWTTokenService
+		private stateservice: StateManagementService
 	) {}
 
 	// Declarations for logged-status and currently logged in user
 	logged!: boolean;
 	loggedUser = this.loginService.loggedUser;
 
+	// Variable that dictates if registration- or confirmform is displayed
+	confirmForm: boolean = false;
+
+	// users login-status is validated when the component loads
 	ngOnInit(): void {
 		if (this.loginService.validateLoginStatus()) {
 			this.logged = true;
@@ -42,7 +41,18 @@ export class StudentFrontpageComponent implements OnInit {
 		this.reloadPage();
 	}
 
-	// Methods to toggle visibilities of profile edit-forms
+	// Method that resets the confirmForm-variable to false, so the confirmation-form is not displayed when its not supposed to.
+	resetConfirmForm() {
+		this.confirmForm = false;
+	}
+
+	// Method that shows the confirmation-form
+	showConfirmForm() {
+		this.confirmForm = true;
+		this.changeRegisterVisibility();
+	}
+
+	// Methods to toggle visibilities of user-forms
 	get isLoginVisible(): boolean {
 		return this.stateservice.loginFormVisible;
 	}

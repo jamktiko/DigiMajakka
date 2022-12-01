@@ -162,9 +162,20 @@
 	</div>
 </body>
 
-<app-login *ngIf="isLoginVisible" (logged)="reloadPage()"></app-login>
+<!-- Login -form -->
+<app-login
+	*ngIf="isLoginVisible"
+	(logged)="reloadPage()"
+	(confirm)="showConfirmForm()"
+></app-login>
+
+<!-- Registration and account confirmation form -->
 <app-register
 	*ngIf="isRegisterVisible"
 	(registered)="reloadPage()"
+	(resetConfirmForm)="resetConfirmForm()"
+	[confirmForm]="confirmForm"
 ></app-register>
+
+<!--Form to show passwordreset-form -->
 <app-recover-password *ngIf="isPasswordResetVisible"></app-recover-password>

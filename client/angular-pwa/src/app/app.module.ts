@@ -28,7 +28,10 @@ import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.co
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {RecoverPasswordComponent} from './recover-password/recover-password.component';
-import { GuideComponent } from './guide/guide.component';
+import {GuideComponent} from './guide/guide.component';
+import {UserNotificationComponent} from './user-notification/user-notification.component';
+import {CookiesModalComponent} from './cookies-modal/cookies-modal.component';
+import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
 
 @NgModule({
 	declarations: [
@@ -55,7 +58,10 @@ import { GuideComponent } from './guide/guide.component';
 		LoginComponent,
 		RegisterComponent,
 		RecoverPasswordComponent,
-  GuideComponent,
+		GuideComponent,
+		UserNotificationComponent,
+		CookiesModalComponent,
+		PrivacyPolicyComponent,
 	],
 	imports: [
 		BrowserModule,
