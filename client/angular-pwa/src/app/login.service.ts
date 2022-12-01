@@ -18,7 +18,8 @@ export class LoginService {
 	private registerUrl = 'http://localhost:3000/users/signup';
 	private confirmUrl = 'http://localhost:3000/users/confirm';
 	private resendCodeUrl = 'http://localhost:3000/users/resend';
-	private resetPwUrl = 'http://localhost:3000/users/reset/sendcode';
+	private sendPwResetUrl = 'http://localhost:3000/users/reset/sendcode';
+	private confirmPwResetUrl = 'http://localhost:3000/users/reset/confirm';
 
 	tokens: any;
 
@@ -51,6 +52,7 @@ export class LoginService {
 		);
 	}
 
+	// Method to confirm a new account with the code sent to email
 	confirmAccount(email: string, code: number) {
 		return this.http.post(
 			this.confirmUrl,
@@ -59,6 +61,7 @@ export class LoginService {
 		);
 	}
 
+	// MEthod to resend the account confirmation code to users email
 	resendConfirmationCode(email: string) {
 		return this.http.post(
 			this.resendCodeUrl,
@@ -67,10 +70,20 @@ export class LoginService {
 		);
 	}
 
-	resetPassword(email: string) {
+	// Method to send a password reset code to users email
+	sendPasswordResetCode(email: string) {
 		return this.http.post(
-			this.resetPwUrl,
+			this.sendPwResetUrl,
 			`{"email": "${email}"}`,
+			this.httpOptions
+		);
+	}
+
+	// Method to confirm the password reset with th code sent to users email
+	resetPwWithCode(email: string, code: number, newPassword: string) {
+		return this.http.post(
+			this.confirmPwResetUrl,
+			`{"email": "${email}", "confirmationCode": "${code}", "newPassword": "${newPassword}"}`,
 			this.httpOptions
 		);
 	}
@@ -82,6 +95,7 @@ export class LoginService {
 		this.loggedUser = '';
 	}
 
+	// Method that checks if the user is logged in and the jwt token hasn't expired
 	validateLoginStatus(): boolean {
 		if (this.localstorageservice.get('token')) {
 			if (

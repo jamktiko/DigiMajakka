@@ -19,11 +19,12 @@ export class RecoverPasswordComponent implements OnInit {
 	email: string = '';
 	code!: number;
 	password: string = '';
-	confirmPw: string = '';
+	passwordConfirm: string = '';
 
 	// Variable to see if there was an error while sending the resetcode
 	sendError: boolean = false;
 	resetError: boolean = false;
+	pwError: boolean = false;
 
 	// Variables to check which form to display
 	codeForm: boolean = false;
@@ -32,7 +33,7 @@ export class RecoverPasswordComponent implements OnInit {
 
 	// Method to send the resetcode to the users email
 	onSubmit(formData: any) {
-		this.loginservice.resetPassword(formData.email).subscribe(
+		this.loginservice.sendPasswordResetCode(formData.email).subscribe(
 			() => {
 				// Functionality when the sending is successful
 				console.log('Sent');
@@ -46,7 +47,27 @@ export class RecoverPasswordComponent implements OnInit {
 		);
 	}
 
-	resetPassword(formData: any) {}
+	resetPasswordWithCode(formData: any) {
+		if (formData.password === formData.passwordConfirm) {
+			// if the new password was confirmed correctly, continue to setting new password in loginservice
+			this.loginservice
+				.resetPwWithCode(this.email, formData.code, formData.password)
+				.subscribe(
+					() => {
+						// Functionality when the reset is successful
+						console.log('Password reset completed');
+						this.showLoginForm();
+					},
+					(Error) => {
+						// Error handling
+						console.log('Error while resetting password');
+					}
+				);
+		} else {
+			// If the new password wasn't confirmed, display an error to the user
+			this.pwError = true;
+		}
+	}
 
 	// Method that hides or displays the form
 	changeVisibility() {
@@ -58,5 +79,11 @@ export class RecoverPasswordComponent implements OnInit {
 	showRegisterForm() {
 		this.changeVisibility();
 		this.stateservice.toggleRegisterFormVisibility();
+	}
+
+	// Method to redirect to login form
+	showLoginForm() {
+		this.changeVisibility();
+		this.stateservice.toggleLoginFormVisibility();
 	}
 }
