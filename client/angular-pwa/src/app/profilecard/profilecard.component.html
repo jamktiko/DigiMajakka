@@ -1,0 +1,17 @@
+<div class="card">
+	<div class="img">Kortti</div>
+
+	<div class="tags">
+		<!-- Every skill put inside their own tag -->
+		<div class="tag" *ngFor="let skill of skills">
+			<p>{{ skill.name }}</p>
+		</div>
+	</div>
+	<p class="name">
+		{{ profile.firstname }}
+		{{ profile.familyname }}
+	</p>
+	<div class="btncontainer">
+		<button class="greenbutton">Katso profiili</button>
+	</div>
+</div>

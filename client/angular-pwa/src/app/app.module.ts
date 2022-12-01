@@ -32,6 +32,8 @@ import {GuideComponent} from './guide/guide.component';
 import {UserNotificationComponent} from './user-notification/user-notification.component';
 import {CookiesModalComponent} from './cookies-modal/cookies-modal.component';
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
+import { ProfilelistComponent } from './profilelist/profilelist.component';
+import { ProfilecardComponent } from './profilecard/profilecard.component';
 
 @NgModule({
 	declarations: [
@@ -62,6 +64,8 @@ import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component'
 		UserNotificationComponent,
 		CookiesModalComponent,
 		PrivacyPolicyComponent,
+  ProfilelistComponent,
+  ProfilecardComponent,
 	],
 	imports: [
 		BrowserModule,
