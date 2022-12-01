@@ -87,11 +87,11 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		skills = JSON.stringify(skills);
+		skills;
 		this.profileservice
 			.insertNewProfileSkills(
 				this.loggedProfile[0].userprofileid,
-				'{"skills": ' + skills + '}'
+				'{"skills": ["' + skills.join('","') + '"]}'
 			)
 			.subscribe(() => {
 				this.changeVisibility();

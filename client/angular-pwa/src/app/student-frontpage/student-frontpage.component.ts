@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../login.service';
 import {StateManagementService} from '../state-management.service';
+import {LocalStorageService} from '../local-storage.service';
 
 @Component({
 	selector: 'app-student-frontpage',
@@ -10,7 +11,8 @@ import {StateManagementService} from '../state-management.service';
 export class StudentFrontpageComponent implements OnInit {
 	constructor(
 		private loginService: LoginService,
-		private stateservice: StateManagementService
+		private stateservice: StateManagementService,
+		private storageservice: LocalStorageService
 	) {}
 
 	// Declarations for logged-status and currently logged in user
@@ -35,10 +37,14 @@ export class StudentFrontpageComponent implements OnInit {
 	}
 
 	// Placeholder method to logout
-	async logout() {
-		await this.loginService.logout();
-		this.loggedUser = this.loginService.loggedUser;
-		this.reloadPage();
+	logout() {
+		this.loginService
+			.logout(String(this.storageservice.get('user')))
+			.subscribe(() => {
+				this.loginService.setLoggedOutStatus();
+				this.loggedUser = this.loginService.loggedUser;
+				this.reloadPage();
+			});
 	}
 
 	// Method that resets the confirmForm-variable to false, so the confirmation-form is not displayed when its not supposed to.
