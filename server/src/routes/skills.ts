@@ -24,7 +24,7 @@ skillRouter.get(
 // Insert skill to a profile
 // /skills/profile/:profileid/:skillname
 skillRouter.post(
-  '/profile/:profileid',
+  '/profile/:id',
   bodyChecker,
   authHandler,
   userCheck,

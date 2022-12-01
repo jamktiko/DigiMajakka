@@ -63,7 +63,7 @@ const skillC = {
       // Find all profiles skills
       const skillExists = await queryDb(
         'SELECT Skills_name AS name FROM UserProfileSkills WHERE Userprofile_userprofileid = ?;',
-        [_request.params.profileid],
+        [_request.params.id],
       );
 
       // Profiles existing skill
@@ -93,7 +93,7 @@ const skillC = {
                 String(skill) +
                 '"' +
                 ', ' +
-                String(_request.params.profileid) +
+                String(_request.params.id) +
                 ')',
             );
           } else {
@@ -103,7 +103,7 @@ const skillC = {
                 String(skill) +
                 '"' +
                 ', ' +
-                String(_request.params.profileid) +
+                String(_request.params.id) +
                 '), ',
             );
           }
