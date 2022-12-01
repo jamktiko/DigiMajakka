@@ -9,6 +9,7 @@ import {JoblistComponent} from './joblist/joblist.component';
 import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
+import {GuideComponent} from './guide/guide.component';
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
@@ -19,6 +20,7 @@ const routes: Routes = [
 	{path: 'employer', component: EmployerComponent},
 	{path: 'student/joblist', component: JoblistComponent},
 	{path: 'jobadvert/delete/:id', component: DeleteJobAdvertComponent},
+	{path: 'guide', component: GuideComponent},
 	{
 		path: 'student/joblist',
 		component: JoblistComponent,
