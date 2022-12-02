@@ -15,6 +15,7 @@ import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-cond
 
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
 import {FrontpageComponent} from './frontpage/frontpage.component';
+import {ProfilelistComponent} from './profilelist/profilelist.component';
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
@@ -23,6 +24,7 @@ const routes: Routes = [
 	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
+	// Duplicate 'student/joblist' route?
 	{path: 'student/joblist', component: JoblistComponent},
 	{path: 'jobadvert/delete/:id', component: DeleteJobAdvertComponent},
 	{path: 'guide', component: GuideComponent},
@@ -31,6 +33,7 @@ const routes: Routes = [
 		component: JoblistComponent,
 		canActivate: [AuthGuard],
 	},
+	{path: 'profilelist', component: ProfilelistComponent},
 	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
 	{path: 'termsandconditions', component: TermsAndConditionsComponent},
 	{path: 'privacypolicy', component: PrivacyPolicyComponent},

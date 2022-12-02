@@ -35,7 +35,9 @@ import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component'
 import {GuideLightEntrepreneurComponent} from './guide-light-entrepreneur/guide-light-entrepreneur.component';
 
 import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-conditions.component';
-import { FrontpageComponent } from './frontpage/frontpage.component';
+import {FrontpageComponent} from './frontpage/frontpage.component';
+import {ProfilelistComponent} from './profilelist/profilelist.component';
+import {ProfilecardComponent} from './profilecard/profilecard.component';
 
 @NgModule({
 	declarations: [
@@ -69,7 +71,9 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 		GuideLightEntrepreneurComponent,
 
 		TermsAndConditionsComponent,
-   FrontpageComponent,
+		FrontpageComponent,
+		ProfilelistComponent,
+		ProfilecardComponent,
 	],
 	imports: [
 		BrowserModule,

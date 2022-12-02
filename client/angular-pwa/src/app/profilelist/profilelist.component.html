@@ -1,0 +1,10 @@
+<div class="container">
+	<h1>Opiskelijat</h1>
+
+	<div class="cardlistcontainer">
+		<app-profilecard
+			*ngFor="let profile of profiles"
+			[profile]="profile"
+		></app-profilecard>
+	</div>
+</div>
