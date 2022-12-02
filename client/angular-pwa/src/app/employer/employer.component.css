@@ -1,5 +1,18 @@
 body {
+  position:absolute;
+  width:100%;
+  min-height: 2027px;
+  background-color: var(--darkgray);
+}
+
+#content {
   margin: 0px;
+  position: absolute;
+  width:1512px;
+  left: 0; 
+  right: 0; 
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
@@ -46,7 +59,7 @@ img {
 
 .lowerBox img {
   position: absolute;
-  min-height: 1350px;
+  min-height: 1625px;
   max-width: 100%;
   max-width: 1512px;
 }
@@ -116,6 +129,10 @@ input {
 
 .largeInput {
   height: 132px;
+  background: #E0FCFE;
+  box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
+  border-radius: 5px;
+  resize: none;
 }
 
 .dateInput {
@@ -128,7 +145,7 @@ input {
   justify-content: space-between;
 }
 
-input[type="radio"] {
+label > input[type="radio"] {
   width: 2em;
   height: 2em;
   appearance: none;
@@ -140,6 +157,21 @@ input[type="radio"] {
   place-content: center;
   padding-left: 0;
 }
+
+input[type="radio"] {
+  width: 2em;
+  height: 2em;
+  appearance: none;
+  background-color: var(--lightblue);
+  box-shadow: inset 0px 2px 4px 1px #396472;
+  border-radius: 50%;
+  transform: translate(0em, 0.5em);
+  display: grid;
+  place-content: center;
+  padding-left: 0;
+}
+
+
 
 input[type="radio"]::before {
   content: '';
@@ -154,12 +186,10 @@ input[type="radio"]:checked::before {
   transform: scale(1);
 }
 
-
 .radiolabel {
   display: grid;
   grid-template-columns: 1em auto;
   gap: 0.5em;
-
 }
 
 .spaceBetween {
@@ -182,3 +212,112 @@ input, select, textarea{
 .greenbutton {
   margin-top: 40px;
 }
+
+p {
+  margin:0px;
+}
+
+.maxCharsBox {
+  display: flex;
+  justify-content: end;
+}
+
+.acceptBox {
+  padding-top:20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="checkbox"] {
+  width: 30px;
+  transform: translate(0em, 0.5em);
+}
+
+/*Modal tyylitykset*/
+.modalwindow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left:-494px;
+  margin-top: -265px;
+  border-radius: 20px;
+}
+
+.modalwindow > img {
+  width: 988px;
+  height: 530px;
+  border-radius: 20px;
+}
+
+.glassbox.modal {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 100px;
+  grid-template-rows: 10px 5px 40px 50px;
+  grid-template-areas: 
+    ". . . ."
+    ". name . ."
+    " . email phone ."
+    ". send close .";
+  min-width: 826px;
+  min-height: 400px;
+  max-width: 826px;
+  max-height: 400px;
+  gap: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left:-413px;
+  margin-top: -200px;
+  padding: 0px;
+  padding-top: 0px;
+}
+
+.oneRowContent {
+  width: 826px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.oneRowContent.sixth {
+  text-align: center;
+}
+
+.modalwindow h2 {
+  margin: 0px;
+  font-weight: 600;
+}
+
+.modalwindow h3 {
+  font-weight: 600;
+  margin: 0px;
+}
+
+.modalwindow h4 {
+  margin: 0px;
+  font-size: 1.25em;
+  font-weight:200;
+}
+
+.modaltext {
+  color: var(--darkblue);
+}
+
+.greenbutton.modal {
+  margin-top: 30px;
+}
+
+.backgroundblur {
+  position: fixed;
+  width: 400%;
+  min-height: 2027px;
+  margin-left:-494px;
+  margin-top: -265px;
+  background-color: black;
+  opacity: 0.8;
+  z-index: -1;
+}
+

@@ -1,293 +1,428 @@
-<div class="upperContent">
-	<div class="upperBox first">
-		<img src="https://via.placeholder.com/576x403.png" />
-	</div>
-	<div class="upperBox second">
-		<h1>Työnantaja</h1>
-		<h2>Tarvitsetko työntekijää?</h2>
-		<p>
-			DigiMajakasta löydät työntekijät niin pieniin kuin suuriinkin
-			projekteihin. Voit ilmoittaa avoimesta työtehtävästä helposti
-			jättämällä työilmoituksen tällä sivulla olevalla lomakkeella.
-			Halutessasi voit myös tutustua työntekijöiden profiileihin ja ottaa
-			kiinnostavaan henkilöön suoraan yhteyttä!
-		</p>
-	</div>
-</div>
-<div class="lowerContent">
-	<div class="lowerBox">
-		<img src="../../assets/img/employer_background.png" />
-		<div class="lowerBoxContent">
-			<div class="contentBox left">
-				<div class="labelheader">
-					<h2>Jätä työilmoitus</h2>
-				</div>
-				<form
-					#f="ngForm"
-					class="formcontainer"
-					(ngSubmit)="onSubmit(f.value)"
-				>
-					<h3>Yhteyshenkilön tiedot</h3>
-					<label>
-						Etunimi *
-						<input
-							type="text"
-							[ngClass]="{
-								errorinput:
-									firstname.errors && firstname.touched
-							}"
-							required
-							minlength="2"
-							maxlength="45"
-							name="firstname"
-							#firstname="ngModel"
-							[(ngModel)]="info.firstname"
-						/>
-					</label>
-
-					<p
-						class="error"
-						*ngIf="firstname.errors?.required && firstname.touched"
-					>
-						Etunimi on pakollinen tieto
-					</p>
-					<p
-						class="error"
-						*ngIf="firstname.errors?.minlength && firstname.touched"
-					>
-						Etunimi ei voi olla alle kaksi merkkiä pitkä
-					</p>
-					<label>
-						Sukunimi *
-						<input
-							type="text"
-							[ngClass]="{
-								errorinput: lastname.errors && lastname.touched
-							}"
-							required
-							minlength="2"
-							maxlength="45"
-							name="lastname"
-							#lastname="ngModel"
-							[(ngModel)]="info.lastname"
-						/>
-					</label>
-
-					<!-- Errors for lastname-validation -->
-					<p
-						class="error"
-						*ngIf="lastname.errors?.required && lastname.touched"
-					>
-						Sukunimi on pakollinen tieto
-					</p>
-					<p
-						class="error"
-						*ngIf="lastname.errors?.minlength && lastname.touched"
-					>
-						Etunimi ei voi olla alle kaksi merkkiä pitkä
-					</p>
-
-					<label>
-						Sähköposti *
-						<input
-							type="text"
-							[ngClass]="{
-								errorinput: email.errors && email.touched
-							}"
-							required
-							name="email"
-							#email="ngModel"
-							[(ngModel)]="info.email"
-						/>
-					</label>
-
-					<!-- Errors for email-validation -->
-					<p
-						class="error"
-						*ngIf="email.errors?.required && email.touched"
-					>
-						Sähköposti on pakollinen tieto
-					</p>
-
-					<label>
-						Puhelinnumero *
-						<input
-							type="text"
-							[ngClass]="{
-								errorinput: phone.errors && phone.touched
-							}"
-							required
-							name="phone"
-							#phone="ngModel"
-							[(ngModel)]="info.phone"
-						/>
-					</label>
-					<h3>Työtehtävän tiedot</h3>
-					<!-- Errors for phone-validation -->
-					<p
-						class="error"
-						*ngIf="phone.errors?.required && phone.touched"
-					>
-						Puhelinnumero on pakollinen tieto
-					</p>
-
-					<!-- Radio inputs for study-year -->
-
-					<label>
-						<div class="radiocontainer">
-							Ilmoittaja on *
-
-							<p>yritys</p>
-							<label class="radiolabel">
-								<input
-									type="radio"
-									name="year"
-									value="1"
-									[(ngModel)]="info.employer"
-									#employer="ngModel"
-									required
-								/>
-							</label>
-
-							<p>yksityishenkilö</p>
-							<label class="radiolabel">
-								<input
-									type="radio"
-									name="employer"
-									value="2"
-									[(ngModel)]="info.employer"
-									#employer="ngModel"
-									required
-								/>
-							</label>
+<body>
+	<div id="content">
+		<div class="upperContent">
+			<div class="upperBox first">
+				<img src="https://via.placeholder.com/576x403.png" />
+			</div>
+			<div class="upperBox second">
+				<h1>Työnantaja</h1>
+				<h2>Tarvitsetko työntekijää?</h2>
+				<p>
+					DigiMajakasta löydät työntekijät niin pieniin kuin
+					suuriinkin projekteihin. Voit ilmoittaa avoimesta
+					työtehtävästä helposti jättämällä työilmoituksen tällä
+					sivulla olevalla lomakkeella. Halutessasi voit myös tutustua
+					työntekijöiden profiileihin ja ottaa kiinnostavaan henkilöön
+					suoraan yhteyttä!
+				</p>
+			</div>
+		</div>
+		<div class="lowerContent">
+			<div class="lowerBox">
+				<img src="../../assets/img/employer_background.png" />
+				<div class="lowerBoxContent">
+					<div class="contentBox left">
+						<div class="labelheader">
+							<h2>Jätä työilmoitus</h2>
 						</div>
-					</label>
+						<form
+							#eForm="ngForm"
+							class="formcontainer"
+							(ngSubmit)="onSubmit(eForm.value)"
+						>
+							<h3>Yhteyshenkilön tiedot</h3>
+							<label>
+								Etunimi *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput:
+											firstname.errors &&
+											firstname.touched
+									}"
+									required
+									minlength="2"
+									maxlength="45"
+									name="firstname"
+									#firstname="ngModel"
+									[(ngModel)]="info.firstname"
+								/>
+							</label>
 
-					<p
-						class="error"
-						*ngIf="employer.errors?.required && f.submitted"
-					>
-						Opintovuosi on pakollinen tieto
-					</p>
+							<p
+								class="error"
+								*ngIf="
+									firstname.errors?.required &&
+									firstname.touched
+								"
+							>
+								Etunimi on pakollinen tieto
+							</p>
+							<p
+								class="error"
+								*ngIf="
+									firstname.errors?.minlength &&
+									firstname.touched
+								"
+							>
+								Etunimi ei voi olla alle kaksi merkkiä pitkä
+							</p>
+							<label>
+								Sukunimi *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput:
+											lastname.errors && lastname.touched
+									}"
+									required
+									minlength="2"
+									maxlength="45"
+									name="lastname"
+									#lastname="ngModel"
+									[(ngModel)]="info.lastname"
+								/>
+							</label>
 
-					<label>
-						Yrityksen nimi
-						<input
-							type="text"
-							required
-							name="companyname"
-							#companyname="ngModel"
-							[(ngModel)]="info.companyname"
-						/>
-					</label>
+							<!-- Errors for lastname-validation -->
+							<p
+								class="error"
+								*ngIf="
+									lastname.errors?.required &&
+									lastname.touched
+								"
+							>
+								Sukunimi on pakollinen tieto
+							</p>
+							<p
+								class="error"
+								*ngIf="
+									lastname.errors?.minlength &&
+									lastname.touched
+								"
+							>
+								Etunimi ei voi olla alle kaksi merkkiä pitkä
+							</p>
 
-					<label>
-						Tehtävänimike *
-						<input
-							type="text"
-							[ngClass]="{
-								errorinput:
-									assignment.errors && assignment.touched
-							}"
-							required
-							name="assignment"
-							#assignment="ngModel"
-							[(ngModel)]="info.assignment"
-						/>
-					</label>
+							<label>
+								Sähköposti *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput:
+											email.errors && email.touched
+									}"
+									required
+									name="email"
+									#email="ngModel"
+									[(ngModel)]="info.email"
+								/>
+							</label>
 
-					<!-- Errors for assignment-validation -->
-					<p
-						class="error"
-						*ngIf="
-							assignment.errors?.required && assignment.touched
-						"
-					>
-						Tehtävänimike on pakollinen tieto
-					</p>
-					<label>
-						Tehtävän kuvaus *
-						<input
-							class="largeInput"
-							type="text"
-							[ngClass]="{
-								errorinput:
-									description.errors && description.touched
-							}"
-							required
-							name="description"
-							#description="ngModel"
-							[(ngModel)]="info.description"
-						/>
-					</label>
+							<!-- Errors for email-validation -->
+							<p
+								class="error"
+								*ngIf="email.errors?.required && email.touched"
+							>
+								Sähköposti on pakollinen tieto
+							</p>
 
-					<!-- Errors for assignment-validation -->
-					<p
-						class="error"
-						*ngIf="
-							description.errors?.required && description.touched
-						"
-					>
-						Tehtävän kuvaus on pakollinen tieto
-					</p>
-					<label>
-						Palkka € *
-						<input
-							type="text"
-							[ngClass]="{
-								errorinput: payment.errors && payment.touched
-							}"
-							required
-							name="payment"
-							#payment="ngModel"
-							[(ngModel)]="info.payment"
-						/>
-					</label>
+							<label>
+								Puhelinnumero *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput:
+											phone.errors && phone.touched
+									}"
+									required
+									name="phone"
+									#phone="ngModel"
+									[(ngModel)]="info.phone"
+								/>
+							</label>
 
-					<!-- Errors for assignment-validation -->
-					<p
-						class="error"
-						*ngIf="payment.errors?.required && payment.touched"
-					>
-						Palkka on pakollinen tieto
-					</p>
-					<div class="submitRow">
-						<label>
-							Työn alkamispäivä
+							<!-- Errors for phone-validation -->
+							<p
+								class="error"
+								*ngIf="phone.errors?.required && phone.touched"
+							>
+								Puhelinnumero on pakollinen tieto
+							</p>
+
+							<!-- Radio inputs for study-year -->
+
+							<label>
+								Työtehtävän tiedot
+								<div class="radiocontainer">
+									Ilmoittaja on *
+
+									<p>yritys</p>
+									<label class="radiolabel">
+										<input
+											type="radio"
+											name="year"
+											value="1"
+											[(ngModel)]="info.employer"
+											#employer="ngModel"
+											required
+										/>
+									</label>
+
+									<p>yksityishenkilö</p>
+									<label class="radiolabel">
+										<input
+											type="radio"
+											name="employer"
+											value="2"
+											[(ngModel)]="info.employer"
+											#employer="ngModel"
+										/>
+									</label>
+								</div>
+							</label>
+
+							<p
+								class="error"
+								*ngIf="
+									employer.errors?.required && eForm.submitted
+								"
+							>
+								Tämä on pakollinen tieto
+							</p>
+							<div *ngIf="this.info.employer === '1'">
+								<label>
+									Yrityksen nimi *
+									<input
+										type="text"
+										name="companyname"
+										#companyname="ngModel"
+										[(ngModel)]="info.companyname"
+										required
+									/>
+								</label>
+							</div>
+							<label>
+								Tehtävänimike *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput:
+											assignment.errors &&
+											assignment.touched
+									}"
+									required
+									name="assignment"
+									#assignment="ngModel"
+									[(ngModel)]="info.assignment"
+								/>
+							</label>
+
+							<!-- Errors for assignment-validation -->
+							<p
+								class="error"
+								*ngIf="
+									assignment.errors?.required &&
+									assignment.touched
+								"
+							>
+								Tehtävänimike on pakollinen tieto
+							</p>
+							<label>
+								Tehtävän kuvaus *
+								<textarea
+									class="largeInput"
+									type="textarea"
+									[ngClass]="{
+										errorinput:
+											description.errors &&
+											description.touched
+									}"
+									required
+									name="description"
+									#description="ngModel"
+									[(ngModel)]="info.description"
+									[maxlength]="maxChars"
+								></textarea>
+								<div class="maxCharsBox">
+									<p
+										[ngClass]="
+											maxChars - info.description.length >
+											5
+												? 'counter'
+												: 'counterfull'
+										"
+									>
+										{{ maxChars - info.description.length }}
+										merkkiä jäljellä
+									</p>
+								</div>
+							</label>
+
+							<!-- Errors for assignment-validation -->
+							<p
+								class="error"
+								*ngIf="
+									description.errors?.required &&
+									description.touched
+								"
+							>
+								Tehtävän kuvaus on pakollinen tieto
+							</p>
+							<label>
+								Palkka € *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput:
+											payment.errors && payment.touched
+									}"
+									required
+									name="payment"
+									#payment="ngModel"
+									[(ngModel)]="info.payment"
+								/>
+							</label>
+
+							<!-- Errors for assignment-validation -->
+							<p
+								class="error"
+								*ngIf="
+									payment.errors?.required && payment.touched
+								"
+							>
+								Palkka on pakollinen tieto
+							</p>
+							<label>
+								Kaupunki *
+								<input
+									type="text"
+									[ngClass]="{
+										errorinput: city.errors && city.touched
+									}"
+									required
+									name="city"
+									#city="ngModel"
+									[(ngModel)]="info.city"
+								/>
+							</label>
+
+							<!-- Errors for assignment-validation -->
+							<p
+								class="error"
+								*ngIf="city.errors?.required && city.touched"
+							>
+								Kaupunki on pakollinen tieto
+							</p>
+							<div class="submitRow">
+								<label> Työn alkamispäivä </label>
+							</div>
+							<div class="submitRow">
+								<input
+									placeholder="pp.kk.vvvv"
+									class="dateInput"
+									type="date"
+									name="calendar"
+									[(ngModel)]="info.calendar"
+								/>
+							</div>
+							<label>
+								Ilmoituksen voimassaoloaika (max 6kk)
+							</label>
 							<input
 								placeholder="pp.kk.vvvv"
 								class="dateInput"
 								type="date"
-								name="calendar"
+								name="validuntil"
+								[(ngModel)]="info.validuntil"
+								max="2023-05-15"
 							/>
-						</label>
-						<button class="greenbutton">Lähetä ilmoitus</button>
+							<div class="submitRow">
+								<div class="acceptBox">
+									<input
+										type="checkbox"
+										class="acceptRadio"
+										name="accept"
+										value="1"
+										required
+										(change)="changeEvent($event)"
+									/>
+									<label>Hyväskyn käyttöehdot.</label>
+								</div>
+								<button
+									[disabled]="
+										!eForm.valid ||
+										eForm.pristine ||
+										toggleBool
+									"
+									type="submit"
+									class="greenbutton"
+								>
+									Lähetä ilmoitus
+								</button>
+							</div>
+						</form>
 					</div>
-				</form>
+					<div class="contentBox right">
+						<div class="content">
+							<div class="glassbox">
+								<h2>Katso ohjeet ja löydä työntekijöitä</h2>
+								<p>
+									Täältä löydät ohjeita mm. työnhakupalvelu
+									toiminnasta,
+								</p>
+								<p>
+									kevytyrittäjyydestä ja vastauksia usein
+									kysyttyihin kysymyksiin.
+								</p>
+								<button class="graybutton">
+									Katso ohjeita
+								</button>
+							</div>
+							<h2>Selaa opiskelijoita</h2>
+							<app-profilecarousel></app-profilecarousel>
+							<div class="spaceBetween big"></div>
+							<h3>
+								Katso kaikki profiilit ja etsi työntekijöitä
+							</h3>
+							<h3>esimerkiksi taitojen perusteella</h3>
+							<div class="spaceBetween"></div>
+							<button class="bluebutton">Etsi työntekijä</button>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="contentBox right">
-				<div class="content">
-					<div class="glassbox">
-						<h2>Katso ohjeet ja löydä työntekijöitä</h2>
-						<p>
-							Täältä löydät ohjeita mm. työnhakupalvelu
-							toiminnasta,
-						</p>
-						<p>
-							kevytyrittäjyydestä ja vastauksia usein kysyttyihin
-							kysymyksiin.
-						</p>
-						<button class="graybutton">Katso ohjeita</button>
-					</div>
-					<h2>Selaa opiskelijoita</h2>
-					<app-profilecarousel></app-profilecarousel>
-					<div class="spaceBetween big"></div>
-					<h3>Katso kaikki profiilit ja etsi työntekijöitä</h3>
-					<h3>esimerkiksi taitojen perusteella</h3>
-					<div class="spaceBetween"></div>
-					<button class="bluebutton">Etsi työntekijä</button>
+		</div>
+
+		<div class="modalwindow" *ngIf="submitThanks == true">
+			<div class="backgroundblur"></div>
+			<img
+				class="modalbackground"
+				src="../../assets/img/modal_background.png"
+			/>
+
+			<div class="glassbox modal">
+				<div class="oneRowContent sixth">
+					<h2 class="modaltext">Toimeksiantoilmoitus</h2>
+					<h2 class="modaltextbottom">tallennettu!</h2>
+					<h4 class="modaltext">
+						Kopio ilmoituksesta on lähetetty sähköpostiisi.
+					</h4>
+					<h4 class="modaltext">
+						Voit muokata tai poistaa ilmoituksen
+					</h4>
+					<h4 class="modaltext">
+						sähköpostissa olevan linkin kautta.
+					</h4>
+					<button
+						type="button"
+						class="greenbutton modal"
+						(click)="modalHide(); refresh()"
+					>
+						Selvä!
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</body>
