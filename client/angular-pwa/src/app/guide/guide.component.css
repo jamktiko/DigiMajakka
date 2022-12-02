@@ -1,0 +1,139 @@
+.header1 {
+    font-size: 3em;
+    font-weight: 400;
+    position: absolute;
+    margin-bottom: 1%;
+    margin-top: 2.4375rem;
+    left: 4.375rem;
+}
+
+.header2 {
+    margin-top: 3.5625rem;
+    margin-bottom: 1.2%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2em;
+    
+}
+
+
+h3 {
+
+    color: var(--darkblue);
+    position: absolute;
+    top:  3.25em;
+    left: 3.375em;
+    margin: 0%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em;
+}
+
+
+.grid-container {
+    display: grid;
+    position: relative;
+    grid-template-columns: 50vw 50vw;
+    
+    column-gap: 7.125rem;
+    
+   
+    background-color: var(--mediumblue); 
+ padding-bottom: 6em;
+ padding-top: 0em;
+    height: 100vh;
+    width: 100vw;
+}
+
+.bgrid-item1{
+    position: relative;
+    grid-column: 1;
+}
+
+.grid-item2 {
+    
+   position: relative;
+    grid-column: 2;
+}
+
+.graybutton {
+    cursor: pointer;
+    position: absolute;
+    left: 4.125em;
+    top: 11.6875em;
+    padding: 12px 27px;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: max-content;
+    filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.3));
+    background: var(--darkgray);
+    border: 0;
+    border-radius: 8px;
+    font-style: normal;
+    font-size: 1.125em;
+    color: var(--lightblue);
+}
+
+.glassboxtext {
+    color: var(--darkblue);
+    position: absolute;
+    top: 6.625em;
+    left: 3.375em;
+}
+
+.headingtext {
+    position: absolute;
+    top: 7.5em;
+    left: 2.875em;
+    padding: 0em;
+    margin: 0em;
+}
+
+.glassbox {
+    min-width: 44.375em;
+    min-height: 19.25em;
+}
+.box1 {
+    position: absolute;
+    top: 14em;
+    left: 2.875em;
+}
+
+.box2 {
+    position: absolute;
+    top: 34.75em;
+    left: 2.875em;
+    
+}
+
+.topline {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 2.125em;
+
+    width: 100vw;
+    background-color: var(--darkgray);
+}
+
+.backbutton {
+    color: var(--lightblue);
+    background: none;
+    border: none;
+   font-size: 1rem;
+    margin-left: 3.5625em;
+    margin-right: 3.5625em;
+}
+
+.navbutton {
+    font-size: 1rem;
+    color: var(--lightblue);
+    background: none;
+    border: none;
+  
+}
+
+.answer {
+    white-space: pre-wrap;
+    max-width: 50%;
+}

@@ -19,7 +19,7 @@ const imageC = {
         // Upload s3 link into profile in database
         const dbresult = await querydb(
           'UPDATE UserProfile SET picturelink = ? WHERE userprofileid = ?',
-          [result.Key, _request.params.id],
+          [result.Key, _request.params.profileid],
         );
 
         console.log(result);
@@ -45,11 +45,13 @@ const imageC = {
       // Get profiles information from database
       const profile = await querydb(
         'SELECT * FROM UserProfile WHERE userprofileid = ?;',
-        [_request.params.id],
+        [_request.params.profileid],
       );
       // Check that profile were returned
       if (profile.length < 1) {
-        throw new Error('Error when finding profile. Profile id may be wrong.');
+        throw new Error(
+          'Error when finding profile. Profile profile id may be wrong.',
+        );
       }
 
       // Check that link exists in profile and that it is type string

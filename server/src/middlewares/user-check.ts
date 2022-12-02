@@ -21,7 +21,7 @@ const checkUser = async (
         [_request.user.email],
       );
 
-      if (user[0].userprofileid === Number(_request.params.id)) {
+      if (user[0].userprofileid === Number(_request.params.profileid)) {
         next();
       } else {
         throw new Error('Authorization failed');

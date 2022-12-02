@@ -30,6 +30,13 @@ export class ProfilesService {
 		}),
 	};
 
+	// Options for http-requests
+	onlyAuthorizationHeader = {
+		headers: new HttpHeaders({
+			authorization: String(this.storageservice.get('token')),
+		}),
+	};
+
 	// Method to get all profiles from the database
 	// CONTINUE THE ERRORHANDLING
 	getProfiles() {
@@ -122,7 +129,8 @@ export class ProfilesService {
 	uploadProfilePhoto(profileid: number, photo: any) {
 		return this.http.post(
 			`http://localhost:3000/images/${profileid}`,
-			photo
+			photo,
+			this.onlyAuthorizationHeader
 		);
 	}
 }

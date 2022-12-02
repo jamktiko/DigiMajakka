@@ -132,7 +132,15 @@ const joblistingC = {
         'DELETE FROM JobAdvert WHERE advertid = ?;',
         [_request.params.advertid],
       );
-
+      const emailtext = 'Ilmoituksesi on poistettu palvelusta digimajakka';
+      const htmltext =
+        '<h3>Ilmoituksesi on poistettu palvelusta digimajakka</h3>';
+      await ses.sendEmail(
+        'digimajakka.asiakaspalvelu@gmail.com',
+        emailtext,
+        'Ilmoituksen poisto',
+        htmltext,
+      );
       console.log(result);
 
       response.status(200).json({

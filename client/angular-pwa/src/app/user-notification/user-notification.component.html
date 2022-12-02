@@ -1,0 +1,70 @@
+<!-- Backdrop styles come from global styles. Backdrop causes the notification to be displayed on top of other components -->
+<div class="backdrop" (click)="changeVisibility()">
+	<!-- Container for the notification -->
+	<div class="container" (click)="$event.stopPropagation()">
+		<!-- Button to close the notification-window -->
+		<div class="close-button" (click)="changeVisibility()">
+			<img
+				class="close-icon"
+				src="assets\icons\close.svg"
+				alt="close-button"
+			/>
+		</div>
+
+		<!-- Notification that is shown if an useraccount with given email doesn't exist -->
+		<div *ngIf="accountNotFound">
+			<h2>Sähköpostilla ei löytynyt tiliä.</h2>
+			<p>
+				Tarkista oikeinkirjoitus tai rekisteröidy käyttäjäksi, jos
+				sinulla ei ole vielä käyttäjätiliä.
+			</p>
+			<!-- Buttons inside a div to position them correctly -->
+			<div class="buttoncontainer">
+				<!-- Button to redirect to registration-form -->
+				<button class="greenbutton" (click)="register.emit()">
+					Rekisteröidy
+				</button>
+				<!-- Button that closes the notification -->
+				<button class="graybutton" (click)="changeVisibility()">
+					Peruuta
+				</button>
+			</div>
+		</div>
+
+		<!-- Notification that is shown if user tries to login to an account that is not yet confirmed -->
+		<div *ngIf="accountNotConfirmed">
+			<h2>Tiliä ei ole vielä vahvistettu.</h2>
+			<p>Sähköpostia ei ole vielä vahvistettu koodilla.</p>
+			<p class="bold">Koodi on lähetetty sähköpostiisi.</p>
+			<!-- Buttons inside a div to position them correctly -->
+			<div class="buttoncontainer">
+				<!-- Button to redirect to account confirmation -form -->
+				<button class="greenbutton" (click)="confirm.emit()">
+					Syötä koodi
+				</button>
+				<!-- Button that sends a new confirmation code to the users email -->
+				<button class="graybutton" (click)="resendCode()">
+					Tilaa uusi koodi
+				</button>
+			</div>
+		</div>
+
+		<!-- Notification that is shown if user tries to register with an email, that already has an account tied to it -->
+		<div *ngIf="accountAlreadyExists">
+			<h2>Tällä sähköposti-osoitteella on jo tehty tili.</h2>
+			<p>Sähköpostia ei ole vielä vahvistettu koodilla.</p>
+			<p class="bold">Koodi on lähetetty sähköpostiisi.</p>
+			<!-- Buttons inside a div to position them correctly -->
+			<div class="buttoncontainer">
+				<!-- Button to redirect to account confirmation -form -->
+				<button class="greenbutton" (click)="showConfirmForm()">
+					Syötä koodi
+				</button>
+				<!-- Button that sends a new confirmation code to the users email -->
+				<button class="graybutton" (click)="resendCode()">
+					Tilaa uusi koodi
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

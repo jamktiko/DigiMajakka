@@ -1,0 +1,88 @@
+
+
+
+h1 {
+    position: absolute;
+    left: 13.4375rem;
+    top: 2rem;
+    font-weight: 400;
+    font-size: 48px;
+    padding-top: 0%;
+    margin-top: 0%;
+}
+
+.container {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    background-color: var(--darkgray);
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.textbox {
+    position: absolute;
+    top: 8.875rem;
+    left: 13.4375rem;
+    max-width: 69.1875rem;
+    text-align: justify;
+}
+
+
+
+
+.topline {
+    display: flex;
+    justify-content: left;
+   
+    min-height: 2.125em;
+
+    width: 100vw;
+    background-color: var(--mediumblue);
+}
+
+
+
+.backbutton {
+    color: var(--lightblue);
+    background: none;
+    border: none;
+    margin-left: 3.5625em;
+    margin-right: 3.5625em;
+    font-size: 1rem;
+    /* position: absolute;
+    left: 3.5625em;
+    font-size: 1.125em; */
+}
+
+a {
+    -moz-appearance: button;
+    -ms-appearance: button;
+    -o-appearance: button;
+    -webkit-appearance: button;
+    appearance: button;
+    text-decoration: none;
+   font-size: 1rem;
+    padding: 0.2em 0.4em;
+}
+
+.navbutton {
+    color: var(--lightblue);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    /* position: absolute;
+    left: 11.4375em;
+    font-size: 1.125em; */
+}
+
+.triangle {
+    width: 1em;
+    height: auto;
+    background-size: 0.4em;
+    
+ background-image: url(../../assets/icons/Pikkunuoli.png);
+ background-repeat: no-repeat;
+ background-position: center;
+
+}

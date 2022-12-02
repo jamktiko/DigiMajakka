@@ -16,6 +16,7 @@ export class StateManagementService {
 	loginFormVisible: boolean = false;
 	registerFormVisible: boolean = false;
 	resetPasswordVisible: boolean = false;
+	userNotificationVisible: boolean = false;
 
 	// Variable to hold information about if user is logged in or not
 	// ADD FUNCTIONALITY TO USE THIS??
@@ -31,6 +32,7 @@ export class StateManagementService {
 	visibilityChangeLoginForm: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeRegisterForm: Subject<boolean> = new Subject<boolean>();
 	visibilityChangeResetPassword: Subject<boolean> = new Subject<boolean>();
+	visibilityChangeUserNotification: Subject<boolean> = new Subject<boolean>();
 
 	// Setting the values in the constructor
 	constructor() {
@@ -60,6 +62,9 @@ export class StateManagementService {
 		});
 		this.visibilityChangeResetPassword.subscribe((value) => {
 			this.resetPasswordVisible = value;
+		});
+		this.visibilityChangeUserNotification.subscribe((value) => {
+			this.userNotificationVisible = value;
 		});
 	}
 
@@ -98,5 +103,11 @@ export class StateManagementService {
 
 	toggleResetPasswordVisibility() {
 		this.visibilityChangeResetPassword.next(!this.resetPasswordVisible);
+	}
+
+	toggleUserNotificationVisibility() {
+		this.visibilityChangeUserNotification.next(
+			!this.userNotificationVisible
+		);
 	}
 }

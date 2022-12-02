@@ -6,6 +6,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import process from 'node:process';
 import dotenv from 'dotenv';
+import {CognitoIdentityServiceProvider} from 'aws-sdk';
 dotenv.config();
 import {
   AuthenticationDetails,
@@ -13,6 +14,12 @@ import {
   CognitoUserAttribute,
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
+
+const cognitoIdentity = new CognitoIdentityServiceProvider({
+  accessKeyId: process.env.COGNITO_ACCESS_KEY,
+  secretAccessKey: process.env.COGNITO_SECRET_KEY,
+  region: process.env.REGION,
+});
 
 // Create new instance of cognitoUserPool to connect to cognito
 const userPool = new CognitoUserPool({
@@ -143,6 +150,16 @@ class CognitoHelper {
         Password: password,
       });
 
+      cognitoIdentity.adminGetUser(
+        {
+          UserPoolId: process.env.USER_POOL_ID || '',
+          Username: email || '',
+        },
+        (error) => {
+          if (error) reject(error); // an error occurred
+        },
+      );
+
       cognitoUser.authenticateUser(authenticationDetails, {
         // If sign in was success check if user has confirmed their account with code
         onSuccess(session, userConfirmationNecessary) {
@@ -234,6 +251,16 @@ class CognitoHelper {
         Username: email,
         Pool: userPool,
       });
+
+      cognitoIdentity.adminGetUser(
+        {
+          UserPoolId: process.env.USER_POOL_ID || '',
+          Username: email || '',
+        },
+        (error) => {
+          if (error) reject(error); // an error occurred
+        },
+      );
 
       cognitoUser.forgotPassword({
         onSuccess: function (result) {

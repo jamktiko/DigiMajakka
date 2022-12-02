@@ -2,7 +2,7 @@ import express from 'express';
 import profileC from '../controllers/profile-controller';
 import bodyChecker from '../middlewares/body-check';
 import {authHandler} from '../middlewares/auth';
-
+import userCheck from '../middlewares/user-check';
 // eslint-disable-next-line new-cap
 const profileRouter = express.Router();
 
@@ -12,21 +12,28 @@ profileRouter.get('/', profileC.findAll);
 
 // Route to get profile with specific id
 // /profiles/:id
-profileRouter.get('/:id', profileC.findById);
+profileRouter.get('/:profileid', profileC.findById);
 
 // Route to post profile
 // /profiles/
-profileRouter.post('/', bodyChecker, profileC.createProfile);
+profileRouter.post('/', authHandler, bodyChecker, profileC.createProfile);
 
 // Route to update profile
 // /profiles/:id
-profileRouter.put('/:id', bodyChecker, authHandler, profileC.updateProfile);
+profileRouter.put(
+  '/:profileid',
+  bodyChecker,
+  authHandler,
+  userCheck,
+  profileC.updateProfile,
+);
 
 // Deletes profile by id
 // /profiles/:id
 profileRouter.delete(
-  '/:id',
-
+  '/:profileid',
+  authHandler,
+  userCheck,
   profileC.deleteProfile,
 );
 

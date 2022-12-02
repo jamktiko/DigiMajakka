@@ -28,6 +28,15 @@ import {DeleteJobAdvertComponent} from './delete-job-advert/delete-job-advert.co
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {RecoverPasswordComponent} from './recover-password/recover-password.component';
+import {GuideComponent} from './guide/guide.component';
+import {UserNotificationComponent} from './user-notification/user-notification.component';
+import {CookiesModalComponent} from './cookies-modal/cookies-modal.component';
+import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
+import {GuideLightEntrepreneurComponent} from './guide-light-entrepreneur/guide-light-entrepreneur.component';
+
+import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-conditions.component';
+import {ProfilelistComponent} from './profilelist/profilelist.component';
+import {ProfilecardComponent} from './profilecard/profilecard.component';
 
 @NgModule({
 	declarations: [
@@ -54,6 +63,15 @@ import {RecoverPasswordComponent} from './recover-password/recover-password.comp
 		LoginComponent,
 		RegisterComponent,
 		RecoverPasswordComponent,
+		GuideComponent,
+		UserNotificationComponent,
+		CookiesModalComponent,
+		PrivacyPolicyComponent,
+		GuideLightEntrepreneurComponent,
+
+		TermsAndConditionsComponent,
+		ProfilelistComponent,
+		ProfilecardComponent,
 	],
 	imports: [
 		BrowserModule,
