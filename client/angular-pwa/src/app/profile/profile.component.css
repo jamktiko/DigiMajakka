@@ -1,7 +1,10 @@
 
-
 .listtext {
   margin: 0;
+}
+
+.value {
+  margin-bottom: 0.5em;
 }
 
 .editButton {
@@ -32,32 +35,34 @@
 }
 
 .editButton.upleft {
-  justify-self: end;
-  position: fixed;
+  position: absolute;
   z-index: 11;
-  top: 30px;
-  right: 65px;
+  top: -25.5px;
+  right: -25.5px;
 }
 
 .editButton.upcenter {
-  justify-self: end;
   position: absolute;
   z-index: 11;
-  top: 30px;
-  left: 315px;
+  top: -1.5em;
+  right: -25.5px;
 }
 
 .editButton.upright {
-  justify-self: end;
   position: absolute;
   z-index: 11;
-  top: 30px;
-  left: 315px;
+  top: -1.5em;
+  right: -25.5px;
 }
 
 .edit-icon {
   height: 35px;
   width: 35px;
+}
+
+.upperBg {
+  background-color: var(--mediumblue);
+  width: 100%;
 }
 
 .upperContent {
@@ -66,23 +71,29 @@
   background-repeat: no-repeat;
   background-position: right;
   overflow: visible; */
-  max-width: 100%;
+  max-width: 1600px;
+  height: 475px;
+  box-sizing: border-box;
   background-color: var(--mediumblue);
-  height: 425px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  justify-content: space-between;
   min-width: 1024px;
-  padding: 0 40px;
+  padding: 2em 3em;
+  margin: 0 auto;
+}
+
+.lowerBg {
+  background-color: var(--darkgray);
+  width: 100%;
 }
 
 .lowerContent {
-  padding: 0 40px 4em;
   background-color: var(--darkgray);
-  max-width: 100%;
+  max-width: 1600px;
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
   height: 63vh;
-  z-index: -2;
+  margin: 0 auto;
 }
 
 .lowerBox {
@@ -91,29 +102,25 @@
 }
 
 .lowerBox.left {
-  padding-left: 40px;
-  padding-right: 40px;
+  margin-left: 2em;
 }
 
 .lowerMid {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
   flex-direction: column;
 }
 
 .profilephoto {
-  height: 368px;
-  width: 368px;
+  height: 355px;
+  width: 355px;
+  box-sizing: border-box;
   border-radius: 20px;
   box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
   position: relative;
-  right: 90px;
-  z-index: 9;
-  overflow: hidden;
-  margin-left: 80px;
   margin-top: 2em;
+  padding: 1em;
 }
 
 .photowide {
@@ -136,26 +143,22 @@
 
 .upperBox {
   position: relative;
-}
-
-.upperBox.first {
-  display: flex;
-  justify-content: flex-end;
-  transform: translateZ(0);
+  border: 1px solid var(--lightblue);
+  border-radius: 20px;
+  height: 355px;
+  width: 355px;
+  box-sizing: border-box;
+  padding: 1em;
+  margin-top: 2em;
 }
 
 .upperBox.second {
-  padding: 50px;
-  padding-right: 30px;
   display:flex;
   flex-direction: column;
   min-width:315px;
-  border: 1px solid red;
 }
 
 .upperBox.third {
-  padding: 50px;
-  padding-right: 30px;
   display:flex;
   flex-direction: column;
 }
@@ -170,6 +173,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 4em auto 0;
 }
 
 .socials>a {
@@ -205,7 +209,7 @@ h2, h3, h4, h5 {
 
 h2 {
   color: var(--lightblue);
-  
+  margin: 0 0 0.5em;
 }
 
 h3 {
@@ -228,7 +232,7 @@ h5 {
   gap: 10px;
   max-width: 600px;
   padding: 20px 20px 40px 20px;
-  margin: 30px;
+  margin: 2em;
 }
 
 .tags {
@@ -253,17 +257,12 @@ h5 {
   align-items: center;
 }
 
-.graybutton {
-  margin: 10px;
-}
-
 .checkboxRow{
- margin-left: 30px;
+ margin-left: 2em;
  margin-top: 4em;
- display:grid;
- grid-template-columns: 120px 120px 120px ;
+ display: flex;
  gap: 10px;
- justify-items: center;
+ width: fit-content;
 }
 
 .btnwithcheckmark {
@@ -281,13 +280,9 @@ h5 {
   max-width: 50px;
 }
 
-.bluebutton {
-  min-width: 65px;
-}
-
 .contentfooter {
   display: flex;
-  margin-left: 30px;
+  margin-left: 2em;
   margin-top: 2em;
   align-items: center;
   gap: 10px;
