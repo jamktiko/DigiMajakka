@@ -24,7 +24,7 @@ const routes: Routes = [
 	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
-	// Duplicate 'student/joblist' route?
+	// Duplicate 'student/joblist' route? REMOVE WHEN JOBLISTCOMPONENT READY
 	{path: 'student/joblist', component: JoblistComponent},
 	{path: 'jobadvert/delete/:id', component: DeleteJobAdvertComponent},
 	{path: 'guide', component: GuideComponent},
@@ -37,7 +37,9 @@ const routes: Routes = [
 	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
 	{path: 'termsandconditions', component: TermsAndConditionsComponent},
 	{path: 'privacypolicy', component: PrivacyPolicyComponent},
-	{path: '', component: FrontpageComponent},
+	{path: 'home', component: FrontpageComponent},
+	// Wildcard-route that redirects to frontpage, if user tries to activate route that does not exist
+	{path: '**', component: FrontpageComponent},
 ];
 
 @NgModule({
