@@ -21,7 +21,11 @@ const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
 	// which component to show in that url.
 	{path: 'student', component: StudentFrontpageComponent},
-	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+	{
+		path: 'student/profile',
+		component: ProfileComponent,
+		canActivate: [AuthGuard],
+	},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
 	// Duplicate 'student/joblist' route? REMOVE WHEN JOBLISTCOMPONENT READY
