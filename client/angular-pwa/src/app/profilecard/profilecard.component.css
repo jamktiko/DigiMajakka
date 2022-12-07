@@ -9,7 +9,7 @@
   display: grid;
   grid-template-areas: "img tags"
                        "name button"  ;
-  grid-template-columns: 189px auto;
+/* JATKA TÄSTÄ */
   grid-template-rows: 189px auto;
   gap: 2em;
 }
@@ -20,10 +20,38 @@
   height: 189px;
 }
 
+.profilephoto {
+  height: 189px;
+  width: 189px;
+  border-radius: 20px;
+  box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.photowide {
+  position: absolute;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  max-height: stretch;
+}
+
+.phototall {
+  position: absolute;
+  left: -9999px;
+  right: -9999px;
+  top: -9999px;
+  bottom: -9999px;
+  margin: auto;
+  max-width: 189px;
+}
+
 .tags {
   display:flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 350px;
 }
 
 .tags>p {
@@ -48,6 +76,7 @@
 }
 
 .btncontainer {
+  padding-top: 30px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
