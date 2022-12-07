@@ -42,7 +42,7 @@ const skillC = {
     try {
       const data = await queryDb(
         'SELECT Skills_name AS name FROM UserProfileSkills WHERE Userprofile_userprofileid = ?;',
-        [_request.params.id],
+        [_request.params.profileid],
       );
       console.log(data);
 
