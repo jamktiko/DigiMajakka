@@ -8,6 +8,7 @@ import {
 import {Observable} from 'rxjs';
 import {LoginService} from './login.service';
 import {Router} from '@angular/router';
+import {StateManagementService} from './state-management.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -15,7 +16,7 @@ import {Router} from '@angular/router';
 export class AuthGuard implements CanActivate {
 	constructor(
 		private loginservice: LoginService,
-
+		private stateservice: StateManagementService,
 		private router: Router
 	) {}
 	canActivate(
@@ -26,6 +27,7 @@ export class AuthGuard implements CanActivate {
 			return true;
 		} else {
 			this.router.navigateByUrl('/student');
+			this.stateservice.toggleLoginFormVisibility();
 			return false;
 		}
 	}
