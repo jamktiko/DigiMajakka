@@ -1,0 +1,105 @@
+h2 {
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.item2-text {
+  width: 28rem;
+  text-align: justify;
+  font-size: 1.25rem;
+  position: absolute;
+  top: 8.125rem;
+  left: 13.1875rem;
+  margin-top: 0%;
+}
+
+.item2-header {
+ position: absolute;
+ left: 9.5625rem;
+ top: 3.3125rem;
+ margin-top: 0%;
+}
+
+.item3-header {
+  position: absolute;
+  right: 16.5rem;
+  top: 4.125rem;
+  margin-top: 0%;
+  width: 24.75rem;
+ }
+
+ .item3-text {
+  width: 29.25rem;
+  text-align: justify;
+  font-size: 1.25rem;
+  position: absolute;
+  top: 11.375rem;
+  right: 12rem;
+  
+  margin-top: 0%;
+}
+
+.container {
+  background-color: var(--mediumblue);
+  min-height: 100vh;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+  
+}
+.item1 {
+   
+    grid-column: 1;
+    grid-row: 1;
+ 
+    width: 50vw;
+    height: 26.25rem;
+}
+.item2 {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    background-color: var(--mediumblue);
+    width: 50vw;
+    height: 26.25rem;
+
+}
+.item3 {
+   position: relative;
+    grid-column: 1;
+    grid-row: 2;
+    background-color: var(--darkgray);
+    width: 50vw;
+    height: 29.375rem;
+}
+.item4 {
+  
+    grid-column: 2;
+    grid-row: 2;
+    /* background-image: url('../../assets/img/studentfrontpage-photo-logged.png'); */
+    /* background-size:cover; */
+  
+
+    width:50vw ; 
+    height: 29.375rem;
+}
+
+img {
+  object-fit:cover;
+  width:50vw;
+  height: 29.375rem;
+}
+.item3-button {
+  position: absolute;
+  top: 22.125rem;
+  right: 32.6875rem;
+}
+.item2-button {
+  position: absolute;
+  /* bottom: 3.9375rem; */
+  top: 18.875rem;
+  left: 32.625rem;
+}

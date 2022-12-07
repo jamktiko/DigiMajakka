@@ -14,6 +14,7 @@ import {GuideLightEntrepreneurComponent} from './guide-light-entrepreneur/guide-
 import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-conditions.component';
 
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
+import {FrontpageComponent} from './frontpage/frontpage.component';
 import {ProfilelistComponent} from './profilelist/profilelist.component';
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
 	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
 	{path: 'termsandconditions', component: TermsAndConditionsComponent},
 	{path: 'privacypolicy', component: PrivacyPolicyComponent},
+	{path: '', component: FrontpageComponent},
 ];
 
 @NgModule({

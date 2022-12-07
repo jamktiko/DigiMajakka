@@ -18,11 +18,33 @@ export class EmployerComponent implements OnInit {
 		assignment: '',
 		description: '',
 		payment: '',
+		city: '',
 		calendar: '',
+		validuntil: '',
 	};
 
+	submitThanks: boolean = false;
+	toggleBool: boolean = true;
+	myform = FormGroup;
+	maxChars = 2500;
 	today = Date();
 	constructor(private jobservice: JobService) {}
+
+	changeEvent(event: any) {
+		if (event.target.checked) {
+			this.toggleBool = false;
+		} else {
+			this.toggleBool = true;
+		}
+	}
+
+	modalHide() {
+		this.submitThanks = false;
+	}
+
+	refresh(): void {
+		window.location.reload();
+	}
 
 	ngOnInit(): void {}
 
@@ -30,35 +52,35 @@ export class EmployerComponent implements OnInit {
 	onSubmit(formdata: any) {
 		// ADD FUNCTIONALITY
 		console.log(
-			`{"firstname":"${this.info.firstname}, "familyname":"${this.info.lastname}", "company":"${this.info.companyname}", "startdate":"2022-12-12", "email":"${this.info.email}", "phonenumber":"${this.info.phone}, "jobtitle":"${this.info.assignment}, "description":"${this.info.description}, "salary":"${this.info.payment}, "city":"Muurame"}`
+			`{"firstname":"${this.info.firstname}", 
+			"familyname":"${this.info.lastname}", 
+			"company":"${this.info.companyname}", 
+			"startdate":"${this.info.calendar}", 
+			"email":"${this.info.email}", 
+			"phonenumber":"${this.info.phone}",
+			"jobtitle":"${this.info.assignment}", 
+			"description":"${this.info.description}", 
+			"salary":"${this.info.payment}", 
+			"city":"${this.info.city}",
+			"validuntil":"${this.info.validuntil}"}`
 		);
 		this.jobservice
 			.postJobAnnoucement(
 				`{"firstname":"${this.info.firstname}", 
 				"familyname":"${this.info.lastname}", 
 				"company":"${this.info.companyname}", 
-				"startdate":"2022-12-12", 
+				"startdate":"${this.info.calendar}", 
 				"email":"${this.info.email}", 
-				"phonenumber":"${this.info.phone}", 
+				"phonenumber":"${this.info.phone}",
 				"jobtitle":"${this.info.assignment}", 
 				"description":"${this.info.description}", 
 				"salary":"${this.info.payment}", 
-				"city":"Muurame"}`
+				"city":"${this.info.city}",
+				"validuntil":"${this.info.validuntil}"}`
 			)
 			.subscribe(() => {
+				this.submitThanks = true;
 				console.log('Data has been moved!');
-				this.info = {
-					firstname: '',
-					lastname: '',
-					email: '',
-					phone: '',
-					employer: '',
-					companyname: '',
-					assignment: '',
-					description: '',
-					payment: '',
-					calendar: '',
-				};
 			});
 	}
 }
