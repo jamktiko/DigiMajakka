@@ -28,6 +28,7 @@ export class EmployerComponent implements OnInit {
 	myform = FormGroup;
 	maxChars = 2500;
 	today = Date();
+	currentDate: any = new Date();
 	constructor(private jobservice: JobService) {}
 
 	changeEvent(event: any) {
@@ -44,6 +45,10 @@ export class EmployerComponent implements OnInit {
 
 	refresh(): void {
 		window.location.reload();
+	}
+
+	maxDate() {
+		this.currentDate.setMonth(this.currentDate.getMonth() + 6);
 	}
 
 	ngOnInit(): void {}
