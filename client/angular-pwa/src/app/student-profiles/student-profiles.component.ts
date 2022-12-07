@@ -51,7 +51,7 @@ export class StudentProfilesComponent implements OnInit {
 	// All skills of the profile will be in this array
 	skills: any = [];
 
-	profilePhoto: any;
+	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
 	photoRatio: any;
 	photoWidth: any;

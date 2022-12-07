@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 
-	profilePhoto: any;
+	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
 
 	// Get the logged in users profile when the component is created

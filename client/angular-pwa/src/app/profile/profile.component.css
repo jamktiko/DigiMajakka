@@ -92,7 +92,7 @@
   max-width: 1600px;
   display: grid;
   grid-template-columns: 1fr 50px 1fr;
-  height: 63vh;
+  height:600px;
   margin: 0 auto;
 }
 
