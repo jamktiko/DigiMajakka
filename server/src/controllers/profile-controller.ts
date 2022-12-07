@@ -13,7 +13,10 @@ const profileController = {
     next: express.NextFunction,
   ) {
     try {
-      const data = await queryDb('SELECT * FROM UserProfile;', []);
+      const data = await queryDb(
+        'SELECT * FROM UserProfile WHERE public = true;',
+        [],
+      );
       console.log(data);
 
       response.status(200).json(data);
