@@ -1,7 +1,12 @@
 <div class="container">
-	<h1>Opiskelijat</h1>
-
 	<div class="cardlistcontainer">
+		<h1>Opiskelijat</h1>
+
+		<div class="search">
+			<input type="text" required minlength="2" maxlength="45" />
+			<button class="bluebutton">Etsi</button>
+		</div>
+
 		<app-profilecard
 			*ngFor="let profile of profiles"
 			[profile]="profile"
