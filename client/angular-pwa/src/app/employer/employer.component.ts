@@ -8,6 +8,10 @@ import {JobService} from '../job.service';
 	styleUrls: ['./employer.component.css'],
 })
 export class EmployerComponent implements OnInit {
+	// Variables to hold breadcrumb data that is sent to breadcrumb-component
+	breadcrumbColor: string = 'gray';
+	breadcrumbRoute: any = [{name: 'Toimeksiantajalle', route: '/employer'}];
+
 	info = {
 		firstname: '',
 		lastname: '',

@@ -22,12 +22,21 @@ export class StudentFrontpageComponent implements OnInit {
 	// Variable that dictates if registration- or confirmform is displayed
 	confirmForm: boolean = false;
 
+	breadcrumbColor: string = 'gray';
+	breadcrumbRoute: any = [{name: 'Opiskelijalle', route: '/student'}];
+
 	// users login-status is validated when the component loads
 	ngOnInit(): void {
 		if (this.loginService.validateLoginStatus()) {
 			this.logged = true;
 		} else {
 			this.logged = false;
+		}
+
+		if (this.logged) {
+			this.breadcrumbColor = 'blue';
+		} else {
+			this.breadcrumbColor = 'gray';
 		}
 	}
 
