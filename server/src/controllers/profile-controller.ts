@@ -36,6 +36,10 @@ const profileController = {
         'SELECT * FROM UserProfile WHERE userprofileid = ?',
         [_request.params.profileid],
       );
+
+      if (data.length <= 0) {
+        throw new Error('No profile found with given id');
+      }
       console.log(data);
 
       response.status(200).json(data);
@@ -204,8 +208,6 @@ const profileController = {
     next: express.NextFunction,
   ) {
     try {
-      console.log('dsfkojdnmfdkmfdsk');
-
       let userEmail = '';
       if (_request.user && typeof _request.user.email !== 'undefined') {
         userEmail = _request.user.email;

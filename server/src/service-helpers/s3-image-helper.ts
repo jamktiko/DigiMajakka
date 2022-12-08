@@ -66,7 +66,7 @@ const imageHelper = {
       if (typeof data.Body !== 'undefined') {
         return data.Body;
       } else {
-        throw new Error('iosrjg');
+        throw new Error('No image found');
       }
     } catch (error: unknown) {
       return null;

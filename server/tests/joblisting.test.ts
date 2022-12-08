@@ -5,6 +5,7 @@ import request from 'supertest';
 import app from '../src/app';
 
 describe('Joblisting controller test', () => {
+  let advertid = '';
   it('Create jobadvert', (done) => {
     request(app)
       .post('/joblistings/')
@@ -30,7 +31,7 @@ describe('Joblisting controller test', () => {
         if (err) {
           return done;
         }
-
+        advertid = JSON.parse(res.text).advertid;
         expect(JSON.parse(res.text).success).to.be.true;
 
         return done();
@@ -49,6 +50,22 @@ describe('Joblisting controller test', () => {
 
         expect(JSON.parse(res.text)).to.be.an('array').to.be.not.empty;
 
+        return done();
+      });
+  });
+  it('Delete job advert', (done) => {
+    request(app)
+      .delete(`/joblistings/${advertid}`)
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done;
+        }
+
+        expect(JSON.parse(res.text)).to.be.an('object').to.be.not.empty;
+        expect(JSON.parse(res.text).success).to.be.true;
         return done();
       });
   });

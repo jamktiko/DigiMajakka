@@ -26,6 +26,8 @@ const queryDb = async (query: string, parameters: unknown[]) => {
       if (error) {
         connection.release();
         throw error;
+      } else {
+        console.log('Db connection successfull');
       }
 
       // Send query to database with parameters
@@ -42,7 +44,6 @@ const queryDb = async (query: string, parameters: unknown[]) => {
             reject(new TypeError('Query returned undefined value'));
           }
 
-          console.log('Query executed successfully');
           // Release connection after successfull query
           connection.release();
           // In case of successfull query resolve promise wiht result
