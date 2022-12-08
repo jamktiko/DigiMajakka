@@ -1,239 +1,135 @@
-
 <div class="topline">
-  <button class="backbutton" (click)="back()">Takaisin</button>
-  <button class="navbutton" >Ohjeita</button>
+	<button class="backbutton" (click)="back()">Takaisin</button>
+	<button class="navbutton">Ohjeita</button>
 </div>
 
 <div class="grid-container">
+	<div class="grid-item1">
+		<h1 class="header1">Ohjeita</h1>
 
-    <div class="grid-item1">
-    <h1 class="header1">Ohjeita</h1>
-    
-        <pre class="headingtext">
+		<pre class="headingtext">
         Opiskelija, kirjaudu sisään ja löydä itsellesi töitä! 
-        Luo itsellesi profiili ja anna työnantajien löytää sinut!
+        Luo itsellesi profiili ja anna toimeksiantajien löytää sinut!
         </pre>
-   
 
-    
-    <div class="glassbox box1">
-      <h3>Kevytyrittäjyys</h3>
-      <pre class="glassboxtext">
+		<div class="glassbox box1">
+			<h3>Kevytyrittäjyys</h3>
+			<pre class="glassboxtext">
 Tämän helpompaa yrittäjyys ei voi enää olla.
 Katso ohjeet ja aloita tienaaminen!
-      </pre>
-      <button class="graybutton" routerLink="/guide/forstudent">Ohjeita</button>
-    </div>
-    <div class="glassbox box2">
-      <h3>Dokumenttimalleja</h3>
-      <pre class="glassboxtext">
+      </pre
+			>
+			<button class="graybutton" routerLink="/guide/forstudent">
+				Ohjeita
+			</button>
+		</div>
+		<div class="glassbox box2">
+			<h3>Dokumenttimalleja</h3>
+			<pre class="glassboxtext">
 Lataa valmiita pohjia eri dokumenteille
 mm. laskutukseen, työtodistukselle ja CV:lle.
-      </pre>
-      <div class="buttons"><button class="graybutton">Tutustu dokumentteihin</button></div>
-      
-    </div>
-  
-  </div>
-    
+      </pre
+			>
+			<div class="buttons">
+				<button class="graybutton">Tutustu dokumentteihin</button>
+			</div>
+		</div>
+	</div>
 
-      <div class="grid-item2">
-        
-        <h1 class="header2">Usein kysytyt kysymykset</h1>
+	<div class="grid-item2">
+		<h1 class="header2">Usein kysytyt kysymykset</h1>
 
-        <details>
+		<details>
+			<summary>Kenelle palvelu on tarkoitettu?</summary>
 
-          <summary>Kenelle palvelu on tarkoitettu?</summary>
-        
-          <div >Palvelu on tarkoitettu ammattikorkeakoulujen opiskelijoille,
-        
-        joilla on käytössään koulun opiskelijasähköpostiosoite.
-        
-        Palvelu on tarkoitettu myös toimeksiantajille, joita voivat olla
-        
-        esimerkiksi yksityishenkilöt, mikro- tai pk-yritykset tai yhdistykset.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Maksaako palvelun käyttö?</summary>
-        
-          <div>
-Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <h4>OPISKELIJAT</h4>
-        
-        <details>
-        
-          <summary>Miten luon profiilin?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Pitääkö hakemukseen liittää CV ja hakemuskirje?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Miten ryhdyn kevytyrittäjäksi?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>En saanut palkkaa. Mitä teen?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Työnantaja ei vastaa. Mitä teen?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Miten teen laskun?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        
-        
-        <h4>TOIMEKSIANTAJAT</h4>
-        
-        <details>
-        
-          <summary>Miten voin ilmoittaa avoimesta työtehtävästä?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Voinko ottaa suoraan yhteyttä opiskelijaan?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Opiskelija ei tullut töihin. Mitä teen?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Pitääkö opiskelijalle antaa työtodistus?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-        
-        
-        
-        <details>
-        
-          <summary>Onko minun pakko palkata opiskelija?</summary>
-        
-          <div>
-        
-        Tässä on vastaus.
-        
-          </div>
-        
-        </details>
-    </div>
-  </div>
+			<div>
+				Palvelu on tarkoitettu ammattikorkeakoulujen opiskelijoille,
+				joilla on käytössään koulun opiskelijasähköpostiosoite. Palvelu
+				on tarkoitettu myös toimeksiantajille, joita voivat olla
+				esimerkiksi yksityishenkilöt, mikro- tai pk-yritykset tai
+				yhdistykset.
+			</div>
+		</details>
 
+		<details>
+			<summary>Maksaako palvelun käyttö?</summary>
 
-    <!-- <details>
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<h4>OPISKELIJAT</h4>
+
+		<details>
+			<summary>Miten luon profiilin?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Pitääkö hakemukseen liittää CV ja hakemuskirje?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Miten ryhdyn kevytyrittäjäksi?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>En saanut palkkaa. Mitä teen?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Työnantaja ei vastaa. Mitä teen?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Miten teen laskun?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<h4>TOIMEKSIANTAJAT</h4>
+
+		<details>
+			<summary>Miten voin ilmoittaa avoimesta työtehtävästä?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Voinko ottaa suoraan yhteyttä opiskelijaan?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Opiskelija ei tullut töihin. Mitä teen?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Pitääkö opiskelijalle antaa työtodistus?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+
+		<details>
+			<summary>Onko minun pakko palkata opiskelija?</summary>
+
+			<div>Tässä on vastaus.</div>
+		</details>
+	</div>
+</div>
+
+<!-- <details>
 
         <summary>Tässä on kysymys?</summary>
       

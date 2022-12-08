@@ -21,6 +21,13 @@ export class StudentProfilesComponent implements OnInit {
 	profileid!: number;
 	private sub: any;
 
+	// Breadcrumb data
+	breadcrumbColor: string = 'gray';
+	breadcrumbRoute: any = [
+		{name: 'Opiskelijat', route: '/profilelist'},
+		{name: 'Profiili', route: this.router.url},
+	];
+
 	profile: Profile[] = [
 		// Placeholder data for the profile, if can't fetch the profile from database
 		{
