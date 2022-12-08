@@ -38,6 +38,7 @@ import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-cond
 import {FrontpageComponent} from './frontpage/frontpage.component';
 import {ProfilelistComponent} from './profilelist/profilelist.component';
 import {ProfilecardComponent} from './profilecard/profilecard.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
 	declarations: [
@@ -74,6 +75,7 @@ import {ProfilecardComponent} from './profilecard/profilecard.component';
 		FrontpageComponent,
 		ProfilelistComponent,
 		ProfilecardComponent,
+  BreadcrumbComponent,
 	],
 	imports: [
 		BrowserModule,
