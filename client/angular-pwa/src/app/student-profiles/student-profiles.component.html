@@ -1,18 +1,18 @@
-<div class="container">
-	<!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu 
+<app-breadcrumb
+	[color]="breadcrumbColor"
+	[routes]="breadcrumbRoute"
+></app-breadcrumb>
+<!--Yläpalkki, jaettu gridillä kolmeen 1fr osioon ja rakennettu 
 	upperbox first/second/third sisälle-->
-
+<div class="upperBg">
 	<div class="upperContent">
-		<div class="upperBox first">
-			<!-- Button to open photo-edit window -->
-			<div class="profilephoto">
-				<img
-					[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
-					*ngIf="!isProfilePhotoLoading"
-					[src]="getSanitizedUrl(profilePhoto)"
-					alt="Profilephoto"
-				/>
-			</div>
+		<div class="profilephoto">
+			<img
+				[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
+				*ngIf="!isProfilePhotoLoading"
+				[src]="getSanitizedUrl(profilePhoto)"
+				alt="Profilephoto"
+			/>
 		</div>
 		<div class="upperBox second">
 			<!-- Userprofiles first- and lastname -->
@@ -20,27 +20,31 @@
 				{{ profile[0].firstname }} {{ profile[0].familyname }}
 			</h2>
 			<!-- Userprofiles field of study -->
-			<p class="listtext">{{ profile[0].studyfield }}</p>
+			<p class="listtext">Koulutusohjelma:</p>
+			<p class="listtext value">{{ profile[0].studyfield }}</p>
 			<!-- Schoolname -->
-			<p class="listtext">
+			<p class="listtext">Koulun nimi:</p>
+			<p class="listtext value">
 				{{ profile[0].UserAccount_School_name }}
 			</p>
 			<!-- Year of study, gives different text based on the year-value -->
-			<p class="listtext" *ngIf="profile[0].yearofstudy === 1">
+			<p class="listtext">Opintovuosi:</p>
+			<p class="listtext value" *ngIf="profile[0].yearofstudy === 1">
 				{{ profile[0].yearofstudy }}:sen vuoden opiskelija
 			</p>
-			<p class="listtext" *ngIf="profile[0].yearofstudy === 2">
+			<p class="listtext value" *ngIf="profile[0].yearofstudy === 2">
 				{{ profile[0].yearofstudy }}:sen vuoden opiskelija
 			</p>
-			<p class="listtext" *ngIf="profile[0].yearofstudy === 3">
+			<p class="listtext value" *ngIf="profile[0].yearofstudy === 3">
 				{{ profile[0].yearofstudy }}:nnen vuoden opiskelija
 			</p>
-			<p class="listtext" *ngIf="profile[0].yearofstudy >= 4">
+			<p class="listtext value" *ngIf="profile[0].yearofstudy >= 4">
 				4:nnen (tai enemmän) vuoden opiskelija
 			</p>
 
 			<!-- City-name -->
-			<p class="listtext">
+			<p class="listtext">Paikkakunta</p>
+			<p class="listtext value">
 				{{ profile[0].City_name }}
 			</p>
 		</div>
@@ -55,16 +59,18 @@
 				Näytä yhteystiedot
 			</button>
 			<div *ngIf="showContactInfo">
-				<p>Sähköposti:</p>
-				<p>{{ profile[0].email }}</p>
-				<p>Puhelinnumero:</p>
-				<p>
+				<p class="listtext">Sähköposti:</p>
+				<p class="listtext value">{{ profile[0].email }}</p>
+				<p class="listtext">Puhelinnumero:</p>
+				<p class="listtext value">
 					{{ profile[0].phonenumber }}
 				</p>
 			</div>
 		</div>
 	</div>
-	<!--Alempi osio jaettu gridillä kahteen 1fr osioon, sekä keskiviiva lisätty väliin-->
+</div>
+<!--Alempi osio jaettu gridillä kahteen 1fr osioon, sekä keskiviiva lisätty väliin-->
+<div class="lowerBg">
 	<div class="lowerContent">
 		<!--Alemman tason viivan vasen puoli-->
 		<div class="lowerBox left">
@@ -177,7 +183,7 @@
 					</div>
 				</div>
 				<!-- ADD FUNCTIONALITY -->
-				<div class="greenbutton">Ota yhteyttä</div>
+				<div class="greenbutton contactbtn">Ota yhteyttä</div>
 			</div>
 		</div>
 	</div>

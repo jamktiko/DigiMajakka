@@ -1,3 +1,7 @@
+<app-breadcrumb
+	[color]="breadcrumbColor"
+	[routes]="breadcrumbRoute"
+></app-breadcrumb>
 <body>
 	<div id="content">
 		<div class="upperContent">
@@ -5,15 +9,15 @@
 				<img src="https://via.placeholder.com/576x403.png" />
 			</div>
 			<div class="upperBox second">
-				<h1>Työnantaja</h1>
+				<h1>Toimeksiantaja</h1>
 				<h2>Tarvitsetko työntekijää?</h2>
 				<p>
-					DigiMajakasta löydät työntekijät niin pieniin kuin
+					DigiMajakasta löydät opiskelijat niin pieniin kuin
 					suuriinkin projekteihin. Voit ilmoittaa avoimesta
-					työtehtävästä helposti jättämällä työilmoituksen tällä
-					sivulla olevalla lomakkeella. Halutessasi voit myös tutustua
-					työntekijöiden profiileihin ja ottaa kiinnostavaan henkilöön
-					suoraan yhteyttä!
+					toimeksiannosta helposti jättämällä toimeksiantolmoituksen
+					tällä sivulla olevalla lomakkeella. Halutessasi voit myös
+					tutustua opiskelijoiden profiileihin ja ottaa kiinnostavaan
+					henkilöön suoraan yhteyttä!
 				</p>
 			</div>
 		</div>
@@ -23,7 +27,7 @@
 				<div class="lowerBoxContent">
 					<div class="contentBox left">
 						<div class="labelheader">
-							<h2>Jätä työilmoitus</h2>
+							<h2>Jätä toimeksiantoilmoitus</h2>
 						</div>
 						<form
 							#eForm="ngForm"
@@ -153,7 +157,7 @@
 							<!-- Radio inputs for study-year -->
 
 							<label>
-								Työtehtävän tiedot
+								Toimeksiannon tiedot
 								<div class="radiocontainer">
 									Ilmoittaja on *
 
@@ -315,7 +319,7 @@
 								Kaupunki on pakollinen tieto
 							</p>
 							<div class="submitRow">
-								<label> Työn alkamispäivä </label>
+								<label> Toimeksiannon alkamispäivä </label>
 							</div>
 							<div class="submitRow">
 								<input
@@ -366,9 +370,9 @@
 					<div class="contentBox right">
 						<div class="content">
 							<div class="glassbox">
-								<h2>Katso ohjeet ja löydä työntekijöitä</h2>
+								<h2>Katso ohjeet ja löydä opiskelijoita</h2>
 								<p>
-									Täältä löydät ohjeita mm. työnhakupalvelu
+									Täältä löydät ohjeita mm. työnhakupalvelun
 									toiminnasta,
 								</p>
 								<p>
@@ -383,10 +387,11 @@
 							<app-profilecarousel></app-profilecarousel>
 							<div class="spaceBetween big"></div>
 							<h3>
-								Katso kaikki profiilit ja etsi työntekijöitä
+								Katso kaikki profiilit ja etsi opiskelijoita
 							</h3>
 							<h3>esimerkiksi taitojen perusteella</h3>
 							<div class="spaceBetween"></div>
+<<<<<<< HEAD
 							<a
 								routerLink="/profilelist"
 								routerLinkActive="active-link"
@@ -394,6 +399,9 @@
 									Etsi työntekijä
 								</button></a
 							>
+=======
+							<button class="bluebutton">Etsi opiskelija</button>
+>>>>>>> 33fd5774a91e2da830cdf270a32ac5d351628123
 						</div>
 					</div>
 				</div>

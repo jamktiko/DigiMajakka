@@ -26,6 +26,23 @@ const joblistingC = {
       next(error);
     }
   },
+  async findById(
+    _request: express.Request,
+    response: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const data = await queryDb(
+        'SELECT * FROM JobAdvert WHERE advertid = ?;',
+        [_request.params.advertid],
+      );
+      console.log(data);
+
+      response.status(200).json(data);
+    } catch (error: unknown) {
+      next(error);
+    }
+  },
   // Function to insert new advert into database
   async createAdvert(
     _request: express.Request,
@@ -45,6 +62,11 @@ const joblistingC = {
       const newDate = new Date(
         currentDate.setMonth(currentDate.getMonth() + 6),
       );
+      // Check that date is in correct format (YYYY-MM-DD)
+      if (!_request.body.validuntil.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        throw new Error('Date is not in valid format. Should be YYYY-MM-DD.');
+      }
+
       const userDate = new Date(_request.body.validuntil);
       // Check that adverts expiration date is less than half year from now
       const validuntil =
@@ -104,6 +126,11 @@ const joblistingC = {
         response.status(201).json({
           message: 'Created advert successfully',
           success: true,
+          advert: {
+            advertid,
+            ..._request.body,
+            validuntil,
+          },
         });
       } else {
         throw new CustomError(

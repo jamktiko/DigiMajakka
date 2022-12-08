@@ -8,8 +8,7 @@
   border-radius: 20px;
   display: grid;
   grid-template-areas: "img tags"
-                       "name button"  ;
-/* JATKA TÄSTÄ */
+                       "name button" ;
   grid-template-rows: 189px auto;
   gap: 2em;
 }
@@ -50,8 +49,9 @@
 .tags {
   display:flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1em;
   width: 350px;
+  height: fit-content;
 }
 
 .tags>p {

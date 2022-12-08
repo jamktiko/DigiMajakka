@@ -1,0 +1,17 @@
+<div [ngClass]="color == 'blue' ? 'containerblue' : 'containergray'">
+	<p class="back" (click)="back()">Takaisin</p>
+	<div *ngFor="let route of routes; last as isLast">
+		<a class="breadcrumb" [routerLink]="route.route" *ngIf="!isLast">
+			{{ route.name }}
+			<img
+				class="arrow"
+				src="assets\icons\Pikkunuoli.png"
+				alt="oikeanuoli"
+			/>
+		</a>
+
+		<a class="breadcrumb" [routerLink]="route.route" *ngIf="isLast">
+			{{ route.name }}
+		</a>
+	</div>
+</div>

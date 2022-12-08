@@ -62,8 +62,15 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 
-	profilePhoto: any;
+	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
+
+	// Variables to hold breadcrumb data that is sent to breadcrumb-component
+	breadcrumbColor: string = 'gray';
+	breadcrumbRoute: any = [
+		{name: 'Opiskelijalle', route: '/student'},
+		{name: 'Profiili', route: '/student/profile'},
+	];
 
 	// Get the logged in users profile when the component is created
 	ngOnInit(): void {

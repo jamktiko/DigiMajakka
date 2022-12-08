@@ -19,6 +19,11 @@
 		{{ profile.familyname }}
 	</p>
 	<div class="btncontainer">
-		<button class="greenbutton">Katso profiili</button>
+		<button
+			class="greenbutton"
+			[routerLink]="['/profiles', this.profile.userprofileid]"
+		>
+			Katso profiili
+		</button>
 	</div>
 </div>

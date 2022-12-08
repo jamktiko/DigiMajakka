@@ -86,3 +86,9 @@ a {
  background-position: center;
 
 }
+span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}

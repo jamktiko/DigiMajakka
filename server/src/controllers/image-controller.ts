@@ -25,11 +25,12 @@ const imageC = {
         console.log(result);
         console.log(dbresult);
         _response.status(200).json({
+          success: true,
           message: 'Successfully saved image',
           location: result.Location,
         });
       } else {
-        throw new TypeError('no file received');
+        throw new Error('no file received');
       }
     } catch (error: unknown) {
       next(error);

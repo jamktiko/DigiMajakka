@@ -1,3 +1,7 @@
+<app-breadcrumb
+	[color]="breadcrumbColor"
+	[routes]="breadcrumbRoute"
+></app-breadcrumb>
 <body [ngClass]="{'bg-change': logged}">
 	<!-- Content for the top part of the page, when the user is not logged in -->
 	<div *ngIf="!logged" class="container">
@@ -15,7 +19,7 @@
 			<h1>Opiskelija</h1>
 			<p class="px20">
 				Kirjaudu sisään ja löydä itsellesi töitä! Luo itsellesi profiili
-				ja anna työnantajien löytää sinut!
+				ja anna toimeksiantajien löytää sinut!
 			</p>
 
 			<!-- Buttons to register and log in -->
@@ -61,7 +65,7 @@
 			<h3>Luo profiili</h3>
 			<p>
 				Kerro osaamisestasi, lisää portfoliosi ja kaikki muu oleellinen
-				tieto, jotta työnantajat voivat löytää juuri sinut!
+				tieto, jotta toimeksiantajat voivat löytää juuri sinut!
 			</p>
 
 			<!-- Button that routes to profile-view -->
@@ -69,7 +73,7 @@
 				<div>
 					<p class="label">Katso profiilisi</p>
 					<!-- ADD FUNCTIONALITY TO THIS BUTTON -->
-					<button class="greenbutton" routerLink="/profile">
+					<button class="greenbutton" routerLink="/student/profile">
 						Oma profiili
 					</button>
 				</div>
@@ -100,7 +104,7 @@
 	<div *ngIf="logged" class="contentgrid">
 		<!-- Content on the left side of the lower part of the page -->
 		<div class="lcontent">
-			<h2>Avoimet työilmoitukset</h2>
+			<h2>Avoimet toimeksiantoilmoitukset</h2>
 
 			<!-- Small list of jobs, comes from joblistsmall-component -->
 			<app-joblistsmall></app-joblistsmall>
@@ -113,6 +117,10 @@
 
 			<!-- Scrollable carousel of student profiles, coming from profilecarousel-component -->
 			<app-profilecarousel></app-profilecarousel>
+
+			<button class="graybutton" routerLink="/profilelist">
+				Selaa työnhakuprofiileja
+			</button>
 		</div>
 
 		<!-- Content that is displayed on the right side of the lower part of the page -->

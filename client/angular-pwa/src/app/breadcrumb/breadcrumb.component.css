@@ -1,0 +1,46 @@
+.containerblue {
+  height: 34px;
+  width: 100%;
+  background-color: var(--mediumblue);
+  display: flex;
+  align-items: center;
+}
+
+.containergray {
+  height: 34px;
+  width: 100%;
+  background-color: var(--darkgray);
+  display: flex;
+  align-items: center;
+}
+
+p {
+  margin: 0;
+  color: var(--lightblue);
+}
+
+.back {
+  cursor: pointer;
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
+.back:hover, a:hover {
+  color: var(--mediumblue);
+}
+
+a {
+  cursor: pointer;
+}
+
+.breadcrumb {
+  text-decoration: none;
+  margin-left: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  height: 0.75em;
+  margin-left: 1em;
+}

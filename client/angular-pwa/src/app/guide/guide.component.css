@@ -1,10 +1,10 @@
 .header1 {
     font-size: 3em;
     font-weight: 400;
-    position: absolute;
+
     margin-bottom: 1%;
     margin-top: 2.4375rem;
-    left: 4.375rem;
+    margin-left: 4.375rem;
 }
 
 .header2 {
@@ -13,6 +13,9 @@
     font-style: normal;
     font-weight: 400;
     font-size: 2em;
+    max-width: 100%;
+    margin-right: 0%;
+    margin-left: 1rem;
     
 }
 
@@ -21,8 +24,8 @@ h3 {
 
     color: var(--darkblue);
     position: absolute;
-    top:  3.25em;
-    left: 3.375em;
+    top:  3.25rem;
+   left: 3.375rem;
     margin: 0%;
     font-style: normal;
     font-weight: 400;
@@ -33,16 +36,16 @@ h3 {
 .grid-container {
     display: grid;
     position: relative;
-    grid-template-columns: 50vw 50vw;
+    grid-template-columns: 60% 40%;
     
-    column-gap: 7.125rem;
+    /* column-gap: 7.125rem; */
     
    
     background-color: var(--mediumblue); 
  padding-bottom: 6em;
  padding-top: 0em;
     height: 100vh;
-    width: 100vw;
+    max-width: 100%;
 }
 
 .bgrid-item1{
@@ -59,7 +62,7 @@ h3 {
 .graybutton {
     cursor: pointer;
     position: absolute;
-    left: 4.125em;
+    left: 3.375rem;
     top: 11.6875em;
     padding: 12px 27px;
     height: -moz-fit-content;
@@ -77,8 +80,11 @@ h3 {
 .glassboxtext {
     color: var(--darkblue);
     position: absolute;
-    top: 6.625em;
-    left: 3.375em;
+    top: 6.625rem;
+    left: 3.375rem;
+    margin-left: 0%;
+    padding-left: 0%;
+    text-align: left
 }
 
 .headingtext {
@@ -132,8 +138,21 @@ h3 {
     border: none;
   
 }
-
-.answer {
-    white-space: pre-wrap;
-    max-width: 50%;
+details>div{
+    margin-left: 2rem;
+    text-align: left;
 }
+details {
+    white-space: pre-wrap;
+    max-width: 80%;
+    margin-right: 0%;
+}
+
+h4 {
+    font-weight: 400;
+font-size: 20px;
+font-family: 'Mukta Mahee';
+font-style: normal;
+margin-left: 1rem;
+}
+
