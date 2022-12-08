@@ -1,16 +1,56 @@
 .container {
   background-color: var(--darkgray);
-  padding-top: 2em;
-}
-
-h1 {
-  margin-left: 3rem;
+  min-height: 100vh;
 }
 
 .cardlistcontainer {
   padding: 3em;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   gap: 1.5em;
+  margin: 0 auto;
+  max-width: fit-content;
+}
+
+.search {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+input {
+  box-sizing: border-box;
+  padding-left: 0.75em;
+  height: 33px;
+  width: 365px;
+  border-radius: 5px;
+  border: 0;
+  box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
+  background-color: var(--lightblue);
+  margin-right: 1em;
+}
+
+@media (max-width: 1430px) {
+  
+  h1 {
+    margin-bottom: 0;
+  }
+  
+  .cardlistcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1700px) {
+  .cardlistcontainer {
+    gap: 2.5em;
+  }
 }
 

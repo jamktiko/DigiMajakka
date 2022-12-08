@@ -12,6 +12,9 @@ export class ProfilelistComponent implements OnInit {
 	// All the profiles will be in this array
 	profiles: any = [];
 
+	// Search-input variable
+	search: string = '';
+
 	// Get all profiles when the component is created
 	ngOnInit(): void {
 		this.getProfiles();

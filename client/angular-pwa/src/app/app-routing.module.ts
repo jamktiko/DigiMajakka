@@ -21,10 +21,14 @@ const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
 	// which component to show in that url.
 	{path: 'student', component: StudentFrontpageComponent},
-	{path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+	{
+		path: 'student/profile',
+		component: ProfileComponent,
+		canActivate: [AuthGuard],
+	},
 	{path: 'profiles/:id', component: StudentProfilesComponent},
 	{path: 'employer', component: EmployerComponent},
-	// Duplicate 'student/joblist' route?
+	// Duplicate 'student/joblist' route? REMOVE WHEN JOBLISTCOMPONENT READY
 	{path: 'student/joblist', component: JoblistComponent},
 	{path: 'jobadvert/delete/:id', component: DeleteJobAdvertComponent},
 	{path: 'guide', component: GuideComponent},
@@ -37,7 +41,9 @@ const routes: Routes = [
 	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
 	{path: 'termsandconditions', component: TermsAndConditionsComponent},
 	{path: 'privacypolicy', component: PrivacyPolicyComponent},
-	{path: '', component: FrontpageComponent},
+	{path: 'home', component: FrontpageComponent},
+	// Wildcard-route that redirects to frontpage, if user tries to activate route that does not exist
+	{path: '**', component: FrontpageComponent},
 ];
 
 @NgModule({

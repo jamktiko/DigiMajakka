@@ -62,7 +62,7 @@ export class ProfileComponent implements OnInit {
 		},
 	];
 
-	profilePhoto: any;
+	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
 
 	// Get the logged in users profile when the component is created
@@ -90,21 +90,6 @@ export class ProfileComponent implements OnInit {
 			console.log(this.someLinks);
 		});
 	}
-
-	// NOT NEEDED CURRENTLY
-	// getLoggedProfileCity(name: string): void {
-	// 	this.profileservice.getProfileCity(name).subscribe((city) => {
-	// 		this.city = city;
-	// 		console.log(this.city[0]);
-	// 	});
-	// }
-	//
-	// getLoggedProfileSchool(name: string): void {
-	// 	this.profileservice.getProfileSchool(name).subscribe((school) => {
-	// 		this.school = school;
-	// 		console.log(this.school[0]);
-	// 	});
-	// }
 
 	// method that gets the profile of the currently logged in user
 	getLoggedInProfile(): void {

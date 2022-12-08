@@ -1,5 +1,12 @@
 <div class="card">
-	<div class="img">Kortti</div>
+	<div class="profilephoto">
+		<img
+			[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
+			*ngIf="!isProfilePhotoLoading"
+			[src]="getSanitizedUrl(profilePhoto)"
+			alt="Profilephoto"
+		/>
+	</div>
 
 	<div class="tags">
 		<!-- Every skill put inside their own tag -->
@@ -12,6 +19,11 @@
 		{{ profile.familyname }}
 	</p>
 	<div class="btncontainer">
-		<button class="greenbutton">Katso profiili</button>
+		<button
+			class="greenbutton"
+			[routerLink]="['/profiles', this.profile.userprofileid]"
+		>
+			Katso profiili
+		</button>
 	</div>
 </div>

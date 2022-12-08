@@ -1,13 +1,19 @@
 <div class="topbar">
 	<!-- Button that returns the user to the previous view. -->
-	<button class="bluebutton backbutton" (click)="back()">Takaisin</button>
+	<!--<button class="bluebutton backbutton" (click)="back()">Takaisin</button>-->
 	<!-- Heading/logo -->
-	<h1>DigiMajakka</h1>
+	<a routerLink="/home" class="header"><h1>DigiMajakka</h1></a>
 
 	<!-- Actual navigation links. routerLinkActive is used to highlight the route the user is curently in  -->
 
-	<a routerLink="frontpage" routerLinkActive="active-link">Etusivu</a>
-	<a routerLink="student" routerLinkActive="active-link">Opiskelijalle</a>
-	<a routerLink="employer" routerLinkActive="active-link">Työnantajalle</a>
-	<a routerLink="guide" routerLinkActive="active-link">Ohjeet</a>
+	<a routerLink="/home" routerLinkActive="active-link" class="menu"
+		>Etusivu</a
+	>
+	<a routerLink="student" routerLinkActive="active-link" class="menu"
+		>Opiskelijalle</a
+	>
+	<a routerLink="employer" routerLinkActive="active-link" class="menu"
+		>Toimeksiantajalle</a
+	>
+	<a routerLink="guide" routerLinkActive="active-link" class="menu">Ohjeet</a>
 </div>

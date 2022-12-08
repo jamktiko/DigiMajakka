@@ -3,35 +3,50 @@
   background-size: 100% 100%;
 }
 
-
 .listtext {
   margin: 0;
 }
 
+.value {
+  margin-bottom: 0.5em;
+}
+
+.upperBg {
+  background-color: var(--mediumblue);
+  width: 100%;
+}
+
 .upperContent {
-  /* background-image: url(src\assets\img\profile_bg.png);
-   background-size: cover 100%;
-   background-repeat: no-repeat;
-   background-position: right;
-   overflow: visible; */
-   max-width: 100%;
-   background-color: var(--mediumblue);
-   height: 425px;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   min-width: 1024px;
-   padding: 0 40px;
- }
- 
- .lowerContent {
-   padding: 0 40px 4em;
-   background-color: var(--darkgray);
-   max-width: 100%;
-   display: grid;
-   grid-template-columns: 1fr 50px 1fr;
-   height: 63vh;
-   z-index: -2;
- }
+ /* background-image: url(src\assets\img\profile_bg.png);
+  background-size: cover 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+  overflow: visible; */
+  max-width: 1500px;
+  height: 475px;
+  box-sizing: border-box;
+  background-color: var(--mediumblue);
+  display: flex;
+  justify-content: space-between;
+  min-width: 1024px;
+  padding: 2em 3em;
+  margin: 0 auto;
+}
+
+.lowerBg {
+  background-color: var(--darkgray);
+  width: 100%;
+}
+
+.lowerContent {
+  background-color: var(--darkgray);
+  max-width: 1500px;
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  height: 600px;
+  margin: 0 auto;
+}
+
 
 .lowerBox {
   padding: 20px;
@@ -39,29 +54,25 @@
 }
 
 .lowerBox.left {
-  padding-left: 40px;
-  padding-right: 40px;
+  margin-left: 2em;
 }
 
 .lowerMid {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
   flex-direction: column;
 }
 
 .profilephoto {
-  height: 368px;
-  width: 368px;
+  height: 355px;
+  width: 355px;
+  box-sizing: border-box;
   border-radius: 20px;
   box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
   position: relative;
-  right: 90px;
-  z-index: 9;
-  overflow: hidden;
-  margin-left: 80px;
   margin-top: 2em;
+  padding: 1em;
 }
 
 .photowide {
@@ -69,7 +80,7 @@
   left: -9999px;
   right: -9999px;
   margin: auto;
-  max-height: fill;
+  max-height: stretch;
 }
 
 .phototall {
@@ -84,27 +95,26 @@
 
 .upperBox {
   position: relative;
+  border-radius: 20px;
+  height: 355px;
+  width: 355px;
+  box-sizing: border-box;
+  padding: 1em;
+  margin-top: 2em;
 }
 
-.upperBox.first {
-  display: flex;
-  justify-content: flex-end;
-  transform: translateZ(0);
-}
 
 .upperBox.second {
-  padding: 50px;
-  padding-right: 30px;
   display:flex;
   flex-direction: column;
-  min-width:315px;
+  width: fit-content;
+  padding-right: 2em;
 }
 
 .upperBox.third {
-  padding: 50px;
-  padding-right: 30px;
   display:flex;
   flex-direction: column;
+  width: fit-content;
 }
 
 .divider {
@@ -123,7 +133,7 @@ h2, h3, h4, h5 {
 
 h2 {
   color: var(--lightblue);
-  
+  margin: 0 0 0.5em;
 }
 
 h3 {
@@ -193,8 +203,8 @@ h4 {
   align-items: center;
 }
 
-.greenbutton {
-  margin-right: 20px;
+.contactbtn {
+  margin-right: 2em;
 }
 
 .bluebutton {

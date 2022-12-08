@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Route} from '@angular/router';
 import {Profile} from '../profile';
 import {ProfilesService} from '../profiles.service';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-student-profiles',
@@ -13,7 +14,8 @@ export class StudentProfilesComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private profileservice: ProfilesService,
-		private _sanitizer: DomSanitizer
+		private _sanitizer: DomSanitizer,
+		private router: Router
 	) {}
 
 	profileid!: number;
@@ -32,7 +34,7 @@ export class StudentProfilesComponent implements OnInit {
 			lookingfor: 'Kerro, millaista työtä haluaisit tehdä.',
 			phonenumber: '0400111222',
 			picturelink: 'jokukuva',
-			public: 1,
+			public: 0,
 			studyfield: 'Koulutusohjelma',
 			userprofileid: 1,
 			yearofstudy: 1,
@@ -51,7 +53,7 @@ export class StudentProfilesComponent implements OnInit {
 	// All skills of the profile will be in this array
 	skills: any = [];
 
-	profilePhoto: any;
+	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
 	photoRatio: any;
 	photoWidth: any;
@@ -64,9 +66,20 @@ export class StudentProfilesComponent implements OnInit {
 		this.sub = this.route.params.subscribe((params) => {
 			this.profileid = +params['id']; // (+) is used to convert 'id' into a number
 			console.log(this.profileid);
-			this.profileservice
-				.getProfileById(this.profileid)
-				.subscribe((profile) => (this.profile = profile));
+			this.profileservice.getProfileById(this.profileid).subscribe(
+				(profile) => {
+					this.profile = profile;
+					if (this.profile[0].public === 0) {
+						this.router.navigateByUrl('/student');
+					}
+				},
+				(Error) => {
+					console.log(
+						'Error in fetching student profile: ' +
+							Error.error.message
+					);
+				}
+			);
 			console.log(this.profile);
 		});
 
@@ -78,10 +91,18 @@ export class StudentProfilesComponent implements OnInit {
 
 	// Method to get the links (cv, social media etc.) from the profile
 	getProfileLinks(profileid: number): void {
-		this.profileservice.getProfileLinks(profileid).subscribe((links) => {
-			this.someLinks = links;
-			console.log(this.someLinks);
-		});
+		this.profileservice.getProfileLinks(profileid).subscribe(
+			(links) => {
+				this.someLinks = links;
+				console.log(this.someLinks);
+			},
+			(Error) => {
+				console.log(
+					'Error while getting links of the profile: ' +
+						Error.error.message
+				);
+			}
+		);
 	}
 
 	// Method that calls profileservive-method to get skills of the currently logged in profile.
