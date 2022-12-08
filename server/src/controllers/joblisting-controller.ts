@@ -26,6 +26,23 @@ const joblistingC = {
       next(error);
     }
   },
+  async findById(
+    _request: express.Request,
+    response: express.Response,
+    next: express.NextFunction,
+  ) {
+    try {
+      const data = await queryDb(
+        'SELECT * FROM JobAdvert WHERE advertid = ?;',
+        [_request.params.advertid],
+      );
+      console.log(data);
+
+      response.status(200).json(data);
+    } catch (error: unknown) {
+      next(error);
+    }
+  },
   // Function to insert new advert into database
   async createAdvert(
     _request: express.Request,

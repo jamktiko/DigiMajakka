@@ -8,6 +8,8 @@ const joblistingRouter = express.Router();
 // /jobadverts/
 joblistingRouter.get('/', joblistingC.findAll);
 
+joblistingRouter.get('/:advertid', joblistingC.findById);
+
 // Create new jobadvert
 // /jobadverts/
 joblistingRouter.post('/', joblistingC.createAdvert);
