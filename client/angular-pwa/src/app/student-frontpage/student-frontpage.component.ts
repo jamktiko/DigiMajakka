@@ -32,6 +32,12 @@ export class StudentFrontpageComponent implements OnInit {
 		} else {
 			this.logged = false;
 		}
+
+		if (this.logged) {
+			this.breadcrumbColor = 'blue';
+		} else {
+			this.breadcrumbColor = 'gray';
+		}
 	}
 
 	// Method that reloads the window, to get updated values after updates to profile

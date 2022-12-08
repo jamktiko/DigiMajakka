@@ -9,6 +9,10 @@ import {ProfilesService} from '../profiles.service';
 export class ProfilelistComponent implements OnInit {
 	constructor(private profileService: ProfilesService) {}
 
+	// Breadcrumb data
+	breadcrumbColor: string = 'blue';
+	breadcrumbRoute: any = [{name: 'Opiskelijat', route: '/profilelist'}];
+
 	// All the profiles will be in this array
 	profiles: any = [];
 
