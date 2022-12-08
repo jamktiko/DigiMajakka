@@ -1,3 +1,7 @@
+<app-breadcrumb
+	[color]="breadcrumbColor"
+	[routes]="breadcrumbRoute"
+></app-breadcrumb>
 <body [ngClass]="{'bg-change': logged}">
 	<!-- Content for the top part of the page, when the user is not logged in -->
 	<div *ngIf="!logged" class="container">
