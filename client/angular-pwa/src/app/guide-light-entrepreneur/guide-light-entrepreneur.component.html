@@ -1,78 +1,131 @@
+<app-breadcrumb
+	[color]="breadcrumbColor"
+	[routes]="breadcrumbRoute"
+></app-breadcrumb>
 
-<div class="topline">
-    <button class="backbutton" (onclick)="back()">Takaisin</button>
- 
-   <a routerLink="/guide">Ohjeita</a> 
-   <div class="triangle"></div>
-    <button class="navbutton" >Kevytyrittäjyys</button>
-  </div>
-  
- <div class="container">
+<div class="container">
+	<h1>Kevytyrittäjyys</h1>
 
+	<div class="textbox">
+		<h2>Mitä kevytyrittäjyys on?</h2>
+		<p>
+			Kevytyrittäjä on henkilö, joka tekee töitä omiin nimiinsä ja
+			laskuttaa tekemästään työstään laskutuspalvelun kautta.
+			Kevytyrittäjät ovat laskutuspalveluiden asiakkaita.
+			Kevytyrittäjyyden voi hyvin sovittaa opintojen ohelle.
+			Kevytyrittäjänä sinulla on mahdollisuus vaikuttaa omiin
+			työskentelyaikoihisi.
+		</p>
+		<p>
+			Esimerkiksi meillä DigiMajakassa: Olet opiskelija, joka tarjoaa
+			osaamistaan verkkosivuston tekemiseen. Teet uudet verkkosivut
+			kotisiivoja Annelle ja työt tehtyäsi kerrot Annelle, että lasku
+			saapuu jälkikäteen hänen sähköpostiinsa. Tämän jälkeen kirjaudut
+			valitsemasi laskutuspalvelun sivuille ja täytät laskun tiedot: Mitä
+			teit, kenelle ja mihin hintaan. Laskutuspalvelu lähettää tämän
+			jälkeen laskun Annelle.
+		</p>
+		<p>
+			Kun Anne maksaa saamansa laskun, ottaa laskutuspalvelu välistä
+			pienen palkkion (n. 2–5 % riippuen laskutuspalvelusta) ja tilittää
+			jäljelle jääneen summan sinulle.
+		</p>
+		<p>
+			Kevytyrittäjyys on helppoa myös työn tilaajalle, kun lähetät laskun
+			jonkun laskutuspalvelun nimissä, on asiakkaasi ainoa tehtävä maksaa
+			lasku.
+		</p>
+		<p>
+			Laskutuspalvelu huolehtii puolestasi ennakkopidätyksen tekemisestä,
+			eli he pidättävät sinulle maksettavasta summasta oikean määrän
+			veroja, kunhan olet toimittanut heille verokorttisi. 
+			Kevytyrittäjänä sinulla ei ole omaa y-tunnusta, joten et ole
+			kirjanpitovelvollinen.
+		</p>
+		Voit valita useasta eri laskutuspalvelusta haluamasi,
+		laskutuspalveluiden sivukuluissa on eroja. Katso aina tarkat ja
+		ajantasaiset tiedot laskutuspalvelun verkkosivuilta.
 
-    <h1>Kevytyrittäjyys</h1>
+		<h2>Laskutuspalvelujen palvelumaksut vertailussa</h2>
+		<table>
+			<tr>
+				<th>Laskutuspalvelu</th>
+				<th>Palvelumaksu</th>
+			</tr>
+			<tr>
+				<th><a href="https://www.ukko.fi/">Ukko.fi</a></th>
+				<td>5 %</td>
+			</tr>
+			<tr>
+				<th><a href="https://toimipiste.fi/">Toimipiste</a></th>
+				<td>5 %</td>
+			</tr>
+			<tr>
+				<th><a href="https://pooli.fi/">Pooli</a></th>
+				<td>5 %</td>
+			</tr>
+			<tr>
+				<th>
+					<a href="https://www.talenom.fi/">Talenom kevytyrittäjä</a>
+				</th>
+				<td>2 %</td>
+			</tr>
+			<tr>
+				<th><a href="https://4works.fi/">4works</a></th>
+				<td>2,0 - 3,6 %</td>
+			</tr>
+			<tr>
+				<th><a href="https://free.fi/">Free-kevytyrittäjä</a></th>
+				<td>4 %</td>
+			</tr>
+		</table>
 
-    <div class="textbox">
-        <h2>Mitä kevytyrittäjyys on?</h2>
-        <p>Kevytyrittäjä on henkilö, joka tekee töitä omiin nimiinsä ja laskuttaa tekemästään työstään laskutuspalvelun kautta. Kevytyrittäjät ovat laskutuspalveluiden asiakkaita. Kevytyrittäjyyden voi hyvin sovittaa opintojen ohelle. Kevytyrittäjänä sinulla on mahdollisuus vaikuttaa omiin työskentelyaikoihisi. </p>
-        <p>Esimerkiksi meillä DigiMajakassa: Olet opiskelija, joka tarjoaa osaamistaan verkkosivuston tekemiseen. Teet uudet verkkosivut kotisiivoja Annelle ja työt tehtyäsi kerrot Annelle, että lasku saapuu jälkikäteen hänen sähköpostiinsa.  Tämän jälkeen kirjaudut valitsemasi laskutuspalvelun sivuille ja täytät laskun tiedot: Mitä teit, kenelle ja mihin hintaan.  Laskutuspalvelu lähettää tämän jälkeen laskun Annelle.</p>
-        <p>Kun Anne maksaa saamansa laskun, ottaa laskutuspalvelu välistä pienen palkkion (n. 2–5 % riippuen laskutuspalvelusta) ja tilittää jäljelle jääneen summan sinulle. </p>
-        <p>Kevytyrittäjyys on helppoa myös työn tilaajalle, kun lähetät laskun jonkun laskutuspalvelun nimissä, on asiakkaasi ainoa tehtävä maksaa lasku. </p>
-        <p>Laskutuspalvelu huolehtii puolestasi ennakkopidätyksen tekemisestä, eli he pidättävät sinulle maksettavasta summasta oikean määrän veroja, kunhan olet toimittanut heille verokorttisi.  Kevytyrittäjänä sinulla ei ole omaa y-tunnusta, joten et ole kirjanpitovelvollinen.</p>
-        Voit valita useasta eri laskutuspalvelusta haluamasi, laskutuspalveluiden sivukuluissa on eroja. Katso aina tarkat ja ajantasaiset tiedot laskutuspalvelun verkkosivuilta.
-   
-        <h2>Laskutuspalvelujen palvelumaksut vertailussa</h2>
-        <table>
-            <tr>
-                <th>Laskutuspalvelu</th>
-                <th>Palvelumaksu</th>
-            </tr>
-            <tr>
-                <th><a href="https://www.ukko.fi/">Ukko.fi</a></th>
-                <td>5 %</td>
-            </tr>
-            <tr>
-                <th><a href="https://toimipiste.fi/">Toimipiste</a></th>
-                <td>5 %</td>
-            </tr>
-            <tr>
-                <th><a href="https://pooli.fi/">Pooli</a></th>
-                <td>5 %</td>
-            </tr>
-            <tr>
-                <th><a href="https://www.talenom.fi/">Talenom kevytyrittäjä</a></th>
-                <td>2 %</td>
-            </tr>
-            <tr>
-                <th><a href="https://4works.fi/">4works</a></th>
-                <td>2,0 - 3,6 %</td>
-            </tr>
-            <tr>
-                <th><a href="https://free.fi/">Free-kevytyrittäjä</a></th>
-                <td>4 %</td>
-            </tr>
-            
-        </table>
+		<h2>Millaiseen työskentelyyn kevytyrittäjyys sopii?</h2>
+		<p>
+			Kevytyrittäjyys sopii parhaiten palveluiden ja työsuoritteiden
+			myyntiin. Laskutuspalvelua käytetään yleensä silloin kun toiminta on
+			epäsäännöllistä ja pienimuotoista.
+		</p>
 
-        <h2>Millaiseen työskentelyyn kevytyrittäjyys sopii? </h2>
-        <p>Kevytyrittäjyys sopii parhaiten palveluiden ja työsuoritteiden myyntiin. Laskutuspalvelua käytetään yleensä silloin kun toiminta on epäsäännöllistä ja pienimuotoista. </p>
-
-        <h2>Lue lisää kevytyrittäjyydestä: </h2>
-        <ul>
-            <li><a href="https://www.yrittajat.fi/tietopankki/yrittajaksi-ryhtyminen/mita-yrittajyys-on/kevytyrittajyys/">Mitä kevytyrittäjyys on?</a></li>
-            <li><a href="https://www.vero.fi/yritykset-ja-yhteisot/yritystoiminta/uusi-yritys/kevytyrittaja/">Verohallinnon ohjeet Kevytyrittäjälle </a></li>
-            <li><a href="https://kevytyrittajaksi.com/kevytyrittajyys/">Kevytyrittäjyys tutuksi -lue kattavat ohjeet </a></li>
-        </ul>
-        <h2>Pähkinänkuoressa kevytyrittäjyys on</h2>
-        <ul>
-            <li>Helppo tapa toteuttaa yrittäjyyttä. </li>
-            <li>Maksat laskutuspalvelulle sovitun palvelumaksun, jolloin kevytyrittäjän ei tarvitse huolehtia yrittäjän velvollisuuksista </li>
-            <li>Taloudellisesti lähes riskitöntä </li>
-            <li>Kevytyrittäjä ei tarvitse Y-tunnusta </li>
-            <li>Kevytyrittäjäksi ryhtyminen on nopeaa ja kevytyrittäjyyden voi lopettaa heti </li>
-            <li>Kevytyrittäjä voi vähentää työhön liittyvät hankinnat henkilökohtaisessa verotuksessa (Esimerkiksi voit lisätä laskutuspalvelun perimän palvelumaksun henkilökohtaiseen verotukseesi) </li>
-        </ul>
-
-    </div>
-
- </div>
+		<h2>Lue lisää kevytyrittäjyydestä:</h2>
+		<ul>
+			<li>
+				<a
+					href="https://www.yrittajat.fi/tietopankki/yrittajaksi-ryhtyminen/mita-yrittajyys-on/kevytyrittajyys/"
+					>Mitä kevytyrittäjyys on?</a
+				>
+			</li>
+			<li>
+				<a
+					href="https://www.vero.fi/yritykset-ja-yhteisot/yritystoiminta/uusi-yritys/kevytyrittaja/"
+					>Verohallinnon ohjeet Kevytyrittäjälle
+				</a>
+			</li>
+			<li>
+				<a href="https://kevytyrittajaksi.com/kevytyrittajyys/"
+					>Kevytyrittäjyys tutuksi -lue kattavat ohjeet
+				</a>
+			</li>
+		</ul>
+		<h2>Pähkinänkuoressa kevytyrittäjyys on</h2>
+		<ul>
+			<li>Helppo tapa toteuttaa yrittäjyyttä.</li>
+			<li>
+				Maksat laskutuspalvelulle sovitun palvelumaksun, jolloin
+				kevytyrittäjän ei tarvitse huolehtia yrittäjän velvollisuuksista
+			</li>
+			<li>Taloudellisesti lähes riskitöntä</li>
+			<li>Kevytyrittäjä ei tarvitse Y-tunnusta</li>
+			<li>
+				Kevytyrittäjäksi ryhtyminen on nopeaa ja kevytyrittäjyyden voi
+				lopettaa heti
+			</li>
+			<li>
+				Kevytyrittäjä voi vähentää työhön liittyvät hankinnat
+				henkilökohtaisessa verotuksessa (Esimerkiksi voit lisätä
+				laskutuspalvelun perimän palvelumaksun henkilökohtaiseen
+				verotukseesi)
+			</li>
+		</ul>
+	</div>
+</div>

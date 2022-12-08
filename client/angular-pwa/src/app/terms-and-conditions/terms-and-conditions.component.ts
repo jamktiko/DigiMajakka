@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
 
 @Component({
 	selector: 'app-terms-and-conditions',
@@ -7,12 +6,13 @@ import {Location} from '@angular/common';
 	styleUrls: ['./terms-and-conditions.component.css'],
 })
 export class TermsAndConditionsComponent implements OnInit {
-	// Location is used for navigating back in the app
-	constructor(private location: Location) {}
+	constructor() {}
 
-	// Method that navigates to the previous route
-	back(): void {
-		this.location.back();
-	}
+	// Breadcrumb data
+	breadcrumbColor: string = 'blue';
+	breadcrumbRoute: any = [
+		{name: 'Käyttöehdot', route: '/termsandconditions'},
+	];
+
 	ngOnInit(): void {}
 }

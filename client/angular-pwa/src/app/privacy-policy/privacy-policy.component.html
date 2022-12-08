@@ -1,21 +1,20 @@
+<app-breadcrumb
+	[color]="breadcrumbColor"
+	[routes]="breadcrumbRoute"
+></app-breadcrumb>
 
-<div class="topline">
-    <button class="backbutton" (onclick)="back()">Takaisin</button>
- 
-  
+<div class="container">
+	<h1>Tietosuojaseloste</h1>
 
-    <button class="navbutton" >Tietosuojaseloste</button>
-  </div>
-  
- <div class="container">
-
-
-    <h1>Tietosuojaseloste</h1>
-
-    <div class="textbox">
-        <p>Kuka tietojasi käsittelee</p>
-        <span class="inline-flex"><p>Palvelu</p> <p>Yhteyshenkilö</p></span>
-        <span class="inline-flex"><p>Digimajakka</p> <p>Siru Gull</p></span>
-    </div>
-
- </div>
+	<div class="textbox">
+		<p>Kuka tietojasi käsittelee</p>
+		<span class="inline-flex"
+			><p>Palvelu</p>
+			<p>Yhteyshenkilö</p></span
+		>
+		<span class="inline-flex"
+			><p>Digimajakka</p>
+			<p>Siru Gull</p></span
+		>
+	</div>
+</div>

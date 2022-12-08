@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
 
 @Component({
 	selector: 'app-guide-light-entrepreneur',
@@ -7,12 +6,14 @@ import {Location} from '@angular/common';
 	styleUrls: ['./guide-light-entrepreneur.component.css'],
 })
 export class GuideLightEntrepreneurComponent implements OnInit {
-	// Location is used for navigating back in the app
-	constructor(private location: Location) {}
+	constructor() {}
 
-	// Method that navigates to the previous route
-	back(): void {
-		this.location.back();
-	}
+	// Variables to hold breadcrumb data that is sent to breadcrumb-component
+	breadcrumbColor: string = 'blue';
+	breadcrumbRoute: any = [
+		{name: 'Ohjeet', route: '/guide'},
+		{name: 'Kevytyrittäjyys', route: '/guide/forstudent'},
+	];
+
 	ngOnInit(): void {}
 }
