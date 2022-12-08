@@ -39,6 +39,7 @@ import {FrontpageComponent} from './frontpage/frontpage.component';
 import {ProfilelistComponent} from './profilelist/profilelist.component';
 import {ProfilecardComponent} from './profilecard/profilecard.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
 	declarations: [
@@ -76,6 +77,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 		ProfilelistComponent,
 		ProfilecardComponent,
   BreadcrumbComponent,
+  FooterComponent,
 	],
 	imports: [
 		BrowserModule,
