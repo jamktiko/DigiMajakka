@@ -29,7 +29,10 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+}
+
+.gallery-item:hover {
+  transform: translateY(0.5em)
 }
 
 .slides {
