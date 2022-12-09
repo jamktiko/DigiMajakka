@@ -58,11 +58,14 @@ const profileController = {
       if (typeof _request.user === 'undefined') {
         throw new Error('User does not exist');
       }
+      console.log(_request.user);
+
       // Find users data and citys name that users school is in
       const userdata = await queryDb(
         'SELECT UA.email, UA.School_name AS schoolname, SC.City_name AS cityname FROM UserAccount UA INNER JOIN SchoolCity SC ON SC.School_name=UA.School_name WHERE UA.email = ?;',
         [_request.user.email],
       );
+      console.log(userdata);
 
       if (typeof userdata === 'undefined') {
         throw new Error('User does not exist');
