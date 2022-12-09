@@ -1,1 +1,8 @@
-<p>profilecarousel-photo works!</p>
+<div class="container">
+	<img
+		[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
+		*ngIf="!isProfilePhotoLoading"
+		[src]="getSanitizedUrl(profilePhoto)"
+		alt="Profilephoto"
+	/>
+</div>
