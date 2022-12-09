@@ -15,19 +15,22 @@ const imageC = {
       // Check that file is not undefined or null
       if (typeof _request.file !== 'undefined' && !_request.file !== null) {
         // Upload image to s3 bucket
-        const result = await imageHelper.uploadImg(_request.file);
+        const s3upload = await imageHelper.uploadImg(_request.file);
+
         // Upload s3 link into profile in database
-        const dbresult = await querydb(
+        const databaseResult = await querydb(
           'UPDATE UserProfile SET picturelink = ? WHERE userprofileid = ?',
-          [result.Key, _request.params.profileid],
+          [s3upload.Key, _request.params.profileid],
         );
 
-        console.log(result);
-        console.log(dbresult);
+        console.log(s3upload);
+
+        console.log(databaseResult);
+
         _response.status(200).json({
           success: true,
           message: 'Successfully saved image',
-          location: result.Location,
+          location: s3upload.Location,
         });
       } else {
         throw new Error('no file received');
@@ -48,6 +51,7 @@ const imageC = {
         'SELECT * FROM UserProfile WHERE userprofileid = ?;',
         [_request.params.profileid],
       );
+
       // Check that profile were returned
       if (profile.length < 1) {
         throw new Error(
@@ -60,13 +64,13 @@ const imageC = {
         typeof profile[0].picturelink === 'string' &&
         profile[0].picturelink.length > 0
       ) {
-        // Use imageHelpers method to cretae readstream for image
+        // Use imageHelpers method to download image from s3 bucket
         const image = await imageHelper.getImg(profile[0].picturelink);
 
         // Check that image is not null
-        // If it is it means that object with given key does not exists
+        // If it is, it means that object with given key does not exists
         if (image !== null) {
-          // Send iimage as a response
+          // Send image as a response
           response.send(image);
         } else {
           // If object does not exsist throw new error
