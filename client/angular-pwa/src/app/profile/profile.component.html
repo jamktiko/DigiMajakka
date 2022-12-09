@@ -7,21 +7,26 @@
 	upperbox first/second/third sisälle-->
 <div class="upperBg">
 	<div class="upperContent">
-		<div class="profilephoto">
-			<!-- Button to open photo-edit window -->
-			<div class="editButton upleft" (click)="changePhotoVisibility()">
+		<div class="photowrapper">
+			<div class="profilephoto">
+				<!-- Button to open photo-edit window -->
+				<div
+					class="editButton upleft"
+					(click)="changePhotoVisibility()"
+				>
+					<img
+						class="edit-icon"
+						src="assets\icons\edit.svg"
+						alt="edit-icon"
+					/>
+				</div>
 				<img
-					class="edit-icon"
-					src="assets\icons\edit.svg"
-					alt="edit-icon"
+					[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
+					*ngIf="!isProfilePhotoLoading"
+					[src]="getSanitizedUrl(profilePhoto)"
+					alt="Profilephoto"
 				/>
 			</div>
-			<img
-				[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
-				*ngIf="!isProfilePhotoLoading"
-				[src]="getSanitizedUrl(profilePhoto)"
-				alt="Profilephoto"
-			/>
 		</div>
 
 		<div class="upperBox second">

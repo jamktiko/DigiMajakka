@@ -35,8 +35,8 @@
 }
 
 .editButton.upleft {
-  position: absolute;
-  z-index: 11;
+  position: fixed;
+  z-index: 19;
   top: -25.5px;
   right: -25.5px;
 }
@@ -112,6 +112,14 @@
   flex-direction: column;
 }
 
+/* Photowrapper is transformed with scale(1) that does nothing,
+ so the .profilephoto overflow: hidden can be overridden with position fixed*/
+.photowrapper {
+  transform: scale(1);
+  height: fit-content;
+  margin-top: 2em;
+}
+
 .profilephoto {
   height: 355px;
   width: 355px;
@@ -119,8 +127,8 @@
   border-radius: 20px;
   box-shadow: 0px 45px 30px -25px rgba(0, 0, 0, 0.7);
   position: relative;
-  margin-top: 2em;
   padding: 1em;
+  overflow: hidden;
 }
 
 .photowide {
@@ -139,6 +147,7 @@
   bottom: -9999px;
   margin: auto;
   max-width: 368px;
+ 
 }
 
 .upperBox {
@@ -182,6 +191,10 @@
   padding: 0;
   width: 40px;
   height: 40px;
+}
+
+.socials>a:hover {
+  transform: scale(1.25);
 }
 
 .some-icon {
