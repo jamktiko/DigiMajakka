@@ -160,7 +160,7 @@ h2 {
 .error {
   font-size: 0.9em;
   color: var(--error);
-  margin-top: 0.2em;
+  margin: 0.2em 0 -1em;
 }
 
 .btnandtxt {
