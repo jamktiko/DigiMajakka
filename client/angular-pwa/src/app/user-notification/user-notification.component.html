@@ -66,5 +66,22 @@
 				</button>
 			</div>
 		</div>
+
+		<!-- Notification that is shown if an useraccount with given email doesn't exist -->
+		<div *ngIf="profileNotFound">
+			<h2>Sinulla ei ole vielä profiilia.</h2>
+			<p>Haluatko luoda profiilin nyt?</p>
+			<!-- Buttons inside a div to position them correctly -->
+			<div class="buttoncontainer">
+				<!-- Button to redirect to registration-form -->
+				<button class="greenbutton" (click)="createProfile.emit()">
+					Luo profiili
+				</button>
+				<!-- Button that closes the notification -->
+				<button class="graybutton" (click)="changeVisibility()">
+					Peruuta
+				</button>
+			</div>
+		</div>
 	</div>
 </div>
