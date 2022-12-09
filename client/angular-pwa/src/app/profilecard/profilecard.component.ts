@@ -14,9 +14,9 @@ export class ProfilecardComponent implements OnInit {
 	// All skills of the profile will be in this array
 	skills: any = [];
 
+	// Variables to hold data about the profilephoto
 	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
-
 	photoRatio: any;
 	photoWidth: any;
 	photoHeight: any;
@@ -27,12 +27,12 @@ export class ProfilecardComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		// Skills and profilephoto are fetched immediately when the component is created
 		this.getProfileSkills(this.profile.userprofileid);
 		this.getProfilePhoto(this.profile.userprofileid);
 	}
 
-	// Method that calls profileservive-method to get skills of the currently logged in profile.
-	// Also sets specialskill and field of skill into their own arrays. Then removes duplicates from the field-array
+	// Method that calls profileservive-method to get skills of the profile.
 	getProfileSkills(profileid: number): void {
 		this.profileservice.getProfileSkills(profileid).subscribe((skills) => {
 			this.skills = skills;
