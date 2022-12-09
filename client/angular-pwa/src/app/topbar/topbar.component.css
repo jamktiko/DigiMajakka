@@ -24,9 +24,11 @@
   font-weight: 600;
 }
 
-.topbar>a:hover {
-  color: var(--green)
+.topbar>a.menu:hover {
+  color: var(--green);
+  transform: scale(1.1);
 }
+
 
 .active-link {
   border-bottom: 4px solid var(--green);

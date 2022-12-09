@@ -24,6 +24,10 @@ label {
   border-radius: 6px;
 }
 
+.close-button:hover {
+  transform: scale(1.1);
+}
+
 .close-icon {
   color: var(--lightblue);
   height: 35px;
@@ -56,6 +60,10 @@ select {
   border: 0;
   box-shadow: inset 0px 0px 1px 1px rgba(57, 100, 114, 0.5), inset 5px 5px 4px rgba(57, 100, 114, 0.4);
   background-color: var(--lightblue);
+}
+
+select {
+  cursor: pointer;
 }
 
 input:-webkit-autofill,
@@ -99,6 +107,7 @@ input[type="radio"] {
   display: grid;
   place-content: center;
   padding-left: 0;
+  cursor: pointer;
 }
 
 input[type="radio"]::before {
@@ -108,6 +117,7 @@ input[type="radio"]::before {
   border-radius: 50%;
   transform: scale(0);
   box-shadow: inset 1em 1em var(--green);
+  
 }
 
 input[type="radio"]:checked::before {

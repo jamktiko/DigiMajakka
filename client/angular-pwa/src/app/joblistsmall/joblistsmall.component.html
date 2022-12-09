@@ -3,7 +3,10 @@
 	<p *ngIf="jobs.length < 1">Haetaan toimeksiantoilmoituksia..</p>
 
 	<!-- li-element will be created for each listing in the jobs-array with *ngFor -->
-	<li *ngFor="let job of jobs.slice(0, 3)">
+	<li
+		*ngFor="let job of jobs.slice(0, 3)"
+		routerLink="/student/joblist/listing/{{ job.advertid }}"
+	>
 		<!-- This is still placeholder -->
 		<div class="headercontainer">
 			<h2 *ngIf="job.company">{{ job.company }}</h2>

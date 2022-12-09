@@ -1,6 +1,11 @@
 <div class="container">
 	<!-- Placeholder icon for the left arrow. ADD FUNCTIONALITY -->
-	<img src="assets\icons\arrowleft.png" alt="vasennuoli" />
+	<img
+		*ngIf="profiles.length > 3"
+		src="assets\icons\Pikkunuoli.png"
+		class="arrow left"
+		alt="vasennuoli"
+	/>
 
 	<p *ngIf="profiles.length < 1">Haetaan profiileja..</p>
 	<div class="gallery-container">
@@ -11,15 +16,19 @@
 				class="gallery-item"
 				[routerLink]="['/profiles', profile.userprofileid]"
 			>
-				<img
-					src="https://via.placeholder.com/100x100.png"
-					alt="placeholderkuva"
-				/>
+				<app-profilecarousel-photo
+					[profileid]="profile.userprofileid"
+				></app-profilecarousel-photo>
 				<h3>{{ profile.firstname }} {{ profile.familyname }}</h3>
 			</div>
 		</div>
 	</div>
 
 	<!-- Placeholder icon for the right arrow. ADD FUNCTIONALITY -->
-	<img src="assets\icons\arrowright.png" alt="oikeanuoli" />
+	<img
+		*ngIf="profiles.length > 3"
+		src="assets\icons\Pikkunuoli.png"
+		class="arrow"
+		alt="oikeanuoli"
+	/>
 </div>

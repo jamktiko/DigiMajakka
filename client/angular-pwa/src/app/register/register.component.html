@@ -34,12 +34,14 @@
 						<label>
 							Salasana *
 							<input
-								[ngClass]="{errorinput: pwError}"
+								[ngClass]="{errorinput: (pwError || (pw.errors?.['pattern'] && pw.touched) )}"
 								type="password"
 								required
+								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
 								minlength="2"
 								maxlength="45"
-								name="password"
+								name="pw"
+								#pw="ngModel"
 								[(ngModel)]="password"
 							/>
 						</label>
@@ -49,16 +51,27 @@
 							Salasanat eivät vastaa toisiaan
 						</p>
 
+						<!-- Error that is displayed if password did not meet the requirements -->
+						<p
+							class="error"
+							*ngIf="pw.errors?.['pattern'] && pw.touched"
+						>
+							Täytyy sisältää väh. 8 merkkiä, iso kirjain, numero
+							ja erikoismerkki.
+						</p>
+
 						<!-- Input for password confirmation -->
 						<label>
 							Salasana uudelleen *
 							<input
-								[ngClass]="{errorinput: pwError}"
+								[ngClass]="{errorinput: (pwError || (pw.errors?.['pattern'] && pw.touched) )}"
 								type="password"
 								required
+								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
 								minlength="2"
 								maxlength="45"
-								name="passwordconfirm"
+								name="pwconfirm"
+								#pwconfirm="ngModel"
 								[(ngModel)]="passwordconfirm"
 							/>
 						</label>

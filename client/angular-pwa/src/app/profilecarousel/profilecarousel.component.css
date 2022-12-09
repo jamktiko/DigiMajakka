@@ -1,18 +1,22 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 
 h3 {
   font-weight: 400;
+  font-size: 0.75em;
 }
 
-.container>img {
-  height: 150px;
-  width: 75px;
-  margin-bottom: 4em;
+.arrow {
+  height: 57px;
 }
+
+.left {
+  transform: rotate(180deg)
+}
+
 
 .gallery-container {
   position: relative;
@@ -22,6 +26,13 @@ h3 {
 
 .gallery-item {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-item:hover {
+  transform: translateY(0.5em)
 }
 
 .slides {
@@ -29,7 +40,7 @@ h3 {
   display: grid;
   grid-auto-flow: column;
   gap: 1em;
-  width: 475px;
+  max-width: 475px;
   padding: 0 0.25em;
   height: auto;
   overflow-y: hidden;

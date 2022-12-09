@@ -53,40 +53,35 @@ export class RegisterComponent implements OnInit {
 	// Method that registers a new useraccount
 	onSubmit(formData: any) {
 		// Checks if the password was confirmed correctly. If yes, continue with the registration, otherwise display an error
-		if (formData.password === formData.passwordconfirm) {
-			console.log(formData.email + ' ' + formData.password);
-			this.loginservice
-				.register(formData.email, formData.password)
-				.subscribe(
-					() => {
-						// Functionality of a successful registration
-						console.log('Registered');
-						this.emailToConfirm = formData.email;
-						this.confirmForm = true;
-					},
-					(Error) => {
-						// Error handling
-						if (
-							Error.error.message ===
-							'An account with the given email already exists.'
-						) {
-							console.log(Error.error.message);
-							this.accountAlreadyExists = true;
-							this.toggleUserNotification();
-						} else {
-							console.log(
-								'Error in registration: ' + Error.error.message
-							);
-							this.registerError = true;
-						}
+		if (formData.pw === formData.pwconfirm) {
+			console.log(formData.email + ' ' + formData.pw);
+			this.loginservice.register(formData.email, formData.pw).subscribe(
+				() => {
+					// Functionality of a successful registration
+					console.log('Registered');
+					this.emailToConfirm = formData.email;
+					this.confirmForm = true;
+				},
+				(Error) => {
+					// Error handling
+					if (
+						Error.error.message ===
+						'An account with the given email already exists.'
+					) {
+						console.log(Error.error.message);
+						this.accountAlreadyExists = true;
+						this.toggleUserNotification();
+					} else {
+						console.log(
+							'Error in registration: ' + Error.error.message
+						);
+						this.registerError = true;
 					}
-				);
+				}
+			);
 		} else {
 			console.log(
-				'Salasanat ei täsmää: ' +
-					formData.password +
-					'' +
-					formData.passwordconfirm
+				'Salasanat ei täsmää: ' + formData.pw + '' + formData.pwconfirm
 			);
 			this.pwError = true;
 		}

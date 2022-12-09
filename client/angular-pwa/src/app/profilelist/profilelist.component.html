@@ -1,16 +1,21 @@
+<!-- Breadcrumb component with data sent to it -->
 <app-breadcrumb
 	[color]="breadcrumbColor"
 	[routes]="breadcrumbRoute"
 ></app-breadcrumb>
+
 <div class="container">
+	<!-- Area for the list of cards -->
 	<div class="cardlistcontainer">
 		<h1>Opiskelijat</h1>
 
+		<!-- Search-input. NOT IMPLEMENTED YET -->
 		<div class="search">
 			<input type="text" required minlength="2" maxlength="45" />
 			<button class="bluebutton">Etsi</button>
 		</div>
 
+		<!-- Profilecard-component displayed for each profile -->
 		<app-profilecard
 			*ngFor="let profile of profiles"
 			[profile]="profile"

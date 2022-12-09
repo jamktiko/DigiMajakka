@@ -40,6 +40,7 @@ import {ProfilelistComponent} from './profilelist/profilelist.component';
 import {ProfilecardComponent} from './profilecard/profilecard.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfilecarouselPhotoComponent } from './profilecarousel-photo/profilecarousel-photo.component';
 
 @NgModule({
 	declarations: [
@@ -78,6 +79,7 @@ import { FooterComponent } from './footer/footer.component';
 		ProfilecardComponent,
   BreadcrumbComponent,
   FooterComponent,
+  ProfilecarouselPhotoComponent,
 	],
 	imports: [
 		BrowserModule,

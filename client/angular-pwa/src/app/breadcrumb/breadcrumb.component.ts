@@ -9,6 +9,8 @@ import {Location} from '@angular/common';
 export class BreadcrumbComponent implements OnInit {
 	// Variable to dictate which color background to show
 	@Input() color!: string;
+
+	// routes will hold data about the required routes
 	@Input() routes!: any;
 
 	constructor(private location: Location) {}

@@ -4,7 +4,8 @@
 
 .upperContent {
   display: flex;
-  width: 1512px;
+  min-width: 1512px;
+  width:100%;
   height: 351px;
   background-color: var(--mediumblue);
 }

@@ -40,6 +40,7 @@ body, app-root, html {
 * {
   font-family: 'Mukta Mahee';
   color: var(--lightblue);
+  font-weight: 400;
 }
 
 .greenbutton {
@@ -56,6 +57,7 @@ body, app-root, html {
   font-size: 1.125em;
   color: var(--darkgray);
 }
+
 
 .graybutton {
   cursor: pointer;
@@ -93,6 +95,12 @@ body, app-root, html {
   background: var(--disabled);
   color: var(--darkgray);
   cursor: default;
+}
+
+.greenbutton:hover,
+.bluebutton:hover,
+.graybutton:hover {
+  transform: scale(1.1);
 }
 
 .glassbox {
