@@ -50,17 +50,23 @@ const profileController = {
 
   // Insert profile into database
   async createProfile(
-    _request: express.Request,
+    _request: IAuthenticatedRequest,
     response: express.Response,
     next: express.NextFunction,
   ) {
     try {
+      if (typeof _request.user === 'undefined') {
+        throw new Error('User does not exist');
+      }
       // Find users data and citys name that users school is in
       const userdata = await queryDb(
         'SELECT UA.email, UA.School_name AS schoolname, SC.City_name AS cityname FROM UserAccount UA INNER JOIN SchoolCity SC ON SC.School_name=UA.School_name WHERE UA.email = ?;',
-        [_request.body.email],
+        [_request.user.email],
       );
 
+      if (typeof userdata === 'undefined') {
+        throw new Error('User does not exist');
+      }
       // Take users data from array
       const user = userdata[0];
 
@@ -214,12 +220,15 @@ const profileController = {
       } else {
         throw new Error('Token not valid or email not received in token');
       }
-      console.log(_request.user);
 
       const data = await queryDb(
         'SELECT * FROM UserProfile WHERE UserAccount_email = ?',
         [userEmail],
       );
+
+      if (data.length <= 0) {
+        throw new Error('No profile found with given email');
+      }
       console.log(data);
 
       response.status(200).json(data);
