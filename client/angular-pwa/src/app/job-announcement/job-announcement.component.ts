@@ -31,7 +31,9 @@ export class JobAnnouncementComponent implements OnInit {
 		message: '',
 	};
 
-	listingid!: number;
+	listing: any = [];
+
+	listingid!: string;
 	private sub: any;
 
 	constructor(
@@ -41,9 +43,12 @@ export class JobAnnouncementComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.sub = this.route.params.subscribe((params) => {
-			this.listingid = +params['id']; // (+) is used to convert 'id' into a number
+			this.listingid = params['id']; // (+) is used to convert 'id' into a number
 			console.log(this.listingid);
-			//this.jobservice;
+			this.jobService.jobById(this.listingid).subscribe((listing) => {
+				this.listing = listing;
+				console.log(this.listing);
+			});
 		});
 	}
 

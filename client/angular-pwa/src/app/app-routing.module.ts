@@ -42,14 +42,11 @@ const routes: Routes = [
 	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
 	{path: 'termsandconditions', component: TermsAndConditionsComponent},
 	{path: 'privacypolicy', component: PrivacyPolicyComponent},
-<<<<<<< HEAD
 	{path: '', component: FrontpageComponent},
 	{path: 'student/joblist/listing/:id', component: JobAnnouncementComponent},
-=======
 	{path: 'home', component: FrontpageComponent},
 	// Wildcard-route that redirects to frontpage if user tries to activate route that does not exist
 	{path: '**', component: FrontpageComponent},
->>>>>>> 33fd5774a91e2da830cdf270a32ac5d351628123
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-<li *ngFor="let job of annoucements">
+<li *ngFor="let job of annoucements" (click)="goTo(job.advertid)">
 	<div class="jobBox">
 		<div class="hoverSide"></div>
 		<div class="titleArea">

@@ -35,4 +35,11 @@ export class JobService {
 			this.httpOptions
 		);
 	}
+
+	jobById(id: string) {
+		return this.http.get(
+			`http://localhost:3000/joblistings/${id}`,
+			this.httpOptions
+		);
+	}
 }
