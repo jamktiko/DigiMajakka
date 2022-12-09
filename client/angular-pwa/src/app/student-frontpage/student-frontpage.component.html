@@ -2,7 +2,7 @@
 	[color]="breadcrumbColor"
 	[routes]="breadcrumbRoute"
 ></app-breadcrumb>
-<body [ngClass]="{'bg-change': logged}">
+<div class="bg" [ngClass]="{'bg-change': logged}">
 	<!-- Content for the top part of the page, when the user is not logged in -->
 	<div *ngIf="!logged" class="container">
 		<div class="imgcontainer">
@@ -73,7 +73,10 @@
 				<div>
 					<p class="label">Katso profiilisi</p>
 					<!-- ADD FUNCTIONALITY TO THIS BUTTON -->
-					<button class="greenbutton" routerLink="/student/profile">
+					<button
+						class="greenbutton"
+						(click)="checkIfProfileExists()"
+					>
 						Oma profiili
 					</button>
 				</div>
@@ -168,7 +171,7 @@
 			Kirjaudu ulos
 		</button>
 	</div>
-</body>
+</div>
 
 <!-- Login -form -->
 <app-login

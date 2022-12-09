@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../login.service';
 import {StateManagementService} from '../state-management.service';
 import {LocalStorageService} from '../local-storage.service';
+import {ProfilesService} from '../profiles.service';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-student-frontpage',
@@ -12,7 +14,8 @@ export class StudentFrontpageComponent implements OnInit {
 	constructor(
 		private loginService: LoginService,
 		private stateservice: StateManagementService,
-		private storageservice: LocalStorageService
+		private storageservice: LocalStorageService,
+		private profileservice: ProfilesService
 	) {}
 
 	// Declarations for logged-status and currently logged in user
@@ -43,6 +46,10 @@ export class StudentFrontpageComponent implements OnInit {
 	// Method that reloads the window, to get updated values after updates to profile
 	reloadPage(): void {
 		window.location.reload();
+	}
+
+	checkIfProfileExists() {
+		this.profileservice.getLoggedInProfile().subscribe(() => {});
 	}
 
 	// Placeholder method to logout
