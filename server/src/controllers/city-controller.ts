@@ -12,7 +12,9 @@ const cityC = {
       const data = await queryDb('SELECT * FROM City WHERE name = ?;', [
         _request.params.name,
       ]);
+
       console.log(data);
+
       response.status(200).json(data);
     } catch (error: unknown) {
       next(error);

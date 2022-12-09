@@ -4,6 +4,9 @@ import http from 'node:http';
 import process from 'node:process';
 import app from '../app.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 type PortType = number | string | boolean;
 
 const port: PortType = normalizePort(process.env.PORT ?? '3000');
@@ -15,6 +18,11 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+/**
+ * Normalizes port number
+ * @param {string} value
+ * @return {string | number | boolean} port number or named pipe
+ */
 function normalizePort(value: string) {
   const port = Number.parseInt(value, 10);
 
