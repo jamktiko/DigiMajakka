@@ -58,6 +58,7 @@ h4 {
 .contactBox {
   margin-left: 29px;
   width: 399px;
+  min-height: 850px;
   background-color: var(--mediumblue);
   display: flex;
   flex-direction: column;
