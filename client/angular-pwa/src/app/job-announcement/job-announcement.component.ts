@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {JobService} from '../job.service';
 
 @Component({
 	selector: 'app-job-announcement',
@@ -28,9 +30,22 @@ export class JobAnnouncementComponent implements OnInit {
 		phone: '',
 		message: '',
 	};
-	constructor() {}
 
-	ngOnInit(): void {}
+	listingid!: number;
+	private sub: any;
+
+	constructor(
+		private route: ActivatedRoute,
+		private jobService: JobService
+	) {}
+
+	ngOnInit(): void {
+		this.sub = this.route.params.subscribe((params) => {
+			this.listingid = +params['id']; // (+) is used to convert 'id' into a number
+			console.log(this.listingid);
+			//this.jobservice;
+		});
+	}
 
 	// Method that has the functionality for submitting the form
 	onSubmit(formdata: any) {

@@ -16,6 +16,7 @@ import {TermsAndConditionsComponent} from './terms-and-conditions/terms-and-cond
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
 import {FrontpageComponent} from './frontpage/frontpage.component';
 import {ProfilelistComponent} from './profilelist/profilelist.component';
+import {JobAnnouncementComponent} from './job-announcement/job-announcement.component';
 
 const routes: Routes = [
 	// Routes. Path is the url they are accessed by (localhost:4200/<path>), and component declares
@@ -41,6 +42,8 @@ const routes: Routes = [
 	{path: 'guide/forstudent', component: GuideLightEntrepreneurComponent},
 	{path: 'termsandconditions', component: TermsAndConditionsComponent},
 	{path: 'privacypolicy', component: PrivacyPolicyComponent},
+	{path: '', component: FrontpageComponent},
+	{path: 'student/joblist/listing/:id', component: JobAnnouncementComponent},
 	{path: 'home', component: FrontpageComponent},
 	// Wildcard-route that redirects to frontpage if user tries to activate route that does not exist
 	{path: '**', component: FrontpageComponent},
