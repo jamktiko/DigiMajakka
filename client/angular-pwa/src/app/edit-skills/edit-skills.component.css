@@ -25,6 +25,7 @@ label {
 }
 
 select {
+  cursor: pointer;
   box-sizing: border-box;
   padding-left: 0.75em;
   height: 33px;
@@ -52,6 +53,10 @@ select {
   color: var(--lightblue);
   padding: 0.53125em 0.53125em 0 0.53125em;
   border-radius: 6px;
+}
+
+.close-button:hover {
+  transform: scale(1.1);
 }
 
 .close-icon {

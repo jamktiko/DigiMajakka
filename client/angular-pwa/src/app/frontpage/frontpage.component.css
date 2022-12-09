@@ -153,6 +153,11 @@ img {
   padding-top: 1em;
 }
 
+.puolipallurayla:hover, .puolipallura:hover {
+  transform: scale(1.05);
+  z-index: 15;
+}
+
 .puolipallura {
   cursor: pointer;
   /* Ellipse 2 */

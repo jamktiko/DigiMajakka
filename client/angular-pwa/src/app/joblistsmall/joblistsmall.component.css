@@ -3,6 +3,7 @@ ul {
 }
 
 li {
+  cursor: pointer;
   list-style: none;
   border-bottom: 1px solid var(--lightblue);
   border-left: 8px solid var(--green);
@@ -10,6 +11,10 @@ li {
   display: flex;
   flex-direction: row;
   gap: 2em;
+}
+
+li:hover {
+  transform: translateX(1em);
 }
 
 h2 {
