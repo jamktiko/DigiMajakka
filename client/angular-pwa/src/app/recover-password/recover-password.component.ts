@@ -24,6 +24,8 @@ export class RecoverPasswordComponent implements OnInit {
 	// Variables to see if there were errors while resetting password
 	sendError: boolean = false;
 	resetError: boolean = false;
+	resendError: boolean = false;
+	retryLimit: boolean = false;
 	pwError: boolean = false;
 	accountNotFound: boolean = false;
 
@@ -46,35 +48,40 @@ export class RecoverPasswordComponent implements OnInit {
 			(Error) => {
 				// Error handling
 				if (Error.error.message === 'User does not exist.') {
-					console.log('Ei tiliä');
+					// Functioanlity when an user with given email doesn't exist
 					this.accountNotFound = true;
 					this.toggleUserNotification();
+				} else if (
+					Error.error.message ===
+					'Attempt limit exceeded, please try after some time.'
+				) {
+					// Functionality if user has tried to reset their password too many times
+					this.retryLimit = true;
 				} else {
-					console.log('Error sending the reset code.');
+					// Functionality if there is some other error
+					this.sendError = true;
 				}
-				this.sendError = true;
 			}
 		);
 	}
 
 	resetPasswordWithCode(formData: any) {
-		if (formData.password === formData.passwordConfirm) {
+		if (formData.pw === formData.pwconfirm) {
 			// if the new password was confirmed correctly, continue to setting new password in loginservice
 			this.loginservice
-				.resetPwWithCode(this.email, formData.code, formData.password)
+				.resetPwWithCode(this.email, formData.code, formData.pw)
 				.subscribe(
 					() => {
 						// Functionality when the reset is successful
-						console.log('Password reset completed');
 						this.showLoginForm();
 					},
 					(Error) => {
 						// Error handling
-						console.log('Error while resetting password');
+						this.resetError = true;
 					}
 				);
 		} else {
-			// If the new password wasn't confirmed, display an error to the user
+			// If the new password wasn't confirmed correctly, display an error to the user
 			this.pwError = true;
 		}
 	}
@@ -82,13 +89,18 @@ export class RecoverPasswordComponent implements OnInit {
 	sendNewResetCode() {
 		this.loginservice.sendPasswordResetCode('asdasd@gmail.com').subscribe(
 			() => {
+				// Functinality if the sending of the code was successful
 				this.newCodeSent = true;
 			},
 			(Error) => {
+				// Error handling
 				if (Error.error.message === 'User does not exist.') {
-					console.log('Ei tiliä');
+					// Functionality when an user with the given email doesn't exist
 					this.accountNotFound = true;
 					this.toggleUserNotification();
+				} else {
+					// Functionality if there was another error
+					this.resendError = true;
 				}
 			}
 		);
