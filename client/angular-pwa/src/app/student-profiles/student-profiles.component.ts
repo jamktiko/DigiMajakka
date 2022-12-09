@@ -81,10 +81,16 @@ export class StudentProfilesComponent implements OnInit {
 					}
 				},
 				(Error) => {
-					console.log(
-						'Error in fetching student profile: ' +
-							Error.error.message
-					);
+					if (
+						Error.error.message === 'No profile found with given id'
+					) {
+						this.router.navigateByUrl('/student');
+					} else {
+						console.log(
+							'Error in fetching student profile: ' +
+								Error.error.message
+						);
+					}
 				}
 			);
 			console.log(this.profile);

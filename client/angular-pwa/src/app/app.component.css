@@ -1,6 +1,6 @@
 /*
   Color variables declared.
-  Usage: color: var(--lightblue);
+  Usage-example: "color: var(--lightblue);"
 */
 ::ng-deep :root {
   --lightblue: #E0FCFE;

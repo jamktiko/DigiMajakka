@@ -48,6 +48,14 @@ export class ProfilesService {
 		);
 	}
 
+	createProfile(email: string) {
+		return this.http.post(
+			this.findAllUrl,
+			`{"email": "${email}"}`,
+			this.httpOptions
+		);
+	}
+
 	getProfileById(profileid: number): Observable<Profile[]> {
 		return this.http
 			.get(`http://localhost:3000/profiles/${profileid}`)

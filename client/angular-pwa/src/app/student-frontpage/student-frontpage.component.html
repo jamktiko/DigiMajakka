@@ -190,3 +190,11 @@
 
 <!--Form to show passwordreset-form -->
 <app-recover-password *ngIf="isPasswordResetVisible"></app-recover-password>
+
+<!-- Notification popup-component. Receives info about which notification to show -->
+<app-user-notification
+	*ngIf="profileNotFound"
+	(createProfile)="createProfile()"
+	(resetUserNotification)="resetUserNotification()"
+	[profileNotFound]="profileNotFound"
+></app-user-notification>

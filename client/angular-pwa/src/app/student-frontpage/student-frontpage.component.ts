@@ -3,7 +3,7 @@ import {LoginService} from '../login.service';
 import {StateManagementService} from '../state-management.service';
 import {LocalStorageService} from '../local-storage.service';
 import {ProfilesService} from '../profiles.service';
-import {Router} from '@angular/router';
+import {Route, Router} from '@angular/router';
 
 @Component({
 	selector: 'app-student-frontpage',
@@ -15,7 +15,8 @@ export class StudentFrontpageComponent implements OnInit {
 		private loginService: LoginService,
 		private stateservice: StateManagementService,
 		private storageservice: LocalStorageService,
-		private profileservice: ProfilesService
+		private profileservice: ProfilesService,
+		private router: Router
 	) {}
 
 	// Declarations for logged-status and currently logged in user
@@ -25,6 +26,9 @@ export class StudentFrontpageComponent implements OnInit {
 	// Variable that dictates if registration- or confirmform is displayed
 	confirmForm: boolean = false;
 
+	profileNotFound: boolean = false;
+
+	// Breadcrumb data
 	breadcrumbColor: string = 'gray';
 	breadcrumbRoute: any = [{name: 'Opiskelijalle', route: '/student'}];
 
@@ -49,7 +53,39 @@ export class StudentFrontpageComponent implements OnInit {
 	}
 
 	checkIfProfileExists() {
-		this.profileservice.getLoggedInProfile().subscribe(() => {});
+		this.profileservice.getLoggedInProfile().subscribe(
+			() => {
+				this.router.navigateByUrl('/student/profile');
+			},
+			(Error) => {
+				if (
+					Error.error.message === 'No profile found with given email'
+				) {
+					this.profileNotFound = true;
+				} else {
+					console.log(
+						'Error while checking if profile exists: ' +
+							Error.error.message
+					);
+				}
+			}
+		);
+	}
+
+	createProfile() {
+		this.profileservice
+			.createProfile(String(this.storageservice.get('user')))
+			.subscribe(
+				() => {
+					console.log('Profile created succesfully');
+					this.router.navigateByUrl('/student/profile');
+				},
+				(Error) => {
+					console.log(
+						'Error while creating profile: ' + Error.error.message
+					);
+				}
+			);
 	}
 
 	// Placeholder method to logout
@@ -61,6 +97,11 @@ export class StudentFrontpageComponent implements OnInit {
 				this.loggedUser = this.loginService.loggedUser;
 				this.reloadPage();
 			});
+	}
+
+	// Method to reset the user-notification, so the wrong notification is not shown
+	resetUserNotification() {
+		this.profileNotFound = false;
 	}
 
 	// Method that resets the confirmForm-variable to false, so the confirmation-form is not displayed when its not supposed to.
