@@ -30,7 +30,6 @@ const imageC = {
         _response.status(200).json({
           success: true,
           message: 'Successfully saved image',
-          location: s3upload.Location,
         });
       } else {
         throw new Error('no file received');
@@ -70,7 +69,6 @@ const imageC = {
         // Check that image is not null
         // If it is, it means that object with given key does not exists
         if (image !== null) {
-          // Send image as a response
           response.send(image);
         } else {
           // If object does not exsist throw new error
@@ -78,7 +76,7 @@ const imageC = {
         }
       } else {
         // If profile does not have image throw new error
-        throw new Error('No link to image found in profile');
+        throw new CustomError('No link to image found in profile', 404);
       }
     } catch (error: unknown) {
       next(error);
