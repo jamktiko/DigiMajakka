@@ -77,8 +77,16 @@ export class EmployerComponent implements OnInit {
 			.postJobAnnoucement(
 				`{"firstname":"${this.info.firstname}", 
 				"familyname":"${this.info.lastname}", 
-				"company":"${this.info.companyname}", 
-				"startdate":"${this.info.calendar}", 
+				"company":${
+					this.info.companyname === ''
+						? null
+						: '"' + this.info.companyname + '"'
+				}, 
+				"startdate":${
+					this.info.calendar === ''
+						? null
+						: '"' + this.info.calendar + '"'
+				}, 
 				"email":"${this.info.email}", 
 				"phonenumber":"${this.info.phone}",
 				"jobtitle":"${this.info.assignment}", 
