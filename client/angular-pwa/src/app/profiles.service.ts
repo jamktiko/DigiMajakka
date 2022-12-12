@@ -82,12 +82,28 @@ export class ProfilesService {
 		);
 	}
 
-	// Method to insert a new skill to a profile and in to the database
+	// Method to insert a new skills to a profile and in to the database
 	insertNewProfileSkills(profileid: number, skills: any) {
 		return this.http.post(
 			`http://localhost:3000/skills/profile/${profileid}/`,
 			skills,
 			this.httpOptions
+		);
+	}
+
+	// Method to remove skills from the profile.
+	// This is done with http.request instead of delete, because delete doesn't accept a request body
+	removeProfileSkills(profileid: number, skills: any) {
+		return this.http.request(
+			'delete',
+			`http://localhost:3000/skills/profile/${profileid}/`,
+			{
+				headers: new HttpHeaders({
+					'Content-Type': 'application/json',
+					authorization: String(this.storageservice.get('token')),
+				}),
+				body: skills,
+			}
 		);
 	}
 
