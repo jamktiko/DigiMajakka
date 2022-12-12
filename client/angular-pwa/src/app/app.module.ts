@@ -41,6 +41,8 @@ import {ProfilecardComponent} from './profilecard/profilecard.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfilecarouselPhotoComponent } from './profilecarousel-photo/profilecarousel-photo.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -87,6 +89,12 @@ import { ProfilecarouselPhotoComponent } from './profilecarousel-photo/profileca
 		HttpClientModule,
 		FormsModule,
 		ReactiveFormsModule,
+  ServiceWorkerModule.register('ngsw-worker.js', {
+    enabled: environment.production,
+    // Register the ServiceWorker as soon as the application is stable
+    // or after 30 seconds (whichever comes first).
+    registrationStrategy: 'registerWhenStable:30000'
+  }),
 	],
 	providers: [ProfileComponent],
 	bootstrap: [AppComponent],
