@@ -92,40 +92,57 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		this.profileservice
-			.insertNewProfileSkills(
-				this.loggedProfile[0].userprofileid,
-				'{"skills": ["' + skills.join('","') + '"]}'
-			)
-			.subscribe(
-				() => {
-					console.log(this.toBeDeletedSkills);
-					// If there are skills that are to be deleted, call the remove-method. Otherwise complete update
-					if (this.toBeDeletedSkills.length > 0) {
-						this.profileservice
-							.removeProfileSkills(
-								this.loggedProfile[0].userprofileid,
-								'{"skills": ["' +
-									this.toBeDeletedSkills.join('","') +
-									'"]}'
-							)
-							.subscribe(
-								() => {
-									this.changeVisibility();
-									this.updatedProfile.emit();
-								},
-								(Error) => {
-									this.deleteError = true;
-								}
-							);
-					} else {
+		if (this.toBeAddedSkills.length > 0) {
+			this.profileservice
+				.insertNewProfileSkills(
+					this.loggedProfile[0].userprofileid,
+					'{"skills": ["' + skills.join('","') + '"]}'
+				)
+				.subscribe(
+					() => {
+						console.log(this.toBeDeletedSkills);
+						// If there are skills that are to be deleted, call the remove-method. Otherwise complete update
+						if (this.toBeDeletedSkills.length > 0) {
+							this.profileservice
+								.removeProfileSkills(
+									this.loggedProfile[0].userprofileid,
+									'{"skills": ["' +
+										this.toBeDeletedSkills.join('","') +
+										'"]}'
+								)
+								.subscribe(
+									() => {
+										this.changeVisibility();
+										this.updatedProfile.emit();
+									},
+									(Error) => {
+										this.deleteError = true;
+									}
+								);
+						} else {
+							this.changeVisibility();
+							this.updatedProfile.emit();
+						}
+					},
+					(Error) => {
+						this.insertError = true;
+					}
+				);
+		} else {
+			this.profileservice
+				.removeProfileSkills(
+					this.loggedProfile[0].userprofileid,
+					'{"skills": ["' + this.toBeDeletedSkills.join('","') + '"]}'
+				)
+				.subscribe(
+					() => {
 						this.changeVisibility();
 						this.updatedProfile.emit();
+					},
+					(Error) => {
+						this.deleteError = true;
 					}
-				},
-				(Error) => {
-					this.insertError = true;
-				}
-			);
+				);
+		}
 	}
 }
