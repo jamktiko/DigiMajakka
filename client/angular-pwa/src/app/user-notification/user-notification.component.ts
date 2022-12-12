@@ -11,6 +11,7 @@ export class UserNotificationComponent implements OnInit {
 	// Declarations for eventemitters
 	@Output() register = new EventEmitter();
 	@Output() confirm = new EventEmitter();
+	@Output() login = new EventEmitter();
 	@Output() createProfile = new EventEmitter();
 	@Output() resetUserNotification = new EventEmitter();
 
@@ -33,6 +34,10 @@ export class UserNotificationComponent implements OnInit {
 	// Method that emits and event to redirect to the confirm account -form
 	showConfirmForm() {
 		this.confirm.emit();
+	}
+
+	showLoginForm() {
+		this.login.emit();
 	}
 
 	// Method to change the visibility of the notification. Will also emit an event that is used to reset the notification.
