@@ -58,9 +58,15 @@ export class LoginService {
 			) {
 				return true;
 			} else {
+				this.localstorageservice.remove('user');
+				this.localstorageservice.remove('token');
+				this.localstorageservice.set('loggedIn', 'false');
 				return false;
 			}
 		} else {
+			this.localstorageservice.remove('user');
+			this.localstorageservice.remove('token');
+			this.localstorageservice.set('loggedIn', 'false');
 			return false;
 		}
 	}

@@ -41,9 +41,16 @@ export class ProfileComponent implements OnInit {
 	// All skills of the profile will be in this array
 	skills: any = [];
 
+	// Variables that hold data about profile picture
 	photoRatio: any;
 	photoWidth: any;
 	photoHeight: any;
+	profilePhoto: any = '';
+	isProfilePhotoLoading: boolean = false;
+
+	// Errors relating to publicity
+	noProfilePhoto: boolean = false;
+	publicityUpdateError: boolean = false;
 
 	// Links for the profiles social-media will be in this array
 	someLinks: any = [
@@ -61,9 +68,6 @@ export class ProfileComponent implements OnInit {
 			name: 'Kaupunki',
 		},
 	];
-
-	profilePhoto: any = '';
-	isProfilePhotoLoading: boolean = false;
 
 	// Variables to hold breadcrumb data that is sent to breadcrumb-component
 	breadcrumbColor: string = 'gray';
@@ -113,20 +117,35 @@ export class ProfileComponent implements OnInit {
 
 	// Method to toggle the publicity value of the profile. 1 = true, 0 = false
 	updatePublicity(): void {
+		// Setting the value based on current value
 		let value;
 		if (this.loggedProfile[0].public === 0) {
 			value = 1;
 		} else {
 			value = 0;
 		}
-		this.profileservice
-			.updateProfile(
-				this.loggedProfile[0].userprofileid,
-				`{"public": "${value}"}`
-			)
-			.subscribe(() => {
-				this.updated();
-			});
+
+		// If the profiles picturelink value is not empty, continue with the update
+		if (this.loggedProfile[0].picturelink !== '') {
+			this.profileservice
+				.updateProfile(
+					this.loggedProfile[0].userprofileid,
+					`{"public": "${value}"}`
+				)
+				.subscribe(
+					() => {
+						// Functionality when the update is successfuls
+						this.updated();
+					},
+					(Error) => {
+						// Error handling
+						this.publicityUpdateError = true;
+					}
+				);
+		} else {
+			// If picturelink value is empy (user has no profilepicture), display message to user
+			this.noProfilePhoto = true;
+		}
 	}
 
 	// Method that creates an image out of the blob that is received in the http-request.
@@ -142,7 +161,6 @@ export class ProfileComponent implements OnInit {
 					this.photoWidth = img.width;
 					this.photoHeight = img.height;
 					this.photoRatio = this.photoWidth / this.photoHeight;
-					console.log(this.photoRatio);
 				};
 
 				img.src = this.profilePhoto;
@@ -161,10 +179,12 @@ export class ProfileComponent implements OnInit {
 		this.isProfilePhotoLoading = true;
 		this.profileservice.getProfilePhoto(id).subscribe(
 			(imageData) => {
+				// Functionality when fetching was successful
 				this.createImageFromBlob(imageData);
 				this.isProfilePhotoLoading = false;
 			},
 			(error) => {
+				// Error handling
 				this.isProfilePhotoLoading = false;
 				console.log(error);
 			}
