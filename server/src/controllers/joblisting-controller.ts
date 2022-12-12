@@ -137,7 +137,7 @@ const joblistingC = {
           JSON.stringify({
             message:
               'Some advert fields not valid, shows false at invalid fields',
-            phonenumber: valid.phonenumberValid,
+
             email: valid.emailValid,
             fieldtypes: valid.typeCheck,
           }),

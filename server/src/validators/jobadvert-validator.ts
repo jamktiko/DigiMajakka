@@ -1,5 +1,5 @@
 import type Jobadvert from '../models/jobadvert-model';
-import {validatePhoneNumber, validateEmail} from './validation';
+import {validateEmail} from './validation';
 
 const jobadvertFactor = ({
   advertid = '',
@@ -82,17 +82,16 @@ const jobadvertTypeChecker = (jobadvert: Jobadvert) => {
 };
 
 const jobadvertValidation = (jobadvert: Jobadvert) => {
-  const phonenumberValid = validatePhoneNumber(jobadvert.phonenumber);
   const emailValid = validateEmail(jobadvert.email);
 
   const filteredAdvert: Jobadvert = jobadvertFactor(jobadvert);
 
   const typeCheck = jobadvertTypeChecker(jobadvert);
 
-  if (!phonenumberValid || !emailValid || !filteredAdvert || !typeCheck) {
+  if (!emailValid || !filteredAdvert || !typeCheck) {
     return {
       valid: false,
-      phonenumberValid,
+
       emailValid,
       filteredAdvert,
       typeCheck,
