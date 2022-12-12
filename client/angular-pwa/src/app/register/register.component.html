@@ -21,6 +21,9 @@
 						<label>
 							Sähköposti *
 							<input
+								[ngClass]="{
+									errorinput: invalidSchool
+								}"
 								type="text"
 								required
 								minlength="2"
@@ -30,11 +33,19 @@
 							/>
 						</label>
 
+						<!-- Error that is displayed if user tries to register with an email that is not a schol email -->
+						<p *ngIf="invalidSchool" class="error">
+							Palveluun voi rekisteröityä vain koulun
+							opiskelijasähköpostilla.
+						</p>
+
 						<!-- Input for password -->
 						<label>
 							Salasana *
 							<input
-								[ngClass]="{errorinput: (pwError || (pw.errors?.['pattern'] && pw.touched) )}"
+								[ngClass]="{
+								errorinput: pwError || (pw.errors?.['pattern'] && pw.touched)
+							}"
 								type="password"
 								required
 								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
@@ -52,10 +63,7 @@
 						</p>
 
 						<!-- Error that is displayed if password did not meet the requirements -->
-						<p
-							class="error"
-							*ngIf="pw.errors?.['pattern'] && pw.touched"
-						>
+						<p class="error" *ngIf="pw.errors?.['pattern']">
 							Täytyy sisältää väh. 8 merkkiä, iso kirjain, numero
 							ja erikoismerkki.
 						</p>
@@ -64,7 +72,9 @@
 						<label>
 							Salasana uudelleen *
 							<input
-								[ngClass]="{errorinput: (pwError || (pw.errors?.['pattern'] && pw.touched) )}"
+								[ngClass]="{
+									errorinput: pwError || (pw.errors?.['pattern'] && pw.touched)
+								}"
 								type="password"
 								required
 								pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
@@ -84,6 +94,11 @@
 				</div>
 				<!-- Content on the right side of the component -->
 				<div class="rightContent">
+					<!-- Error that is displayed if there was an error during registration -->
+					<p *ngIf="registerError" class="error">
+						Virhe rekisteröinnissä.
+					</p>
+
 					<p class="help">
 						Syötä ammattikorkeakoulusi opiskelija- sähköpostiosoite,
 						johon lähetämme vahvistuskoodin.
@@ -106,11 +121,6 @@
 					</label>
 
 					<div>
-						<!-- Error that is displayed if there was an error during registration -->
-						<p *ngIf="registerError" class="error">
-							Virhe rekisteröinnissä.
-						</p>
-
 						<div class="btnandtxt">
 							<!-- Button to submit the registration form -->
 							<button
