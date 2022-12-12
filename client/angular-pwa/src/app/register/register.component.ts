@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 	// Variables to see if there was an error with passwords or registration
 	pwError: boolean = false;
 	registerError: boolean = false;
+	invalidSchool: boolean = false;
 
 	// Variables for account confirmation forn values.
 	emailToConfirm: string = '';
@@ -52,8 +53,8 @@ export class RegisterComponent implements OnInit {
 
 	// Method that registers a new useraccount
 	onSubmit(formData: any) {
-		// Checks if the password was confirmed correctly. If yes, continue with the registration, otherwise display an error
 		if (formData.pw === formData.pwconfirm) {
+			// Checks if the password was confirmed correctly. If yes, continue with the registration, otherwise display an error
 			console.log(formData.email + ' ' + formData.pw);
 			this.loginservice.register(formData.email, formData.pw).subscribe(
 				() => {
@@ -71,6 +72,11 @@ export class RegisterComponent implements OnInit {
 						console.log(Error.error.message);
 						this.accountAlreadyExists = true;
 						this.toggleUserNotification();
+					} else if (
+						Error.error.message.match(/School with email*/)
+					) {
+						console.log('invalid school');
+						this.invalidSchool = true;
 					} else {
 						console.log(
 							'Error in registration: ' + Error.error.message
@@ -126,7 +132,8 @@ export class RegisterComponent implements OnInit {
 	}
 
 	// Methods to manage the visibility of different forms and components
-	showLogin() {
+	showLoginForm() {
+		this.toggleUserNotification();
 		this.changeVisibility();
 		this.stateservice.toggleLoginFormVisibility();
 	}
