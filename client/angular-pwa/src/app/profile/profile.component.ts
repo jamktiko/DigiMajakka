@@ -161,7 +161,6 @@ export class ProfileComponent implements OnInit {
 					this.photoWidth = img.width;
 					this.photoHeight = img.height;
 					this.photoRatio = this.photoWidth / this.photoHeight;
-					console.log(this.photoRatio);
 				};
 
 				img.src = this.profilePhoto;
@@ -180,10 +179,12 @@ export class ProfileComponent implements OnInit {
 		this.isProfilePhotoLoading = true;
 		this.profileservice.getProfilePhoto(id).subscribe(
 			(imageData) => {
+				// Functionality when fetching was successful
 				this.createImageFromBlob(imageData);
 				this.isProfilePhotoLoading = false;
 			},
 			(error) => {
+				// Error handling
 				this.isProfilePhotoLoading = false;
 				console.log(error);
 			}
