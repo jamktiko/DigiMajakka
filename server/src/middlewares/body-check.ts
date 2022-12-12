@@ -10,7 +10,6 @@ const bodyChecker = (
 ) => {
   try {
     const values = Object.values(_request.body);
-    console.log(values);
 
     if (
       values.includes(undefined) ||

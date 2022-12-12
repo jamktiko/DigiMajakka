@@ -1,8 +1,12 @@
 <div [ngClass]="color == 'blue' ? 'containerblue' : 'containergray'">
+	<!-- Link to previous location -->
 	<p class="back" (click)="back()">Takaisin</p>
+
+	<!-- Breadcrumb-link for every route provided in the routes-array -->
 	<div *ngFor="let route of routes; last as isLast">
 		<a class="breadcrumb" [routerLink]="route.route" *ngIf="!isLast">
 			{{ route.name }}
+			<!-- Arrow-icon between links -->
 			<img
 				class="arrow"
 				src="assets\icons\Pikkunuoli.png"
@@ -10,6 +14,7 @@
 			/>
 		</a>
 
+		<!-- The final link in the list will have its own style.  -->
 		<a class="breadcrumb" [routerLink]="route.route" *ngIf="isLast">
 			{{ route.name }}
 		</a>

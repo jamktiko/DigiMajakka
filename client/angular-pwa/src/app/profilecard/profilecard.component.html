@@ -1,4 +1,5 @@
 <div class="card">
+	<!-- Profilephoto displayed here -->
 	<div class="profilephoto">
 		<img
 			[ngClass]="photoRatio > 1 ? 'photowide' : 'phototall'"
@@ -8,17 +9,27 @@
 		/>
 	</div>
 
+	<!-- Skills are displayed as a list of tags -->
 	<div class="tags">
+		<p *ngIf="skills.length === 0">
+			Käyttäjä ei ole vielä lisännyt taitoja profiiliinsa.
+		</p>
 		<!-- Every skill put inside their own tag -->
 		<div class="tag" *ngFor="let skill of skills">
+			<p *></p>
 			<p>{{ skill.name }}</p>
 		</div>
 	</div>
+
+	<!-- Name of the profile -->
 	<p class="name">
 		{{ profile.firstname }}
 		{{ profile.familyname }}
 	</p>
+
+	<!-- Button inside a container to position it correctly -->
 	<div class="btncontainer">
+		<!-- Button that redirects to the profiles page -->
 		<button
 			class="greenbutton"
 			[routerLink]="['/profiles', this.profile.userprofileid]"

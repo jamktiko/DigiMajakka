@@ -10,7 +10,7 @@
 			</div>
 			<div class="upperBox second">
 				<h1>Toimeksiantaja</h1>
-				<h2>Tarvitsetko työntekijää?</h2>
+				<h2>Tarvitsetko työlle tekijää?</h2>
 				<p>
 					DigiMajakasta löydät opiskelijat niin pieniin kuin
 					suuriinkin projekteihin. Voit ilmoittaa avoimesta
@@ -112,6 +112,7 @@
 								Sähköposti *
 								<input
 									type="text"
+									pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
 									[ngClass]="{
 										errorinput:
 											email.errors && email.touched
@@ -130,11 +131,18 @@
 							>
 								Sähköposti on pakollinen tieto
 							</p>
+							<p
+				class="error"
+				*ngIf="(email.errors?.['pattern']) && (email.touched)"
+			>
+				Sähköpostiosoite ei ole kelvollinen
+			</p>
 
 							<label>
 								Puhelinnumero *
 								<input
-									type="number"
+									type="phonenumber"
+									pattern="^((04[0-9]{1})(\s?|-?)|050(\s?|-?)|0457(\s?|-?)|[+]?358(\s?|-?)50|0358(\s?|-?)50|00358(\s?|-?)50|[+]?358(\s?|-?)4[0-9]{1}|0358(\s?|-?)4[0-9]{1}|00358(\s?|-?)4[0-9]{1})(\s?|-?)(([0-9]{3,4})(\s|\-)?[0-9]{1,4})$"
 									[ngClass]="{
 										errorinput:
 											phone.errors && phone.touched
@@ -153,6 +161,12 @@
 							>
 								Puhelinnumero on pakollinen tieto
 							</p>
+							<p
+							class="error"
+							*ngIf="(phone.errors?.['pattern']) && (phone.touched)"
+						>
+							Puhelinnumero ei ole kelvollinen
+						</p>
 
 							<!-- Radio inputs for study-year -->
 
@@ -339,7 +353,7 @@
 								type="date"
 								name="validuntil"
 								[(ngModel)]="info.validuntil"
-								max="2023-05-15"
+								[max]="maxDate"
 							/>
 							<div class="submitRow">
 								<div class="acceptBox">
@@ -351,7 +365,7 @@
 										required
 										(change)="changeEvent($event)"
 									/>
-									<label>Hyväskyn käyttöehdot.</label>
+									<label class="labellink"><p>Hyväksyn <a routerLink="/termsandconditions">käyttöehdot</a>.</p></label>
 								</div>
 								<button
 									[disabled]="

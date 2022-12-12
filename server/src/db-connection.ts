@@ -22,9 +22,8 @@ const queryDb = async (query: string, parameters: unknown[]) => {
   return new Promise<[DbResult]>((resolve, reject) => {
     // Get pool connection
     pool.getConnection(async (error, connection) => {
-      // If error release connection and throw error forward
+      // If error throw error forward
       if (error) {
-        connection.release();
         throw error;
       } else {
         console.log('Db connection successfull');
@@ -32,9 +31,8 @@ const queryDb = async (query: string, parameters: unknown[]) => {
 
       // Send query to database with parameters
       connection.query(query, parameters, (error: unknown, result) => {
-        // If error release connection and reject promise
+        // If error reject promise
         if (error) {
-          connection.release();
           reject(error);
         } else {
           // Check that query doesn't return undefined

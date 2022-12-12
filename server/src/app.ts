@@ -15,9 +15,11 @@ import cityRouter from './routes/cities';
 import schoolRouter from './routes/schools';
 import linkRouter from './routes/links';
 import skillRouter from './routes/skills';
+
 // Usage of environment varaibles
 import dotenv from 'dotenv';
 dotenv.config();
+
 // Create express app
 const app = express();
 
@@ -38,6 +40,7 @@ app.use('/cities', cityRouter);
 app.use('/schools', schoolRouter);
 app.use('/links', linkRouter);
 app.use('/skills', skillRouter);
+
 // Take custom error handler in use
 app.use(ErrorHandler);
 export = app;

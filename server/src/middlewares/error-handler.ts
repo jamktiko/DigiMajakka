@@ -13,8 +13,10 @@ const ErrorHandler = (
   response: express.Response,
   _next: express.NextFunction,
 ) => {
-  console.log('Custom error handling');
-  console.log('---------------------');
+  console.log('Error handler');
+
+  console.log('-------------');
+
   console.error(error);
 
   const statusCode = Number(error.status) || 500;

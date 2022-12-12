@@ -1,7 +1,7 @@
 type User = {
   email: string;
   admin: boolean;
-  schoolid: number;
+  schoolname: string;
 };
 
 export default User;

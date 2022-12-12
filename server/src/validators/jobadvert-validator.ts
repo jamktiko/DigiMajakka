@@ -1,5 +1,5 @@
 import type Jobadvert from '../models/jobadvert-model';
-import {validateEmail} from './validation';
+import {validatePhoneNumber, validateEmail, validateDate} from './validation';
 
 const jobadvertFactor = ({
   advertid = '',
@@ -82,19 +82,55 @@ const jobadvertTypeChecker = (jobadvert: Jobadvert) => {
 };
 
 const jobadvertValidation = (jobadvert: Jobadvert) => {
+<<<<<<< HEAD
+=======
+  const phonenumberValid = validatePhoneNumber(jobadvert.phonenumber);
+  console.log(jobadvert.phonenumber);
+
+>>>>>>> ffcb7a3f0215def49cdfd466c06add6ee1299ba0
   const emailValid = validateEmail(jobadvert.email);
 
   const filteredAdvert: Jobadvert = jobadvertFactor(jobadvert);
 
   const typeCheck = jobadvertTypeChecker(jobadvert);
 
+<<<<<<< HEAD
   if (!emailValid || !filteredAdvert || !typeCheck) {
+=======
+  let startdateValid = true;
+  if (
+    jobadvert.startdate !== null &&
+    jobadvert.startdate !== '' &&
+    typeof jobadvert.startdate !== 'undefined'
+  ) {
+    startdateValid = validateDate(jobadvert.startdate);
+  }
+  let expirationDateValid = false;
+  if (
+    jobadvert.validuntil !== null &&
+    jobadvert.validuntil !== '' &&
+    typeof jobadvert.validuntil !== 'undefined'
+  ) {
+    expirationDateValid = validateDate(jobadvert.validuntil);
+  }
+
+  if (
+    !phonenumberValid ||
+    !emailValid ||
+    !filteredAdvert ||
+    !typeCheck ||
+    !startdateValid ||
+    !expirationDateValid
+  ) {
+>>>>>>> ffcb7a3f0215def49cdfd466c06add6ee1299ba0
     return {
       valid: false,
 
       emailValid,
       filteredAdvert,
       typeCheck,
+      startdateValid,
+      expirationDateValid,
     };
   }
 

@@ -3,40 +3,27 @@ import {ProfilesService} from '../profiles.service';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
-	selector: 'app-profilecard',
-	templateUrl: './profilecard.component.html',
-	styleUrls: ['./profilecard.component.css'],
+	selector: 'app-profilecarousel-photo',
+	templateUrl: './profilecarousel-photo.component.html',
+	styleUrls: ['./profilecarousel-photo.component.css'],
 })
-export class ProfilecardComponent implements OnInit {
-	// The profile will come from the parent component
-	@Input() profile!: any;
-
-	// All skills of the profile will be in this array
-	skills: any = [];
-
-	// Variables to hold data about the profilephoto
+export class ProfilecarouselPhotoComponent implements OnInit {
 	profilePhoto: any = '';
 	isProfilePhotoLoading: boolean = false;
+
 	photoRatio: any;
 	photoWidth: any;
 	photoHeight: any;
 
+	@Input() profileid!: number;
+
 	constructor(
-		private profileservice: ProfilesService,
-		private _sanitizer: DomSanitizer
+		private _sanitizer: DomSanitizer,
+		private profileservice: ProfilesService
 	) {}
 
 	ngOnInit(): void {
-		// Skills and profilephoto are fetched immediately when the component is created
-		this.getProfileSkills(this.profile.userprofileid);
-		this.getProfilePhoto(this.profile.userprofileid);
-	}
-
-	// Method that calls profileservive-method to get skills of the profile.
-	getProfileSkills(profileid: number): void {
-		this.profileservice.getProfileSkills(profileid).subscribe((skills) => {
-			this.skills = skills;
-		});
+		this.getProfilePhoto(this.profileid);
 	}
 
 	// Method that creates an image out of the blob that is received in the http-request.

@@ -44,7 +44,7 @@ const userC = {
         // Admin field is set to false a default because no admin functionality is implemented yet in the app
         [_request.body.email, false, schooldata[0].name],
       );
-      // Try to sign user to cognito and save ansewer to result
+      // Try to sign up user to cognito and save ansewer to result
       const result = await cognitoHelper.signUp(
         _request.body.email,
         _request.body.password,
@@ -88,6 +88,7 @@ const userC = {
         _request.body.email,
         _request.body.password,
       );
+
       response.status(200).json(result);
     } catch (error: unknown) {
       next(error);
@@ -104,6 +105,7 @@ const userC = {
         _request.body.email,
         _request.body.code,
       );
+
       response.status(200).json(result);
     } catch (error: unknown) {
       next(error);
@@ -138,6 +140,7 @@ const userC = {
       if (!('email' in _request.body)) {
         throw new CustomError('No email received in body', 400);
       }
+
       const result = await cognitoHelper.signOut(_request.body.email);
 
       console.log(result);
@@ -166,11 +169,13 @@ const userC = {
           400,
         );
       }
+
       // Take users profiles data from database
       const profiledata = await queryDb(
         'SELECT userprofileid FROM UserProfile WHERE UserAccount_email = ?;',
         [body.email],
       );
+
       // Take profiles id from profile data
       const profileid = profiledata[0].userprofileid;
 
@@ -183,8 +188,8 @@ const userC = {
       // Try to delete user from cognito
       const result = await cognitoHelper.deleteUser(body.email, body.password);
 
-      console.log('User deleted from cognito successfully');
       console.log(result);
+
       console.log(deluser);
 
       response.status(200).json({
@@ -216,6 +221,7 @@ const userC = {
       ) {
         throw new Error('Not all required information was provided in request');
       }
+
       // Find users current school
       const oldschool = await queryDb(
         'SELECT School_name AS school FROM UserAccount WHERE email = ?;',
@@ -230,6 +236,7 @@ const userC = {
         _request.body.oldemail,
         _request.body.password,
       );
+
       if (!trySignIn) {
         throw new Error('Email or password incorrect');
       }
@@ -247,6 +254,7 @@ const userC = {
         _request.body.oldemail,
         _request.body.password,
       );
+
       // Const updateUser = await queryDb(
       // 	'UPDATE UserAccount SET email = ?, School_name = ? WHERE email = ?;',
       // 	[cognito

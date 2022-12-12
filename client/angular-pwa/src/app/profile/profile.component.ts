@@ -83,7 +83,6 @@ export class ProfileComponent implements OnInit {
 	}
 
 	// Method that calls profileservive-method to get skills of the currently logged in profile.
-	// Also sets specialskill and field of skill into their own arrays. Then removes duplicates from the field-array
 	getLoggedProfileSkills(profileid: number): void {
 		this.profileservice.getProfileSkills(profileid).subscribe((skills) => {
 			this.skills = skills;
@@ -107,9 +106,6 @@ export class ProfileComponent implements OnInit {
 			this.getLoggedProfileSkills(this.loggedProfile[0].userprofileid);
 			this.getLoggedProfileLinks(this.loggedProfile[0].userprofileid);
 			this.getProfilePhoto(this.loggedProfile[0].userprofileid);
-
-			// this.getLoggedProfileCity(this.loggedProfile[0].City_cityid);
-			// this.getLoggedProfileSchool(this.loggedProfile[0].School_schoolid);
 
 			console.log(this.loggedProfile[0]);
 		});

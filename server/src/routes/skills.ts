@@ -31,4 +31,11 @@ skillRouter.post(
   skillC.addSkill,
 );
 
+skillRouter.delete(
+  '/profile/:profileid',
+  bodyChecker,
+  authHandler,
+  userCheck,
+  skillC.deleteSkillFromProfile,
+);
 export default skillRouter;

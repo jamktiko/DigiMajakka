@@ -2,15 +2,17 @@
 import type express from 'express';
 
 /**
- * Converts request body to sql query and parameter values used in mysql.query() method
- * @param request express request
- * @return object which contains sql string and values in array used in mysql.query() function
+ * Converts request body to sql query string ('') and parameter values ([values]) used in mysql.query(query, parameters) method
+ * @param {express.Request} request express request
+ * @param {string} tablename table in database which query will affect
+ * @param {string} idcolumnname Primary keys name in that database table
+ * @return {object} object which contains sql string and values in array used in mysql.query() function
  */
 
 const convertBodyToQueryFormat = (
   request: express.Request,
   tablename: string,
-  idcolumn: string,
+  idcolumnname: string,
 ) => {
   if (!request.body) {
     throw new Error('No body received in request');
@@ -26,19 +28,19 @@ const convertBodyToQueryFormat = (
   // This allows to use this route to update any number of columns in table row
 
   // Start string of the query
-  let updateString = 'UPDATE ' + tablename + ' SET ';
+  let sql = 'UPDATE ' + tablename + ' SET ';
   // Add each of keys(column names) one by one into updatestring
   for (const x of keys) {
-    updateString += String(x) + ' = ?';
+    sql += String(x) + ' = ?';
     // If added last key then insert just ' ' otherwise ',' is needed
-    updateString += keys.indexOf(x) === keys.length - 1 ? ' ' : ', ';
+    sql += keys.indexOf(x) === keys.length - 1 ? ' ' : ', ';
   }
 
   // Last part of update string where you specify profile id
-  updateString += 'WHERE ' + idcolumn + ' = ?;';
+  sql += 'WHERE ' + idcolumnname + ' = ?;';
 
   return {
-    sql: updateString,
+    sql: sql,
     sqlparams: values,
   };
 };

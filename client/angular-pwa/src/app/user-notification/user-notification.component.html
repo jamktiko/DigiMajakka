@@ -52,17 +52,16 @@
 		<!-- Notification that is shown if user tries to register with an email, that already has an account tied to it -->
 		<div *ngIf="accountAlreadyExists">
 			<h2>Tällä sähköposti-osoitteella on jo tehty tili.</h2>
-			<p>Sähköpostia ei ole vielä vahvistettu koodilla.</p>
-			<p class="bold">Koodi on lähetetty sähköpostiisi.</p>
+			<p>Kirjaudu sisään palveluumme.</p>
 			<!-- Buttons inside a div to position them correctly -->
 			<div class="buttoncontainer">
 				<!-- Button to redirect to account confirmation -form -->
-				<button class="greenbutton" (click)="showConfirmForm()">
-					Syötä koodi
+				<button class="greenbutton" (click)="showLoginForm()">
+					Kirjaudu sisään
 				</button>
 				<!-- Button that sends a new confirmation code to the users email -->
-				<button class="graybutton" (click)="resendCode()">
-					Tilaa uusi koodi
+				<button class="graybutton" (click)="changeVisibility()">
+					Peruuta
 				</button>
 			</div>
 		</div>

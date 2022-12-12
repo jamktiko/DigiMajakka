@@ -138,6 +138,11 @@ h3 {
     border: none;
   
 }
+
+summary {
+    cursor: pointer;
+}
+
 details>div{
     margin-left: 2rem;
     text-align: left;

@@ -26,6 +26,7 @@ const joblistingC = {
       next(error);
     }
   },
+  // Function to find job advert by id
   async findById(
     _request: express.Request,
     response: express.Response,
@@ -73,8 +74,9 @@ const joblistingC = {
         userDate > newDate
           ? `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`
           : _request.body.validuntil;
-      // Validate profile
-      const valid = jobadvertValidation({
+
+      // Contruct profile object containing all necessary data
+      const profileObj = {
         advertid,
         ..._request.body,
 
@@ -82,7 +84,10 @@ const joblistingC = {
 
         isvalid: true,
         validuntil,
-      });
+      };
+
+      // Validate profile
+      const valid = jobadvertValidation(profileObj);
 
       // If profile is not valid throw error
       if (valid.valid && valid.jobadvert) {
@@ -90,7 +95,11 @@ const joblistingC = {
           'INSERT INTO JobAdvert VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);',
           Object.values(valid.jobadvert),
         );
+
+        // Text if target email does not support html body
         const emailtext = 'Kiitos ilmoituksestasi. ';
+
+        // Email text if target email supports html text
         const htmlText = `<head>
         </head>
         <body>
@@ -113,7 +122,9 @@ const joblistingC = {
             <h3>Poista ilmoitus painamalla alla olevaa linkkiä</h3>
             <a href="http://localhost:4200/jobadvert/delete/${advertid}">Poista ilmoitus</a>
         </body>`;
+
         // Send email to job adverts creator with link to update advert
+        // Currently sends email only to digimajakka email because aws SES access rights are limited
         await ses.sendEmail(
           'digimajakka.asiakaspalvelu@gmail.com',
           emailtext,
@@ -133,16 +144,17 @@ const joblistingC = {
           },
         });
       } else {
-        throw new CustomError(
-          JSON.stringify({
-            message:
-              'Some advert fields not valid, shows false at invalid fields',
-
-            email: valid.emailValid,
-            fieldtypes: valid.typeCheck,
-          }),
-          400,
-        );
+        // Create error object containing information which data received was incorrect
+        const errorMsg = {
+          message:
+            'Some received fields not valid, shows false at invalid fields',
+          phonenumber: valid.phonenumberValid,
+          email: valid.emailValid,
+          fieldtypes: valid.typeCheck,
+          startdate: valid.startdateValid,
+          expirationDate: valid.expirationDateValid,
+        };
+        throw new CustomError(JSON.stringify(errorMsg), 400);
       }
     } catch (error: unknown) {
       next(error);
@@ -159,15 +171,21 @@ const joblistingC = {
         'DELETE FROM JobAdvert WHERE advertid = ?;',
         [_request.params.advertid],
       );
+      // Email text if target email does not support html text
       const emailtext = 'Ilmoituksesi on poistettu palvelusta digimajakka';
+
+      // Email text if target email supports html text
       const htmltext =
         '<h3>Ilmoituksesi on poistettu palvelusta digimajakka</h3>';
+
+      // Send email to given email adress
       await ses.sendEmail(
         'digimajakka.asiakaspalvelu@gmail.com',
         emailtext,
         'Ilmoituksen poisto',
         htmltext,
       );
+
       console.log(result);
 
       response.status(200).json({

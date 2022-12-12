@@ -321,3 +321,13 @@ input[type="checkbox"] {
   z-index: -1;
 }
 
+a {
+  margin: 0%;
+  padding: 0%;
+  width: fit-content;
+  height: fit-content;
+}
+.labellink {
+  width: 300px;
+  
+}
