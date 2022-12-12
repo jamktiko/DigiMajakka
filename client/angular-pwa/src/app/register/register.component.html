@@ -133,7 +133,7 @@
 							</button>
 							<div>
 								<!-- Link to open login-form -->
-								<p class="linktext" (click)="showLogin()">
+								<p class="linktext" (click)="showLoginForm()">
 									Onko sinulla jo tili?<br />
 									Kirjaudu sisään tästä
 								</p>
@@ -216,6 +216,7 @@
 <app-user-notification
 	*ngIf="accountAlreadyExists"
 	(confirm)="showConfirmForm()"
+	(login)="showLoginForm()"
 	(resetUserNotification)="resetUserNotification()"
 	[accountAlreadyExists]="accountAlreadyExists"
 	[email]="email"

@@ -132,7 +132,8 @@ export class RegisterComponent implements OnInit {
 	}
 
 	// Methods to manage the visibility of different forms and components
-	showLogin() {
+	showLoginForm() {
+		this.toggleUserNotification();
 		this.changeVisibility();
 		this.stateservice.toggleLoginFormVisibility();
 	}
