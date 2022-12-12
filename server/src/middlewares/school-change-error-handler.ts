@@ -19,6 +19,7 @@ const handleError = async (
       'SELECT * FROM UserAccount WHERE email = ?;',
       [_request.body.newemail],
     );
+
     // If user was updated in database try to create new cognito account again
     if (didUpdate.length > 0) {
       await cognitoHelper.signUp(
@@ -31,7 +32,7 @@ const handleError = async (
         _request.body.password,
       );
     } else {
-      // If user was not updated into database throw error forward to default erro handler
+      // If user was not updated into database throw error forward to default error handler
       next(error);
     }
   } catch (error: unknown) {

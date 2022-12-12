@@ -5,8 +5,9 @@ import type Profile from '../models/profile-model';
 import CustomError from '../custom-error';
 import convertBodyToQueryFormat from '../functions/convert-body-to-update-string';
 import type {IAuthenticatedRequest} from '../middlewares/auth';
-// Return all profiles from database
+
 const profileController = {
+  // Function to return all profiles
   async findAll(
     _request: express.Request,
     response: express.Response,
@@ -65,15 +66,14 @@ const profileController = {
         'SELECT UA.email, UA.School_name AS schoolname, SC.City_name AS cityname FROM UserAccount UA INNER JOIN SchoolCity SC ON SC.School_name=UA.School_name WHERE UA.email = ?;',
         [_request.user.email],
       );
-      console.log(userdata);
 
-      if (typeof userdata === 'undefined') {
+      if (typeof userdata === 'undefined' || !userdata.length) {
         throw new Error('User does not exist');
       }
       // Take users data from array
       const user = userdata[0];
 
-      // Check that user object has specified keys and that they are correct type
+      // Check that user object has specified keys
       if ('email' in user && 'cityname' in user && 'schoolname' in user) {
         // Template profile with placeholder data
         const profile: Profile = {
@@ -98,24 +98,7 @@ const profileController = {
           Object.values(profile),
         );
 
-        // const linksTemplate = {
-        //   linkedin: '',
-        //   email: user.email,
-        //   instagram: '',
-        //   facebook: '',
-        //   twitter: '',
-        //   cv: '',
-        //   portfolio: '',
-        //   github: '',
-        // };
-
-        // const createLinks = await queryDb(
-        //   'INSERT INTO Links (linkedin, Userprofile_userprofileid, instagram, facebook, twitter, cv, portfolio, github) VALUES (?, (SELECT userprofileid FROM UserProfile WHERE UserAccount_email = ?), ?, ?, ?, ?, ?, ?);',
-        //   Object.values(linksTemplate),
-        // );
-
         console.log(insertedProfile);
-        // console.log(createLinks);
 
         response.status(201).json({
           message: 'Profile created succesfully',
@@ -129,7 +112,7 @@ const profileController = {
     }
   },
 
-  // Updates all fields of profile. Values taken from request body.
+  // Updates profile
   async updateProfile(
     _request: express.Request,
     response: express.Response,
@@ -151,6 +134,9 @@ const profileController = {
         throw new CustomError('Email is not valid', 400);
       }
 
+      // Convert request body to sql query and query parameters
+      // Convert function is used here because fields that user wants to update is random
+      // Because of this constant sql query cannot handle all requests
       const {sql, sqlparams} = convertBodyToQueryFormat(
         _request,
         'UserProfile',
@@ -218,10 +204,11 @@ const profileController = {
   ) {
     try {
       let userEmail = '';
-      if (_request.user && typeof _request.user.email !== 'undefined') {
+
+      if (_request.user && typeof _request.user.email === 'string') {
         userEmail = _request.user.email;
       } else {
-        throw new Error('Token not valid or email not received in token');
+        throw new Error('Token is not valid or email not received in token');
       }
 
       const data = await queryDb(
@@ -232,6 +219,7 @@ const profileController = {
       if (data.length <= 0) {
         throw new Error('No profile found with given email');
       }
+
       console.log(data);
 
       response.status(200).json(data);
