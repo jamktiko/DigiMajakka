@@ -144,8 +144,10 @@ summary {
 }
 
 details>div{
-    margin-left: 2rem;
+    margin-left: 1.5rem;
     text-align: left;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
 }
 details {
     white-space: pre-wrap;

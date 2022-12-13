@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./joblist.component.css'],
 })
 export class JoblistComponent implements OnInit {
-	breadcrumbColor: string = 'blue';
+	breadcrumbColor: string = 'gray';
 	breadcrumbRoute: any = [
 		{name: 'Opiskelijalle', route: '/student'},
 		{name: 'Työpaikat', route: '/student/joblist'},

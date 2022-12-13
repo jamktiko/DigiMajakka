@@ -71,7 +71,7 @@ input:-webkit-autofill:active {
 }
 
 h2, label {
-  color: var(--mediumblue);
+  color: var(--darkblue);
 }
 
 h2 {

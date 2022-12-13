@@ -141,6 +141,11 @@ h3 {
   display: none;
 }
 
+.smallbutton {
+  padding: 6px 20px;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 1463px) {
   .rcontent {
     margin-right: 5%;
