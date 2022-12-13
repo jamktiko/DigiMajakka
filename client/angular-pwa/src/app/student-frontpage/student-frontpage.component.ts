@@ -92,11 +92,16 @@ export class StudentFrontpageComponent implements OnInit {
 	logout() {
 		this.loginService
 			.logout(String(this.storageservice.get('user')))
-			.subscribe(() => {
-				this.loginService.setLoggedOutStatus();
-				this.loggedUser = this.loginService.loggedUser;
-				this.reloadPage();
-			});
+			.subscribe(
+				() => {
+					this.loginService.setLoggedOutStatus();
+					this.loggedUser = this.loginService.loggedUser;
+					this.reloadPage();
+				},
+				(Error) => {
+					this.reloadPage();
+				}
+			);
 	}
 
 	// Method to reset the user-notification, so the wrong notification is not shown

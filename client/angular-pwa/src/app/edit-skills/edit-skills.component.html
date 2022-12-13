@@ -50,6 +50,16 @@
 			</div>
 		</div>
 
+		<!-- Error to display if there is an error while inserting new skills -->
+		<p class="error alignleft" *ngIf="insertError">
+			Virhe lisäämisessä. Päivitä sivu ja kokeile uudestaan.
+		</p>
+
+		<!-- Error to display if there is an error while deleting skills -->
+		<p class="error alignleft" *ngIf="deleteError">
+			Virhe poistamisessa. Päivitä sivu ja kokeile uudestaan.
+		</p>
+
 		<!-- Submit-button inside a div to position it correctly -->
 		<div class="buttoncontainer">
 			<button
@@ -60,7 +70,7 @@
 				Poista valitut
 			</button>
 			<button
-				[disabled]="!skillAdded"
+				[disabled]="!skillAdded && toBeDeletedSkills.length === 0"
 				(click)="onSubmit(toBeAddedSkills)"
 				class="greenbutton"
 			>

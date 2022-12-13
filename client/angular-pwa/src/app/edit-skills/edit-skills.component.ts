@@ -17,8 +17,11 @@ export class EditSkillsComponent implements OnInit {
 	@Input() loggedProfile: any;
 	@Input() profileSkills: any;
 	@Output() updatedProfile = new EventEmitter();
-	// Error variable that dictates if an error message is shown
+
+	// Error variables that dictate if an error message is shown
 	error: boolean = false;
+	insertError: boolean = false;
+	deleteError: boolean = false;
 
 	// skillAdded tells if the user has added any new skills to the list. If not, the submit-button is disabled
 	skillAdded: boolean = false;
@@ -29,6 +32,7 @@ export class EditSkillsComponent implements OnInit {
 	// The selected skill, and the array that will hold all selected skills until the form is submitted
 	toBeAddedSkill: string = 'Valitse taito';
 	toBeAddedSkills: any = [];
+	toBeDeletedSkills: any = [];
 
 	selected: any = [];
 
@@ -75,6 +79,7 @@ export class EditSkillsComponent implements OnInit {
 	removeSelected() {
 		this.selected.forEach((skill: string) => {
 			this.toBeAddedSkills.splice(this.toBeAddedSkills.indexOf(skill), 1);
+			this.toBeDeletedSkills.push(skill);
 		});
 		this.selected = [];
 		console.log(this.toBeAddedSkills);
@@ -87,15 +92,57 @@ export class EditSkillsComponent implements OnInit {
 
 	// Functionality that happens when the form is submitted
 	onSubmit(skills: any) {
-		skills;
-		this.profileservice
-			.insertNewProfileSkills(
-				this.loggedProfile[0].userprofileid,
-				'{"skills": ["' + skills.join('","') + '"]}'
-			)
-			.subscribe(() => {
-				this.changeVisibility();
-				this.updatedProfile.emit();
-			});
+		if (this.toBeAddedSkills.length > 0) {
+			this.profileservice
+				.insertNewProfileSkills(
+					this.loggedProfile[0].userprofileid,
+					'{"skills": ["' + skills.join('","') + '"]}'
+				)
+				.subscribe(
+					() => {
+						console.log(this.toBeDeletedSkills);
+						// If there are skills that are to be deleted, call the remove-method. Otherwise complete update
+						if (this.toBeDeletedSkills.length > 0) {
+							this.profileservice
+								.removeProfileSkills(
+									this.loggedProfile[0].userprofileid,
+									'{"skills": ["' +
+										this.toBeDeletedSkills.join('","') +
+										'"]}'
+								)
+								.subscribe(
+									() => {
+										this.changeVisibility();
+										this.updatedProfile.emit();
+									},
+									(Error) => {
+										this.deleteError = true;
+									}
+								);
+						} else {
+							this.changeVisibility();
+							this.updatedProfile.emit();
+						}
+					},
+					(Error) => {
+						this.insertError = true;
+					}
+				);
+		} else {
+			this.profileservice
+				.removeProfileSkills(
+					this.loggedProfile[0].userprofileid,
+					'{"skills": ["' + this.toBeDeletedSkills.join('","') + '"]}'
+				)
+				.subscribe(
+					() => {
+						this.changeVisibility();
+						this.updatedProfile.emit();
+					},
+					(Error) => {
+						this.deleteError = true;
+					}
+				);
+		}
 	}
 }

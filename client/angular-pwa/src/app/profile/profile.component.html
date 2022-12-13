@@ -260,6 +260,17 @@
 							"
 						></div>
 					</div>
+
+					<p class="error" *ngIf="noProfilePhoto">
+						Vain profiili, johon on lisätty profiilikuva voi olla
+						julkinen. Lisää kuva ja kokeile uudestaan.
+					</p>
+
+					<!-- Error that is displayed if there was an error while updating publicity -->
+					<p class="error" *ngIf="publicityUpdateError">
+						Virhe julkisuuden päivittämisessä. Päivitä sivu ja
+						kokeile uudestaan.
+					</p>
 				</div>
 				<!-- <div class="greenbutton">Tallenna</div> -->
 			</div>
