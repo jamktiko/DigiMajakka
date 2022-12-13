@@ -232,6 +232,7 @@ p {
 input[type="checkbox"] {
   width: 30px;
   transform: translate(0em, 0.5em);
+
 }
 
 /*Modal tyylitykset*/
