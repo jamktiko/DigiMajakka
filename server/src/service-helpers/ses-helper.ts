@@ -21,11 +21,12 @@ class SesHelper {
   }
 
   /**
-   *
-   * @param fromemail sender email address
-   * @param text email message or body
-   * @param subject subject of email
-   * @returns promise
+   * Sends email to user
+   * @param {string} fromemail sender email address
+   * @param {string}  text email message or body
+   * @param {string} subject subject of email
+   * @param {string} htmlText email body in html format
+   * @return {Promise} promise
    */
   async sendEmail(
     fromemail: string,

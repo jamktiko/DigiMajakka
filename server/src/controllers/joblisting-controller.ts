@@ -1,5 +1,4 @@
 import type express from 'express';
-
 import uniqid from 'uniqid';
 import queryDb from '../db-connection';
 import SesHelper from '../service-helpers/ses-helper';
@@ -11,7 +10,7 @@ import convertBodyToQueryFormat from '../functions/convert-body-to-update-string
 const ses = new SesHelper();
 
 const joblistingC = {
-  // Return all jobs from Tyoilmoitus board
+  // Return all job adverts from database
   async findAll(
     _request: express.Request,
     response: express.Response,
@@ -19,6 +18,7 @@ const joblistingC = {
   ) {
     try {
       const data = await queryDb('SELECT * FROM JobAdvert;', []);
+
       console.log(data);
 
       response.status(200).json(data);
@@ -37,6 +37,7 @@ const joblistingC = {
         'SELECT * FROM JobAdvert WHERE advertid = ?;',
         [_request.params.advertid],
       );
+
       console.log(data);
 
       response.status(200).json(data);
@@ -51,18 +52,15 @@ const joblistingC = {
     next: express.NextFunction,
   ) {
     try {
-      console.log(_request.body);
-
       // Create unique id for advert
       const advertid: string = uniqid();
 
       // Create new date object
-      const currentDate = new Date();
+      const date = new Date();
 
-      // Create date object that is six months from current date
-      const newDate = new Date(
-        currentDate.setMonth(currentDate.getMonth() + 6),
-      );
+      // Set date 6 months forward
+      date.setMonth(date.getMonth() + 6);
+
       // Check that date is in correct format (YYYY-MM-DD)
       if (!_request.body.validuntil.match(/^\d{4}-\d{2}-\d{2}$/)) {
         throw new Error('Date is not in valid format. Should be YYYY-MM-DD.');
@@ -71,17 +69,24 @@ const joblistingC = {
       const userDate = new Date(_request.body.validuntil);
       // Check that adverts expiration date is less than half year from now
       const validuntil =
-        userDate > newDate
-          ? `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDay()}`
+        userDate > date
+          ? `${date.getFullYear()}-${
+              // If month is below 10 it is needed to place 0 before month number so it is in valid format
+              // Also getMonth start counting months from 0 (january) so it is needed to + 1 to get correct date
+              date.getMonth() + 1 > 9
+                ? date.getMonth() + 1
+                : '0' + (date.getMonth() + 1)
+            }-${
+              // If day is below 10 it is needed 0 before day number so it is in valid format
+              date.getDate() > 9 ? date.getDate() : '0' + date.getDate()
+            }`
           : _request.body.validuntil;
 
       // Contruct profile object containing all necessary data
       const profileObj = {
         advertid,
         ..._request.body,
-
         accepted: false,
-
         isvalid: true,
         validuntil,
       };
@@ -212,6 +217,7 @@ const joblistingC = {
       const result = queryDb(sql, [...sqlparams, _request.params.advertid]);
 
       console.log(result);
+
       response.status(200).json({
         success: true,
         message: 'Updated advert successfully',

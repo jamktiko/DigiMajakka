@@ -17,7 +17,8 @@ const ErrorHandler = (
 
   console.log('-------------');
 
-  console.error(error);
+  console.error(error.message);
+  console.error(error.stack);
 
   const statusCode = Number(error.status) || 500;
 

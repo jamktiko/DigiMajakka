@@ -44,16 +44,6 @@ export const validatePhoneNumber = (phoneNumber: string) => {
   return false;
 };
 
-export const validateEmailEnd = (email: string, schoolemailend: string) => {
-  // Slice emails end to check if it matches with given school email end
-  const emailend = email.slice(email.indexOf('@'));
-
-  if (emailend === schoolemailend) {
-    return true;
-  }
-
-  return false;
-};
 export const validateDate = (date: string) => {
   if (date.match(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/)) {
     return true;

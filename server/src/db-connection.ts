@@ -18,6 +18,12 @@ type ResultField = string | boolean | number;
 // Type for database query return object
 type DbResult = Record<string, ResultField>;
 
+/**
+ * Function to create connection and send query to database
+ * @param {string} query sql query
+ * @param {Array} parameters array of values that replaces "?" in sql query
+ * @return {Promise} promise with data returned from database
+ */
 const queryDb = async (query: string, parameters: unknown[]) => {
   return new Promise<[DbResult]>((resolve, reject) => {
     // Get pool connection

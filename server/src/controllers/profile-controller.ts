@@ -49,7 +49,7 @@ const profileController = {
     }
   },
 
-  // Insert profile into database
+  // Insert new profile into database
   async createProfile(
     _request: IAuthenticatedRequest,
     response: express.Response,
@@ -59,7 +59,6 @@ const profileController = {
       if (typeof _request.user === 'undefined') {
         throw new Error('User does not exist');
       }
-      console.log(_request.user);
 
       // Find users data and citys name that users school is in
       const userdata = await queryDb(
@@ -70,12 +69,13 @@ const profileController = {
       if (typeof userdata === 'undefined' || !userdata.length) {
         throw new Error('User does not exist');
       }
+
       // Take users data from array
       const user = userdata[0];
 
       // Check that user object has specified keys
       if ('email' in user && 'cityname' in user && 'schoolname' in user) {
-        // Template profile with placeholder data
+        // Template profile with placeholder data which will be inserted into database
         const profile: Profile = {
           firstname: 'Etunimi',
           familyname: 'Sukunimi',
@@ -119,14 +119,14 @@ const profileController = {
     next: express.NextFunction,
   ) {
     try {
-      // Check if phone number is in valid format
+      // Check that phone number is in valid format if it is provided
       if (
         _request.body.phonenumber &&
         !validation.validatePhoneNumber(_request.body.phonenumber)
       ) {
         throw new CustomError('Phonenumber is not valid', 400);
       }
-      // Check that email is in valid format
+      // Check that email is in valid format if it is provided
       if (
         _request.body.email &&
         !validation.validateEmail(_request.body.email)
@@ -168,25 +168,12 @@ const profileController = {
     next: express.NextFunction,
   ) {
     try {
-      // Delete skills of a profile
-      const delSkills = await queryDb(
-        'DELETE FROM UserProfileSkills WHERE UserProfile_userprofileid = ?;',
-        [_request.params.profileid],
-      );
-      // Delete links of a profile
-      const delLinks = await queryDb(
-        'DELETE FROM Links WHERE UserProfile_userprofileid = ?;',
-        [_request.params.profileid],
-      );
-      // delete profile
-      const delProfile = await queryDb(
-        'DELETE FROM UserProfile WHERE userprofileid = ?',
-        [_request.params.profileid],
-      );
+      const result = await queryDb('CALL deleteProfile(?);', [
+        _request.params.profileid,
+      ]);
 
-      console.log(delProfile);
-      console.log(delLinks);
-      console.log(delSkills);
+      console.log(result);
+
       response.status(200).json({
         message: 'Deleted profile succesfully',
         success: true,

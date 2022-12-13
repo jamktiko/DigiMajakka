@@ -7,7 +7,7 @@ const identityServiceProvider = new CognitoIdentityServiceProvider({
   region: process.env.REGION,
 });
 
-// Type for user attribute to use in request
+// Type for user attribute. Used to extend request
 export type IUser = {
   id: string | undefined;
   email: string | undefined;

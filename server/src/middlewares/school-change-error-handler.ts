@@ -28,7 +28,7 @@ const handleError = async (
       );
 
       await cognitoHelper.deleteUser(
-        _request.body.newemail,
+        _request.body.oldemail,
         _request.body.password,
       );
     } else {

@@ -15,42 +15,24 @@ import {
   CognitoUserPool,
 } from 'amazon-cognito-identity-js';
 
-const cognitoIdentity = new CognitoIdentityServiceProvider({
-  accessKeyId: process.env.COGNITO_ACCESS_KEY,
-  secretAccessKey: process.env.COGNITO_SECRET_KEY,
-  region: process.env.REGION,
-});
-
-// Create new instance of cognitoUserPool to connect to cognito
-const userPool = new CognitoUserPool({
-  UserPoolId: process.env.USER_POOL_ID ?? '',
-  ClientId: process.env.CLIENT_ID ?? '',
-});
-
-/**
- *
- * @param email users email
- * @param profileid users id in database
- * @returns attributelist that is needed for cognito signup
- */
-
-// New CognitoUserAttribute({
-// 	Name: 'profileid',
-// 	Value: String(profileid),
-// })
-
 class CognitoHelper {
   public userPool: CognitoUserPool;
+  public cognitoIdentity: CognitoIdentityServiceProvider;
 
   constructor() {
     this.userPool = new CognitoUserPool({
       UserPoolId: process.env.USER_POOL_ID ?? '',
       ClientId: process.env.CLIENT_ID ?? '',
     });
+    this.cognitoIdentity = new CognitoIdentityServiceProvider({
+      accessKeyId: process.env.COGNITO_ACCESS_KEY,
+      secretAccessKey: process.env.COGNITO_SECRET_KEY,
+      region: process.env.REGION,
+    });
   }
 
   /**
-   * Function signs new user to cognito and database
+   * Method that signs new user to cognito and database
    * @param {string} email users email
    * @param {string} password users password
    * @return {Promise} resolved promise
@@ -83,17 +65,17 @@ class CognitoHelper {
   }
 
   /**
-   * Function that confirms user registration with code that cognito sent via email
-   * @param email users email
-   * @param code users confirmation code received via email
-   * @return resolved promise
+   * Method that confirms user registration with code that cognito sent via email
+   * @param {string} email users email
+   * @param {string} code users confirmation code received via email
+   * @return {Promise} resolved promise
    */
   async confirmSignUp(email: string, code: string) {
     // Create new instance of CognitoUser
     return new Promise((resolve, reject) => {
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
 
       // Use cognitoUser class method to verify confirmation code
@@ -108,9 +90,9 @@ class CognitoHelper {
   }
 
   /**
-   * Function to resend confirmation code to user
-   * @param email users email
-   * @return resolved promise
+   * Method to resend confirmation code to user
+   * @param {string} email users email
+   * @return {promise} resolved promise
    */
   async resendConfirmCode(email: string) {
     // Create new instance of CognitoUser
@@ -118,7 +100,7 @@ class CognitoHelper {
     return new Promise((resolve, reject) => {
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
 
       // Use class method to resend confirmation code
@@ -133,16 +115,16 @@ class CognitoHelper {
   }
 
   /**
-   * Function to sign user in
-   * @param email users registered email
-   * @param password users password
-   * @return resolved promise
+   * Method to sign user in
+   * @param {string} email users registered email
+   * @param {string} password users password
+   * @return {Promise} resolved promise
    */
   async signIn(email: string, password: string) {
     return new Promise((resolve, reject) => {
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
 
       const authenticationDetails = new AuthenticationDetails({
@@ -150,7 +132,7 @@ class CognitoHelper {
         Password: password,
       });
 
-      cognitoIdentity.adminGetUser(
+      this.cognitoIdentity.adminGetUser(
         {
           UserPoolId: process.env.USER_POOL_ID || '',
           Username: email || '',
@@ -181,15 +163,15 @@ class CognitoHelper {
   }
 
   /**
-   * Function that signs user out
-   * @param email users email
-   * @return resolved promise
+   * Method that signs user out
+   * @param {string} email users email
+   * @return {Promise} resolved promise
    */
   async signOut(email: string) {
     return new Promise((resolve) => {
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
 
       cognitoUser.signOut(() => {
@@ -199,17 +181,17 @@ class CognitoHelper {
   }
 
   /**
-   * Deletes authenticated user from cognito and from database
-   * @param email users email
-   * @param password users password fro authentication
-   * @return promise
+   * Method to for authenticated user to delete their account/data from cognito and database
+   * @param {string} email users email
+   * @param {string} password users password fro authentication
+   * @return {Promise} promise
    */
   async deleteUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
       // Create new instance of cognitoUser
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
       // Details for authentication
       const authenticationDetails = new AuthenticationDetails({
@@ -243,16 +225,19 @@ class CognitoHelper {
     });
   }
 
-  // Function to start password reset
-  // This will send email with confirmation code to user
+  /**
+   * Method to start password reset workflow. This will send email with confirmation code to user
+   * @param {string} email users email
+   * @return {Promise} promise
+   */
   async resetPassword(email: string) {
     return new Promise((resolve, reject) => {
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
 
-      cognitoIdentity.adminGetUser(
+      this.cognitoIdentity.adminGetUser(
         {
           UserPoolId: process.env.USER_POOL_ID || '',
           Username: email || '',
@@ -275,11 +260,11 @@ class CognitoHelper {
   }
 
   /**
-   * Completes password reset request
+   * Method to complete password reset request
    * @param {string} email users email
    * @param {string} confirmationCode password reset confirmation code received via email
    * @param {string} newPassword new password provided by user
-   * @returns promise
+   * @return promise
    */
   async confirmPassword(
     email: string,
@@ -289,7 +274,7 @@ class CognitoHelper {
     return new Promise((resolve, reject) => {
       const cognitoUser = new CognitoUser({
         Username: email,
-        Pool: userPool,
+        Pool: this.userPool,
       });
       cognitoUser.confirmPassword(confirmationCode, newPassword, {
         onFailure(error) {

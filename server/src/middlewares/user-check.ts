@@ -1,4 +1,5 @@
 import type express from 'express';
+import CustomError from '../custom-error';
 import querydb from '../db-connection';
 
 import type {IAuthenticatedRequest} from './auth';
@@ -24,7 +25,7 @@ const checkUser = async (
       if (user[0].userprofileid === Number(_request.params.profileid)) {
         next();
       } else {
-        throw new Error('Authorization failed');
+        throw new CustomError('Authorization failed', 403);
       }
     }
   } catch (error: unknown) {

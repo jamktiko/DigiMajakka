@@ -52,7 +52,7 @@ const imageC = {
       );
 
       // Check that profile were returned
-      if (profile.length < 1) {
+      if (!profile.length) {
         throw new Error(
           'Error when finding profile. Profile profile id may be wrong.',
         );

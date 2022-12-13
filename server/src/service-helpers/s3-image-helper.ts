@@ -46,7 +46,7 @@ const imageHelper = {
   /**
    * Function that downloads image from s3 bucket
    * @param {string} key S3 objects key that stores image
-   * @return {internal.Readable} readstream to read data
+   * @return {PromiseResult<S3.GetObjectOutput, AWSError>} image
    */
   async getImg(key: string) {
     try {

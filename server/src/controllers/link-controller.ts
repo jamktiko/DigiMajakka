@@ -16,7 +16,9 @@ const linkC = {
         'SELECT * FROM Links WHERE UserProfile_userprofileid= ?;',
         [_request.params.profileid],
       );
+
       console.log(data);
+
       response.status(200).json(data);
     } catch (error: unknown) {
       next(error);
@@ -38,6 +40,7 @@ const linkC = {
         'Links',
         'UserProfile_userprofileid',
       );
+
       const update = await queryDb(sql, [
         // Destructure values and ad profile id from params to last index of array
         ...sqlparams,
@@ -45,6 +48,7 @@ const linkC = {
       ]);
 
       console.log(update);
+
       response.status(200).json({
         success: true,
         message: 'Updated links successfully',

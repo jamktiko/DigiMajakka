@@ -2,6 +2,7 @@ import type express from 'express';
 import CustomError from '../custom-error';
 import queryDb from '../db-connection';
 import CognitoHelper from '../service-helpers/cognito-helper';
+import validateSchoolEmail from '../validators/validate-school-email';
 
 const cognitoHelper = new CognitoHelper();
 
@@ -19,24 +20,18 @@ const userC = {
           'Did not receive all required fields in body (email, password)',
         );
       }
-      // Separate email end after @ from email string
-      const userEmailEnd = _request.body.email.slice(
-        _request.body.email.indexOf('@'),
-      );
 
-      // Find if school with that email end exists
+      // Validate that users email is a school email
+      const emailValidation = await validateSchoolEmail(_request.body.email);
+
+      if (!emailValidation.valid) {
+        throw new CustomError('Email is not a school email', 400);
+      }
+
       const schooldata = await queryDb(
         'SELECT * FROM School WHERE emailend = ?;',
-        [userEmailEnd],
+        [emailValidation.userEmailEnd],
       );
-
-      // If school does not exists throw error
-      if (!schooldata.length) {
-        throw new CustomError(
-          'School with email ' + userEmailEnd + ' does not exists',
-          400,
-        );
-      }
 
       // Try to insert account information to database and save answer to dbresult
       const dbresult = await queryDb(
@@ -44,6 +39,7 @@ const userC = {
         // Admin field is set to false a default because no admin functionality is implemented yet in the app
         [_request.body.email, false, schooldata[0].name],
       );
+
       // Try to sign up user to cognito and save ansewer to result
       const result = await cognitoHelper.signUp(
         _request.body.email,
