@@ -44,10 +44,10 @@ export class JobAnnouncementComponent implements OnInit {
 	ngOnInit(): void {
 		this.sub = this.route.params.subscribe((params) => {
 			this.listingid = params['id']; // (+) is used to convert 'id' into a number
-			console.log(this.listingid);
+			// console.log(this.listingid);
 			this.jobService.jobById(this.listingid).subscribe((listing) => {
 				this.listing = listing;
-				console.log(this.listing);
+				// console.log(this.listing);
 			});
 		});
 	}

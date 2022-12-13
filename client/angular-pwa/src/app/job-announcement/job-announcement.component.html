@@ -2,21 +2,21 @@
 	[color]="breadcrumbColor"
 	[routes]="breadcrumbRoute"
 ></app-breadcrumb>
-<body>
+<div class="container">
 	<div class="content">
 		<div class="annoucement">
-			<h1>Tehtävänimike</h1>
+			<h1>{{ listing[0].jobtitle }}</h1>
 			<div class="line"></div>
 			<div class="informationDetailsBox">
 				<div class="details left">
 					<h4>
 						<strong>Toimeksiantaja:</strong>
-						{{ listing[0].company }}
+						{{ listing[0].company || listing[0].firstname + ' ' + listing[0].familyname }}
 					</h4>
 					<h4><strong>Palkka:</strong> {{ listing[0].salary }}</h4>
 					<h4>
 						<strong>Työn alkamispäivä:</strong>
-						{{ listing[0].startdate.substring(0, 10) }}
+						{{ listing[0].startdate ? listing[0].startdate.substring(0, 10) : 'Heti' }}
 					</h4>
 				</div>
 				<div class="details right">
@@ -37,7 +37,7 @@
 				<p>{{ listing[0].description }}</p>
 			</div>
 		</div>
-		<div class="contactBox">
+		<!-- <div class="contactBox">
 			<h2>Hae tähän työtehtävään nyt</h2>
 			<div class="line short">
 				<form
@@ -91,7 +91,7 @@
 						/>
 					</label>
 
-					<!-- Errors for lastname-validation -->
+		
 					<p
 						class="error"
 						*ngIf="lastname.errors?.required && lastname.touched"
@@ -119,7 +119,7 @@
 						/>
 					</label>
 
-					<!-- Errors for field-validation -->
+			
 					<p
 						class="error"
 						*ngIf="email.errors?.required && email.touched"
@@ -141,7 +141,6 @@
 						/>
 					</label>
 
-					<!-- Errors for phone-validation -->
 					<p
 						class="error"
 						*ngIf="phone.errors?.required && phone.touched"
@@ -158,9 +157,9 @@
 				<h5>automaattisesti, joten sinun ei tarvitse huolehtia</h5>
 				<h5>siitä!</h5>
 				<div class="buttonArea">
-					<button class="greenbutton">Lähetä ilmoitus</button>
+					<button class="greenbutton">Lähetä Hakemus</button>
 				</div>
 			</div>
-		</div>
+		</div> -->
 	</div>
-</body>
+</div>

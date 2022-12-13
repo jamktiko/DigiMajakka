@@ -36,7 +36,7 @@
 				{{ profile[0].yearofstudy }}:sen vuoden opiskelija
 			</p>
 			<p class="listtext value" *ngIf="profile[0].yearofstudy === 3">
-				{{ profile[0].yearofstudy }}:nnen vuoden opiskelija
+				{{ profile[0].yearofstudy }}. vuoden opiskelija
 			</p>
 			<p class="listtext value" *ngIf="profile[0].yearofstudy >= 4">
 				4:nnen (tai enemmän) vuoden opiskelija
@@ -183,7 +183,8 @@
 					</div>
 				</div>
 				<!-- ADD FUNCTIONALITY -->
-				<div class="greenbutton contactbtn">Ota yhteyttä</div>
+				<div class="greenbutton contactbtn" *ngIf="!showContactInfo"
+				(click)="showContactInfo = !showContactInfo">Ota yhteyttä</div>
 			</div>
 		</div>
 	</div>

@@ -1,13 +1,13 @@
-body {
+.container {
   background-color: var(--darkgray);
   width: 100vw;
-  height: 100vw; 
+  padding-bottom: 8rem;
 }
-
 .content {
   display: flex;
   justify-content: center;
   padding-top: 61px;
+  
 }
 
 .annoucement {
